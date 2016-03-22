@@ -25,6 +25,14 @@
                     <li>Human</li>
                 </targetDefs>
             </li>
+            <li>
+                <compProps>
+                        <compClass>Combat_Realism.CompInventory</compClass>
+                </compProps>
+                <targetDefs>
+                    <li>Human</li>
+                </targetDefs>
+            </li>
         </ThingComps>
 
     </ModHelperDef>

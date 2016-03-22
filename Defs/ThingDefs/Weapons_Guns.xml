@@ -108,6 +108,8 @@
 	  <ShotSpread>0.16</ShotSpread>
 	  <SwayFactor>2.05</SwayFactor>
       <RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+	  <Bulk>4</Bulk>
+	  <Weight>2</Weight>
     </statBases>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">

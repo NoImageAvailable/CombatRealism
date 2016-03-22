@@ -72,6 +72,7 @@
     <Compile Include="Combat_Realism\ArtilleryMarker.cs" />
     <Compile Include="Combat_Realism\CompExplosive.cs" />
     <Compile Include="Combat_Realism\CompGizmos.cs" />
+    <Compile Include="Combat_Realism\CompInventory.cs" />
     <Compile Include="Combat_Realism\CompJamming.cs" />
     <Compile Include="Combat_Realism\DetourInjector.cs" />
     <Compile Include="Combat_Realism\FireMode.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR.cs" />
     <Compile Include="Combat_Realism\DetourUtility.cs" />
     <Compile Include="Combat_Realism\JobDriver_HunkerDown.cs" />
+    <Compile Include="Combat_Realism\JobDriver_TakeInventoryCR.cs" />
     <Compile Include="Combat_Realism\JobGiver_HunkerDown.cs" />
     <Compile Include="Combat_Realism\JobGiver_RunForCover.cs" />
     <Compile Include="Combat_Realism\ProjectileCR.cs" />
