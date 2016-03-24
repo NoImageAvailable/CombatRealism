@@ -109,7 +109,7 @@
 	  <SwayFactor>2.05</SwayFactor>
       <RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
 	  <Bulk>4</Bulk>
-	  <Weight>2</Weight>
+	  <Weight>20</Weight>
     </statBases>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
@@ -130,6 +130,9 @@
       <WorkSpeedGlobal>-0.02</WorkSpeedGlobal>
     </equippedStatOffsets>
     <comps>
+      <li>
+        <compClass>Combat_Realism.CompCarryable</compClass>
+      </li>
       <li Class="Combat_Realism.CompPropertiesFireModes">
         <compClass>Combat_Realism.CompFireModes</compClass>
         <aiUseBurstMode>FALSE</aiUseBurstMode>

@@ -26,6 +26,20 @@ namespace Combat_Realism
                 return currentBulkCached;
             }
         }
+        private float availableWeight
+        {
+            get
+            {
+                return this.parentPawn.GetStatValue(StatDef.Named("CarryWeight")) - currentWeight;
+            }
+        }
+        private float availableBulk
+        {
+            get
+            {
+                return this.parentPawn.GetStatValue(StatDef.Named("CarryBulk")) - currentBulk;
+            }
+        }
         private Pawn parentPawnInt = null;
         private Pawn parentPawn
         {
@@ -38,6 +52,32 @@ namespace Combat_Realism
                 return parentPawnInt;
             }
         }
+        public float moveSpeedFactor
+        {
+            get
+            {
+                return Mathf.Lerp(0.75f, 1f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryWeight")));
+            }
+        }
+        public float workSpeedFactor
+        {
+            get
+            {
+                return Mathf.Lerp(0.75f, 1f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryBulk")));
+            }
+        }
+        public float encumberPenalty
+        {
+            get
+            {
+                float penalty = 0f;
+                if (availableWeight < 0)
+                {
+                    penalty = currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryWeight")) - 1;
+                }
+                return penalty;
+            }
+        }
 
         public override void Initialize(CompProperties props)
         {
@@ -45,6 +85,9 @@ namespace Combat_Realism
             this.UpdateInventory();
         }
 
+        /// <summary>
+        /// Refreshes the cached bulk and weight. Call this whenever items are added/removed from inventory
+        /// </summary>
         public void UpdateInventory()
         {
             if (parentPawn == null)
@@ -69,22 +112,25 @@ namespace Combat_Realism
             }
             this.currentBulkCached = newBulk;
             this.currentWeightCached = newWeight;
-            Log.Message("Updated bulk: " + currentBulk.ToString() + ", " + this.parent.ToString());
-            Log.Message("Updated weight: " + currentWeight.ToString() + ", " + this.parent.ToString());
         }
 
-        public bool CanPickUpItem(Thing thing)
+        public bool CanFitInInventory(Thing thing, out int count, bool countEquipment = true)
         {
-            float availableWeight = currentWeight - this.parentPawn.GetStatValue(StatDef.Named("Weight"));
-            float availableBulk = currentBulk - this.parentPawn.GetStatValue(StatDef.Named("Bulk"));
-            return thing.GetStatValue(StatDef.Named("Weight")) <= availableWeight && thing.GetStatValue(StatDef.Named("Bulk")) <= availableBulk;
+            float eqBulk = 0f;
+            float eqWeight = 0f;
+            if (!countEquipment && this.parentPawn.equipment != null && this.parentPawn.equipment.Primary != null)
+            {
+                ThingWithComps eq = this.parentPawn.equipment.Primary;
+                eqBulk = eq.GetStatValue(StatDef.Named("Bulk"));
+                eqWeight = eq.GetStatValue(StatDef.Named("Weight"));
+            }
+            float amountByWeight = (availableWeight + eqWeight) / (thing.GetStatValue(StatDef.Named("Weight")));
+            float amountByBulk = (availableBulk + eqBulk) / (thing.GetStatValue(StatDef.Named("Bulk")));
+            count = Mathf.FloorToInt(Mathf.Min(amountByBulk, amountByWeight, thing.stackCount));
+            return count > 0;
         }
 
-        public float GetMoveSpeedFactor()
-        {
-            return Mathf.Lerp(0.5f, 1f, 1 - currentWeight / this.parentPawn.GetStatValue(StatDef.Named("Weight")));
-        }
-
+        // Placeholder - remove once UpdateInventory() is being called properly on adding/removing things from containers
         public override void CompTick()
         {
             base.CompTick();

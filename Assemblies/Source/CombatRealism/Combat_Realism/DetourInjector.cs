@@ -33,6 +33,11 @@ namespace Combat_Realism
             Log.Message("Attempting detour from DrawTurret to DrawTurretCR");
             Detours.TryDetourFromTo(typeof(TurretTop).GetMethod("DrawTurret", BindingFlags.Instance | BindingFlags.Public),
                 typeof(DetourUtility).GetMethod("DrawTurretCR", BindingFlags.Static | BindingFlags.Public));
+
+            // Detour FloatMenuMaker
+            Log.Message("Attempting detour from ChoicesAtFor to ChoicesAtForCR");
+            Detours.TryDetourFromTo(typeof(FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.Public),
+                typeof(DetourUtility).GetMethod("ChoicesAtForCR", BindingFlags.Static | BindingFlags.Public));
         }
     }
 }

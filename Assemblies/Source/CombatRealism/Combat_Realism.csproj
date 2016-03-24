@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\ArtilleryMarker.cs" />
+    <Compile Include="Combat_Realism\CompCarryable.cs" />
     <Compile Include="Combat_Realism\CompExplosive.cs" />
     <Compile Include="Combat_Realism\CompGizmos.cs" />
     <Compile Include="Combat_Realism\CompInventory.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="Combat_Realism\ProjectileCR.cs" />
     <Compile Include="Combat_Realism\ProjectileCR_Explosive.cs" />
     <Compile Include="Combat_Realism\ShiftVecReport.cs" />
+    <Compile Include="Combat_Realism\StatWorker_MoveSpeed.cs" />
+    <Compile Include="Combat_Realism\StatWorker_WorkSpeedGlobal.cs" />
     <Compile Include="Combat_Realism\ThinkNode_ConditionalHunkering.cs" />
     <Compile Include="Combat_Realism\ThinkNode_ConditionalSuppressed.cs" />
     <Compile Include="Combat_Realism\ThoughtWorker_Suppressed.cs" />
