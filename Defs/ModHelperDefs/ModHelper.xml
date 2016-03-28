@@ -4,14 +4,14 @@
     <ModHelperDef>
         <defName>CombatRealism</defName>
         <ModName>CombatRealism</ModName>
-        <version>0.12.5</version>
+        <version>0.12.6</version>
 		<SpecialInjectors>
 			<li>Combat_Realism.DetourInjector</li>
 		</SpecialInjectors>
         <ThingComps>
             <li>
                 <compProps>
-                        <compClass>CommunityCoreLibrary.CompPawnGizmo</compClass>
+                    <compClass>CommunityCoreLibrary.CompPawnGizmo</compClass>
                 </compProps>
                 <targetDefs>
                     <li>Human</li>
@@ -19,7 +19,7 @@
             </li>
             <li>
                 <compProps>
-                        <compClass>Combat_Realism.CompSuppressable</compClass>
+                    <compClass>Combat_Realism.CompSuppressable</compClass>
                 </compProps>
                 <targetDefs>
                     <li>Human</li>
@@ -27,14 +27,14 @@
             </li>
             <li>
                 <compProps>
-                        <compClass>Combat_Realism.CompInventory</compClass>
+                    <compClass>Combat_Realism.CompInventory</compClass>
                 </compProps>
                 <targetDefs>
                     <li>Human</li>
                 </targetDefs>
             </li>
         </ThingComps>
-
+		<Verbosity>Injections</Verbosity>
     </ModHelperDef>
 
 </Defs>

@@ -446,6 +446,11 @@ namespace Combat_Realism
         //Unmodified
         protected virtual void Impact(Thing hitThing)
         {
+            CompExplosive comp = this.TryGetComp<CompExplosive>();
+            if (comp != null)
+            {
+                comp.Explode(this.launcher);
+            }
             this.Destroy(DestroyMode.Vanish);
         }
 

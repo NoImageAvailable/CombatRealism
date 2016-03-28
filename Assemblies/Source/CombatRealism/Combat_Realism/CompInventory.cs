@@ -78,6 +78,18 @@ namespace Combat_Realism
                 return penalty;
             }
         }
+        public ThingContainer container
+        {
+            get
+            {
+                if (parentPawn.inventory != null)
+                {
+                    return parentPawn.inventory.container;
+                }
+                return null;
+            }
+        }
+        private List<ThingCount> ammoListCached = new List<ThingCount>();
 
         public override void Initialize(CompProperties props)
         {
@@ -97,44 +109,88 @@ namespace Combat_Realism
             }
             float newBulk = 0f;
             float newWeight = 0f;
+
+            // Add equipped weapon
             if (parentPawn.equipment != null && parentPawn.equipment.Primary != null)
             {
                 newBulk += parentPawn.equipment.Primary.GetStatValue(StatDef.Named("Bulk"));
                 newWeight += parentPawn.equipment.Primary.GetStatValue(StatDef.Named("Weight"));
             }
+
+            // Add apparel
+            if (parentPawn.apparel != null && parentPawn.apparel.WornApparelCount > 0)
+            {
+                foreach (Thing apparel in parentPawn.apparel.WornApparel)
+                {
+                    float apparelBulk = apparel.GetStatValue(StatDef.Named("Bulk"));
+                    float apparelWeight = apparel.GetStatValue(StatDef.Named("Weight"));
+                    if (apparelBulk != StatDef.Named("Bulk").defaultBaseValue && apparelWeight != StatDef.Named("Weight").defaultBaseValue)
+                    {
+                        newBulk += apparelBulk;
+                        newWeight += apparelWeight;
+                    }
+                }
+            }
+
+            // Add inventory items
             if (parentPawn.inventory != null && parentPawn.inventory.container != null)
             {
                 foreach (Thing thing in parentPawn.inventory.container)
                 {
                     newBulk += thing.GetStatValue(StatDef.Named("Bulk"));
                     newWeight += thing.GetStatValue(StatDef.Named("Weight"));
+
+                    // Update ammo list
+                    // -TODO-
                 }
             }
             this.currentBulkCached = newBulk;
             this.currentWeightCached = newWeight;
         }
 
-        public bool CanFitInInventory(Thing thing, out int count, bool countEquipment = true)
+        public bool CanFitInInventory(Thing thing, out int count, bool ignoreEquipment = false, bool ignoreDefaultStats = false)
         {
+            float thingWeight = thing.GetStatValue(StatDef.Named("Weight"));
+            float thingBulk = thing.GetStatValue(StatDef.Named("Bulk"));
+
+            if (ignoreDefaultStats && thingBulk != StatDef.Named("Bulk").defaultBaseValue && thingWeight != StatDef.Named("Weight").defaultBaseValue)
+            {
+                count = 1;
+                return true;
+            }
+
+            // Equipment weight
             float eqBulk = 0f;
             float eqWeight = 0f;
-            if (!countEquipment && this.parentPawn.equipment != null && this.parentPawn.equipment.Primary != null)
+            if (ignoreEquipment && this.parentPawn.equipment != null && this.parentPawn.equipment.Primary != null)
             {
                 ThingWithComps eq = this.parentPawn.equipment.Primary;
                 eqBulk = eq.GetStatValue(StatDef.Named("Bulk"));
                 eqWeight = eq.GetStatValue(StatDef.Named("Weight"));
             }
-            float amountByWeight = (availableWeight + eqWeight) / (thing.GetStatValue(StatDef.Named("Weight")));
-            float amountByBulk = (availableBulk + eqBulk) / (thing.GetStatValue(StatDef.Named("Bulk")));
+
+            float amountByWeight = (availableWeight + eqWeight) / thingWeight;
+            float amountByBulk = (availableBulk + eqBulk) / thingBulk;
             count = Mathf.FloorToInt(Mathf.Min(amountByBulk, amountByWeight, thing.stackCount));
             return count > 0;
+        }
+
+        public void SwitchToNextViableWeapon(bool useFists)
+        {
+            // -TODO-
         }
 
         // Placeholder - remove once UpdateInventory() is being called properly on adding/removing things from containers
         public override void CompTick()
         {
             base.CompTick();
+            float lastWeight = this.currentWeightCached;
+            float lastBulk = this.currentBulkCached;
             this.UpdateInventory();
+            if (lastWeight != this.currentWeightCached || lastBulk != this.currentBulkCached)
+            {
+                Log.Error(this.parent.ToString() + " failed inventory validation");
+            }
         }
     }
 }

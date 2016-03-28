@@ -130,9 +130,6 @@
       <WorkSpeedGlobal>-0.02</WorkSpeedGlobal>
     </equippedStatOffsets>
     <comps>
-      <li>
-        <compClass>Combat_Realism.CompCarryable</compClass>
-      </li>
       <li Class="Combat_Realism.CompPropertiesFireModes">
         <compClass>Combat_Realism.CompFireModes</compClass>
         <aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -319,13 +316,13 @@
       <MarketValue>650</MarketValue>
 	  <AimEfficiency>0.50</AimEfficiency>
 	  <ShotSpread>0.08</ShotSpread>
-	  <SwayFactor>1.78</SwayFactor>
+	  <SwayFactor>1.28</SwayFactor>
       <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
     </statBases>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-        <recoilOffsetX>(0.0, 0.43)</recoilOffsetX>
-        <recoilOffsetY>(0.0, 0.14)</recoilOffsetY>
+        <recoilOffsetX>(0.0, 0.28)</recoilOffsetX>
+        <recoilOffsetY>(0.0, 0.86)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_AssaultRifle</projectileDef>
@@ -588,12 +585,18 @@
     <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <projectile>
       <speed>60</speed>
-      <damageDef>Flame</damageDef>
-      <damageAmountBase>15</damageAmountBase>
-      <explosionRadius>1.1</explosionRadius>
-      <postExplosionSpawnThingDef>Puddle_Fuel</postExplosionSpawnThingDef>
-      <explosionSpawnChance>0.7</explosionSpawnChance>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>100</damageAmountBase>
+      <explosionRadius>6.0</explosionRadius>
     </projectile>
+	<comps>
+      <li Class="Combat_Realism.CompProperties_Explosive">
+        <compClass>Combat_Realism.CompExplosive</compClass>
+        <explosionDamageDef>Flame</explosionDamageDef>
+        <explosionDamage>25</explosionDamage>
+        <explosionRadius>6.0</explosionRadius>
+      </li>
+	</comps>
   </ThingDef>
 
   <ThingDef ParentName="BaseHumanGun">
@@ -620,7 +623,7 @@
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_IncendiaryLauncher</projectileDef>
         <ai_IsIncendiary>true</ai_IsIncendiary>
-        <warmupTicks>75</warmupTicks>
+        <warmupTicks>150</warmupTicks>
         <range>53</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>ShotIncendiaryLauncher</soundCast>
@@ -640,8 +643,8 @@
       </li>
       <li Class="Combat_Realism.CompProperties_Reloader">
         <compClass>Combat_Realism.CompReloader</compClass>
-        <roundPerMag>5</roundPerMag>
-        <reloadTick>300</reloadTick>
+        <roundPerMag>1</roundPerMag>
+        <reloadTick>450</reloadTick>
       </li>
     </comps>
   </ThingDef>
@@ -675,7 +678,7 @@
       <MarketValue>1600</MarketValue>
 	  <AimEfficiency>0.50</AimEfficiency>
 	  <ShotSpread>0.08</ShotSpread>
-	  <SwayFactor>2.8</SwayFactor>
+	  <SwayFactor>2.3</SwayFactor>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
     <techLevel>Spacer</techLevel>
@@ -684,8 +687,8 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-        <recoilOffsetX>(-0.27,0.52)</recoilOffsetX>
-        <recoilOffsetY>(-0.09,0.18)</recoilOffsetY>
+        <recoilOffsetX>(-0.18,0.36)</recoilOffsetX>
+        <recoilOffsetY>(-0.54,1.04)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_LMG</projectileDef>

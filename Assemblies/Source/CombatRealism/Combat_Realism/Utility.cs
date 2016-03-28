@@ -278,5 +278,26 @@ namespace Combat_Realism
             return deflected;
         }
 
+        //------------------------------ Inventory functions ------------------------------
+
+        public static void TryUpdateInventory(Pawn pawn)
+        {
+            if (pawn != null)
+            {
+                CompInventory comp = pawn.TryGetComp<CompInventory>();
+                if (comp != null)
+                {
+                    comp.UpdateInventory();
+                }
+            }
+        }
+
+        public static void TryUpdateInventory(Pawn_InventoryTracker tracker)
+        {
+            if (tracker != null && tracker.pawn != null)
+            {
+                TryUpdateInventory(tracker.pawn);
+            }
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace Combat_Realism
 {
     public static class DetourUtility
     {
+        // *** Bleeding ***
+
         public static float CalculateBleedingRateCR(this HediffSet _this)
         {
             if (!_this.pawn.RaceProps.isFlesh || _this.pawn.health.Dead)
@@ -32,6 +34,8 @@ namespace Combat_Realism
             return Mathf.Max(0, value);
         }
 
+        // *** Turret rendering ***
+
         private static FieldInfo parentTurretFieldInfo = typeof(TurretTop).GetField("parentTurret", BindingFlags.Instance | BindingFlags.NonPublic);
         private static PropertyInfo curRotationPropertyInfo = typeof(TurretTop).GetProperty("CurRotation", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -51,12 +55,14 @@ namespace Combat_Realism
             Graphics.DrawMesh(MeshPool.plane20, matrix, parentTurret.def.building.turretTopMat, 0);
         }
 
+        // *** Float menu options ***
+
         public static List<FloatMenuOption> ChoicesAtForCR(Vector3 clickPos, Pawn pawn)
         {
-            IntVec3 intVec = IntVec3.FromVector3(clickPos);
+            IntVec3 clickCell = IntVec3.FromVector3(clickPos);
             DangerUtility.NotifyDirectOrderingThisFrame(pawn);
             List<FloatMenuOption> list = new List<FloatMenuOption>();
-            if (!intVec.InBounds())
+            if (!clickCell.InBounds())
             {
                 return list;
             }
@@ -118,7 +124,7 @@ namespace Combat_Realism
                     }
 
                     // Melee attack option
-                    String choiceLabel = "MeleeAttack".Translate() + current.Thing.LabelCap;
+                    String choiceLabel = "MeleeAttack".Translate(new object[] { current.Thing.LabelCap });
                     Action action;
                     if (!pawn.CanReach(current, PathEndMode.Touch, Danger.Deadly, false))
                     {
@@ -207,7 +213,7 @@ namespace Combat_Realism
                 int num = GenRadial.NumCellsInRadius(2.9f);
                 for (int i = 0; i < num; i++)
                 {
-                    IntVec3 curLoc = GenRadial.RadialPattern[i] + intVec;
+                    IntVec3 curLoc = GenRadial.RadialPattern[i] + clickCell;
                     if (curLoc.Standable())
                     {
                         if (curLoc != pawn.Position)
@@ -249,38 +255,41 @@ namespace Combat_Realism
                 }
 
                 // Consume option
-                foreach (Thing current3 in intVec.GetThingList())
+                List<Thing> consumeList = new List<Thing>(clickCell.GetThingList());
+                if (!consumeList.NullOrEmpty<Thing>())
                 {
-                    if (current3.def.ingestible != null && pawn.RaceProps.CanEverEat(current3))
+                    foreach (Thing current3 in consumeList)
                     {
-                        FloatMenuOption item2;
-                        if (current3.def.ingestible.isPleasureDrug && num2 < 0)
+                        if (current3.def.ingestible != null && pawn.RaceProps.CanEverEat(current3))
                         {
-                            item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
+                            FloatMenuOption item2;
+                            if (current3.def.ingestible.isPleasureDrug && num2 < 0)
+                            {
+                                item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
 					{
 						current3.LabelBaseShort
 					}) + " (" + "Teetotaler".Translate() + ")", null, MenuOptionPriority.Medium, null, null);
-                        }
-                        else if (!pawn.CanReach(current3, PathEndMode.OnCell, Danger.Deadly, false))
-                        {
-                            item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
+                            }
+                            else if (!pawn.CanReach(current3, PathEndMode.OnCell, Danger.Deadly, false))
+                            {
+                                item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
 					{
 						current3.LabelBaseShort
 					}) + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Medium, null, null);
-                        }
-                        else if (!pawn.CanReserve(current3, 1))
-                        {
-                            item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
+                            }
+                            else if (!pawn.CanReserve(current3, 1))
+                            {
+                                item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
 					{
 						current3.LabelBaseShort
 					}) + " (" + "ReservedBy".Translate(new object[]
 					{
 						Find.Reservations.FirstReserverOf(current3, pawn.Faction)
 					}) + ")", null, MenuOptionPriority.Medium, null, null);
-                        }
-                        else
-                        {
-                            item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
+                            }
+                            else
+                            {
+                                item2 = new FloatMenuOption("ConsumeThing".Translate(new object[]
 					{
 						current3.LabelBaseShort
 					}), new Action(delegate
@@ -290,9 +299,10 @@ namespace Combat_Realism
                         job.maxNumToCarry = current3.def.ingestible.maxNumToIngestAtOnce;
                         pawn.drafter.TakeOrderedJob(job);
                     }
-                ), MenuOptionPriority.Medium, null, null);
+                    ), MenuOptionPriority.Medium, null, null);
+                            }
+                            list.Add(item2);
                         }
-                        list.Add(item2);
                     }
                 }
 
@@ -419,10 +429,12 @@ namespace Combat_Realism
                 }
 
                 // Equip option
+                CompInventory compInventory = pawn.TryGetComp<CompInventory>();      // Need compInventory here for equip and wear options
+
                 if (pawn.equipment != null)
                 {
                     ThingWithComps equipment = null;
-                    List<Thing> thingList = intVec.GetThingList();
+                    List<Thing> thingList = clickCell.GetThingList();
                     for (int j = 0; j < thingList.Count; j++)
                     {
                         if (thingList[j].TryGetComp<CompEquippable>() != null)
@@ -462,9 +474,8 @@ namespace Combat_Realism
                         else
                         {
                             // Added check for inventory space here
-                            CompInventory comp = pawn.TryGetComp<CompInventory>();
                             int count;
-                            if (comp != null && !comp.CanFitInInventory(equipment, out count, false))
+                            if (compInventory != null && !compInventory.CanFitInInventory(equipment, out count, true))
                             {
                                 equipOption = new FloatMenuOption("CannotEquip".Translate(new object[] { text }) + " (Inventory is full)", null);
                             }
@@ -494,13 +505,13 @@ namespace Combat_Realism
                 // Wear option
                 if (pawn.apparel != null)
                 {
-                    Apparel apparel = Find.ThingGrid.ThingAt<Apparel>(intVec);
+                    Apparel apparel = Find.ThingGrid.ThingAt<Apparel>(clickCell);
                     if (apparel != null)
                     {
-                        FloatMenuOption item5;
+                        FloatMenuOption wearOption;
                         if (!pawn.CanReach(apparel, PathEndMode.ClosestTouch, Danger.Deadly, false))
                         {
-                            item5 = new FloatMenuOption("CannotWear".Translate(new object[]
+                            wearOption = new FloatMenuOption("CannotWear".Translate(new object[]
 					{
 						apparel.Label
 					}) + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Medium, null, null);
@@ -508,7 +519,7 @@ namespace Combat_Realism
                         else if (!pawn.CanReserve(apparel, 1))
                         {
                             Pawn pawn2 = Find.Reservations.FirstReserverOf(apparel, pawn.Faction);
-                            item5 = new FloatMenuOption("CannotWear".Translate(new object[]
+                            wearOption = new FloatMenuOption("CannotWear".Translate(new object[]
 					{
 						apparel.Label
 					}) + " (" + "ReservedBy".Translate(new object[]
@@ -518,26 +529,88 @@ namespace Combat_Realism
                         }
                         else
                         {
-                            item5 = new FloatMenuOption("ForceWear".Translate(new object[]
-					{
-						apparel.LabelBaseShort
-					}), new Action(delegate
-                    {
-                        apparel.SetForbidden(false, true);
-                        Job job = new Job(JobDefOf.Wear, apparel);
-                        job.playerForced = true;
-                        pawn.drafter.TakeOrderedJob(job);
-                    }),
-                                MenuOptionPriority.Medium, null, null);
+                            int count;
+                            if (compInventory != null && !compInventory.CanFitInInventory(apparel, out count, false, true))
+                            {
+                                wearOption = new FloatMenuOption("CannotWear".Translate(new object[] { apparel.Label }) + " (Inventory is full)", null);
+                            }
+                            else
+                            {
+                                wearOption = new FloatMenuOption("ForceWear".Translate(new object[]
+					            {
+						            apparel.LabelBaseShort
+					            }), 
+                                new Action(delegate
+                                    {
+                                        apparel.SetForbidden(false, true);
+                                        Job job = new Job(JobDefOf.Wear, apparel);
+                                        job.playerForced = true;
+                                        pawn.drafter.TakeOrderedJob(job);
+                                    }),
+                                    MenuOptionPriority.Medium, null, null);
+                            }
+
                         }
-                        list.Add(item5);
+                        list.Add(wearOption);
+                    }
+                }
+
+                // Pick up option
+                if (compInventory != null)
+                {
+                    List<Thing> thingList = clickCell.GetThingList();
+                    if (!thingList.NullOrEmpty<Thing>())
+                    {
+                        Thing item = thingList.FirstOrDefault(thing => thing.def.alwaysHaulable);
+                        if (item != null)
+                        {
+                            FloatMenuOption pickUpOption;
+                            int count = 0;
+                            if (!pawn.CanReach(item, PathEndMode.Touch, Danger.Deadly))
+                            {
+                                pickUpOption = new FloatMenuOption("Cannot pick up " + item.LabelBaseShort + " (" + "NoPath".Translate() + ")", null);
+                            }
+                            else if (!pawn.CanReserve(item))
+                            {
+                                pickUpOption = new FloatMenuOption("Cannot pick up " + item.LabelBaseShort + " (" + "ReservedBy".Translate(new object[] { Find.Reservations.FirstReserverOf(item, pawn.Faction) }), null);
+                            }
+                            else if (!compInventory.CanFitInInventory(item, out count))
+                            {
+                                pickUpOption = new FloatMenuOption("Cannot pick up " + item.LabelBaseShort + " (Inventory is full)", null);
+                            }
+                            else
+                            {
+                                pickUpOption = new FloatMenuOption("Pick up " + item.LabelBaseShort,
+                                    new Action(delegate
+                                    {
+                                        item.SetForbidden(false);
+                                        Job job = new Job(JobDefOf.TakeInventory, item) { maxNumToCarry = 1 };
+                                        job.playerForced = true;
+                                        pawn.drafter.TakeOrderedJob(job);
+                                    }));
+                            }
+                            list.Add(pickUpOption);
+                            if (count > 1 && item.stackCount > 1)
+                            {
+                                int numToCarry = Math.Min(count, item.stackCount);
+                                FloatMenuOption pickUpStackOption = new FloatMenuOption("Pick up " + item.LabelBaseShort + " x" + numToCarry.ToString(),
+                                    new Action(delegate
+                                        {
+                                            item.SetForbidden(false);
+                                            Job job = new Job(JobDefOf.TakeInventory, item) { maxNumToCarry = numToCarry };
+                                            job.playerForced = true;
+                                            pawn.drafter.TakeOrderedJob(job);
+                                        }));
+                                list.Add(pickUpStackOption);
+                            }
+                        }
                     }
                 }
 
                 // Deposit option
                 if (pawn.equipment != null && pawn.equipment.Primary != null)
                 {
-                    Thing thing2 = Find.ThingGrid.ThingAt(intVec, ThingDefOf.EquipmentRack);
+                    Thing thing2 = Find.ThingGrid.ThingAt(clickCell, ThingDefOf.EquipmentRack);
                     if (thing2 != null)
                     {
                         if (!pawn.CanReach(thing2, PathEndMode.ClosestTouch, Danger.Deadly, false))
@@ -598,7 +671,7 @@ namespace Combat_Realism
 				}), action6, MenuOptionPriority.Medium, null, null));
                     }
                 }
-                foreach (Thing current7 in Find.ThingGrid.ThingsAt(intVec))
+                foreach (Thing current7 in Find.ThingGrid.ThingsAt(clickCell))
                 {
                     foreach (FloatMenuOption current8 in current7.GetFloatMenuOptions(pawn))
                     {
@@ -613,7 +686,7 @@ namespace Combat_Realism
             {
                 bool flag = false;
                 bool flag2 = false;
-                foreach (Thing current9 in Find.ThingGrid.ThingsAt(intVec))
+                foreach (Thing current9 in Find.ThingGrid.ThingsAt(clickCell))
                 {
                     flag2 = true;
                     if (pawn.CanReach(current9, PathEndMode.Touch, Danger.Deadly, false))
@@ -627,7 +700,7 @@ namespace Combat_Realism
                     list.Add(new FloatMenuOption("(" + "NoPath".Translate() + ")", null, MenuOptionPriority.Medium, null, null));
                     return list;
                 }
-                foreach (Thing current10 in Find.ThingGrid.ThingsAt(intVec))
+                foreach (Thing current10 in Find.ThingGrid.ThingsAt(clickCell))
                 {
                     Pawn pawn3 = Find.Reservations.FirstReserverOf(current10, pawn.Faction);
                     if (pawn3 != null && pawn3 != pawn)
@@ -753,7 +826,7 @@ namespace Combat_Realism
             }
             // *** End of non-drafted options ***
 
-            foreach (FloatMenuOption current12 in pawn.GetExtraFloatMenuOptionsFor(intVec))
+            foreach (FloatMenuOption current12 in pawn.GetExtraFloatMenuOptionsFor(clickCell))
             {
                 list.Add(current12);
             }

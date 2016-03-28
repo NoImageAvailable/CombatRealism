@@ -22,7 +22,7 @@ namespace Combat_Realism
                 return base.TryCastShot();
             }
 
-            if ( compAmmo.needReload || compAmmo.count <= 0)
+            if (compAmmo.curAmmo <= 0)
             {
                 compAmmo.StartReload();
                 return false;
@@ -33,8 +33,8 @@ namespace Combat_Realism
                 return false;
             }
 
-            compAmmo.count--;
-            if ( compAmmo.count <= 0 )
+            compAmmo.curAmmo--;
+            if ( compAmmo.curAmmo <= 0 )
             {
                 compAmmo.StartReload();
             }

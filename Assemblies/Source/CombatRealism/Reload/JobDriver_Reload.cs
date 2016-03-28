@@ -21,7 +21,7 @@ namespace Combat_Realism
             var waitToil = new Toil();
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = compReloader.reloaderProp.reloadTick;
+            waitToil.defaultDuration = compReloader.rProps.reloadTick;
             yield return waitToil;
 
             //Actual reloader

@@ -47,6 +47,12 @@ namespace Combat_Realism
 			explosionInfo.explosionSound = this.def.projectile.soundExplode;
 			explosionInfo.projectile = this.def;
 			explosionInfo.DoExplosion();
+
+            CompExplosive comp = this.TryGetComp<CompExplosive>();
+            if (comp != null)
+            {
+                comp.Explode(launcher);
+            }
 		}
 	}
 }

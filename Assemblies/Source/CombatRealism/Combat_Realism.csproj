@@ -70,7 +70,6 @@
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\ArtilleryMarker.cs" />
-    <Compile Include="Combat_Realism\CompCarryable.cs" />
     <Compile Include="Combat_Realism\CompExplosive.cs" />
     <Compile Include="Combat_Realism\CompGizmos.cs" />
     <Compile Include="Combat_Realism\CompInventory.cs" />
@@ -94,6 +93,8 @@
     <Compile Include="Combat_Realism\ShiftVecReport.cs" />
     <Compile Include="Combat_Realism\StatWorker_MoveSpeed.cs" />
     <Compile Include="Combat_Realism\StatWorker_WorkSpeedGlobal.cs" />
+    <Compile Include="Combat_Realism\Defs\AmmoDef.cs" />
+    <Compile Include="Combat_Realism\Defs\AmmoSetDef.cs" />
     <Compile Include="Combat_Realism\ThinkNode_ConditionalHunkering.cs" />
     <Compile Include="Combat_Realism\ThinkNode_ConditionalSuppressed.cs" />
     <Compile Include="Combat_Realism\ThoughtWorker_Suppressed.cs" />
@@ -107,6 +108,9 @@
     <Compile Include="Combat_Realism\Verb_MarkForArtilleryCR.cs" />
     <Compile Include="Combat_Realism\Verb_ShootMortarCR.cs" />
     <Compile Include="Combat_Realism\Verb_ShootCROneUse.cs" />
+    <Compile Include="Detours\Detours_Pawn_ApparelTracker.cs" />
+    <Compile Include="Detours\Detours_Pawn_EquipmentTracker.cs" />
+    <Compile Include="Detours\Detours_ThingContainer.cs" />
     <Compile Include="Projectile_Laser\Projectile_LaserRifle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Projectile_Laser\ThingDef_LaserProjectile.cs" />
