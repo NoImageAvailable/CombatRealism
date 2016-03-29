@@ -89,7 +89,14 @@ namespace Combat_Realism
                 return null;
             }
         }
-        private List<ThingCount> ammoListCached = new List<ThingCount>();
+        private List<Thing> ammoListCached = new List<Thing>();
+        public List<Thing> ammoList
+        {
+            get
+            {
+                return ammoListCached;
+            }
+        }
 
         public override void Initialize(CompProperties props)
         {
@@ -113,8 +120,7 @@ namespace Combat_Realism
             // Add equipped weapon
             if (parentPawn.equipment != null && parentPawn.equipment.Primary != null)
             {
-                newBulk += parentPawn.equipment.Primary.GetStatValue(StatDef.Named("Bulk"));
-                newWeight += parentPawn.equipment.Primary.GetStatValue(StatDef.Named("Weight"));
+                GetEquipmentStats(parentPawn.equipment.Primary, out newWeight, out newBulk);
             }
 
             // Add apparel
@@ -137,17 +143,28 @@ namespace Combat_Realism
             {
                 foreach (Thing thing in parentPawn.inventory.container)
                 {
-                    newBulk += thing.GetStatValue(StatDef.Named("Bulk"));
-                    newWeight += thing.GetStatValue(StatDef.Named("Weight"));
+                    newBulk += thing.GetStatValue(StatDef.Named("Bulk")) * thing.stackCount;
+                    newWeight += thing.GetStatValue(StatDef.Named("Weight")) * thing.stackCount;
 
                     // Update ammo list
-                    // -TODO-
+                    if (thing.def is AmmoDef)
+                    {
+                        ammoListCached.Add(thing);
+                    }
                 }
             }
             this.currentBulkCached = newBulk;
             this.currentWeightCached = newWeight;
         }
 
+        /// <summary>
+        /// Determines if and how many of an item currently fit into the inventory with regards to weight/bulk constraints.
+        /// </summary>
+        /// <param name="thing">Thing to check</param>
+        /// <param name="count">Maximum amount of that item that can fit into the inventory</param>
+        /// <param name="ignoreEquipment">Whether to include currently equipped weapons when calculating current weight/bulk</param>
+        /// <param name="ignoreDefaultStats">Whether to ignore items that haven't had their weight/bulk stats changed from the defaults</param>
+        /// <returns>True if one or more items fit into the inventory</returns>
         public bool CanFitInInventory(Thing thing, out int count, bool ignoreEquipment = false, bool ignoreDefaultStats = false)
         {
             float thingWeight = thing.GetStatValue(StatDef.Named("Weight"));
@@ -165,8 +182,7 @@ namespace Combat_Realism
             if (ignoreEquipment && this.parentPawn.equipment != null && this.parentPawn.equipment.Primary != null)
             {
                 ThingWithComps eq = this.parentPawn.equipment.Primary;
-                eqBulk = eq.GetStatValue(StatDef.Named("Bulk"));
-                eqWeight = eq.GetStatValue(StatDef.Named("Weight"));
+                GetEquipmentStats(eq, out eqWeight, out eqBulk);
             }
 
             float amountByWeight = (availableWeight + eqWeight) / thingWeight;
@@ -175,12 +191,70 @@ namespace Combat_Realism
             return count > 0;
         }
 
-        public void SwitchToNextViableWeapon(bool useFists)
+        private void GetEquipmentStats(ThingWithComps eq, out float weight, out float bulk)
         {
-            // -TODO-
+            weight = eq.GetStatValue(StatDef.Named("Weight"));
+            bulk = eq.GetStatValue(StatDef.Named("Bulk"));
+            CompReloader comp = eq.TryGetComp<CompReloader>();
+            Log.Message("GetEquipmentStats :: found compReloader for " + eq.ToString() + " " + (comp != null).ToString());
+            if (comp != null && comp.currentAmmo != null)
+            {
+                Log.Message("GetEquipmentStats :: calculating ammo weight");
+                weight += comp.currentAmmo.GetStatValueAbstract(StatDef.Named("Weight")) * comp.curMagCount;
+                bulk += comp.currentAmmo.GetStatValueAbstract(StatDef.Named("Bulk")) * comp.curMagCount;
+            }
+            Log.Message("GetEquipmentStats :: returning values for " + eq.ToString() + " weight: " + weight.ToString() + " bulk: " + bulk.ToString());
         }
 
-        // Placeholder - remove once UpdateInventory() is being called properly on adding/removing things from containers
+        /// <summary>
+        /// Attempts to equip a weapon from the inventory, puts currently equipped weapon into inventory if it exists
+        /// </summary>
+        /// <param name="useFists">Whether to put the currently equipped weapon away even if no replacement is found</param>
+        public void SwitchToNextViableWeapon(bool useFists)
+        {
+            ThingWithComps newEquipment = null;
+            foreach (Thing thing in container)
+            {
+                ThingWithComps thingWithComps = thing as ThingWithComps;
+                if (thingWithComps != null && thingWithComps.TryGetComp<CompEquippable>() != null)
+                {
+                    if (thingWithComps.def.stackLimit > 1 && thingWithComps.stackCount > 1)
+                    {
+                        newEquipment = (ThingWithComps)thingWithComps.SplitOff(1);
+                    }
+                    else
+                    {
+                        newEquipment = thingWithComps;
+                    }
+                    break;
+                }
+            }
+            if ((newEquipment != null || useFists) && parentPawn.equipment.Primary != null)
+            {
+                ThingWithComps oldEquipment;
+                parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEquipment);
+            }
+            if (newEquipment != null)
+            {
+                parentPawn.equipment.AddEquipment(newEquipment);
+            }
+        }
+
+        public void TrySwitchToWeapon(ThingWithComps newEq)
+        {
+            if (newEq == null || !this.container.Contains(newEq))
+            {
+                return;
+            }
+            if (parentPawn.equipment.Primary != null)
+            {
+                ThingWithComps oldEq;
+                parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
+            }
+            parentPawn.equipment.AddEquipment(newEq);
+        }
+
+        // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
         public override void CompTick()
         {
             base.CompTick();

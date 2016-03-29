@@ -18,7 +18,7 @@ namespace Combat_Realism
 
     public class CompReloader : CommunityCoreLibrary.CompRangedGizmoGiver
     {
-        public int curAmmo;
+        public int curMagCount;
         public CompProperties_Reloader rProps;
         public CompEquippable compEquippable
         {
@@ -39,8 +39,15 @@ namespace Combat_Realism
                 return rProps.ammoSet != null;
             }
         }
-        private ThingDef currentAmmo = null;
-        private CompInventory inventoryComp
+        private AmmoDef currentAmmoInt = null;
+        public AmmoDef currentAmmo
+        {
+            get
+            {
+                return currentAmmoInt;
+            }
+        }
+        private CompInventory compInventory
         {
             get
             {
@@ -55,16 +62,19 @@ namespace Combat_Realism
             rProps = vprops as CompProperties_Reloader;
             if (rProps != null)
             {
-                curAmmo = rProps.roundPerMag;
+                curMagCount = rProps.roundPerMag;
             }
             else
             {
                 Log.Warning("Could not find a CompProperties_Reloader for CompReloader.");
-                curAmmo = 9876;
+                curMagCount = 9876;
             }
 
             // Initialize ammo with default if none is set
-            if (useAmmo && currentAmmo == null)
+            Log.Message(this.parent.ToString() + " uses ammo " + useAmmo.ToString());
+            Log.Message(this.parent.ToString() + " has current ammo " + (currentAmmoInt != null).ToString());
+            Log.Message((useAmmo && currentAmmoInt == null).ToString());
+            if (useAmmo && currentAmmoInt == null)
             {
                 if (rProps.ammoSet.ammoTypes.NullOrEmpty())
                 {
@@ -72,7 +82,8 @@ namespace Combat_Realism
                 }
                 else
                 {
-                    currentAmmo = rProps.ammoSet.ammoTypes[0];
+                    currentAmmoInt = (AmmoDef)rProps.ammoSet.ammoTypes[0];
+                    Log.Message("Initialize :: set currentAmmoInt to " + currentAmmoInt.ToString());
                 }
             }
         }
@@ -81,8 +92,8 @@ namespace Combat_Realism
         {
             base.PostExposeData();
 
-            Scribe_Values.LookValue(ref curAmmo, "count", 1);
-            Scribe_Defs.LookDef(ref currentAmmo, "currentAmmo");
+            Scribe_Values.LookValue(ref curMagCount, "count", 1);
+            Scribe_Defs.LookDef(ref currentAmmoInt, "currentAmmo");
         }
 
         private void AssignJobToWielder(Job job)
@@ -106,24 +117,42 @@ namespace Combat_Realism
                 return;
             }
 
-            // Add remaining ammo back to inventory
-            if (curAmmo > 0 && useAmmo)
+            if (useAmmo)
             {
-                Thing ammoThing = ThingMaker.MakeThing(currentAmmo);
-                ammoThing.stackCount = curAmmo;
-
-                if (inventoryComp != null)
+                Log.Message("StartReload :: " + this.parent.Label + " uses ammo, checking hasAmmo");
+                // Check for ammo
+                Thing thing;
+                if (!TryFindAmmoInInventory(out thing))
                 {
-                    Log.Message("Adding ammo " + ammoThing.Label + " x" + curAmmo.ToString() + " to " + wielder.ToString());
-                    inventoryComp.container.TryAdd(ammoThing, curAmmo);
+                    Log.Message("StartReload :: " + this.parent.Label + " has no ammo, returning");
+                    if (rProps.throwMote)
+                    {
+                        MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "Out of ammo");
+                    }
+                    return;
                 }
-                else
+
+                // Add remaining ammo back to inventory
+                if (curMagCount > 0)
                 {
-                    Thing outThing;
-                    GenThing.TryDropAndSetForbidden(ammoThing, wielder.Position, ThingPlaceMode.Near, out outThing, true);
+                    Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
+                    //GenSpawn.Spawn(ammoThing, this.parent.Position);
+                    ammoThing.stackCount = curMagCount;
+                    curMagCount = 0;
+
+                    if (compInventory != null)
+                    {
+                        Log.Message("StartReload :: Adding ammo " + ammoThing.Label + " to " + wielder.ToString());
+                        compInventory.UpdateInventory();
+                        compInventory.container.TryAdd(ammoThing, ammoThing.stackCount);
+                    }
+                    else
+                    {
+                        Thing outThing;
+                        GenThing.TryDropAndSetForbidden(ammoThing, wielder.Position, ThingPlaceMode.Near, out outThing, true);
+                    }
                 }
             }
-            curAmmo = 0;
 
             // Throw mote
             if (rProps.throwMote)
@@ -152,21 +181,95 @@ namespace Combat_Realism
         {
             if (useAmmo)
             {
-                if (inventoryComp != null)
+                // Check for inventory
+                if (compInventory != null)
                 {
-                    // -TODO- Add handling for getting ammo from inventory
+                    Thing ammoThing = compInventory.ammoList.Find(ammo => ammo.def == currentAmmoInt);
+
+                    // If we don't have the right ammo, try to switch to different type
+                    if (ammoThing == null)
+                    {
+                        if (!compInventory.ammoList.NullOrEmpty())
+                        {
+                            ammoThing = compInventory.ammoList.Find(ammo => rProps.ammoSet.ammoTypes.Contains(ammo.def));
+                        }
+                        if (ammoThing != null)
+                        {
+                            Log.Message("FinishReload setting currentAmmo to " + ammoThing.def.ToString());
+                            currentAmmoInt = (AmmoDef)ammoThing.def;
+                        }
+                        else
+                        {
+                            if (rProps.throwMote)
+                            {
+                                MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "Out of ammo");
+                            }
+                            compInventory.SwitchToNextViableWeapon(true);
+                            return;
+                        }
+                    }
+                    Log.Message("FinishReload :: ammoThing " + ammoThing.ToString());
+                    if (rProps.roundPerMag < ammoThing.stackCount)
+                    {
+                        Log.Message("FinishReload :: setting ammo to full mag");
+                        curMagCount = rProps.roundPerMag;
+                        ammoThing.stackCount -= rProps.roundPerMag;
+                    }
+                    else
+                    {
+                        Log.Message("FinishReload :: setting ammo to stack count");
+                        curMagCount = ammoThing.stackCount;
+                        compInventory.container.Remove(ammoThing);
+                    }
                 }
+                // Tell turret operator to fetch ammo
                 else
                 {
-                    // -TODO- Tell turret operator to fetch ammo
+                    // -TODO-
                 }
+            }
+            else
+            {
+                Log.Message("FinishReload :: don't use ammo, setting to full mag");
+                curMagCount = rProps.roundPerMag;
             }
             parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(wielder.Position));
             if (rProps.throwMote)
             {
                 MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_ReloadedMote".Translate());
             }
-            curAmmo = rProps.roundPerMag;
+        }
+
+        private bool TryFindAmmoInInventory(out Thing ammoThing)
+        {
+            ammoThing = null;
+            if (compInventory == null)
+            {
+                Log.Error(this.parent.ToString() + " tried searching inventory for ammo with no CompInventory");
+                return false;
+            }
+
+            // Try finding suitable ammoThing for currently set ammo first
+            ammoThing = compInventory.ammoList.Find(thing => ((AmmoDef)thing.def).Equals(currentAmmo));
+            Log.Message("TryFindAmmoInInventory :: ammoThing after first pass " + (ammoThing == null ? "null" : ammoThing.ToString()));
+            if (ammoThing != null)
+            {
+                return true;
+            }
+            
+            // Try finding ammo from different type
+            foreach (AmmoDef ammoDef in rProps.ammoSet.ammoTypes)
+            {
+                Log.Message("TryFindAmmoInInventory :: trying to find ammo for type " + ammoDef.ToString());
+                ammoThing = compInventory.ammoList.Find(thing => ((AmmoDef)thing.def).Equals(ammoDef));
+                if (ammoThing != null)
+                {
+                    Log.Message("TryFindAmmoInInventory :: found ammoThing after second pass " + ammoThing.ToString());
+                    currentAmmoInt = ammoDef;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void TryContinuePreviousJob()

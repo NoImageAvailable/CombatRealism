@@ -29,6 +29,21 @@ namespace Combat_Realism.Detours
                 return _this.TryAdd(item, _this.AvailableStackSpace);
             }
 
+            // Check if item actually fits into inventory
+            Pawn_InventoryTracker tracker = _this.owner as Pawn_InventoryTracker;
+            if (tracker != null)
+            {
+                CompInventory comp = tracker.pawn.TryGetComp<CompInventory>();
+                if (comp != null)
+                {
+                    int count;
+                    if (!comp.CanFitInInventory(item, out count))
+                    {
+                        return false;
+                    }
+                }
+            }
+
             List<Thing> innerList = (List<Thing>)innerListFieldInfo.GetValue(_this);    // Fetch innerList through reflection
 
             SlotGroupUtility.Notify_TakingThing(item);

@@ -12,7 +12,35 @@ namespace Combat_Realism
     {
         public enum AmmoClass
         {
-            // TODO - Add enum for ammo classes to use with generics in loadout manager
+            // Regular pistol/rifle ammo
+            FullMetalJacket,
+            HollowPoint,
+            ArmorPiercing,
+            Sabot,
+            ExplosiveAP,
+            IncendiaryAP,
+
+            // Shotgun shells
+            Shot,
+            Slug,
+            Beanbag,
+            ElectroSlug,
+
+            // Grenades
+            FragGrenade,
+            ElectroGrenade,
+
+            // Futuristic ammo
+            Charged,
+            Ionized,
+            IncendiaryCell,
+            ThermobaricCell,
+
+            // Rockets
+            AntiTankRocket,
+            FragRocket,
+            ThermobaricRocket,
+            ElectroRocket
         }
 
         public ThingDef linkedProjectile;

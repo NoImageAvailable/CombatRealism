@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="ResourceBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <label>unspecified ammunition</label>
+    <category>Item</category>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <useHitPoints>true</useHitPoints>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <stackLimit>300</stackLimit>
+    <comps>
+      <li>
+        <compClass>CompForbiddable</compClass>
+      </li>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <rotatable>false</rotatable>
+    <pathCost>15</pathCost>
+  </ThingDef>
+
+
+
+  <!--=============== Pure stuffs: Basics ====================-->
+
+
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="ResourceBase">
+    <defName>AmmoTest</defName>
+    <label>test ammo</label>
+    <description>Ammo for testing.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/Metal</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <color>(255,255,255)</color>
+    </graphicData>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+	  <Weight>0.01</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+    <thingCategories>
+      <li>Ammo</li>
+    </thingCategories>
+	<linkedProjectile>Bullet_ChargeRifle</linkedProjectile>
+	<ammoClass>Charged</ammoClass>
+  </ThingDef>
+  
+</Defs>

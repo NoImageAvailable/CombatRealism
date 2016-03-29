@@ -42,16 +42,26 @@ namespace Combat_Realism
             }
         }
 
-        private bool isAiming
+        private bool shouldAim
         {
             get
             {
-                return this.compFireModes != null
-                && (this.compFireModes.currentAimMode == AimMode.AimedShot || (useDefaultModes && this.compFireModes.props.aiUseAimMode))
-                && this.CasterIsPawn;
+                if(this.CasterIsPawn)
+                {
+                    CompSuppressable comp = this.caster.TryGetComp<CompSuppressable>();
+                    if (comp != null)
+                    {
+                        if (comp.isSuppressed)
+                        {
+                            return false;
+                        }
+                    }
+                    return this.compFireModes != null && (this.compFireModes.currentAimMode == AimMode.AimedShot || (useDefaultModes && this.compFireModes.props.aiUseAimMode));
+                }
+                return false;
             }
         }
-        private int aimTicks = -1;              // Tracks how much time is left to aim before firing, set to -1 when not aiming
+        private bool isAiming = false;
         private int xpTicks = 0;                // Tracker to see how much xp should be awarded for time spent aiming + bursting
         private const int aimTicksMin = 30;         // How much time to spend on aiming
         private const int aimTicksMax = 240;
@@ -66,7 +76,7 @@ namespace Combat_Realism
             get
             {
                 float sway = base.swayAmplitude;
-                if (this.isAiming)
+                if (this.shouldAim)
                 {
                     sway *= Mathf.Max(0, 1 - aimingAccuracy);
                 }
@@ -88,18 +98,18 @@ namespace Combat_Realism
         /// </summary>
         public override void WarmupComplete()
         {
-            if (this.isAiming && this.aimTicks < 0)
+            if (this.shouldAim && !this.isAiming)
             {
                 float targetDist = (this.currentTarget.Cell - this.caster.Position).LengthHorizontal;
-                this.aimTicks = (int)Mathf.Lerp(aimTicksMin, aimTicksMax, (targetDist / 100));
-                this.CasterPawn.stances.SetStance(new Stance_Cooldown(this.aimTicks, this.currentTarget));
-                this.xpTicks += this.aimTicks;
+                int aimTicks = (int)Mathf.Lerp(aimTicksMin, aimTicksMax, (targetDist / 100));
+                this.CasterPawn.stances.SetStance(new Stance_Warmup(aimTicks, this.currentTarget, this));
+                this.isAiming = true;
                 return;
             }
 
             // Shooty stuff
             base.WarmupComplete();
-            this.aimTicks = -1;
+            this.isAiming = false;
         }
 
         /*/// <summary>
@@ -133,12 +143,16 @@ namespace Combat_Realism
 
         public override void VerbTickCR()
         {
-            if (this.aimTicks > 0)
+            if (this.isAiming)
             {
-                this.aimTicks--;
-                if (this.aimTicks <= 0 || !this.isAiming)
+                this.xpTicks++;
+                if (!this.shouldAim)
                 {
                     this.WarmupComplete();
+                }
+                if (this.CasterPawn.stances.curStance.GetType() != typeof(Stance_Warmup))
+                {
+                    this.isAiming = false;
                 }
             }
             // Increase shootTicks while bursting so we can calculate XP afterwards

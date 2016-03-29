@@ -118,13 +118,45 @@ namespace Combat_Realism
             }
         }
 
+        // Ammo variables
+        private CompReloader compReloaderInt = null;
+        private CompReloader compReloader
+        {
+            get
+            {
+                if (compReloaderInt == null && this.ownerEquipment != null)
+                {
+                    compReloaderInt = this.ownerEquipment.TryGetComp<CompReloader>();
+                }
+                return compReloaderInt;
+            }
+        }
+        private ThingDef projectileDef
+        {
+            get
+            {
+                if (compReloader != null)
+                {
+                    Log.Message(this.ownerEquipment.ToString() + "CompReloader is not null");
+                    if (compReloader.currentAmmo != null)
+                    {
+                        Log.Message(this.ownerEquipment.ToString() + "currentAmmo is not null");
+                        Log.Message("Returning projectileDef " + compReloader.currentAmmo.linkedProjectile.ToString());
+                        return compReloader.currentAmmo.linkedProjectile;
+                    }
+                }
+                Log.Message("Returning vanilla def");
+                return this.verbPropsCR.projectileDef;
+            }
+        }
+
         /// <summary>
         /// Highlights explosion radius of the projectile if it has one
         /// </summary>
         /// <returns>Projectile explosion radius</returns>
         public override float HighlightFieldRadiusAroundTarget()
         {
-            return this.verbPropsCR.projectileDef.projectile.explosionRadius;
+            return projectileDef.projectile.explosionRadius;
         }
 
         /// <summary>
@@ -138,7 +170,7 @@ namespace Combat_Realism
         {
             const float gravity = Utility.gravityConst;
             float angle = 0;
-            angle = (float)Math.Atan((Math.Pow(velocity, 2) + (this.verbPropsCR.projectileDef.projectile.flyOverhead ? 1 : -1) * Math.Sqrt(Math.Pow(velocity, 4) - gravity * (gravity * Math.Pow(range, 2) + 2 * heightDifference * Math.Pow(velocity, 2)))) / (gravity * range));
+            angle = (float)Math.Atan((Math.Pow(velocity, 2) + (projectileDef.projectile.flyOverhead ? 1 : -1) * Math.Sqrt(Math.Pow(velocity, 4) - gravity * (gravity * Math.Pow(range, 2) + 2 * heightDifference * Math.Pow(velocity, 2)))) / (gravity * range));
             return angle;
         }
 
@@ -206,7 +238,7 @@ namespace Combat_Realism
             float targetableHeight = 0;
 
             // Projectiles with flyOverhead target the ground below the target and ignore cover
-            if (!this.verbPropsCR.projectileDef.projectile.flyOverhead)
+            if (!projectileDef.projectile.flyOverhead)
             {
                 targetableHeight = Utility.GetCollisionHeight(this.currentTarget.Thing);
                 if (report.cover != null)
@@ -342,7 +374,7 @@ namespace Combat_Realism
         public override bool CanHitTargetFrom(IntVec3 root, TargetInfo targ)
         {
             //Sanity check for flyOverhead projectiles, they should not attack things under thick roofs
-            if (this.verbPropsCR.projectileDef.projectile.flyOverhead)
+            if (projectileDef.projectile.flyOverhead)
             {
                 RoofDef roofDef = Find.RoofGrid.RoofAt(targ.Cell);
                 if (roofDef != null && roofDef.isThickRoof)
@@ -402,7 +434,7 @@ namespace Combat_Realism
             for (int i = 0; i < this.verbPropsCR.pelletCount; i++)
             {
                 Vector3 casterExactPosition = this.caster.DrawPos;
-                ProjectileCR projectile = (ProjectileCR)ThingMaker.MakeThing(this.verbPropsCR.projectileDef, null);
+                ProjectileCR projectile = (ProjectileCR)ThingMaker.MakeThing(projectileDef, null);
                 GenSpawn.Spawn(projectile, shootLine.Source);
                 float lengthHorizontalSquared = (this.currentTarget.Cell - this.caster.Position).LengthHorizontalSquared;
 

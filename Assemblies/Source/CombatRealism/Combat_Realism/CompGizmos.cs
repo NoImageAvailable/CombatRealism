@@ -42,11 +42,11 @@ namespace Combat_Realism
             //Bar
             var barRect = inRect;
             barRect.yMin = overRect.y + overRect.height / 2f;
-            var ePct = (float)compAmmo.curAmmo / compAmmo.rProps.roundPerMag;
+            var ePct = (float)compAmmo.curMagCount / compAmmo.rProps.roundPerMag;
             Widgets.FillableBar(barRect, ePct, FullTex, EmptyTex, false);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(barRect, compAmmo.curAmmo + " / " + compAmmo.rProps.roundPerMag);
+            Widgets.Label(barRect, compAmmo.curMagCount + " / " + compAmmo.rProps.roundPerMag);
             Text.Anchor = TextAnchor.UpperLeft;
 
             return new GizmoResult(GizmoState.Clear);
