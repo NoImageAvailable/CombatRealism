@@ -74,6 +74,7 @@
     <Compile Include="Combat_Realism\CompGizmos.cs" />
     <Compile Include="Combat_Realism\CompInventory.cs" />
     <Compile Include="Combat_Realism\CompJamming.cs" />
+    <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
     <Compile Include="Combat_Realism\DetourInjector.cs" />
     <Compile Include="Combat_Realism\FireMode.cs" />
     <Compile Include="Combat_Realism\BulletCR.cs" />

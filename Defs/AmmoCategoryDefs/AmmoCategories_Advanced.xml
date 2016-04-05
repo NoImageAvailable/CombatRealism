@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <AmmoCategoryDef>
+    <defName>Charged</defName>
+    <label>Charge</label>
+    <description>Special plasma coating disrupts armor and tissue in equal measure.</description>
+  </AmmoCategoryDef>
+
+  <AmmoCategoryDef>
+    <defName>ChargedAP</defName>
+    <label>Charge AP</label>
+    <description>Focuses plasma charge around the tip of the core for improved armor penetration at the cost of stopping power.</description>
+  </AmmoCategoryDef>
+
+  <AmmoCategoryDef>
+    <defName>Ionized</defName>
+    <label>Ion</label>
+    <description>Designed to combat mechanoids, the round creates an electrical current on impact, disrupting electronic systems temporarily.</description>
+  </AmmoCategoryDef>
+
+  <AmmoCategoryDef>
+    <defName>IncendiaryFuel</defName>
+    <label>FC-I</label>
+    <description>Filled with incendiary agent that ignites after impact.</description>
+  </AmmoCategoryDef>
+
+  <AmmoCategoryDef>
+    <defName>ThermobaricFuel</defName>
+    <label>FC-T</label>
+    <description>Filled with high-explosive aerosol that causes a large explosion and ignites flammable materials.</description>
+  </AmmoCategoryDef>
+  
+</Defs>

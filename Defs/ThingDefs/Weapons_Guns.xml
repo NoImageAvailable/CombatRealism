@@ -587,15 +587,18 @@
     <projectile>
       <speed>60</speed>
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>100</damageAmountBase>
-      <explosionRadius>6.0</explosionRadius>
+      <damageAmountBase>50</damageAmountBase>
+      <explosionRadius>1.0</explosionRadius>
     </projectile>
 	<comps>
       <li Class="Combat_Realism.CompProperties_Explosive">
         <compClass>Combat_Realism.CompExplosive</compClass>
-        <explosionDamageDef>Flame</explosionDamageDef>
-        <explosionDamage>25</explosionDamage>
-        <explosionRadius>6.0</explosionRadius>
+        <fragRange>10.0</fragRange>
+		<fragments>
+			<Fragment_MortarSmall>150</Fragment_MortarSmall>
+			<Fragment_MortarMedium>90</Fragment_MortarMedium>
+			<Fragment_MortarLarge>30</Fragment_MortarLarge>
+		</fragments>
       </li>
 	</comps>
   </ThingDef>
@@ -630,6 +633,9 @@
         <soundCast>ShotIncendiaryLauncher</soundCast>
         <soundCastTail>GunTail_Medium</soundCastTail>
         <muzzleFlashScale>14</muzzleFlashScale>
+		<targetParams>
+		  <canTargetLocations>true</canTargetLocations>
+		</targetParams>
       </li>
     </verbs>
     <equippedStatOffsets>
@@ -646,6 +652,10 @@
         <compClass>Combat_Realism.CompReloader</compClass>
         <roundPerMag>1</roundPerMag>
         <reloadTick>450</reloadTick>
+      </li>
+      <li Class="Combat_Realism.CompProperties_AP">
+        <compClass>Combat_Realism.CompAP</compClass>
+        <armorPenetration>0.30</armorPenetration>
       </li>
     </comps>
   </ThingDef>

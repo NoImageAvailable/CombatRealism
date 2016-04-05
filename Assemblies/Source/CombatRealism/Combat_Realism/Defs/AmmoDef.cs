@@ -10,40 +10,7 @@ namespace Combat_Realism
 {
     public class AmmoDef : ThingDef
     {
-        public enum AmmoClass
-        {
-            // Regular pistol/rifle ammo
-            FullMetalJacket,
-            HollowPoint,
-            ArmorPiercing,
-            Sabot,
-            ExplosiveAP,
-            IncendiaryAP,
-
-            // Shotgun shells
-            Shot,
-            Slug,
-            Beanbag,
-            ElectroSlug,
-
-            // Grenades
-            FragGrenade,
-            ElectroGrenade,
-
-            // Futuristic ammo
-            Charged,
-            Ionized,
-            IncendiaryCell,
-            ThermobaricCell,
-
-            // Rockets
-            AntiTankRocket,
-            FragRocket,
-            ThermobaricRocket,
-            ElectroRocket
-        }
-
         public ThingDef linkedProjectile;
-        public AmmoClass ammoClass;
+        public AmmoCategoryDef ammoClass;
     }
 }

@@ -76,7 +76,7 @@
     </graphicData>
     <projectile>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>12</damageAmountBase>
+      <damageAmountBase>36</damageAmountBase>
       <speed>160</speed>
     </projectile>
   </ThingDef>
@@ -90,7 +90,7 @@
     </graphicData>
     <projectile>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>18</damageAmountBase>
+      <damageAmountBase>48</damageAmountBase>
       <speed>140</speed>
     </projectile>
   </ThingDef>
@@ -105,7 +105,7 @@
     <projectile>
       <flyOverhead>false</flyOverhead>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>24</damageAmountBase>
+      <damageAmountBase>60</damageAmountBase>
       <speed>120</speed>
     </projectile>
   </ThingDef>
