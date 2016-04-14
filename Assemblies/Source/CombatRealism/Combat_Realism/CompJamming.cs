@@ -8,23 +8,15 @@ using UnityEngine;
 
 namespace Combat_Realism
 {
-    class CompProperties_Jamming : CompProperties
+    public class CompJamming : ThingComp
     {
-        public float baseMalfunctionChance = 0f;
-        public bool canExplode = false;
-        public float explosionDamage = 0f;
-        public float explosionRadius = 1f;
-        public SoundDef explosionSound = null;
-
-        public CompProperties_Jamming()
+        public CompProperties_Jamming Props
         {
-            this.compClass = typeof(CompProperties_Jamming);
+            get
+            {
+                return (CompProperties_Jamming)this.props;
+            }
         }
-    }
-
-    class CompJamming : ThingComp
-    {
-        new public CompProperties_Jamming props;
 
         private Verb verbInt = null;
         private Verb verb
@@ -44,16 +36,6 @@ namespace Combat_Realism
                     }
                 }
                 return this.verbInt;
-            }
-        }
-
-        public override void Initialize(CompProperties props)
-        {
-            base.Initialize(props);
-            CompProperties_Jamming cprops = props as CompProperties_Jamming;
-            if (cprops != null)
-            {
-                this.props = cprops;
             }
         }
 
@@ -93,10 +75,10 @@ namespace Combat_Realism
 
         public void DoMalfunction()
         {
-            float jamChance = this.props.baseMalfunctionChance * (1 - this.parent.HitPoints / this.parent.MaxHitPoints) * this.GetQualityFactor();
+            float jamChance = this.Props.baseMalfunctionChance * (1 - this.parent.HitPoints / this.parent.MaxHitPoints) * this.GetQualityFactor();
             float explodeChance = Mathf.Clamp01(jamChance);
 
-            if (this.props.canExplode && UnityEngine.Random.value < explodeChance)
+            if (this.Props.canExplode && UnityEngine.Random.value < explodeChance)
             {
                 this.Explode();
             }
@@ -115,13 +97,7 @@ namespace Combat_Realism
             {
                 this.parent.Destroy(DestroyMode.Vanish);
             }
-            BodyPartDamageInfo value = new BodyPartDamageInfo(null, new BodyPartDepth?(BodyPartDepth.Outside));
-            ExplosionInfo explosionInfo = default(ExplosionInfo);
-            explosionInfo.center = this.parent.Position;
-            explosionInfo.radius = this.props.explosionRadius;
-            explosionInfo.dinfo = new DamageInfo(DamageDefOf.Bomb, 999, this.parent, new BodyPartDamageInfo?(value), null);
-            explosionInfo.explosionSound = this.props.explosionSound;
-            explosionInfo.DoExplosion();
+            // TODO
         }
     }
 }

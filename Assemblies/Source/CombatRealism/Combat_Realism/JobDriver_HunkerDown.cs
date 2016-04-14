@@ -23,7 +23,7 @@ namespace Combat_Realism
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-           this.FailOnBroken(TargetIndex.A);
+            this.FailOnDespawnedOrNull(TargetIndex.A);
 
 		   //Define Toil
 		   Toil toilWait = new Toil();

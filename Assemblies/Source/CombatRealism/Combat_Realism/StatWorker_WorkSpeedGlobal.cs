@@ -20,7 +20,7 @@ namespace Combat_Realism
                 if (comp != null)
                 {
                     stringBuilder.AppendLine();
-                    stringBuilder.AppendLine("Carried bulk: x" + comp.workSpeedFactor.ToStringPercent());
+                    stringBuilder.AppendLine("CR_CarriedBulk".Translate() + ": x" + comp.workSpeedFactor.ToStringPercent());
                 }
             }
 

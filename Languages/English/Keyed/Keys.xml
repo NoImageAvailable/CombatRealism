@@ -17,4 +17,22 @@
 	<CR_ToggleFireModeDesc>Toggle fire mode.</CR_ToggleFireModeDesc>
 	<CR_ToggleAimModeDesc>Toggle aim mode.</CR_ToggleAimModeDesc>
 	
+	<CR_MarkedForArtillery>Marked for artillery, expires in</CR_MarkedForArtillery>
+	
+	<CR_VisibilityError>Visibility error</CR_VisibilityError>
+	<CR_LeadError>Lead error</CR_LeadError>
+	<CR_RangeError>Range error</CR_RangeError>
+	<CR_Sway>Sway</CR_Sway>
+	<CR_Spread>Spread</CR_Spread>
+	<CR_MissRadius>Miss radius</CR_MissRadius>
+	<CR_IndirectFire>Indirect fire</CR_IndirectFire>
+	<CR_CoverHeight>Cover height</CR_CoverHeight>
+	<CR_TargetHeight>Target height</CR_TargetHeight>
+	<CR_TargetWidth>Target width</CR_TargetWidth>
+	
+	<CR_CarriedWeight>Carried weight</CR_CarriedWeight>
+	<CR_CarriedBulk>Carried bulk</CR_CarriedBulk>
+	<CR_Encumbered>Encumbered</CR_Encumbered>
+	<CR_FinalModifier>Final modifier</CR_FinalModifier>
+	
 </LanguageData>

@@ -10,6 +10,13 @@ namespace Combat_Realism
 {
     public class CompTurretInit : ThingComp
     {
+        public CompProperties_TurretInit Props
+        {
+            get
+            {
+                return (CompProperties_TurretInit)this.props;
+            }
+        }
         public Thing gun;
 
         public override void Initialize(Verse.CompProperties props)
@@ -20,7 +27,6 @@ namespace Combat_Realism
             {
                 gun = (Thing)ThingMaker.MakeThing(parent.def.building.turretGunDef);
                 turret.gun = gun;
-                turret.GunCompEq.verbTracker.InitVerbs();
             }
         }
 

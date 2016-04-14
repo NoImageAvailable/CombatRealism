@@ -10,7 +10,7 @@
     <defaultFactionType>Pirate</defaultFactionType>
     <baseRecruitDifficulty>80</baseRecruitDifficulty>
     <backstoryCategory>Raider</backstoryCategory>
-    <invFoodCount>1</invFoodCount>
+    <invMealCount>1</invMealCount>
     <itemQuality>Normal</itemQuality>
     <backstoryCryptosleepCommonality>0.25</backstoryCryptosleepCommonality>
     <maxGenerationAge>58</maxGenerationAge>

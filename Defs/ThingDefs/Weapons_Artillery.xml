@@ -1,60 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ThingDefs>
 
-
-  <ThingDef Name="BaseGun" Abstract="True">
+  <!-- gun def for artillery, never used as an independent thing-->
+  <ThingDef Name="BaseArtilleryWeapon" Abstract="True">
     <category>Item</category>
     <thingClass>ThingWithComps</thingClass>
-    <label>gun</label>
+    <label>artillery error</label>
     <equipmentType>Primary</equipmentType>
-    <pathCost>10</pathCost>
-    <useHitPoints>True</useHitPoints>
-    <selectable>True</selectable>
-    <drawGUIOverlay>true</drawGUIOverlay>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <Flammability>1.0</Flammability>
-      <SellPriceFactor>0.5</SellPriceFactor>
-    </statBases>
-    <altitudeLayer>Item</altitudeLayer>
-    <alwaysHaulable>True</alwaysHaulable>
     <tickerType>Never</tickerType>
     <techLevel>Midworld</techLevel>
-    <thingCategories>
-      <li>Weapons</li>
-    </thingCategories>
-    <weaponTags>
-      <li>Gun</li>
-    </weaponTags>
     <comps>
-      <li>
-        <compClass>CompForbiddable</compClass>
-      </li>
       <li>
         <compClass>CompEquippable</compClass>
       </li>
-      <li Class="Combat_Realism.CompProperties_Charges">
-        <compClass>Combat_Realism.CompCharges</compClass>
-		<charges>
-			<li>(29,85)</li>
-			<li>(72,300)</li>
-			<li>(92,660)</li>
-		</charges>
-      </li>
     </comps>
-  </ThingDef>
-
-  <ThingDef Name="BaseBullet" Abstract="True">
-    <category>Projectile</category>
-    <tickerType>Normal</tickerType>
-    <altitudeLayer>Projectile</altitudeLayer>
-    <thingClass>Combat_Realism.BulletCR</thingClass>
-    <label>bullet</label>
-    <useHitPoints>False</useHitPoints>
-    <neverMultiSelect>True</neverMultiSelect>
-    <graphicData>
-      <shaderType>Transparent</shaderType>
-    </graphicData>
   </ThingDef>
 
 
@@ -70,14 +29,14 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
+    <thingClass>Projectile_Explosive</thingClass>
     <projectile>
       <damageDef>Flame</damageDef>
-      <damageAmountBase>50</damageAmountBase>
-      <speed>100</speed>
-      <explosionRadius>4.8</explosionRadius>
-      <postExplosionSpawnThingDef>Puddle_Fuel</postExplosionSpawnThingDef>
-      <explosionSpawnChance>0.3</explosionSpawnChance>
+      <damageAmountBase>10</damageAmountBase>
+      <speed>41</speed>
+      <explosionRadius>2.9</explosionRadius>
+      <preExplosionSpawnThingDef>Puddle_Fuel</preExplosionSpawnThingDef>
+      <explosionSpawnChance>0.25</explosionSpawnChance>
       <flyOverhead>true</flyOverhead>
       <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
       <soundExplode>MortarIncendiary_Explode</soundExplode>
@@ -85,7 +44,7 @@
       <soundAmbient>MortarRound_Ambient</soundAmbient>
     </projectile>
   </ThingDef>
-  <ThingDef ParentName="BaseGun">
+  <ThingDef ParentName="BaseArtilleryWeapon">
     <defName>Artillery_MortarIncendiary</defName>
     <label>incendiary mortar</label>
     <description>Incendiary mortar launcher. Lobs fire-starting bombs over walls. Very inaccurate but long-ranged.</description>
@@ -95,28 +54,30 @@
     <tradeability>Never</tradeability>
     <statBases>
       <MarketValue>1500</MarketValue>
-	  <AimEfficiency>0.5</AimEfficiency>
-      <RangedWeapon_Cooldown>10</RangedWeapon_Cooldown>
+      <AccuracyTouch>0.79</AccuracyTouch>
+      <AccuracyShort>0.42</AccuracyShort>
+      <AccuracyMedium>0.18</AccuracyMedium>
+      <AccuracyLong>0.06</AccuracyLong>
+      <RangedWeapon_Cooldown>34</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
       <li>Artillery</li>
       <li>Artillery_BaseDestroyer</li>
     </weaponTags>
     <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCR">
-        <verbClass>Combat_Realism.Verb_ShootMortarCR</verbClass>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_MortarIncendiary</projectileDef>
-        <forcedMissRadius>10</forcedMissRadius>
+        <forcedMissRadius>16</forcedMissRadius>
         <ai_IsIncendiary>true</ai_IsIncendiary>
         <warmupTicks>500</warmupTicks>
-        <minRange>32</minRange>
-        <range>700</range>
+        <minRange>30</minRange>
+        <range>500</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>Mortar_LaunchA</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>
-        <indirectFirePenalty>0.2</indirectFirePenalty>
       </li>
     </verbs>
   </ThingDef>
@@ -124,7 +85,7 @@
 
   <!-- ================= Bomb mortar ================= -->
 
-  <ThingDef Class="Combat_Realism.ThingDef_ProjectileFrag" ParentName="BaseBullet">
+  <ThingDef ParentName="BaseBullet">
     <defName>Bullet_MortarBomb</defName>
     <label>explosive mortar shell</label>
     <graphicData>
@@ -132,33 +93,20 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Combat_Realism.ProjectileCR_Frag</thingClass>
+    <thingClass>Projectile_Explosive</thingClass>
     <projectile>
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>240</damageAmountBase>
-      <speed>100</speed>
-      <explosionRadius>3</explosionRadius>
+      <damageAmountBase>50</damageAmountBase>
+      <speed>41</speed>
+      <explosionRadius>3.5</explosionRadius>
       <flyOverhead>true</flyOverhead>
       <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
       <soundExplode>MortarBomb_Explode</soundExplode>
       <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
       <soundAmbient>MortarRound_Ambient</soundAmbient>
     </projectile>
-	<fragRange>10.0</fragRange>
-	<fragProjectileSmall>Fragment_MortarSmall</fragProjectileSmall>
-	<fragAmountSmall>150</fragAmountSmall>
-	<fragProjectileMedium>Fragment_MortarMedium</fragProjectileMedium>
-	<fragAmountMedium>90</fragAmountMedium>
-	<fragProjectileLarge>Fragment_MortarLarge</fragProjectileLarge>
-	<fragAmountLarge>30</fragAmountLarge>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.55</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
-  <ThingDef ParentName="BaseGun">
+  <ThingDef ParentName="BaseArtilleryWeapon">
     <defName>Artillery_MortarBomb</defName>
     <label>explosive mortar</label>
     <description>Mortar launcher. Lobs bombs over walls. Very inaccurate but long-ranged.</description>
@@ -168,27 +116,29 @@
     <tradeability>Never</tradeability>
     <statBases>
       <MarketValue>1500</MarketValue>
-	  <AimEfficiency>0.5</AimEfficiency>
-      <RangedWeapon_Cooldown>10</RangedWeapon_Cooldown>
+      <AccuracyTouch>0.79</AccuracyTouch>
+      <AccuracyShort>0.42</AccuracyShort>
+      <AccuracyMedium>0.18</AccuracyMedium>
+      <AccuracyLong>0.06</AccuracyLong>
+      <RangedWeapon_Cooldown>34</RangedWeapon_Cooldown>
     </statBases>
       <weaponTags>
       <li>Artillery</li>
       <li>Artillery_BaseDestroyer</li>
     </weaponTags>
     <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCR">
-        <verbClass>Combat_Realism.Verb_ShootMortarCR</verbClass>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_MortarBomb</projectileDef>
-        <forcedMissRadius>10</forcedMissRadius>
+        <forcedMissRadius>16</forcedMissRadius>
         <warmupTicks>500</warmupTicks>
-        <minRange>32</minRange>
-        <range>700</range>
+        <minRange>30</minRange>
+        <range>500</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>Mortar_LaunchA</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>
-        <indirectFirePenalty>0.2</indirectFirePenalty>
       </li>
     </verbs>
   </ThingDef>
@@ -203,12 +153,12 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
+    <thingClass>Projectile_Explosive</thingClass>
     <projectile>
       <damageDef>EMP</damageDef>
       <damageAmountBase>360</damageAmountBase>
-      <speed>100</speed>
-      <explosionRadius>17</explosionRadius>
+      <speed>41</speed>
+      <explosionRadius>8.5</explosionRadius>
       <flyOverhead>true</flyOverhead>
       <soundHitThickRoof>ArtilleryHitThickRoof</soundHitThickRoof>
       <soundExplode>MortarEMP_Explode</soundExplode>
@@ -216,7 +166,7 @@
       <soundAmbient>MortarRound_Ambient</soundAmbient>
     </projectile>
   </ThingDef>
-  <ThingDef ParentName="BaseGun">
+  <ThingDef ParentName="BaseArtilleryWeapon">
     <defName>Artillery_MortarEMP</defName>
     <label>EMP mortar</label>
     <description>Mortar launcher. Lobs EMP bombs over walls. Very inaccurate but long-ranged.</description>
@@ -226,22 +176,25 @@
     <tradeability>Never</tradeability>
     <statBases>
       <MarketValue>1500</MarketValue>
-	  <AimEfficiency>0.5</AimEfficiency>
-      <RangedWeapon_Cooldown>10</RangedWeapon_Cooldown>
+      <AccuracyTouch>0.79</AccuracyTouch>
+      <AccuracyShort>0.42</AccuracyShort>
+      <AccuracyMedium>0.18</AccuracyMedium>
+      <AccuracyLong>0.06</AccuracyLong>
+      <RangedWeapon_Cooldown>34</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
       <li>Artillery</li>
     </weaponTags>
     <verbs>
-      <li Class="Combat_Realism.VerbPropertiesCR">
-        <verbClass>Combat_Realism.Verb_ShootMortarCR</verbClass>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_MortarEMP</projectileDef>
-        <forcedMissRadius>10</forcedMissRadius>
+        <forcedMissRadius>16</forcedMissRadius>
         <warmupTicks>500</warmupTicks>
-        <minRange>32</minRange>
-        <range>700</range>
+        <minRange>30</minRange>
+        <range>500</range>
         <burstShotCount>1</burstShotCount>
         <soundCast>Mortar_LaunchA</soundCast>
         <muzzleFlashScale>16</muzzleFlashScale>

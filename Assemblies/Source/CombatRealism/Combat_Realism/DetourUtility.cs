@@ -12,32 +12,10 @@ namespace Combat_Realism
 {
     public static class DetourUtility
     {
-        // *** Bleeding ***
-
-        public static float CalculateBleedingRateCR(this HediffSet _this)
-        {
-            if (!_this.pawn.RaceProps.isFlesh || _this.pawn.health.Dead)
-            {
-                return 0f;
-            }
-            float bleedAmount = 0f;
-            for (int i = 0; i < _this.hediffs.Count; i++)
-            {
-                float hediffBleedRate = _this.hediffs[i].BleedRate;
-                if (_this.hediffs[i].Part != null)
-                {
-                    hediffBleedRate *= _this.hediffs[i].Part.def.bleedingRateMultiplier;
-                }
-                bleedAmount += hediffBleedRate;
-            }
-            float value = 0.0142857144f * bleedAmount * 2 / _this.pawn.HealthScale;
-            return Mathf.Max(0, value);
-        }
-
         // *** Turret rendering ***
 
-        private static FieldInfo parentTurretFieldInfo = typeof(TurretTop).GetField("parentTurret", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static PropertyInfo curRotationPropertyInfo = typeof(TurretTop).GetProperty("CurRotation", BindingFlags.Instance | BindingFlags.NonPublic);
+        public static FieldInfo parentTurretFieldInfo = typeof(TurretTop).GetField("parentTurret", BindingFlags.Instance | BindingFlags.NonPublic);
+        public static PropertyInfo curRotationPropertyInfo = typeof(TurretTop).GetProperty("CurRotation", BindingFlags.Instance | BindingFlags.NonPublic);
 
         public static void DrawTurretCR(this TurretTop _this)
         {
@@ -57,6 +35,7 @@ namespace Combat_Realism
 
         // *** Float menu options ***
 
+        /*
         public static List<FloatMenuOption> ChoicesAtForCR(Vector3 clickPos, Pawn pawn)
         {
             IntVec3 clickCell = IntVec3.FromVector3(clickPos);
@@ -70,7 +49,7 @@ namespace Combat_Realism
             // *** Drafted options ***
             if (pawn.Drafted)
             {
-                foreach (TargetInfo current in GenUI.TargetsAt(clickPos, TargetingParameters.ForAttack(pawn), true))
+                foreach (TargetInfo current in GenUI.TargetsAt(clickPos, TargetingParameters.ForAttackHostile(), true))
                 {
                     // Fire at target option
                     if (pawn.equipment.Primary != null && !pawn.equipment.PrimaryEq.PrimaryVerb.verbProps.MeleeRange)
@@ -833,5 +812,6 @@ namespace Combat_Realism
             DangerUtility.DoneDirectOrdering();
             return list;
         }
+        */
     }
 }

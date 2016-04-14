@@ -125,7 +125,6 @@ namespace Combat_Realism
 
         public ShiftVecReport()
         {
-            // TODO: Complete member initialization
         }
 
         public Vector2 GetRandCircularVec()
@@ -164,7 +163,7 @@ namespace Combat_Realism
             StringBuilder stringBuilder = new StringBuilder();
             if (visibilityShift > 0)
             {
-                stringBuilder.AppendLine("   " + "Visibility error" + "\t" + GenText.ToStringByStyle(visibilityShift, ToStringStyle.FloatTwo) + " c");
+                stringBuilder.AppendLine("   " + "CR_VisibilityError".Translate() + "\t" + GenText.ToStringByStyle(visibilityShift, ToStringStyle.FloatTwo) + " c");
 
                 if (lightingShift > 0)
                 {
@@ -177,39 +176,39 @@ namespace Combat_Realism
             }
             if (leadShift > 0)
             {
-                stringBuilder.AppendLine("   " + "Lead error" + "\t" + GenText.ToStringByStyle(leadShift, ToStringStyle.FloatTwo) + " c");
+                stringBuilder.AppendLine("   " + "CR_LeadError".Translate() + "\t" + GenText.ToStringByStyle(leadShift, ToStringStyle.FloatTwo) + " c");
             }
             if(distShift > 0)
             {
-                stringBuilder.AppendLine("   " + "Range error" + "\t" + GenText.ToStringByStyle(distShift, ToStringStyle.FloatTwo) + " c");
+                stringBuilder.AppendLine("   " + "CR_RangeError".Translate() + "\t" + GenText.ToStringByStyle(distShift, ToStringStyle.FloatTwo) + " c");
             }
             if (swayDegrees > 0)
             {
-                stringBuilder.AppendLine("   " + "Sway" + "\t\t" + GenText.ToStringByStyle(swayDegrees, ToStringStyle.FloatTwo) + "°");
+                stringBuilder.AppendLine("   " + "CR_Sway".Translate() + "\t\t" + GenText.ToStringByStyle(swayDegrees, ToStringStyle.FloatTwo) + "°");
             }
             if (spreadDegrees > 0)
             {
-                stringBuilder.AppendLine("   " + "Spread" + "\t\t" + GenText.ToStringByStyle(spreadDegrees, ToStringStyle.FloatTwo) + "°");
+                stringBuilder.AppendLine("   " + "CR_Spread".Translate() + "\t\t" + GenText.ToStringByStyle(spreadDegrees, ToStringStyle.FloatTwo) + "°");
             }
             // Don't display cover and target size if our weapon has a CEP
             if (circularMissRadius > 0)
             {
-                stringBuilder.AppendLine("   " + "Miss radius" + "\t" + GenText.ToStringByStyle(circularMissRadius, ToStringStyle.FloatTwo) + " c");
+                stringBuilder.AppendLine("   " + "CR_MissRadius".Translate() + "\t" + GenText.ToStringByStyle(circularMissRadius, ToStringStyle.FloatTwo) + " c");
                 if (indirectFireShift > 0)
                 {
-                    stringBuilder.AppendLine("   " + "Indirect fire" + "\t" + GenText.ToStringByStyle(indirectFireShift, ToStringStyle.FloatTwo) + " c");
+                    stringBuilder.AppendLine("   " + "CR_IndirectFire".Translate() + "\t" + GenText.ToStringByStyle(indirectFireShift, ToStringStyle.FloatTwo) + " c");
                 }
             }
             else
             {
                 if (cover != null)
                 {
-                    stringBuilder.AppendLine("   " + "Cover height" + "\t" + GenText.ToStringByStyle(Utility.GetCollisionHeight(cover), ToStringStyle.FloatTwo) + " c");
+                    stringBuilder.AppendLine("   " + "CR_CoverHeight".Translate() + "\t" + GenText.ToStringByStyle(Utility.GetCollisionHeight(cover), ToStringStyle.FloatTwo) + " c");
                 }
                 if (target.Thing != null)
                 {
-                    stringBuilder.AppendLine("   " + "Target height" + "\t" + GenText.ToStringByStyle(Utility.GetCollisionHeight(target.Thing), ToStringStyle.FloatTwo) + " c");
-                    stringBuilder.AppendLine("   " + "Target width" + "\t" + GenText.ToStringByStyle(Utility.GetCollisionWidth(target.Thing) * 2, ToStringStyle.FloatTwo) + " c");
+                    stringBuilder.AppendLine("   " + "CR_TargetHeight".Translate() + "\t" + GenText.ToStringByStyle(Utility.GetCollisionHeight(target.Thing), ToStringStyle.FloatTwo) + " c");
+                    stringBuilder.AppendLine("   " + "CR_TargetWidth".Translate() + "\t" + GenText.ToStringByStyle(Utility.GetCollisionWidth(target.Thing) * 2, ToStringStyle.FloatTwo) + " c");
                 }
             }
             return stringBuilder.ToString();

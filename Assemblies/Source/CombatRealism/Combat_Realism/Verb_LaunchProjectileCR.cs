@@ -119,14 +119,14 @@ namespace Combat_Realism
         }
 
         // Ammo variables
-        private CompReloader compReloaderInt = null;
-        private CompReloader compReloader
+        private CompAmmoUser compReloaderInt = null;
+        private CompAmmoUser compReloader
         {
             get
             {
                 if (compReloaderInt == null && this.ownerEquipment != null)
                 {
-                    compReloaderInt = this.ownerEquipment.TryGetComp<CompReloader>();
+                    compReloaderInt = this.ownerEquipment.TryGetComp<CompAmmoUser>();
                 }
                 return compReloaderInt;
             }

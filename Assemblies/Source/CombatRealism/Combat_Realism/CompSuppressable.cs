@@ -9,8 +9,15 @@ using UnityEngine;
 
 namespace Combat_Realism
 {
-    class CompSuppressable : ThingComp
+    public class CompSuppressable : ThingComp
     {
+        public CompProperties_Suppressable Props
+        {
+            get
+            {
+                return (CompProperties_Suppressable)this.props;
+            }
+        }
 
         // --------------- Global constants ---------------
 
@@ -83,7 +90,7 @@ namespace Combat_Realism
                 if (pawn != null)
                 {
                     //Get morale
-                    float hardBreakThreshold = pawn.mindState != null && pawn.mindState.breaker != null ? pawn.mindState.breaker.SoftBreakThreshold : 0f;
+                    float hardBreakThreshold = pawn.GetStatValue(StatDefOf.MentalBreakThreshold) + 0.15f;
                     float currentMood = pawn.needs != null && pawn.needs.mood != null ? pawn.needs.mood.CurLevel : 0.5f;
                     threshold = Mathf.Max(0, (currentMood - hardBreakThreshold));
                 }
@@ -158,7 +165,7 @@ namespace Combat_Realism
                 }
                 else
                 {
-                    Log.Error("Trying to suppress non-pawn, this should never happen");
+                    Log.Error("Trying to suppress non-pawn " + this.parent.ToString() + ", this should never happen");
                 }
             }
         }

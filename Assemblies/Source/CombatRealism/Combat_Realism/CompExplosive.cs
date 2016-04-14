@@ -9,34 +9,13 @@ using UnityEngine;
 
 namespace Combat_Realism
 {
-    class CompProperties_Explosive : CompProperties
+    public class CompExplosive : ThingComp
     {
-        public float explosionDamage = -1;
-        public DamageDef explosionDamageDef = null;
-        public float explosionRadius = 0f;
-        public ThingDef postExplosionSpawnThingDef = null;
-        public float explosionSpawnChance = 1f;
-        public SoundDef soundExplode = null;
-        public List<ThingCount> fragments = new List<ThingCount>();
-        public float fragRange = 0f;
-
-        public CompProperties_Explosive()
+        public CompProperties_Explosive Props
         {
-            this.compClass = typeof(CompProperties_Explosive);
-        }
-    }
-
-    class CompExplosive : ThingComp
-    {
-        new public CompProperties_Explosive props;
-
-        public override void Initialize(CompProperties props)
-        {
-            base.Initialize(props);
-            CompProperties_Explosive cprops = props as CompProperties_Explosive;
-            if (cprops != null)
+            get
             {
-                this.props = cprops;
+                return (CompProperties_Explosive)this.props;
             }
         }
 
@@ -47,55 +26,48 @@ namespace Combat_Realism
         /// 
         /// Additionally handles fragmentation effects if defined.
         /// </summary>
-        /// <param name="launcher">Launcher of the projectile calling the method</param>
-		public virtual void Explode(Thing launcher)
+        /// <param name="instigator">Launcher of the projectile calling the method</param>
+		public virtual void Explode(Thing instigator)
 		{
-            ProjectileCR parentProjectile = this.parent as ProjectileCR;
+            // Regular explosion stuff
+            GenExplosion.DoExplosion(this.parent.Position,
+                Props.explosionRadius,
+                Props.explosionDamageDef,
+                this.parent,
+                Props.soundExplode,
+                this.parent.def,
+                instigator.def,
+                Props.postExplosionSpawnThingDef,
+                Props.explosionSpawnChance,
+                false,
+                Props.preExplosionSpawnThingDef,
+                Props.explosionSpawnChance);
 
-            if (parentProjectile != null)
+            // Fragmentation stuff
+            if (!Props.fragments.NullOrEmpty())
             {
-                // Regular explosion stuff
-                if (this.props.explosionDamageDef != null && this.props.explosionDamage > 0 && props.explosionRadius > 0)
+                if (Props.fragRange <= 0)
                 {
-                    BodyPartDamageInfo value = new BodyPartDamageInfo(null, new BodyPartDepth?(BodyPartDepth.Outside));
-                    ExplosionInfo explosionInfo = default(ExplosionInfo);
-                    explosionInfo.center = parentProjectile.Position;
-                    explosionInfo.radius = props.explosionRadius;
-                    explosionInfo.dinfo = new DamageInfo(this.props.explosionDamageDef, 999, launcher, new BodyPartDamageInfo?(value), null);
-                    explosionInfo.postExplosionSpawnThingDef = props.postExplosionSpawnThingDef;
-                    explosionInfo.explosionSpawnChance = props.explosionSpawnChance;
-                    explosionInfo.explosionSound = props.soundExplode;
-                    explosionInfo.projectile = parentProjectile.def;
-                    explosionInfo.DoExplosion();
+                    Log.Error(this.parent.LabelCap + " has fragments but no fragRange");
                 }
-                
-                // Fragmentation stuff
-                if (!props.fragments.NullOrEmpty())
+                else
                 {
-                    if (props.fragRange <= 0)
+                    foreach (ThingCount fragment in Props.fragments)
                     {
-                        Log.Error(this.parent.LabelCap + " has fragments but no fragRange");
-                    }
-                    else
-                    {
-                        foreach (ThingCount fragment in props.fragments)
+                        for (int i = 0; i < fragment.count; i++)
                         {
-                            for (int i = 0; i < fragment.count; i++)
-                            {
-                                ProjectileCR projectile = (ProjectileCR)ThingMaker.MakeThing(fragment.thingDef, null);
-                                projectile.canFreeIntercept = true;
-                                Vector3 exactTarget = parentProjectile.ExactPosition + (new Vector3(1, 0, 1) * UnityEngine.Random.Range(0, props.fragRange)).RotatedBy(UnityEngine.Random.Range(0, 360));
-                                TargetInfo targetCell = exactTarget.ToIntVec3();
-                                GenSpawn.Spawn(projectile, this.parent.Position);
-                                projectile.Launch(parentProjectile, parentProjectile.ExactPosition, targetCell, exactTarget, null);
-                            }
+                            ProjectileCR projectile = (ProjectileCR)ThingMaker.MakeThing(fragment.thingDef, null);
+                            projectile.canFreeIntercept = true;
+                            Vector3 exactOrigin = new Vector3(0,0,0);
+                            exactOrigin.x = this.parent.DrawPos.x;
+                            exactOrigin.z = this.parent.DrawPos.z;
+                            Vector3 exactTarget = exactOrigin + (new Vector3(1, 0, 1) * UnityEngine.Random.Range(0, Props.fragRange)).RotatedBy(UnityEngine.Random.Range(0, 360));
+                            TargetInfo targetCell = exactTarget.ToIntVec3();
+                            GenSpawn.Spawn(projectile, this.parent.Position);
+                            projectile.Launch(instigator, exactOrigin, targetCell, exactTarget, null);
                         }
                     }
                 }
-            }
-            else
-            {
-                Log.Error("CompExplosive tried to explode on " + this.parent.Label + " which is not a ProjectileCR");
             }
 		}
     }

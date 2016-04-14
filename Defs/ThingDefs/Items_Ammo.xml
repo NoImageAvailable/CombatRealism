@@ -406,7 +406,7 @@
   
   <!-- ==================== 80x128mm Fuel Cell ========================== -->
 
-  <ThingDef Class="Combat_Realism.AmmoDef" Name="30x32mmFuelBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="80x128mmFuelBase" ParentName="AmmoBase" Abstract="True">
     <description>Container holding fuel for incendiary shot firearms.</description>
     <statBases>
 	  <Weight>2.0</Weight>
@@ -415,8 +415,8 @@
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x32mmFuelBase">
-    <defName>Ammo_30x32mmFuel_Thermobaric</defName>
-    <label>30x32mm Fuel Cell (Thermobaric)</label>
+    <defName>Ammo_80x128mmFuel_Thermobaric</defName>
+    <label>80x128mm Fuel Cell (Thermobaric)</label>
     <graphicData>
       <texPath>Things/Ammo</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -424,7 +424,7 @@
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_30x32mmFuel_Thermobaric</linkedProjectile>
+	<linkedProjectile>Bullet_80x128mmFuel_Thermobaric</linkedProjectile>
 	<ammoClass>ThermobaricFuel</ammoClass>
   </ThingDef>
   

@@ -6,13 +6,13 @@ namespace Combat_Realism
     public class Verb_ShootCRReload : Verb_ShootCR
     {
         private bool done;
-        private CompReloader compAmmo;
+        private CompAmmoUser compAmmo;
 
         protected override bool TryCastShot()
         {
             if ( !done )
             {
-                compAmmo = ownerEquipment.GetComp< CompReloader >();
+                compAmmo = ownerEquipment.GetComp< CompAmmoUser >();
                 done = true;
             }
 
@@ -33,7 +33,7 @@ namespace Combat_Realism
                 return false;
             }
 
-            compAmmo.curMagCount--;
+            compAmmo.ReduceAmmoCount();
             if ( compAmmo.curMagCount <= 0 )
             {
                 compAmmo.StartReload();

@@ -24,7 +24,7 @@ namespace Combat_Realism.Detours
             Thing thing = null;
             bool flag = GenThing.TryDropAndSetForbidden(ap, pos, ThingPlaceMode.Near, out thing, forbid);
             resultingAp = (thing as Apparel);
-            _this.pawn.drawer.renderer.graphics.ResolveApparelGraphics();
+            _this.pawn.Drawer.renderer.graphics.ResolveApparelGraphics();
             if (flag && _this.pawn.outfits != null)
             {
                 _this.pawn.outfits.forcedHandler.SetForced(ap, false);
@@ -36,9 +36,20 @@ namespace Combat_Realism.Detours
         public static void Wear(this Pawn_ApparelTracker _this, Apparel newApparel, bool dropReplacedApparel = true)
         {
             SlotGroupUtility.Notify_TakingThing(newApparel);
-            if (newApparel.SpawnedInWorld)
+            if (newApparel.Spawned)
             {
                 newApparel.DeSpawn();
+            }
+            if (!ApparelUtility.HasPartsToWear(_this.pawn, newApparel.def))
+            {
+                Log.Warning(string.Concat(new object[]
+		{
+			_this.pawn,
+			" tried to wear ",
+			newApparel,
+			" but he has no body parts required to wear it."
+		}));
+                return;
             }
             for (int i = _this.WornApparel.Count - 1; i >= 0; i--)
             {
@@ -64,21 +75,23 @@ namespace Combat_Realism.Detours
             _this.WornApparel.Add(newApparel);
             newApparel.wearer = _this.pawn;
 
+            Utility.TryUpdateInventory(_this.pawn);     // Apparel was added, update inventory
             MethodInfo methodInfo = typeof(Pawn_ApparelTracker).GetMethod("SortWornApparelIntoDrawOrder", BindingFlags.Instance | BindingFlags.NonPublic);
             methodInfo.Invoke(_this, new object[] { });
 
-            _this.pawn.drawer.renderer.graphics.ResolveApparelGraphics();
+            LongEventHandler.ExecuteWhenFinished(new Action(_this.pawn.Drawer.renderer.graphics.ResolveApparelGraphics));
         }
+
 
         public static void Notify_WornApparelDestroyed(this Pawn_ApparelTracker _this, Apparel apparel)
         {
             _this.WornApparel.Remove(apparel);
-            _this.pawn.drawer.renderer.graphics.ResolveApparelGraphics();
+            LongEventHandler.ExecuteWhenFinished(new Action(_this.pawn.Drawer.renderer.graphics.ResolveApparelGraphics));
             if (_this.pawn.outfits != null && _this.pawn.outfits.forcedHandler != null)
             {
                 _this.pawn.outfits.forcedHandler.Notify_Destroyed(apparel);
             }
-            Utility.TryUpdateInventory(_this.pawn);
+            Utility.TryUpdateInventory(_this.pawn);     // Apparel was destroyed, update inventory
         }
     }
 }

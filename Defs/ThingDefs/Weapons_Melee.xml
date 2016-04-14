@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <ThingDefs>
 
   <ThingDef Name="BaseMeleeWeapon" Abstract="True">
@@ -15,7 +16,7 @@
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
-      <DeteriorationRate>0.5</DeteriorationRate>
+      <DeteriorationRate>1</DeteriorationRate>
       <SellPriceFactor>0.5</SellPriceFactor>
     </statBases>
     <altitudeLayer>Item</altitudeLayer>
@@ -29,19 +30,16 @@
       <li>WeaponsMelee</li>
     </thingCategories>
     <comps>
-      <li>
-        <compClass>CompForbiddable</compClass>
-      </li>
+      <li Class="CompProperties_Forbiddable"/>
       <li>
         <compClass>CompEquippable</compClass>
       </li>
       <li>
         <compClass>CompQuality</compClass>
       </li>
-      <li>
-        <compClass>CompArt</compClass>
-        <nameMaker>NamerMeleeWeapon</nameMaker>
-        <descriptionMaker>ArtWeaponMelee</descriptionMaker>
+      <li Class="CompProperties_Art">
+        <nameMaker>ArtName_WeaponMelee</nameMaker>
+        <descriptionMaker>ArtDescription_WeaponMelee</descriptionMaker>
         <minQualityForArtistic>Excellent</minQualityForArtistic>
       </li>
     </comps>
@@ -51,7 +49,8 @@
       <effectWorking>Smith</effectWorking>
       <soundWorking>Recipe_Smith</soundWorking>
       <recipeUsers>
-        <li>TableSmithing</li>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
@@ -111,7 +110,7 @@
     <statBases>
       <WorkToMake>20000</WorkToMake>
       <MeleeWeapon_DamageAmount>12</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>0.975</MeleeWeapon_Cooldown>
+      <MeleeWeapon_Cooldown>1.95</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -125,12 +124,6 @@
         <meleeDamageDef>Cut</meleeDamageDef>
       </li>
     </verbs>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.25</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 
 
@@ -147,8 +140,8 @@
     <costStuffCount>120</costStuffCount>
     <statBases>
       <WorkToMake>40000</WorkToMake>
-      <MeleeWeapon_DamageAmount>15</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>1.25</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>17</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>2.5</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -162,12 +155,6 @@
         <meleeDamageDef>Cut</meleeDamageDef>
       </li>
     </verbs>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.275</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 
 
@@ -186,7 +173,7 @@
     <statBases>
       <WorkToMake>6000</WorkToMake>
       <MeleeWeapon_DamageAmount>9</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>0.83</MeleeWeapon_Cooldown>
+      <MeleeWeapon_Cooldown>1.66</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -199,12 +186,6 @@
         <meleeDamageDef>Cut</meleeDamageDef>
       </li>
     </verbs>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.225</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 
   <ThingDef ParentName="BaseMeleeWeapon_Sharp">
@@ -221,8 +202,8 @@
     <statBases>
       <WorkToMake>300</WorkToMake>
       <MeleeWeapon_DamageAmount>8</MeleeWeapon_DamageAmount>
-      <DeteriorationRate>0.25</DeteriorationRate>
-      <MeleeWeapon_Cooldown>0.83</MeleeWeapon_Cooldown>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <MeleeWeapon_Cooldown>1.66</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -230,6 +211,13 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
+    <recipeMaker>
+      <recipeUsers>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+    </recipeMaker>
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>
@@ -237,12 +225,6 @@
         <meleeDamageDef>Cut</meleeDamageDef>
       </li>
     </verbs>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.2</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 
   <ThingDef ParentName="BaseMeleeWeapon_Sharp">
@@ -261,8 +243,8 @@
     <costStuffCount>90</costStuffCount>
     <statBases>
       <WorkToMake>25000</WorkToMake>
-      <MeleeWeapon_DamageAmount>14</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>1.15</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>15</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>2.3</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-25</equippedAngleOffset>
     <stuffCategories>
@@ -276,12 +258,6 @@
         <meleeDamageDef>Stab</meleeDamageDef>
       </li>
     </verbs>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.275</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 
 
@@ -296,8 +272,8 @@
     <costStuffCount>75</costStuffCount>
     <statBases>
       <WorkToMake>15000</WorkToMake>
-      <MeleeWeapon_DamageAmount>14</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>1.05</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>10</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>2.1</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -332,9 +308,9 @@
     <costStuffCount>40</costStuffCount>
     <statBases>
       <WorkToMake>500</WorkToMake>
-      <MeleeWeapon_DamageAmount>10</MeleeWeapon_DamageAmount>
-      <DeteriorationRate>0.25</DeteriorationRate>
-      <MeleeWeapon_Cooldown>1.35</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>11</MeleeWeapon_DamageAmount>
+      <DeteriorationRate>0.5</DeteriorationRate>
+      <MeleeWeapon_Cooldown>2.7</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -342,6 +318,13 @@
       <li>Woody</li>
       <li>Stony</li>
     </stuffCategories>
+    <recipeMaker>
+      <recipeUsers>
+        <li>ElectricSmithy</li>
+        <li>FueledSmithy</li>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+    </recipeMaker>
     <verbs>
       <li>
         <verbClass>Verb_MeleeAttack</verbClass>

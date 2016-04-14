@@ -8,18 +8,24 @@ using Verse.Sound;
 
 namespace Combat_Realism
 {
-    public class CompProperties_Reloader : CompProperties
+    public class CompAmmoUser : CommunityCoreLibrary.CompRangedGizmoGiver
     {
-        public int roundPerMag = 1;
-        public int reloadTick = 300;
-        public bool throwMote = true;
-        public AmmoSetDef ammoSet = null;
-    }
+        public CompProperties_AmmoUser Props
+        {
+            get
+            {
+                return (CompProperties_AmmoUser)this.props;
+            }
+        }
 
-    public class CompReloader : CommunityCoreLibrary.CompRangedGizmoGiver
-    {
-        public int curMagCount;
-        public CompProperties_Reloader rProps;
+        private int curAmmoCountInt;
+        public int curMagCount
+        {
+            get
+            {
+                return curAmmoCountInt;
+            }
+        }
         public CompEquippable compEquippable
         {
             get { return parent.GetComp<CompEquippable>(); }
@@ -36,7 +42,7 @@ namespace Combat_Realism
         {
             get
             {
-                return rProps.ammoSet != null;
+                return Props.ammoSet != null;
             }
         }
         private AmmoDef currentAmmoInt = null;
@@ -59,16 +65,7 @@ namespace Combat_Realism
         {
             base.Initialize(vprops);
 
-            rProps = vprops as CompProperties_Reloader;
-            if (rProps != null)
-            {
-                curMagCount = rProps.roundPerMag;
-            }
-            else
-            {
-                Log.Warning("Could not find a CompProperties_Reloader for CompReloader.");
-                curMagCount = 9876;
-            }
+            curAmmoCountInt = Props.magazineSize;
 
             // Initialize ammo with default if none is set
             Log.Message(this.parent.ToString() + " uses ammo " + useAmmo.ToString());
@@ -76,13 +73,13 @@ namespace Combat_Realism
             Log.Message((useAmmo && currentAmmoInt == null).ToString());
             if (useAmmo && currentAmmoInt == null)
             {
-                if (rProps.ammoSet.ammoTypes.NullOrEmpty())
+                if (Props.ammoSet.ammoTypes.NullOrEmpty())
                 {
                     Log.Error(this.parent.Label + " failed to initialize with default ammo");
                 }
                 else
                 {
-                    currentAmmoInt = (AmmoDef)rProps.ammoSet.ammoTypes[0];
+                    currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0];
                     Log.Message("Initialize :: set currentAmmoInt to " + currentAmmoInt.ToString());
                 }
             }
@@ -92,7 +89,7 @@ namespace Combat_Realism
         {
             base.PostExposeData();
 
-            Scribe_Values.LookValue(ref curMagCount, "count", 1);
+            Scribe_Values.LookValue(ref curAmmoCountInt, "count", 1);
             Scribe_Defs.LookDef(ref currentAmmoInt, "currentAmmo");
         }
 
@@ -106,6 +103,22 @@ namespace Combat_Realism
             {
                 ExternalPawnDrafter.TakeOrderedJob(wielder, job);
             }
+        }
+
+        /// <summary>
+        /// Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam)
+        /// </summary>
+        public void ReduceAmmoCount()
+        {
+            if (curAmmoCountInt <= 0)
+            {
+                Log.Error("Tried reducing current ammo of " + this.parent.ToString() + " below zero");
+                curAmmoCountInt = 0;
+                return;
+            }
+            curAmmoCountInt--;
+            if (compInventory != null)
+                compInventory.UpdateInventory();
         }
 
         public void StartReload()
@@ -125,7 +138,7 @@ namespace Combat_Realism
                 if (!TryFindAmmoInInventory(out thing))
                 {
                     Log.Message("StartReload :: " + this.parent.Label + " has no ammo, returning");
-                    if (rProps.throwMote)
+                    if (Props.throwMote)
                     {
                         MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "Out of ammo");
                     }
@@ -133,12 +146,12 @@ namespace Combat_Realism
                 }
 
                 // Add remaining ammo back to inventory
-                if (curMagCount > 0)
+                if (curAmmoCountInt > 0)
                 {
                     Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
                     //GenSpawn.Spawn(ammoThing, this.parent.Position);
-                    ammoThing.stackCount = curMagCount;
-                    curMagCount = 0;
+                    ammoThing.stackCount = curAmmoCountInt;
+                    curAmmoCountInt = 0;
 
                     if (compInventory != null)
                     {
@@ -155,7 +168,7 @@ namespace Combat_Realism
             }
 
             // Throw mote
-            if (rProps.throwMote)
+            if (Props.throwMote)
             {
                 MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_ReloadingMote".Translate());
             }
@@ -191,7 +204,7 @@ namespace Combat_Realism
                     {
                         if (!compInventory.ammoList.NullOrEmpty())
                         {
-                            ammoThing = compInventory.ammoList.Find(ammo => rProps.ammoSet.ammoTypes.Contains(ammo.def));
+                            ammoThing = compInventory.ammoList.Find(ammo => Props.ammoSet.ammoTypes.Contains(ammo.def));
                         }
                         if (ammoThing != null)
                         {
@@ -200,7 +213,7 @@ namespace Combat_Realism
                         }
                         else
                         {
-                            if (rProps.throwMote)
+                            if (Props.throwMote)
                             {
                                 MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "Out of ammo");
                             }
@@ -209,16 +222,16 @@ namespace Combat_Realism
                         }
                     }
                     Log.Message("FinishReload :: ammoThing " + ammoThing.ToString());
-                    if (rProps.roundPerMag < ammoThing.stackCount)
+                    if (Props.magazineSize < ammoThing.stackCount)
                     {
                         Log.Message("FinishReload :: setting ammo to full mag");
-                        curMagCount = rProps.roundPerMag;
-                        ammoThing.stackCount -= rProps.roundPerMag;
+                        curAmmoCountInt = Props.magazineSize;
+                        ammoThing.stackCount -= Props.magazineSize;
                     }
                     else
                     {
                         Log.Message("FinishReload :: setting ammo to stack count");
-                        curMagCount = ammoThing.stackCount;
+                        curAmmoCountInt = ammoThing.stackCount;
                         compInventory.container.Remove(ammoThing);
                     }
                 }
@@ -231,10 +244,10 @@ namespace Combat_Realism
             else
             {
                 Log.Message("FinishReload :: don't use ammo, setting to full mag");
-                curMagCount = rProps.roundPerMag;
+                curAmmoCountInt = Props.magazineSize;
             }
             parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(wielder.Position));
-            if (rProps.throwMote)
+            if (Props.throwMote)
             {
                 MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_ReloadedMote".Translate());
             }
@@ -258,7 +271,7 @@ namespace Combat_Realism
             }
             
             // Try finding ammo from different type
-            foreach (AmmoDef ammoDef in rProps.ammoSet.ammoTypes)
+            foreach (AmmoDef ammoDef in Props.ammoSet.ammoTypes)
             {
                 Log.Message("TryFindAmmoInInventory :: trying to find ammo for type " + ammoDef.ToString());
                 ammoThing = compInventory.ammoList.Find(thing => ((AmmoDef)thing.def).Equals(ammoDef));
@@ -287,31 +300,26 @@ namespace Combat_Realism
 
         public override IEnumerable<Command> CompGetGizmosExtra()
         {
-            var ammoStat = new GizmoAmmoStatus
-            {
-                compAmmo = this
-            };
-
-            yield return ammoStat;
+            var ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
+            yield return ammoStatusGizmo;
 
             if (this.wielder != null)
             {
-                var com = new Command_Action
+                var reloadCommandGizmo = new Command_Action
                 {
-                    action = StartReload,
+                    action = this.StartReload,
                     defaultLabel = "CR_ReloadLabel".Translate(),
                     defaultDesc = "CR_ReloadDesc".Translate(),
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true)
                 };
-
-                yield return com;
+                yield return reloadCommandGizmo;
             }
         }
 
         public override string GetDescriptionPart()
         {
-            return "Magazine size: " + GenText.ToStringByStyle(this.rProps.roundPerMag, ToStringStyle.Integer) +
-                "\nReload time: " + GenText.ToStringByStyle((this.rProps.reloadTick / 60), ToStringStyle.Integer) + " s";
+            return "Magazine size: " + GenText.ToStringByStyle(this.Props.magazineSize, ToStringStyle.Integer) +
+                "\nReload time: " + GenText.ToStringByStyle((this.Props.reloadTicks / 60), ToStringStyle.Integer) + " s";
         }
     }
 }

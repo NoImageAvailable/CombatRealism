@@ -8,26 +8,15 @@ using Verse;
 
 namespace Combat_Realism
 {
-    public class CompPropertiesFireModes : CompProperties
-    {
-        public int aimedBurstShotCount = -1;    //will default to regular burst setting if not specified in def
-        public bool aiUseAimMode = false;
-        public bool aiUseBurstMode = false;
-        public bool noSingleShot = false;
-
-        public CompPropertiesFireModes()
-            : base()
-        {
-        }
-        public CompPropertiesFireModes(Type compClass)
-            : base(compClass)
-        {
-        }
-    }
-
     public class CompFireModes : CommunityCoreLibrary.CompRangedGizmoGiver
-	{
-        new public CompPropertiesFireModes props;
+    {
+        public CompProperties_FireModes Props
+        {
+            get
+            {
+                return (CompProperties_FireModes)this.props;
+            }
+        }
 
         // Fire mode variables
         private Verb verbInt = null;
@@ -87,20 +76,15 @@ namespace Combat_Realism
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            CompPropertiesFireModes cprops = props as CompPropertiesFireModes;
-            if (cprops != null)
-            {
-                this.props = cprops;
-            }
 
             // Calculate available fire modes
-            if (this.verb.verbProps.burstShotCount > 1 || this.props.noSingleShot)
+            if (this.verb.verbProps.burstShotCount > 1 || this.Props.noSingleShot)
             {
                 this.availableFireModes.Add(FireMode.AutoFire);
             }
-            if (this.props.aimedBurstShotCount > 1)
+            if (this.Props.aimedBurstShotCount > 1)
             {
-                if (this.props.aimedBurstShotCount >= this.verb.verbProps.burstShotCount)
+                if (this.Props.aimedBurstShotCount >= this.verb.verbProps.burstShotCount)
                 {
                     Log.Warning(this.parent.LabelBaseCap + " burst fire shot count is same or higher than auto fire");
                 }
@@ -109,7 +93,7 @@ namespace Combat_Realism
                     this.availableFireModes.Add(FireMode.BurstFire);
                 }
             }
-            if (!this.props.noSingleShot)
+            if (!this.Props.noSingleShot)
             {
                 this.availableFireModes.Add(FireMode.SingleFire);
             }
@@ -154,6 +138,30 @@ namespace Combat_Realism
             this.currentAimModeInt = this.availableAimModes.ElementAt(0);
         }
 
+        public override IEnumerable<Command> CompGetGizmosExtra()
+        {
+            if (this.casterPawn != null && this.casterPawn.Faction.Equals(Faction.OfColony))
+            {
+                var toggleFireModeGizmo = new Command_Action
+                {
+                    action = this.ToggleFireMode,
+                    defaultLabel = ("CR_" + this.currentFireMode.ToString() + "Label").Translate(),
+                    defaultDesc = "CR_ToggleFireModeDesc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + this.currentFireMode.ToString()), true)
+                };
+                yield return toggleFireModeGizmo;
+
+                var toggleAimModeGizmo = new Command_Action
+                {
+                    action = this.ToggleAimMode,
+                    defaultLabel = ("CR_" + this.currentAimMode.ToString() + "Label").Translate(),
+                    defaultDesc = "CR_ToggleAimModeDesc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + this.currentAimMode.ToString()), true)
+                };
+                yield return toggleAimModeGizmo;
+            }
+        }
+
         public override string GetDescriptionPart()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -164,9 +172,9 @@ namespace Combat_Realism
                 {
                     stringBuilder.AppendLine("   -" + ("CR_" + fireMode.ToString() + "Label").Translate());
                 }
-                if (this.props.aimedBurstShotCount > 0 && this.availableFireModes.Contains(FireMode.BurstFire))
+                if (this.Props.aimedBurstShotCount > 0 && this.availableFireModes.Contains(FireMode.BurstFire))
                 {
-                    stringBuilder.AppendLine("Burst shot count: " + GenText.ToStringByStyle(this.props.aimedBurstShotCount, ToStringStyle.Integer));
+                    stringBuilder.AppendLine("Burst shot count: " + GenText.ToStringByStyle(this.Props.aimedBurstShotCount, ToStringStyle.Integer));
                 }
             }
             return stringBuilder.ToString();

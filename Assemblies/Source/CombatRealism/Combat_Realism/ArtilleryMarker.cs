@@ -21,7 +21,7 @@ namespace Combat_Realism
 
         public override string InspectStringAddon
         {
-            get { return "Marked for artillery, expires in " + ((int)(lifetimeTicks / 60)).ToString() + " s"; }
+            get { return "CR_MarkedForArtillery".Translate() + " " + ((int)(lifetimeTicks / 60)).ToString() + " s"; }
         }
 
         public override void ExposeData()

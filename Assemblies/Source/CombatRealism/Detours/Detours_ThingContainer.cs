@@ -19,13 +19,13 @@ namespace Combat_Realism.Detours
             if (item.stackCount > _this.AvailableStackSpace)
             {
                 Log.Error(string.Concat(new object[]
-		{
-			"Add item with stackCount=",
-			item.stackCount,
-			" with only ",
-			_this.AvailableStackSpace,
-			" in container. Splitting and adding..."
-		}));
+		        {
+			        "Add item with stackCount=",
+			        item.stackCount,
+			        " with only ",
+			        _this.AvailableStackSpace,
+			        " in container. Splitting and adding..."
+		        }));
                 return _this.TryAdd(item, _this.AvailableStackSpace);
             }
 
@@ -77,7 +77,7 @@ namespace Combat_Realism.Detours
             {
                 return false;
             }
-            if (item.SpawnedInWorld)
+            if (item.Spawned)
             {
                 item.DeSpawn();
             }
@@ -87,19 +87,9 @@ namespace Combat_Realism.Detours
             }
             item.holder = _this;
             innerList.Add(item);
-            Pawn pawn = item as Pawn;
-            if (pawn != null && !pawn.Downed)
-            {
-                Find.Reservations.ReleaseAllClaimedBy(pawn);
-                pawn.stances.CancelBusyStanceSoft();
-                pawn.jobs.StopAll(false);
-                pawn.pather.StopDead();
-                if (pawn.Drafted)
-                {
-                    pawn.drafter.Drafted = false;
-                }
-            }
+
             Utility.TryUpdateInventory(_this.owner as Pawn_InventoryTracker);   // Item has been added, notify CompInventory
+
             return true;
         }
 
@@ -110,18 +100,18 @@ namespace Combat_Realism.Detours
             if (!innerList.Contains(thing))
             {
                 Log.Error(string.Concat(new object[]
-		{
-			_this.owner,
-			" container tried to drop  ",
-			thing,
-			" which it didn't contain."
-		}));
+		        {
+			        _this.owner,
+			        " container tried to drop  ",
+			        thing,
+			        " which it didn't contain."
+		        }));
                 lastResultingThing = null;
                 return false;
             }
             if (GenDrop.TryDropSpawn(thing, dropLoc, mode, out lastResultingThing))
             {
-                innerList.Remove(thing);
+                _this.Remove(thing);
                 Utility.TryUpdateInventory(_this.owner as Pawn_InventoryTracker);
                 return true;
             }
@@ -133,22 +123,21 @@ namespace Combat_Realism.Detours
             if (thing.stackCount < count)
             {
                 Log.Error(string.Concat(new object[]
-		{
-			"Tried to drop ",
-			count,
-			" of ",
-			thing,
-			" while only having ",
-			thing.stackCount
-		}));
+		        {
+			        "Tried to drop ",
+			        count,
+			        " of ",
+			        thing,
+			        " while only having ",
+			        thing.stackCount
+		        }));
                 count = thing.stackCount;
             }
             if (count == thing.stackCount)
             {
                 if (GenDrop.TryDropSpawn(thing, dropLoc, mode, out resultingThing))
                 {
-                    List<Thing> innerList = (List<Thing>)innerListFieldInfo.GetValue(_this);    // Fetch innerList through reflection
-                    innerList.Remove(thing);
+                    _this.Remove(thing);
                     Utility.TryUpdateInventory(_this.owner as Pawn_InventoryTracker);   // Thing dropped, update inventory
                     return true;
                 }

@@ -22,13 +22,14 @@ namespace Combat_Realism.Detours
             Pawn pawn = (Pawn)pawnFieldInfo.GetValue(_this);
             ThingWithComps primaryInt = (ThingWithComps)primaryIntFieldInfo.GetValue(_this);
 
+            SlotGroupUtility.Notify_TakingThing(newEq);
             if (_this.AllEquipment.Where(eq => eq.def == newEq.def).Any<ThingWithComps>())
             {
                 Log.Error(string.Concat(new object[]
 		        {
 			        "Pawn ",
 			        pawn.LabelCap,
-			        " got ability ",
+			        " got equipment ",
 			        newEq,
 			        " while already having it."
 		        }));
@@ -40,25 +41,24 @@ namespace Combat_Realism.Detours
 		        {
 			        "Pawn ",
 			        pawn.LabelCap,
-			        " got primaryInt ability ",
+			        " got primaryInt equipment ",
 			        newEq,
-			        " while already having primaryInt ability ",
+			        " while already having primaryInt equipment ",
 			        primaryInt
 		        }));
                 return;
             }
             if (newEq.def.equipmentType == EquipmentType.Primary)
             {
-                Log.Message("Assigning primaryInt as newEq");
-                primaryIntFieldInfo.SetValue(_this, newEq);
+                primaryIntFieldInfo.SetValue(newEq, null);  // Changed assignment to SetValue() since we're fetching a private variable through reflection
             }
-            newEq.GetComp<CompEquippable>().verbTracker.InitVerbs();
             foreach (Verb current in newEq.GetComp<CompEquippable>().AllVerbs)
             {
                 current.caster = pawn;
                 current.Notify_PickedUp();
             }
-            Utility.TryUpdateInventory(pawn);
+
+            Utility.TryUpdateInventory(pawn);   // Added equipment, update inventory
         }
 
         public static void Notify_PrimaryDestroyed(this Pawn_EquipmentTracker _this)
@@ -68,12 +68,14 @@ namespace Combat_Realism.Detours
             ThingWithComps primaryInt = (ThingWithComps)primaryIntFieldInfo.GetValue(_this);
 
             primaryIntFieldInfo.SetValue(_this, null);
-            pawn.stances.CancelBusyStanceSoft();
+            pawn.meleeVerbs.Notify_EquipmentLost();
+            if (pawn.Spawned)
+                pawn.stances.CancelBusyStanceSoft();
 
-            Utility.TryUpdateInventory(pawn);
+            Utility.TryUpdateInventory(pawn);   // Equipment was destroyed, update inventory
         }
 
-        public static bool TryDropEquipment(this Pawn_EquipmentTracker _this,ThingWithComps eq, out ThingWithComps resultingEq, IntVec3 pos, bool forbid = true)
+        public static bool TryDropEquipment(this Pawn_EquipmentTracker _this, ThingWithComps eq, out ThingWithComps resultingEq, IntVec3 pos, bool forbid = true)
         {
             // Fetch private fields
             Pawn pawn = (Pawn)pawnFieldInfo.GetValue(_this);
@@ -99,7 +101,7 @@ namespace Combat_Realism.Detours
             }
             if (primaryInt == eq)
             {
-                primaryIntFieldInfo.SetValue(_this, null);
+                primaryIntFieldInfo.SetValue(null, null);  // Changed assignment to SetValue() since we're fetching a private variable through reflection
             }
             Thing thing = null;
             bool flag = GenThing.TryDropAndSetForbidden(eq, pos, ThingPlaceMode.Near, out thing, forbid);
@@ -108,7 +110,10 @@ namespace Combat_Realism.Detours
             {
                 resultingEq.GetComp<CompEquippable>().Notify_Dropped();
             }
-            Utility.TryUpdateInventory(pawn);
+            pawn.meleeVerbs.Notify_EquipmentLost();
+
+            Utility.TryUpdateInventory(pawn);       // Dropped equipment, update inventory
+
             return flag;
         }
 
@@ -134,9 +139,12 @@ namespace Combat_Realism.Detours
             }
             if (primaryInt == eq)
             {
-                primaryIntFieldInfo.SetValue(_this, null);
-            }
-            Utility.TryUpdateInventory(pawn);
+                primaryIntFieldInfo.SetValue(_this, null);  // Changed assignment to SetValue() since we're fetching a private variable through reflection
+            } 
+            pawn.meleeVerbs.Notify_EquipmentLost();
+
+            Utility.TryUpdateInventory(pawn);   // Equipment was stored away, update inventory
+
             return resultingEq == null;
         }
     }

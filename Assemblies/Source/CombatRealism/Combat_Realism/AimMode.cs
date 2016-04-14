@@ -9,5 +9,7 @@ namespace Combat_Realism
     {
         Snapshot,
         AimedShot,
+        SuppressFire,
+        HoldFire
     }
 }

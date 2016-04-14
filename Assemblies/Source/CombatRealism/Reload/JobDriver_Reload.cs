@@ -6,22 +6,23 @@ namespace Combat_Realism
 {
     public class JobDriver_Reload : JobDriver
     {
-        private CompReloader compReloader
+        private CompAmmoUser compReloader
         {
             get
             {
-                return TargetThingB.TryGetComp<CompReloader>();
+                return TargetThingB.TryGetComp<CompAmmoUser>();
             }
         }
         protected override IEnumerable< Toil > MakeNewToils()
         {
-            this.FailOnBroken( TargetIndex.A );
+            this.FailOnDespawnedOrNull( TargetIndex.A );
+            this.FailOnMentalState(TargetIndex.A);
             
             //Toil of do-nothing		
             var waitToil = new Toil();
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = compReloader.rProps.reloadTick;
+            waitToil.defaultDuration = compReloader.Props.reloadTicks;
             yield return waitToil;
 
             //Actual reloader

@@ -19,10 +19,10 @@ namespace Combat_Realism
                     {
                         return 1;
                     }
-                    if ((this.compFireModes.currentFireMode == FireMode.BurstFire || (useDefaultModes && this.compFireModes.props.aiUseBurstMode)) 
-                        && this.compFireModes.props.aimedBurstShotCount > 0)
+                    if ((this.compFireModes.currentFireMode == FireMode.BurstFire || (useDefaultModes && this.compFireModes.Props.aiUseBurstMode)) 
+                        && this.compFireModes.Props.aimedBurstShotCount > 0)
                     {
-                        return this.compFireModes.props.aimedBurstShotCount;
+                        return this.compFireModes.Props.aimedBurstShotCount;
                     }
                 }
                 return this.verbPropsCR.burstShotCount;
@@ -56,7 +56,7 @@ namespace Combat_Realism
                             return false;
                         }
                     }
-                    return this.compFireModes != null && (this.compFireModes.currentAimMode == AimMode.AimedShot || (useDefaultModes && this.compFireModes.props.aiUseAimMode));
+                    return this.compFireModes != null && (this.compFireModes.currentAimMode == AimMode.AimedShot || (useDefaultModes && this.compFireModes.Props.aiUseAimMode));
                 }
                 return false;
             }

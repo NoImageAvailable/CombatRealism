@@ -10,6 +10,14 @@ namespace Combat_Realism
 {
     class CompInventory : ThingComp
     {
+        public CompProperties_Inventory Props
+        {
+            get
+            {
+                return (CompProperties_Inventory)this.props;
+            }
+        }
+
         private float currentWeightCached;
         private float currentBulkCached;
         public float currentWeight
@@ -195,7 +203,7 @@ namespace Combat_Realism
         {
             weight = eq.GetStatValue(StatDef.Named("Weight"));
             bulk = eq.GetStatValue(StatDef.Named("Bulk"));
-            CompReloader comp = eq.TryGetComp<CompReloader>();
+            CompAmmoUser comp = eq.TryGetComp<CompAmmoUser>();
             Log.Message("GetEquipmentStats :: found compReloader for " + eq.ToString() + " " + (comp != null).ToString());
             if (comp != null && comp.currentAmmo != null)
             {

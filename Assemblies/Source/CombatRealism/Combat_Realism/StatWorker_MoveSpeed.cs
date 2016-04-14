@@ -20,11 +20,11 @@ namespace Combat_Realism
                 if (comp != null)
                 {
                     stringBuilder.AppendLine();
-                    stringBuilder.AppendLine("Carried weight: x" + comp.moveSpeedFactor.ToStringPercent());
+                    stringBuilder.AppendLine("CR_CarriedWeight".Translate() + ": x" + comp.moveSpeedFactor.ToStringPercent());
                     if (comp.encumberPenalty > 0)
                     {
-                        stringBuilder.AppendLine("Encumbered: -" + comp.encumberPenalty.ToStringPercent());
-                        stringBuilder.AppendLine("Final modifier: x" + GetStatFactor(req.Thing).ToStringPercent());
+                        stringBuilder.AppendLine("CR_Encumbered".Translate() + ": -" + comp.encumberPenalty.ToStringPercent());
+                        stringBuilder.AppendLine("CR_FinalModifier".Translate() + ": x" + GetStatFactor(req.Thing).ToStringPercent());
                     }
                 }
             }

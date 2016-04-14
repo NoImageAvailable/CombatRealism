@@ -153,7 +153,7 @@ namespace Combat_Realism
 
             //Check if the projectile has the armor-piercing comp
             CompProperties_AP props = null;
-            if (dinfo.Source != null)
+            /*if (dinfo.Source != null)
             {
                 VerbProperties verbProps = dinfo.Source.Verbs.Where(x => x.isPrimary).First();
                 if (verbProps != null)
@@ -170,7 +170,7 @@ namespace Combat_Realism
                 {
                     props = (CompProperties_AP)dinfo.Source.GetCompProperties(typeof(CompAP));
                 }
-            }
+            }*/
 
             if (props != null)
             {

@@ -4,7 +4,7 @@
     <ModHelperDef>
         <defName>CombatRealism</defName>
         <ModName>CombatRealism</ModName>
-        <version>0.12.6</version>
+        <minCCLversion>0.12.6</minCCLversion>
 		<SpecialInjectors>
 			<li>Combat_Realism.DetourInjector</li>
 		</SpecialInjectors>
@@ -34,7 +34,6 @@
                 </targetDefs>
             </li>
         </ThingComps>
-		<Verbosity>Injections</Verbosity>
     </ModHelperDef>
 
 </Defs>

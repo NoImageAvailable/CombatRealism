@@ -23,9 +23,9 @@ namespace Combat_Realism
                     {
                         stringBuilder.AppendLine();
                         stringBuilder.Append("ShotBy".Translate(new object[]
-				{
-					pawn.LabelBaseShort
-				}) + ":");
+				        {
+					        pawn.LabelBaseShort
+				        }) + ":");
                         if (verb_LaunchProjectile.CanHitTarget(target))
                         {
                             HitReport hitReport = verb_LaunchProjectile.HitReportFor(target);
