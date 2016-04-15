@@ -4,9 +4,9 @@
     <ModHelperDef>
         <defName>CombatRealism</defName>
         <ModName>CombatRealism</ModName>
-        <minCCLversion>0.12.6</minCCLversion>
+        <minCCLversion>0.13.0</minCCLversion>
 		<SpecialInjectors>
-			<li>Combat_Realism.DetourInjector</li>
+			<li>Combat_Realism.Detours.DetourInjector</li>
 		</SpecialInjectors>
         <ThingComps>
             <li>

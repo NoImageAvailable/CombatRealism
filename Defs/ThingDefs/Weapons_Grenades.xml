@@ -57,17 +57,27 @@
   <ThingDef ParentName="BaseGrenadeProjectile">
     <defName>Proj_GrenadeFrag</defName>
     <label>frag grenade</label>
-    <thingClass>Projectile_Explosive</thingClass>
+    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <graphicData>
-      <texPath>Things/Projectile/Grenade</texPath>
+      <texPath>Things/Projectile/Grenades/Frag</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <explosionRadius >1.9</explosionRadius >
+      <explosionRadius >1.0</explosionRadius >
       <damageDef>Bomb</damageDef>
       <damageAmountBase>40</damageAmountBase>
-      <explosionDelay>100</explosionDelay>
+      <explosionDelay>60</explosionDelay>
     </projectile>
+	<comps>
+      <li Class="Combat_Realism.CompProperties_ExplosiveCR">
+        <fragRange>10.0</fragRange>
+		<fragments>
+			<Fragment_GrenadeFragSmall>50</Fragment_GrenadeFragSmall>
+			<Fragment_GrenadeFragMedium>30</Fragment_GrenadeFragMedium>
+			<Fragment_GrenadeFragLarge>10</Fragment_GrenadeFragLarge>
+		</fragments>
+      </li>
+	</comps>
   </ThingDef>
 
   <ThingDef ParentName="BaseEquipment">
@@ -76,8 +86,8 @@
     <label>frag grenades</label>
     <description>Old-school fragmentation grenades.</description>
     <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/Grenades</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Ammo/HandGrenades/Frag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <soundInteract>InteractGrenade</soundInteract>
     <techLevel>Midworld</techLevel>
@@ -85,6 +95,7 @@
       <MarketValue>400</MarketValue>
       <RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
     </statBases>
+    <stackLimit>75</stackLimit>
     <weaponTags>
       <li>GrenadeDestructive</li>
     </weaponTags>
@@ -94,7 +105,7 @@
     <verbs>
       <li>
         <label>throw frag grenade</label>
-        <verbClass>Verb_LaunchProjectile</verbClass>
+        <verbClass>Combat_Realism.Verb_LaunchProjectileCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>12.9</range>
         <forcedMissRadius>1.0</forcedMissRadius>

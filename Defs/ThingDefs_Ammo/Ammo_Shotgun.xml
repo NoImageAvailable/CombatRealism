@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!-- ==================== 12 Gauge ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="12GaugeBase" ParentName="AmmoBase" Abstract="True">
+    <description>Extremely common shotgun caliber used in almost every application, from hunting to military firearms.</description>
+    <statBases>
+	  <Weight>0.035</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12GaugeBase">
+    <defName>Ammo_12Gauge_Buck</defName>
+    <label>12 Gauge shell (Buck)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_12Gauge_Buck</linkedProjectile>
+	<ammoClass>BuckShot</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12GaugeBase">
+    <defName>Ammo_12Gauge_Bird</defName>
+    <label>12 Gauge shell (Bird)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Shot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_12Gauge_Bird</linkedProjectile>
+	<ammoClass>BirdShot</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12GaugeBase">
+    <defName>Ammo_12Gauge_Slug</defName>
+    <label>12 Gauge shell (Slug)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Slug</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_12Gauge_Slug</linkedProjectile>
+	<ammoClass>Slug</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12GaugeBase">
+    <defName>Ammo_12Gauge_Beanbag</defName>
+    <label>12 Gauge shell (Beanbag)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/Beanbag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_12Gauge_Beanbag</linkedProjectile>
+	<ammoClass>Beanbag</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12GaugeBase">
+    <defName>Ammo_12Gauge_ElectroSlug</defName>
+    <label>12 Gauge shell (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Shotgun/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_12Gauge_ElectroSlug</linkedProjectile>
+	<ammoClass>ElectroSlug</ammoClass>
+  </ThingDef>
+  
+</Defs>

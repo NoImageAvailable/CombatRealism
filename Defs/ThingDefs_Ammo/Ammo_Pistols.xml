@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!-- ==================== 9x19mm Parabellum ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="9x19mmParaBase" ParentName="AmmoBase" Abstract="True">
+    <description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
+    <statBases>
+	  <Weight>0.01</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="9x19mmParaBase">
+    <defName>Ammo_9x19mmPara_FMJ</defName>
+    <label>9x19mm Para bullet (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_9x19mmPara_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="9x19mmParaBase">
+    <defName>Ammo_9x19mmPara_AP</defName>
+    <label>9x19mm Para bullet (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_9x19mmPara_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="9x19mmParaBase">
+    <defName>Ammo_9x19mmPara_HP</defName>
+    <label>9x19mm Para bullet (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_9x19mmPara_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== .45 ACP ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="45ACPBase" ParentName="AmmoBase" Abstract="True">
+    <description>Pistol cartridge favoured for its above average stopping power.</description>
+    <statBases>
+	  <Weight>0.015</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ACPBase">
+    <defName>Ammo_45ACP_FMJ</defName>
+    <label>.45 ACP bullet (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_45ACP_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ACPBase">
+    <defName>Ammo_45ACP_AP</defName>
+    <label>.45 ACP bullet (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_45ACP_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ACPBase">
+    <defName>Ammo_45ACP_HP</defName>
+    <label>.45 ACP bullet (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_45ACP_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+</Defs>

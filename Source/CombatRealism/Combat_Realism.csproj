@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AABEDCF4-2B5E-450E-B855-89595E67DC8D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Combat_Realism</RootNamespace>
+    <AssemblyName>CombatRealism</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>..\..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>False</Prefer32Bit>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Community Core Library">
+      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\Community Core Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Combat_Realism\AimMode.cs" />
+    <Compile Include="Combat_Realism\Projectiles\ArtilleryMarker.cs" />
+    <Compile Include="Combat_Realism\Comps\CompExplosive.cs" />
+    <Compile Include="Combat_Realism\Comps\CompInventory.cs" />
+    <Compile Include="Combat_Realism\Comps\CompJamming.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_Explosive.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_FireModes.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_Jamming.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_Suppressable.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_TurretInit.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_Inventory.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_AmmoUser.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_Charges.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_AP.cs" />
+    <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR.cs" />
+    <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
+    <Compile Include="Detours\DetourInjector.cs" />
+    <Compile Include="Combat_Realism\FireMode.cs" />
+    <Compile Include="Combat_Realism\Projectiles\BulletCR.cs" />
+    <Compile Include="Combat_Realism\Comps\CompFireModes.cs" />
+    <Compile Include="Combat_Realism\Comps\CompSuppressable.cs" />
+    <Compile Include="Combat_Realism\Comps\CompAP.cs" />
+    <Compile Include="Combat_Realism\Comps\CompCharges.cs" />
+    <Compile Include="Combat_Realism\Comps\CompTurretInit.cs" />
+    <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR - old.cs" />
+    <Compile Include="Combat_Realism\Gizmos\GizmoAmmoStatus.cs" />
+    <Compile Include="Combat_Realism\Jobs\JobDriver_HunkerDown.cs" />
+    <Compile Include="Combat_Realism\Jobs\JobGiver_HunkerDown.cs" />
+    <Compile Include="Combat_Realism\Jobs\JobGiver_RunForCover.cs" />
+    <Compile Include="Combat_Realism\Projectiles\ProjectileCR.cs" />
+    <Compile Include="Combat_Realism\Projectiles\ProjectileCR_Explosive.cs" />
+    <Compile Include="Combat_Realism\Projectiles\ProjectilePropertiesCR.cs" />
+    <Compile Include="Combat_Realism\ShiftVecReport.cs" />
+    <Compile Include="Combat_Realism\StatWorkers\StatWorker_MoveSpeed.cs" />
+    <Compile Include="Combat_Realism\StatWorkers\StatWorker_WorkSpeedGlobal.cs" />
+    <Compile Include="Combat_Realism\Defs\AmmoDef.cs" />
+    <Compile Include="Combat_Realism\Defs\AmmoSetDef.cs" />
+    <Compile Include="Combat_Realism\ThinkNodes\ThinkNode_ConditionalHunkering.cs" />
+    <Compile Include="Combat_Realism\ThinkNodes\ThinkNode_ConditionalSuppressed.cs" />
+    <Compile Include="Combat_Realism\ThoughtWorkers\ThoughtWorker_Suppressed.cs" />
+    <Compile Include="Detours\Detours_FloatMenuMaker.cs" />
+    <Compile Include="Detours\Detours_TooltipUtility.cs" />
+    <Compile Include="Combat_Realism\Utility.cs" />
+    <Compile Include="Combat_Realism\Verbs\VerbPropertiesCR.cs" />
+    <Compile Include="Combat_Realism\Verbs\Verb_LaunchProjectileCR.cs" />
+    <Compile Include="Combat_Realism\Verbs\Verb_MarkForArtilleryCR.cs" />
+    <Compile Include="Combat_Realism\Verbs\Verb_ShootMortarCR.cs" />
+    <Compile Include="Combat_Realism\Verbs\Verb_ShootCROneUse.cs" />
+    <Compile Include="Detours\Detours_Pawn_ApparelTracker.cs" />
+    <Compile Include="Detours\Detours_Pawn_EquipmentTracker.cs" />
+    <Compile Include="Detours\Detours_ThingContainer.cs" />
+    <Compile Include="Detours\Detours_TurretTop.cs" />
+    <Compile Include="Detours\Detours_VerbTracker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Combat_Realism\Verbs\Verb_ShootCR.cs" />
+    <Compile Include="Combat_Realism\Comps\CompAmmoUser.cs" />
+    <Compile Include="Combat_Realism\Jobs\ExternalPawnDrafter.cs" />
+    <Compile Include="Combat_Realism\Jobs\JobDriver_Reload.cs" />
+    <Compile Include="Combat_Realism\Verbs\Verb_ShootCRReload.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

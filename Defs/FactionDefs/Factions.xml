@@ -81,10 +81,10 @@
             <selectionWeight>60</selectionWeight>
             <kind>MercenaryHeavy</kind>
           </li>
-          <li>
+          <!--<li>
             <selectionWeight>90</selectionWeight>
             <kind>MercenaryMachineGunner</kind>
-          </li>
+          </li>-->
         </options>
       </li>
       <li Class="PawnGroupMaker_Normal">
@@ -132,7 +132,7 @@
       <max>-100</max>
     </naturalColonyGoodwill>
     <pawnGroupMakers>
-      <li>
+      <li Class="PawnGroupMaker_Normal">
         <options>
           <li>
             <selectionWeight>75</selectionWeight>

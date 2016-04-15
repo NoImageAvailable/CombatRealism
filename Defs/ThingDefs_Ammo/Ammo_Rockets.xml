@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!-- ==================== RPG-7 ========================== -->
+
+  <!--<ThingDef Class="Combat_Realism.AmmoDef" Name="RPG7Base" ParentName="AmmoBase" Abstract="True">
+    <description>Extremely common shotgun caliber used in almost every application, from hunting to military firearms.</description>
+    <statBases>
+	  <Weight>0.035</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="RPG7Base">
+    <defName>Ammo_RPG7_HEAT</defName>
+    <label>RPG-7 grenade (HEAT)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/HEAT</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_RPG7_HEAT</linkedProjectile>
+	<ammoClass>BuckShot</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="RPG7Base">
+    <defName>Ammo_RPG7_Thermobaric</defName>
+    <label>RPG-7 grenade (Thermobaric)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/Thermobaric</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_RPG7_Thermobaric</linkedProjectile>
+	<ammoClass>BirdShot</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="RPG7Base">
+    <defName>Ammo_RPG7_Frag</defName>
+    <label>RPG-7 grenade (Frag)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/Frag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_RPG7_Frag</linkedProjectile>
+	<ammoClass>Slug</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="RPG7Base">
+    <defName>Ammo_RPG7_EMP</defName>
+    <label>RPG-7 grenade (EMP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/RPG/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_RPG7_EMP</linkedProjectile>
+	<ammoClass>ElectroSlug</ammoClass>
+  </ThingDef>-->
+  
+</Defs>

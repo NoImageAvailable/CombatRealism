@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ThingDefs>
+
+  <ThingDef Name="Base12GaugeBullet" ParentName="BaseBullet" Abstract="true">
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>70</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeBullet">
+    <defName>Bullet_12Gauge_Buck</defName>
+    <label>buckshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageAmountBase>8</damageAmountBase>
+	  <pelletCount>8</pelletCount>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeBullet">
+    <defName>Bullet_12Gauge_Bird</defName>
+    <label>birdshot pellet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Shotgun_Pellet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageAmountBase>3</damageAmountBase>
+	  <pelletCount>40</pelletCount>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeBullet">
+    <defName>Bullet_12Gauge_Slug</defName>
+    <label>shotgun slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageAmountBase>25</damageAmountBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeBullet">
+    <defName>Bullet_12Gauge_Beanbag</defName>
+    <label>beanbag</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageAmountBase>25</damageAmountBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base12GaugeBullet">
+    <defName>Bullet_12Gauge_ElectroSlug</defName>
+    <label>EMP slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageAmountBase>25</damageAmountBase>
+    </projectile>
+  </ThingDef>
+
+</ThingDefs>

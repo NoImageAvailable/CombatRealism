@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ThingDefs>
+
+  <ThingDef Name="BaseFragment" ParentName="BaseBullet" Abstract="True">
+	<projectile>
+		<alwaysFreeIntercept>true</alwaysFreeIntercept>
+	</projectile>
+  </ThingDef>
+
+
+	
+	<!-- ================== 40mm grenade ================== -->
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_Grenade40mmFragSmall</defName>
+    <label>small shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>24</damageAmountBase>
+      <speed>160</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_Grenade40mmFragMedium</defName>
+    <label>medium shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Medium</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>36</damageAmountBase>
+      <speed>140</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_Grenade40mmFragLarge</defName>
+    <label>large shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>48</damageAmountBase>
+      <speed>120</speed>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ================== 120mm mortar shell ================== -->
+
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_MortarSmall</defName>
+    <label>small shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>36</damageAmountBase>
+      <speed>160</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_MortarMedium</defName>
+    <label>medium shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Medium</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>48</damageAmountBase>
+      <speed>140</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_MortarLarge</defName>
+    <label>large shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>60</damageAmountBase>
+      <speed>120</speed>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ================== 120mm HEAT shell ================== -->
+
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_HeatSmall</defName>
+    <label>small shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>36</damageAmountBase>
+      <speed>160</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_HeatMedium</defName>
+    <label>medium shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Medium</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>48</damageAmountBase>
+      <speed>140</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_HeatLarge</defName>
+    <label>large shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>60</damageAmountBase>
+      <speed>120</speed>
+    </projectile>
+  </ThingDef>
+
+  <!-- ================== Hand grenade ================== -->
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_GrenadeFragSmall</defName>
+    <label>small shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>24</damageAmountBase>
+      <speed>160</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_GrenadeFragMedium</defName>
+    <label>medium shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Medium</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>36</damageAmountBase>
+      <speed>140</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="BaseFragment">
+    <defName>Fragment_GrenadeFragLarge</defName>
+    <label>large shell fragments</label>
+    <graphicData>
+      <texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Fragment</damageDef>
+      <damageAmountBase>48</damageAmountBase>
+      <speed>120</speed>
+    </projectile>
+  </ThingDef>
+
+
+</ThingDefs>

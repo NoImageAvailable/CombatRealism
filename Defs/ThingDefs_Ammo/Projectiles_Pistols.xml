@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ThingDefs>
+	
+	<!-- ================== 9x19mm Parabellum ================== -->
+	
+  <ThingDef Name="Base9x19mmParaBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>78</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base9x19mmParaBullet">
+    <defName>Bullet_9x19mmPara_FMJ</defName>
+    <label>9mm Para bullet (FMJ)</label>
+    <projectile>
+      <damageAmountBase>10</damageAmountBase>
+    </projectile>
+    <comps>
+      <li Class="Combat_Realism.CompProperties_AP">
+        <compClass>Combat_Realism.CompAP</compClass>
+        <armorPenetration>0.425</armorPenetration>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base9x19mmParaBullet">
+    <defName>Bullet_9x19mmPara_AP</defName>
+    <label>9mm Para bullet (AP)</label>
+    <projectile>
+      <damageAmountBase>8</damageAmountBase>
+    </projectile>
+    <comps>
+      <li Class="Combat_Realism.CompProperties_AP">
+        <compClass>Combat_Realism.CompAP</compClass>
+        <armorPenetration>0.575</armorPenetration>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base9x19mmParaBullet">
+    <defName>Bullet_9x19mmPara_HP</defName>
+    <label>9mm Para bullet (HP)</label>
+    <projectile>
+      <damageAmountBase>12</damageAmountBase>
+    </projectile>
+    <comps>
+      <li Class="Combat_Realism.CompProperties_AP">
+        <compClass>Combat_Realism.CompAP</compClass>
+        <armorPenetration>0.275</armorPenetration>
+      </li>
+    </comps>
+  </ThingDef>
+	
+	<!-- ================== .45 ACP ================== -->
+	
+  <ThingDef Name="Base45ACPParaBullet" ParentName="BaseBullet" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>55</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base45ACPParaBullet">
+    <defName>Bullet_45ACP_FMJ</defName>
+    <label>.45 ACP bullet (FMJ)</label>
+    <projectile>
+      <damageAmountBase>13</damageAmountBase>
+    </projectile>
+    <comps>
+      <li Class="Combat_Realism.CompProperties_AP">
+        <compClass>Combat_Realism.CompAP</compClass>
+        <armorPenetration>0.4</armorPenetration>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base45ACPParaBullet">
+    <defName>Bullet_45ACP_AP</defName>
+    <label>.45 ACP bullet (AP)</label>
+    <projectile>
+      <damageAmountBase>11</damageAmountBase>
+    </projectile>
+    <comps>
+      <li Class="Combat_Realism.CompProperties_AP">
+        <compClass>Combat_Realism.CompAP</compClass>
+        <armorPenetration>0.55</armorPenetration>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base45ACPParaBullet">
+    <defName>Bullet_45ACP_HP</defName>
+    <label>.45 ACP bullet (HP)</label>
+    <projectile>
+      <damageAmountBase>16</damageAmountBase>
+    </projectile>
+    <comps>
+      <li Class="Combat_Realism.CompProperties_AP">
+        <compClass>Combat_Realism.CompAP</compClass>
+        <armorPenetration>0.25</armorPenetration>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+</ThingDefs>

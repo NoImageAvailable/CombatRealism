@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ThingDefs>
+	
+  <!-- ==================== 30x32mm Fuel Cell ========================== -->
+	
+  <ThingDef Name="Base30x32mmFuelBullet" ParentName="BaseBullet" Abstract="true">
+    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/InfernoCannonShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <projectile>
+      <speed>60</speed>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base30x32mmFuelBullet">
+    <defName>Bullet_30x32mmFuel_Incendiary</defName>
+    <label>incendiary bolt</label>
+    <projectile>
+      <damageDef>Flame</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <explosionRadius>1.0</explosionRadius>
+    </projectile>
+  </ThingDef>
+  
+  <ThingDef ParentName="Base30x32mmFuelBullet">
+    <defName>Bullet_30x32mmFuel_Thermobaric</defName>
+    <label>thermobaric bolt</label>
+    <projectile>
+      <damageDef>Flame</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <explosionRadius>1.0</explosionRadius>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ==================== 80x128mm Fuel Cell ========================== -->
+  
+  <ThingDef>
+    <defName>Bullet_80x128mmFuel_Thermobaric</defName>
+    <label>inferno cannon shell</label>
+    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/InfernoCannonShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <projectile>
+      <speed>180</speed>
+      <damageDef>Flame</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <explosionRadius>1.0</explosionRadius>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ==================== 6x24mm Charged ========================== -->
+
+  <ThingDef Name="Base6x24mmChargedBullet" ParentName="BaseBullet" Abstract="true">
+    <label>charge shot</label>
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <speed>170</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base6x24mmChargedBullet">
+    <defName>Bullet_6x24mmCharged</defName>
+    <label>charge shot</label>
+    <projectile>
+      <damageAmountBase>19</damageAmountBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base6x24mmChargedBullet">
+    <defName>Bullet_6x24mmCharged_AP</defName>
+    <label>charge shot</label>
+    <projectile>
+      <damageAmountBase>19</damageAmountBase>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="Base6x24mmChargedBullet">
+    <defName>Bullet_6x24mmCharged_Ion</defName>
+    <label>charge shot</label>
+    <projectile>
+      <damageAmountBase>19</damageAmountBase>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ==================== 5x35mm Charged ========================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_5x35mmCharged</defName>
+    <label>charge lance shot</label>
+    <graphicData>
+      <texPath>Things/Projectile/ChargeLanceShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>(3,3)</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>19</damageAmountBase>
+      <speed>200</speed>
+    </projectile>
+  </ThingDef>
+  
+  <!-- ==================== 12x64mm Charged ========================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_12x64mmCharged</defName>
+    <label>charge blaster shot</label>
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>22</damageAmountBase>
+      <speed>190</speed>
+    </projectile>
+  </ThingDef>
+
+</ThingDefs>

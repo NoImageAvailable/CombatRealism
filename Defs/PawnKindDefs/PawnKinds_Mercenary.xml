@@ -10,7 +10,7 @@
     <defaultFactionType>Pirate</defaultFactionType>
     <baseRecruitDifficulty>80</baseRecruitDifficulty>
     <backstoryCategory>Raider</backstoryCategory>
-    <invMealCount>1</invMealCount>
+    <invMealCount>3</invMealCount>
     <itemQuality>Normal</itemQuality>
     <backstoryCryptosleepCommonality>0.25</backstoryCryptosleepCommonality>
     <maxGenerationAge>58</maxGenerationAge>
@@ -127,10 +127,6 @@
     <weaponTags>
       <li>AdvancedGun</li>
     </weaponTags>
-    <weaponMoney>
-      <min>1800</min>
-      <max>2000</max>
-    </weaponMoney>
   </PawnKindDef>
 
 
@@ -141,10 +137,6 @@
     <weaponTags>
       <li>AdvancedGun</li>
     </weaponTags>
-    <weaponMoney>
-      <min>1800</min>
-      <max>2000</max>
-    </weaponMoney>
   </PawnKindDef>
 
 
@@ -153,9 +145,9 @@
     <label>mercenary machine gunner</label>
     <combatPower>220</combatPower>
     <weaponTags>
-      <li>MachineGun</li>
+      <li>CR_MachineGun</li>
     </weaponTags>
-  </PawnKindDef>
+  </PawnKindDef>-
 
 
 

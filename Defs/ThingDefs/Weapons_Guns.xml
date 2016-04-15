@@ -550,6 +550,9 @@
       <Steel>150</Steel>
       <Components>4</Components>
     </costList>
+    <weaponTags>
+      <li>CR_MachineGun</li>
+    </weaponTags>
     <verbs>
       <li>
         <verbClass>Verb_Shoot</verbClass>

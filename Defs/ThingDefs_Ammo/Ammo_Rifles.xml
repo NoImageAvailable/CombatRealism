@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!-- ==================== 5.56x45mm NATO ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="556x45mmNATOBase" ParentName="AmmoBase" Abstract="True">
+    <description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
+    <statBases>
+	  <Weight>0.012</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
+    <defName>Ammo_556x45mmNATO_FMJ</defName>
+    <label>5.56x45mm NATO bullet (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_556x45mmNATO_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
+    <defName>Ammo_556x45mmNATO_AP</defName>
+    <label>5.56x45mm NATO bullet (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_556x45mmNATO_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
+    <defName>Ammo_556x45mmNATO_HP</defName>
+    <label>5.56x45mm NATO bullet (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_556x45mmNATO_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== 7.62x51mm NATO ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="762x51mmNATOBase" ParentName="AmmoBase" Abstract="True">
+    <description>Large rifle bullet commonly used in machine guns and sniper rifles.</description>
+    <statBases>
+	  <Weight>0.025</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
+    <defName>Ammo_762x51mmNATO_FMJ</defName>
+    <label>7.62x51mm NATO bullet (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x51mmNATO_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
+    <defName>Ammo_762x51mmNATO_AP</defName>
+    <label>7.62x51mm NATO bullet (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x51mmNATO_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
+    <defName>Ammo_762x51mmNATO_HP</defName>
+    <label>7.62x51mm NATO bullet (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x51mmNATO_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== .303 British ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="303BritishBase" ParentName="AmmoBase" Abstract="True">
+    <description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
+    <statBases>
+	  <Weight>0.025</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">
+    <defName>Ammo_303British_FMJ</defName>
+    <label>.303 British bullet (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_303British_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">
+    <defName>Ammo_303British_AP</defName>
+    <label>.303 British bullet (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_303British_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">
+    <defName>Ammo_303British_HP</defName>
+    <label>.303 British bullet (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_303British_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+</Defs>
