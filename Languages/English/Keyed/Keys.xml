@@ -34,5 +34,8 @@
 	<CR_CarriedBulk>Carried bulk</CR_CarriedBulk>
 	<CR_Encumbered>Encumbered</CR_Encumbered>
 	<CR_FinalModifier>Final modifier</CR_FinalModifier>
+	<CR_InventoryFull>Inventory is full</CR_InventoryFull>
+	<CR_PickUp>Pick up</CR_PickUp>
+	<CR_CannotPickUp>Cannot pick up</CR_CannotPickUp>
 	
 </LanguageData>

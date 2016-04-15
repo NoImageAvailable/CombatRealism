@@ -1,4 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
+  <!-- ==================== .50 BMG ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="Ammo50BMGBase" ParentName="AmmoBase" Abstract="True">
+    <description>Large caliber bullet used by many heavy machine guns and anti-materiel rifles.</description>
+    <statBases>
+	  <Weight>0.012</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
+    <defName>Ammo_50BMG_FMJ</defName>
+    <label>.50 BMG bullet (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_50BMG_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
+    <defName>Ammo_50BMG_AP</defName>
+    <label>.50 BMG bullet (Sabot)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_50BMG_Sabot</linkedProjectile>
+	<ammoClass>Sabot</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
+    <defName>Ammo_50BMG_HE</defName>
+    <label>.50 BMG bullet (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_50BMG_HE</linkedProjectile>
+	<ammoClass>ExplosiveAP</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
+    <defName>Ammo_50BMG_Incendiary</defName>
+    <label>.50 BMG bullet (AP-I)</label>
+    <graphicData>
+      <texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_50BMG_Incendiary</linkedProjectile>
+	<ammoClass>IncendiaryAP</ammoClass>
+  </ThingDef>
+
 </Defs>

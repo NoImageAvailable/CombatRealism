@@ -112,35 +112,6 @@ namespace Combat_Realism
             this.isAiming = false;
         }
 
-        /*/// <summary>
-        /// Calculates whether or not the current weapon sway is small enough to hit the target with a fudge factor based on shooter skill. Does not account for inaccuracy from sources other than sway,
-        /// such as shotVariation or range estimation errors.
-        /// </summary>
-        /// <returns>True if current sway position will hit target</returns>
-        private bool IsSwayOnTarget()
-        {
-            if (this.currentTarget.Thing == null)
-            {
-                return true;
-            }
-            Vector2 swayVec = base.GetSwayVec();
-            float targDist = (this.caster.Position - this.currentTarget.Cell).LengthHorizontal;
-            float targHeight = Utility.GetCollisionHeight(this.currentTarget.Thing);
-            float targWidth = Utility.GetCollisionWidth(this.currentTarget.Thing);
-
-            float skillAreaMod = Mathf.Pow(2f / shootingAccuracy, 2f);
-            float targAreaHor = Mathf.Atan(targWidth / targDist) * skillAreaMod;
-            float targAreaVert = Mathf.Atan(targHeight * 0.5f / targDist) * skillAreaMod;
-
-            float xRadians = (float)(Mathf.Abs(swayVec.x) * (Math.PI / 180));
-            float yRadians = (float)(Mathf.Abs(swayVec.y) * (Math.PI / 180));
-
-            float shootChance = ((targAreaHor * skillAreaMod / xRadians) + (targAreaVert * skillAreaMod / yRadians)) * 0.001f;
-            return Rand.Value <= shootChance;
-
-            //return Mathf.Abs(swayVec.x) * (Math.PI / 180) <= a && Mathf.Abs(swayVec.y) * (Math.PI / 180) <= b;
-        }*/
-
         public override void VerbTickCR()
         {
             if (this.isAiming)
@@ -194,6 +165,16 @@ namespace Combat_Realism
             {
                 this.compFireModes.ResetModes();
             }
+        }
+
+        /// <summary>
+        /// Checks to see if fire mode is set to hold fire before doing the base check
+        /// </summary>
+        public override bool CanHitTargetFrom(IntVec3 root, TargetInfo targ)
+        {
+            if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire)
+                return false;
+            return base.CanHitTargetFrom(root, targ);
         }
 	}
 }

@@ -4,15 +4,12 @@
   <!-- ==================== Bases ========================== -->
 
   <ThingDef Name="BaseEquipment" Abstract="True">
-    <equipmentType>Secondary</equipmentType>
+    <equipmentType>Primary</equipmentType>
     <label>equipment lacks label</label>
     <thingClass>ThingWithComps</thingClass>
     <category>Item</category>
     <useHitPoints>true</useHitPoints>
     <selectable>true</selectable>
-    <graphicData>
-      <onGroundRandomRotateAngle>35</onGroundRandomRotateAngle>
-    </graphicData>
     <drawGUIOverlay>true</drawGUIOverlay>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
@@ -36,7 +33,7 @@
   <ThingDef Name="BaseGrenadeProjectile" Abstract="True">
     <category>Projectile</category>
     <altitudeLayer>Projectile</altitudeLayer>
-    <thingClass>Projectile_Explosive</thingClass>
+    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <label>projectile</label>
     <tickerType>Normal</tickerType>
     <useHitPoints>False</useHitPoints>
@@ -44,7 +41,7 @@
     <graphicData>
       <shaderType>Transparent</shaderType>
     </graphicData>
-    <projectile>
+    <projectile Class="Combat_Realism.ProjectilePropertiesCR">
       <speed>12</speed>
       <flyOverhead>false</flyOverhead>
     </projectile>
@@ -57,24 +54,23 @@
   <ThingDef ParentName="BaseGrenadeProjectile">
     <defName>Proj_GrenadeFrag</defName>
     <label>frag grenade</label>
-    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <graphicData>
       <texPath>Things/Projectile/Grenades/Frag</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <explosionRadius >1.0</explosionRadius >
+      <explosionRadius>1.0</explosionRadius >
       <damageDef>Bomb</damageDef>
       <damageAmountBase>40</damageAmountBase>
       <explosionDelay>60</explosionDelay>
     </projectile>
 	<comps>
       <li Class="Combat_Realism.CompProperties_ExplosiveCR">
-        <fragRange>10.0</fragRange>
+        <fragRange>3.0</fragRange>
 		<fragments>
-			<Fragment_GrenadeFragSmall>50</Fragment_GrenadeFragSmall>
-			<Fragment_GrenadeFragMedium>30</Fragment_GrenadeFragMedium>
-			<Fragment_GrenadeFragLarge>10</Fragment_GrenadeFragLarge>
+			<Fragment_GrenadeFragSmall>30</Fragment_GrenadeFragSmall>
+			<Fragment_GrenadeFragMedium>20</Fragment_GrenadeFragMedium>
+			<Fragment_GrenadeFragLarge>5</Fragment_GrenadeFragLarge>
 		</fragments>
       </li>
 	</comps>
@@ -103,7 +99,7 @@
       <li>Grenades</li>
     </thingCategories>
     <verbs>
-      <li>
+      <li Class="Combat_Realism.VerbPropertiesCR">
         <label>throw frag grenade</label>
         <verbClass>Combat_Realism.Verb_LaunchProjectileCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
@@ -191,7 +187,7 @@
     <label>EMP grenade</label>
     <thingClass>Projectile_Explosive</thingClass>
     <graphicData>
-      <texPath>Things/Projectile/GrenadeEMP</texPath>
+      <texPath>Things/Projectile/Grenades/Frag</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
@@ -208,8 +204,8 @@
     <label>EMP grenades</label>
     <description>Electromagnetic pulse grenades damaging to electronic equipment.</description>
     <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/EMPGrenades</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Ammo/HandGrenades/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <soundInteract>InteractGrenade</soundInteract>
     <techLevel>Midworld</techLevel>

@@ -22,7 +22,7 @@ namespace Combat_Realism
 
         public CompProperties_ExplosiveCR()
         {
-            this.compClass = typeof(CompExplosive);
+            this.compClass = typeof(CompExplosiveCR);
         }
     }
 }

@@ -30,18 +30,19 @@ namespace Combat_Realism
 		public virtual void Explode(Thing instigator)
 		{
             // Regular explosion stuff
-            GenExplosion.DoExplosion(this.parent.Position,
-                Props.explosionRadius,
-                Props.explosionDamageDef,
-                this.parent,
-                Props.soundExplode,
-                this.parent.def,
-                instigator.def,
-                Props.postExplosionSpawnThingDef,
-                Props.explosionSpawnChance,
-                false,
-                Props.preExplosionSpawnThingDef,
-                Props.explosionSpawnChance);
+            if(this.Props.explosionRadius > 0 && this.Props.explosionDamage > 0)
+                GenExplosion.DoExplosion(this.parent.Position,
+                    Props.explosionRadius,
+                    Props.explosionDamageDef,
+                    this.parent,
+                    Props.soundExplode,
+                    this.parent.def,
+                    instigator.def,
+                    Props.postExplosionSpawnThingDef,
+                    Props.explosionSpawnChance,
+                    false,
+                    Props.preExplosionSpawnThingDef,
+                    Props.explosionSpawnChance);
 
             // Fragmentation stuff
             if (!Props.fragments.NullOrEmpty())

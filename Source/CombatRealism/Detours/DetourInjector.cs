@@ -30,9 +30,9 @@ namespace Combat_Realism.Detours
                 return false;
 
             // Detour FloatMenuMaker
-            /*if(!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.Public),
-                typeof(DetourUtility).GetMethod("ChoicesAtForCR", BindingFlags.Static | BindingFlags.NonPublic)))
-                return false;*/
+            if(!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.Public),
+                typeof(Detours_FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
 
             // *************************************
             // *** Detour Inventory methods ***

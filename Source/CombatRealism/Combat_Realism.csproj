@@ -70,10 +70,10 @@
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\Projectiles\ArtilleryMarker.cs" />
-    <Compile Include="Combat_Realism\Comps\CompExplosive.cs" />
+    <Compile Include="Combat_Realism\Comps\CompExplosiveCR.cs" />
     <Compile Include="Combat_Realism\Comps\CompInventory.cs" />
     <Compile Include="Combat_Realism\Comps\CompJamming.cs" />
-    <Compile Include="Combat_Realism\Comps\CompProperties_Explosive.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_ExplosiveCR.cs" />
     <Compile Include="Combat_Realism\Comps\CompProperties_FireModes.cs" />
     <Compile Include="Combat_Realism\Comps\CompProperties_Jamming.cs" />
     <Compile Include="Combat_Realism\Comps\CompProperties_Suppressable.cs" />

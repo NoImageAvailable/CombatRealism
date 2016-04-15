@@ -3,7 +3,7 @@
   
   <!-- ==================== RPG-7 ========================== -->
 
-  <!--<ThingDef Class="Combat_Realism.AmmoDef" Name="RPG7Base" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="RPG7Base" ParentName="AmmoBase" Abstract="True">
     <description>Extremely common shotgun caliber used in almost every application, from hunting to military firearms.</description>
     <statBases>
 	  <Weight>0.035</Weight>
@@ -65,6 +65,6 @@
     </statBases>
 	<linkedProjectile>Bullet_RPG7_EMP</linkedProjectile>
 	<ammoClass>ElectroSlug</ammoClass>
-  </ThingDef>-->
+  </ThingDef>
   
 </Defs>
