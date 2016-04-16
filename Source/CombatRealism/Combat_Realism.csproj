@@ -49,11 +49,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld1135Win_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Community Core Library">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\Community Core Library.dll</HintPath>
+      <HintPath>..\..\..\Community Core Library\Assemblies\Community Core Library.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -63,12 +63,19 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld1135Win_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
+    <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />
+    <Compile Include="Combat_Realism\ITabInjector.cs" />
+    <Compile Include="Combat_Realism\ITab_Inventory.cs" />
+    <Compile Include="Combat_Realism\Loadout.cs" />
+    <Compile Include="Combat_Realism\LoadoutSlot.cs" />
+    <Compile Include="Combat_Realism\MainTabWindow_OutfitsAndLoadouts.cs" />
+    <Compile Include="Combat_Realism\MapComp_LoadoutManager.cs" />
     <Compile Include="Combat_Realism\Projectiles\ArtilleryMarker.cs" />
     <Compile Include="Combat_Realism\Comps\CompExplosiveCR.cs" />
     <Compile Include="Combat_Realism\Comps\CompInventory.cs" />
@@ -84,6 +91,7 @@
     <Compile Include="Combat_Realism\Comps\CompProperties_AP.cs" />
     <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR.cs" />
     <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
+    <Compile Include="Combat_Realism\Utility_UI.cs" />
     <Compile Include="Detours\DetourInjector.cs" />
     <Compile Include="Combat_Realism\FireMode.cs" />
     <Compile Include="Combat_Realism\Projectiles\BulletCR.cs" />
