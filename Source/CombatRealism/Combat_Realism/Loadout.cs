@@ -1,11 +1,11 @@
-﻿using System;
+﻿using CommunityCoreLibrary;
+using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Verse;
 using UnityEngine;
-using CommunityCoreLibrary;
-using RimWorld;
+using Verse;
 
 namespace Combat_Realism
 {
@@ -40,8 +40,8 @@ namespace Combat_Realism
 
         #region Properties
 
-        public int FilterCount => _slots.Count;
         public string LabelCap => label.CapitalizeFirst();
+        public int SlotCount => _slots.Count;
         public List<LoadoutSlot> Slots => _slots;
 
         #endregion Properties
@@ -53,31 +53,29 @@ namespace Combat_Realism
             _slots.Add( slot );
         }
 
+        public void MoveSlot( LoadoutSlot slot, int toIndex )
+        {
+            int fromIndex = _slots.IndexOf( slot );
+            MoveTo( fromIndex, toIndex );
+        }
+
         public int OrderBottom( int index )
         {
-            if ( index >= FilterCount )
-                throw new ArgumentOutOfRangeException( "index < 0 or > n" );
-            return MoveTo( index, FilterCount );
+            return MoveTo( index, SlotCount - 1 );
         }
 
         public int OrderDown( int index )
         {
-            if ( index >= FilterCount )
-                throw new ArgumentOutOfRangeException( "index < 0 or > n" );
             return MoveTo( index, index + 1 );
         }
 
         public int OrderTop( int index )
         {
-            if ( index <= 0 )
-                throw new ArgumentOutOfRangeException( "index < 0 or > n" );
             return MoveTo( index, 0 );
         }
 
         public int OrderUp( int index )
         {
-            if ( index <= 0 )
-                throw new ArgumentOutOfRangeException( "index < 0 or > n" );
             return MoveTo( index, index - 1 );
         }
 
@@ -93,6 +91,11 @@ namespace Combat_Realism
 
         private int MoveTo( int fromIndex, int toIndex )
         {
+            if ( fromIndex < 0 || fromIndex >= _slots.Count || toIndex < 0 || toIndex >= _slots.Count )
+            {
+                throw new Exception( "Attempted to move i " + fromIndex + " to " + toIndex + ", bounds are [0," + ( _slots.Count-1 ) + "]." );
+            }
+
             // fetch the filter we're moving
             var temp = _slots[fromIndex];
 

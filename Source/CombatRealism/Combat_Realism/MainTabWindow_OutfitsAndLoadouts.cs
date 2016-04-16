@@ -18,9 +18,9 @@ namespace Combat_Realism
     {
         #region Fields
 
-        private float _buttonSize                 = 16f;
         private static Texture2D _iconClearForced = ContentFinder<Texture2D>.Get( "UI/Icons/clear" );
         private static Texture2D _iconEdit        = ContentFinder<Texture2D>.Get( "UI/Icons/edit" );
+        private float _buttonSize                 = 16f;
         private float _margin                     = 6f;
         private float _rowHeight                  = 30f;
         private float _topArea                    = 45f;
@@ -49,7 +49,7 @@ namespace Combat_Realism
             base.DoWindowContents( canvas );
 
             // available space
-            Rect header = new Rect( 175f, _topArea - _rowHeight, canvas.width - 175f - 16f, _rowHeight );
+            Rect header = new Rect( 175f + 24f + _margin, _topArea - _rowHeight, canvas.width - 175f - 24f - _margin - 16f, _rowHeight );
 
             // label + buttons for outfit
             Rect outfitRect = new Rect( header.xMin,
@@ -114,14 +114,21 @@ namespace Combat_Realism
 
         protected override void DrawPawnRow( Rect rect, Pawn p )
         {
-            // available space
+            // available space for row
             Rect rowRect = new Rect( rect.x + 175f, rect.y, rect.width - 175f, rect.height );
+
+            // response button rect
+            Vector2 responsePos = new Vector2( rowRect.xMin, rowRect.yMin + ( rowRect.height - 24f ) /2f );
+
+            // offset rest of row for that button, so we don't have to mess with all the other rect calculations
+            rowRect.xMin += 24f + _margin;
 
             // label + buttons for outfit
             Rect outfitRect = new Rect( rowRect.xMin,
                                         rowRect.yMin,
                                         rowRect.width * ( 1f/3f ) + ( _margin + _buttonSize ) / 2f,
                                         rowRect.height );
+
             Rect labelOutfitRect = new Rect( outfitRect.xMin,
                                              outfitRect.yMin,
                                              outfitRect.width - _margin * 3 - _buttonSize * 2,
@@ -150,6 +157,9 @@ namespace Combat_Realism
                                              loadoutRect.yMin + ( ( loadoutRect.height - _buttonSize ) / 2 ),
                                              _buttonSize,
                                              _buttonSize );
+
+            // fight or flight button
+            HostilityResponseModeUtility.DrawResponseButton( responsePos, p );
 
             // weight + bulk indicators
             Rect weightRect = new Rect( loadoutRect.xMax, rowRect.yMin, rowRect.width * ( 1f/6f ) - _margin, rowRect.height ).ContractedBy( _margin / 2f );
@@ -219,7 +229,7 @@ namespace Combat_Realism
             TooltipHandler.TipRegion( editLoadoutRect, "CR.EditX".Translate( "CR.loadout".Translate() + " " +  p.outfits.CurrentOutfit.label ) );
             if ( Widgets.ImageButton( editLoadoutRect, _iconEdit ) )
             {
-                Find.WindowStack.Add( new Dialog_ManageLoadouts( p.loadout() ) );
+                Find.WindowStack.Add( new Dialog_ManageLoadouts( p.Loadout() ) );
             }
 
             // STATUS BARS
@@ -235,7 +245,6 @@ namespace Combat_Realism
                 if ( overweight )
                     Utility_UI.DrawBarThreshold( weightRect, comp.capacityWeight / comp.currentWeight, 1f );
                 TooltipHandler.TipRegion( weightRect, "CR.ITabWeightTip".Translate( comp.capacityWeight, comp.currentWeight, comp.moveSpeedFactor, comp.encumberPenalty ) );
-
 
                 // bulk
                 bool overbulk = comp.currentBulk > comp.capacityBulk;
