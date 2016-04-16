@@ -66,6 +66,7 @@ namespace Combat_Realism.Detours
                     }
                     if (item.Destroyed)
                     {
+                        Utility.TryUpdateInventory(_this.owner as Pawn_InventoryTracker);   // Item has been added, notify CompInventory
                         return true;
                     }
                 }

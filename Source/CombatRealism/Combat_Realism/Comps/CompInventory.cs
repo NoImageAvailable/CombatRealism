@@ -204,14 +204,11 @@ namespace Combat_Realism
             weight = eq.GetStatValue(StatDef.Named("Weight"));
             bulk = eq.GetStatValue(StatDef.Named("Bulk"));
             CompAmmoUser comp = eq.TryGetComp<CompAmmoUser>();
-            Log.Message("GetEquipmentStats :: found compReloader for " + eq.ToString() + " " + (comp != null).ToString());
             if (comp != null && comp.currentAmmo != null)
             {
-                Log.Message("GetEquipmentStats :: calculating ammo weight");
                 weight += comp.currentAmmo.GetStatValueAbstract(StatDef.Named("Weight")) * comp.curMagCount;
                 bulk += comp.currentAmmo.GetStatValueAbstract(StatDef.Named("Bulk")) * comp.curMagCount;
             }
-            Log.Message("GetEquipmentStats :: returning values for " + eq.ToString() + " weight: " + weight.ToString() + " bulk: " + bulk.ToString());
         }
 
         /// <summary>
@@ -263,7 +260,7 @@ namespace Combat_Realism
         }
 
         // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
-        /*public override void CompTick()
+        public override void CompTick()
         {
             base.CompTick();
             float lastWeight = this.currentWeightCached;
@@ -273,6 +270,6 @@ namespace Combat_Realism
             {
                 Log.Error(this.parent.ToString() + " failed inventory validation");
             }
-        }*/
+        }
     }
 }

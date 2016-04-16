@@ -282,11 +282,13 @@ namespace Combat_Realism
 
         public static void TryUpdateInventory(Pawn pawn)
         {
+            Log.Message("TryUpdateInventory(Pawn) :: calling for Pawn " + (pawn == null ? "null" : pawn.ToString()));
             if (pawn != null)
             {
                 CompInventory comp = pawn.TryGetComp<CompInventory>();
                 if (comp != null)
                 {
+                    Log.Message("TryUpdateInventory(Pawn) :: comp not null");
                     comp.UpdateInventory();
                 }
             }
@@ -294,8 +296,10 @@ namespace Combat_Realism
 
         public static void TryUpdateInventory(Pawn_InventoryTracker tracker)
         {
+            Log.Message("TryUpdateInventory(Pawn_InventoryTracker) :: calling for tracker " + (tracker == null ? "null" : tracker.ToString()));
             if (tracker != null && tracker.pawn != null)
             {
+                Log.Message("TryUpdateInventory(Pawn_InventoryTracker) :: comp not null");
                 TryUpdateInventory(tracker.pawn);
             }
         }
