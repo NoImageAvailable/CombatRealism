@@ -32,24 +32,25 @@ namespace Combat_Realism
             _iconAmmo           = ContentFinder<Texture2D>.Get( "UI/Icons/ammo" ),
             _iconRanged         = ContentFinder<Texture2D>.Get( "UI/Icons/ranged" ),
             _iconMelee          = ContentFinder<Texture2D>.Get( "UI/Icons/melee" ),
-            _iconAll            = ContentFinder<Texture2D>.Get( "UI/Icons/all" );
+            _iconAll            = ContentFinder<Texture2D>.Get( "UI/Icons/all" ),
+            _iconAmmoAdd        = ContentFinder<Texture2D>.Get( "UI/Icons/ammoAdd"),
+            _iconSearch         = ContentFinder<Texture2D>.Get( "UI/Icons/search" ),
+            _iconMove           = ContentFinder<Texture2D>.Get( "UI/Icons/move" );
 
         private static Regex validNameRegex          = new Regex("^[a-zA-Z0-9 '\\-]*$");
-        private float _availableListHeight           = 0f;
         private Vector2 _availableScrollPosition     = Vector2.zero;
+        private float _barHeight                     = 24f;
         private Vector2 _countFieldSize              = new Vector2( 40f, 24f );
         private Loadout _currentLoadout;
-        private int _currentSlotIndex                = -1;
         private LoadoutSlot _draggedSlot;
         private bool _dragging;
+        private string _filter                       = "";
         private float _iconSize                      = 16f;
         private float _margin                        = 6f;
         private float _rowHeight                     = 30f;
-        private float _slotListHeight                = 0f;
         private Vector2 _slotScrollPosition          = Vector2.zero;
         private List<ThingDef> _source;
         private SourceSelection _sourceType          = SourceSelection.Ranged;
-        private int _ticks                           = 0;
         private float _topAreaHeight                 = 30f;
 
         #endregion Fields
@@ -60,6 +61,9 @@ namespace Combat_Realism
         {
             CurrentLoadout = loadout;
             SetSource( SourceSelection.Ranged );
+            doCloseX = true;
+            closeOnClickedOutside = true;
+            closeOnEscapeKey = true;
         }
 
         #endregion Constructors
@@ -130,7 +134,10 @@ namespace Combat_Realism
                 0f,
                 nameRect.yMax + _margin,
                 ( canvas.width - _margin ) / 2f,
-                canvas.height - _topAreaHeight - nameRect.height - _margin * 3 );
+                canvas.height - _topAreaHeight - nameRect.height - _barHeight * 2 - _margin * 5 );
+
+            Rect weightBarRect = new Rect( slotListRect.xMin, slotListRect.yMax + _margin, slotListRect.width, _barHeight );
+            Rect bulkBarRect = new Rect( weightBarRect.xMin, weightBarRect.yMax + _margin, weightBarRect.width, _barHeight );
 
             Rect sourceButtonRect = new Rect(
                 slotListRect.xMax + _margin,
@@ -175,13 +182,17 @@ namespace Combat_Realism
                 CurrentLoadout = loadout;
             }
             // delete loadout
-            if ( loadouts.Count > 0 && Widgets.TextButton( deleteRect, "CR.DeleteLoadout".Translate() ) )
+            if ( loadouts.Any( l => l.canBeDeleted ) && Widgets.TextButton( deleteRect, "CR.DeleteLoadout".Translate() ) )
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
 
                 for ( int i = 0; i < loadouts.Count; i++ )
                 {
                     int local_i = i;
+
+                    // don't allow deleting the default loadout
+                    if ( !loadouts[i].canBeDeleted )
+                        continue;
                     options.Add( new FloatMenuOption( loadouts[i].LabelCap,
                         delegate
                         {
@@ -219,6 +230,13 @@ namespace Combat_Realism
             // current slots
             DrawSlotList( slotListRect );
 
+            // bars
+            if ( CurrentLoadout != null )
+            {
+                Utility_Loadouts.DrawBar( weightBarRect, CurrentLoadout.Weight, StatDef.Named( "CarryWeight" ).defaultBaseValue, "CR.Weight".Translate() );
+                Utility_Loadouts.DrawBar( bulkBarRect, CurrentLoadout.Bulk, StatDef.Named( "CarryBulk" ).defaultBaseValue, "CR.Bulk".Translate() );
+            }
+
             // done!
         }
 
@@ -230,33 +248,57 @@ namespace Combat_Realism
             GUI.color = _sourceType == SourceSelection.Ranged ? GenUI.MouseoverColor : Color.white;
             if ( Widgets.ImageButton( button, _iconRanged ) )
                 SetSource( SourceSelection.Ranged );
+            TooltipHandler.TipRegion( button, "CR.SourceRangedTip".Translate() );
             button.x += 24f + _margin;
 
             // Melee weapons
             GUI.color = _sourceType == SourceSelection.Melee ? GenUI.MouseoverColor : Color.white;
             if ( Widgets.ImageButton( button, _iconMelee ) )
                 SetSource( SourceSelection.Melee );
+            TooltipHandler.TipRegion( button, "CR.SourceMeleeTip".Translate() );
             button.x += 24f + _margin;
 
             // Ammo
             GUI.color = _sourceType == SourceSelection.Ammo ? GenUI.MouseoverColor : Color.white;
             if ( Widgets.ImageButton( button, _iconAmmo ) )
                 SetSource( SourceSelection.Ammo );
+            TooltipHandler.TipRegion( button, "CR.SourceAmmoTip".Translate() );
             button.x += 24f + _margin;
 
             // All
             GUI.color = _sourceType == SourceSelection.All ? GenUI.MouseoverColor : Color.white;
             if ( Widgets.ImageButton( button, _iconAll ) )
                 SetSource( SourceSelection.All );
-            button.x += 24f + _margin;
+            TooltipHandler.TipRegion( button, "CR.SourceAllTip".Translate() );
+
+            // filter input field
+            Rect filter = new Rect( canvas.xMax - 75f, canvas.yMin + ( canvas.height - 24f ) / 2f, 75f, 24f );
+            DrawFilterField( filter );
+            TooltipHandler.TipRegion( filter, "CR.SourceFilterTip".Translate() );
+
+            // search icon
+            button.x = filter.xMin - _margin * 2 - _iconSize;
+            GUI.DrawTexture( button, _iconSearch );
+            TooltipHandler.TipRegion( button, "CR.SourceFilterTip".Translate() );
 
             // reset color
             GUI.color = Color.white;
         }
 
-        public void SetSource( SourceSelection source )
+        public void FilterSource( string filter )
+        {
+            // reset source
+            SetSource( _sourceType, true );
+
+            // filter
+            _source = _source.Where( td => td.label.ToUpperInvariant().Contains( _filter.ToUpperInvariant() ) ).ToList();
+        }
+
+        public void SetSource( SourceSelection source, bool preserveFilter = false )
         {
             _source = DefDatabase<ThingDef>.AllDefsListForReading;
+            if ( !preserveFilter )
+                _filter = "";
 
             switch ( source )
             {
@@ -277,6 +319,7 @@ namespace Combat_Realism
 
                 case SourceSelection.All:
                 default:
+                    _source = _source.Where( td => td.alwaysHaulable && td.thingClass != typeof( Corpse ) ).ToList();
                     _sourceType = SourceSelection.All;
                     break;
             }
@@ -298,6 +341,16 @@ namespace Combat_Realism
             }
         }
 
+        private void DrawFilterField( Rect canvas )
+        {
+            string filter = GUI.TextField( canvas, _filter );
+            if ( filter != _filter )
+            {
+                _filter = filter;
+                FilterSource( _filter );
+            }
+        }
+
         private void DrawNameField( Rect canvas )
         {
             string label = GUI.TextField( canvas, CurrentLoadout.label );
@@ -307,46 +360,17 @@ namespace Combat_Realism
             }
         }
 
-        private void DrawOrderButtons( Rect canvas )
-        {
-            // only draw order buttons if a filtercount is selected
-            if ( _currentSlotIndex >= 0 )
-            {
-                // Set up rects
-                Rect top = new Rect( 0f, 0f, _iconSize, _iconSize );
-                Rect up = new Rect( top );
-                up.y += _iconSize + _margin;
-                Rect bottom = new Rect( top );
-                bottom.y = canvas.height - _iconSize;
-                Rect down = new Rect( bottom );
-                down.y -= _iconSize + _margin;
-
-                GUI.BeginGroup( canvas );
-                if ( _currentSlotIndex > 0 )
-                {
-                    if ( Widgets.ImageButton( top, _arrowTop ) )
-                        _currentSlotIndex = CurrentLoadout.OrderTop( _currentSlotIndex );
-                    if ( Widgets.ImageButton( up, _arrowUp ) )
-                        _currentSlotIndex = CurrentLoadout.OrderUp( _currentSlotIndex );
-                }
-                if ( _currentSlotIndex < CurrentLoadout.SlotCount - 1 )
-                {
-                    if ( Widgets.ImageButton( down, _arrowDown ) )
-                        _currentSlotIndex = CurrentLoadout.OrderDown( _currentSlotIndex );
-                    if ( Widgets.ImageButton( bottom, _arrowBottom ) )
-                        _currentSlotIndex = CurrentLoadout.OrderBottom( _currentSlotIndex );
-                }
-                GUI.EndGroup();
-            }
-        }
-
-        private void DrawSlot( Rect row, LoadoutSlot slot )
+        private void DrawSlot( Rect row, LoadoutSlot slot, bool slotDraggable = true )
         {
             // set up rects
-            // label (fill) || count (50px) || delete (25px)
+            // dragging handle (square) | label (fill) | count (50px) | delete (iconSize)
+            Rect draggingHandle = new Rect( row );
+            draggingHandle.width = row.height;
+
             Rect labelRect = new Rect( row );
-            labelRect.xMin += _margin;
-            labelRect.width -= _countFieldSize.x - _iconSize - 2 * _margin;
+            if ( slotDraggable )
+                labelRect.xMin = draggingHandle.xMax;
+            labelRect.xMax = row.xMax - _countFieldSize.x - _iconSize - 2 * _margin;
 
             Rect countRect = new Rect(
                 row.xMax - _countFieldSize.x - _iconSize - 2 * _margin,
@@ -354,8 +378,22 @@ namespace Combat_Realism
                 _countFieldSize.x,
                 _countFieldSize.y );
 
-            Rect deleteRect = new Rect( row );
-            deleteRect.xMin = row.xMax - _iconSize - _margin;
+            Rect ammoRect = new Rect(
+                countRect.xMin - _iconSize - _margin,
+                row.yMin + ( row.height - _iconSize ) / 2f,
+                _iconSize, _iconSize );
+
+            Rect deleteRect = new Rect( countRect.xMax + _margin, row.yMin + ( row.height - _iconSize ) /2f, _iconSize, _iconSize );
+
+            // dragging on dragHandle
+            if ( slotDraggable )
+            {
+                TooltipHandler.TipRegion( draggingHandle, "CR.DragToReorder".Translate() );
+                GUI.DrawTexture( draggingHandle, _iconMove );
+
+                if ( Mouse.IsOver( draggingHandle ) && Input.GetMouseButtonDown( 0 ) )
+                    Dragging = slot;
+            }
 
             // interactions (main row rect)
             if ( !Mouse.IsOver( deleteRect ) )
@@ -369,16 +407,39 @@ namespace Combat_Realism
             Widgets.Label( labelRect, slot.Def.LabelCap );
             Text.Anchor = TextAnchor.UpperLeft;
 
+            // easy ammo adder, ranged weapons only
+            if ( slot.Def.IsRangedWeapon )
+            {
+                // make sure there's an ammoset defined
+                AmmoSetDef ammoSet = slot.Def.GetCompProperties<CompProperties_AmmoUser>()?.ammoSet;
+
+                if ( ( !ammoSet?.ammoTypes.NullOrEmpty() ) ?? false )
+                {
+                    if ( Widgets.ImageButton( ammoRect, _iconAmmoAdd ) )
+                    {
+                        List<FloatMenuOption> options = new List<FloatMenuOption>();
+
+                        foreach ( var ammo in ammoSet?.ammoTypes )
+                        {
+                            options.Add( new FloatMenuOption( ammo.LabelCap, delegate
+                            {
+                                CurrentLoadout.AddSlot( new LoadoutSlot( ammo ) );
+                            } ) );
+                        }
+
+                        Find.WindowStack.Add( new FloatMenu( options, "CR.AddAmmoFor".Translate( slot.Def.LabelCap ) ) );
+                    }
+                }
+            }
+
             // count
             DrawCountField( countRect, slot );
 
             // delete
             if ( Mouse.IsOver( deleteRect ) )
                 GUI.DrawTexture( row, TexUI.HighlightTex );
-            if ( Widgets.ImageButton( deleteRect, TexUI.UnknownThing ) )
-            {
+            if ( Widgets.ImageButton( deleteRect, _iconClear ) )
                 CurrentLoadout.RemoveSlot( slot );
-            }
             TooltipHandler.TipRegion( deleteRect, "CR.DeleteFilter".Translate() );
         }
 
@@ -434,12 +495,8 @@ namespace Combat_Realism
                 // draw the slot - grey out if draggin this, but only when dragged over somewhere else
                 if ( Dragging == CurrentLoadout.Slots[i] && !Mouse.IsOver( row ) )
                     GUI.color = new Color( .6f, .6f, .6f, .4f );
-                DrawSlot( row, CurrentLoadout.Slots[i] );
+                DrawSlot( row, CurrentLoadout.Slots[i], CurrentLoadout.SlotCount > 1 );
                 GUI.color = Color.white;
-
-                // check mouse down
-                if ( Mouse.IsOver( row ) && Input.GetMouseButtonDown( 0 ) )
-                    Dragging = CurrentLoadout.Slots[i];
             }
 
             // if we're dragging, create an extra invisible row to allow moving stuff to the bottom

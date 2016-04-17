@@ -11,34 +11,25 @@ namespace Combat_Realism
 {
     public class LoadoutSlot
     {
-        #region Fields
-
-        private Dictionary<AmmoCategoryDef, int> _ammoList = new Dictionary<AmmoCategoryDef, int>();
-
-        #endregion Fields
-
         #region Constructors
 
         public LoadoutSlot( ThingDef def, int count = 1 )
         {
             Count = count;
             Def = def;
-            Active = false;
+
+            // TODO: uncomment
+            // increase default ammo count
+            // if ( def is AmmoDef )
+            // Count = ( (AmmoDef)def ).defaultAmmoCount;
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public bool Active { get; set; }
         public int Count { get; set; }
         public ThingDef Def { get; set; }
-
-        // TODO: IsAmmo logic
-        public bool IsAmmo => true;
-
-        // TODO: Better IsWeapon logic (vanilla ThingDef IsWeapon returns true for pawns?!)
-        public bool IsWeapon => true;
 
         #endregion Properties
     }

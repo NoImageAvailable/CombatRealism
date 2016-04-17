@@ -241,17 +241,6 @@ namespace Combat_Realism
             return 60 / movePerTick;
         }
 
-        public static Loadout Loadout( this Pawn pawn )
-        {
-            if ( pawn == null )
-                throw new ArgumentNullException( "pawn" );
-
-            if ( !LoadoutManager.AssignedLoadouts.ContainsKey( pawn ) )
-                return null;
-
-            return LoadoutManager.AssignedLoadouts[pawn];
-        }
-
         /// <summary>
         /// Attempts to find a turret operator. Accepts any Thing as input and does a sanity check to make sure it is an actual turret.
         /// </summary>

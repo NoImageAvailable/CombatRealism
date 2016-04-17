@@ -17,5 +17,15 @@
 	<CR.DeleteLoadout>Delete loadout...</CR.DeleteLoadout>
 	<CR.NoLoadoutSelected>No loadout selected</CR.NoLoadoutSelected>
 	<CR.DefaultLoadoutName>Loadout {0}</CR.DefaultLoadoutName>
+	<CR.SourceRangedTip>Select ranged weapons</CR.SourceRangedTip>
+	<CR.SourceMeleeTip>Select melee weapons</CR.SourceMeleeTip>
+	<CR.SourceAmmoTip>Select ammo</CR.SourceAmmoTip>
+	<CR.SourceAllTip>Select all</CR.SourceAllTip>
+	<CR.SourceFilterTip>Filter selection</CR.SourceFilterTip>
+	<CR.DragToReorder>Drag handle to reorder</CR.DragToReorder>
+	<CR.CountFieldTip>Count: {0}</CR.CountFieldTip>
+	<CR.DeleteFilter>Delete</CR.DeleteFilter>
+	<CR.AddAmmoFor>Add ammo for {0}</CR.AddAmmoFor>
+
 
 </LanguageData>

@@ -23,7 +23,8 @@ namespace Combat_Realism
         public LoadoutManager()
         {
             // create a default empty loadout
-            _loadouts.Add( new Loadout( "CR.EmptyLoadoutName".Translate() ) );
+            // there needs to be at least one default tagged loadout at all times
+            _loadouts.Add( new Loadout( "CR.EmptyLoadoutName".Translate() ) { canBeDeleted = false, defaultLoadout = true } );
         }
 
         #endregion Constructors
@@ -41,6 +42,7 @@ namespace Combat_Realism
         }
 
         public static Dictionary<Pawn, Loadout> AssignedLoadouts => Instance._assignedLoadouts;
+        public static Loadout DefaultLoadout => Instance._loadouts.First( l => l.defaultLoadout );
         public static List<Loadout> Loadouts => Instance._loadouts;
 
         #endregion Properties
@@ -54,8 +56,14 @@ namespace Combat_Realism
 
         public static void RemoveLoadout( Loadout loadout )
         {
-            // TODO: Handle logic for pawns using this loadout.
             Instance._loadouts.Remove( loadout );
+
+            // assign default loadout to pawns that used to use this loadout
+            var obsolete = AssignedLoadouts.Where( pair => pair.Value == loadout ).Select( pair => pair.Key );
+            foreach ( var pawn in obsolete )
+            {
+                AssignedLoadouts[pawn] = DefaultLoadout;
+            }
         }
 
         public override void ExposeData()

@@ -13,6 +13,8 @@ namespace Combat_Realism
     {
         #region Fields
 
+        public bool canBeDeleted = true;
+        public bool defaultLoadout = false;
         public string label;
         private List<LoadoutSlot> _slots = new List<LoadoutSlot>();
 
@@ -40,9 +42,27 @@ namespace Combat_Realism
 
         #region Properties
 
+        public float Bulk
+        {
+            get
+            {
+                return _slots.Select( slot => slot.Def.GetStatValueAbstract( StatDef.Named( "Bulk" ) ) * slot.Count ).Sum();
+            }
+        }
+
         public string LabelCap => label.CapitalizeFirst();
+
         public int SlotCount => _slots.Count;
+
         public List<LoadoutSlot> Slots => _slots;
+
+        public float Weight
+        {
+            get
+            {
+                return _slots.Select( slot => slot.Def.GetStatValueAbstract( StatDef.Named( "Weight" ) ) * slot.Count ).Sum();
+            }
+        }
 
         #endregion Properties
 
@@ -57,26 +77,6 @@ namespace Combat_Realism
         {
             int fromIndex = _slots.IndexOf( slot );
             MoveTo( fromIndex, toIndex );
-        }
-
-        public int OrderBottom( int index )
-        {
-            return MoveTo( index, SlotCount - 1 );
-        }
-
-        public int OrderDown( int index )
-        {
-            return MoveTo( index, index + 1 );
-        }
-
-        public int OrderTop( int index )
-        {
-            return MoveTo( index, 0 );
-        }
-
-        public int OrderUp( int index )
-        {
-            return MoveTo( index, index - 1 );
         }
 
         public void RemoveSlot( LoadoutSlot slot )

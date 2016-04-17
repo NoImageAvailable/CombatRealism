@@ -115,8 +115,8 @@
       <Components>2</Components>
     </costList>
     <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
+      <li Class="Combat_Realism.VerbPropertiesCR">
+        <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Pistol</projectileDef>
         <warmupTicks>54</warmupTicks>
@@ -126,6 +126,14 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+	<comps>
+	  <li Class="Combat_Realism.CompProperties_AmmoUser">
+	    <magazineSize>7</magazineSize>
+		<reloadTicks>180</reloadTicks>
+		<ammoSet>AmmoSet_45ACP</ammoSet>
+	  </li>
+	  <li Class="Combat_Realism.CompProperties_FireModes"/>
+	</comps>
   </ThingDef>
 
   <!-- ============================================================== -->
@@ -168,8 +176,8 @@
       <Components>3</Components>
     </costList>
     <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
+      <li Class="Combat_Realism.VerbPropertiesCR">
+        <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_PumpShotgun</projectileDef>
         <warmupTicks>90</warmupTicks>
@@ -179,6 +187,13 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+	<comps>
+	  <li Class="Combat_Realism.CompProperties_AmmoUser">
+	    <magazineSize>5</magazineSize>
+		<reloadTicks>240</reloadTicks>
+		<ammoSet>AmmoSet_12Gauge</ammoSet>
+	  </li>
+	</comps>
   </ThingDef>
 
 
@@ -222,8 +237,8 @@
       <Components>3</Components>
     </costList>
     <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
+      <li Class="Combat_Realism.VerbPropertiesCR">
+        <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_SurvivalRifle</projectileDef>
         <warmupTicks>150</warmupTicks>
@@ -233,6 +248,13 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+	<comps>
+	  <li Class="Combat_Realism.CompProperties_AmmoUser">
+	    <magazineSize>10</magazineSize>
+		<reloadTicks>180</reloadTicks>
+		<ammoSet>AmmoSet_303British</ammoSet>
+	  </li>
+	</comps>
   </ThingDef>
 
   <!-- ============================================== -->
