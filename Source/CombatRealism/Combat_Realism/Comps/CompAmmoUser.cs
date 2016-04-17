@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -318,8 +319,12 @@ namespace Combat_Realism
 
         public override string GetDescriptionPart()
         {
-            return "Magazine size: " + GenText.ToStringByStyle(this.Props.magazineSize, ToStringStyle.Integer) +
-                "\nReload time: " + GenText.ToStringByStyle((this.Props.reloadTicks / 60), ToStringStyle.Integer) + " s";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("CR_MagazineSize" + ": " + GenText.ToStringByStyle(this.Props.magazineSize, ToStringStyle.Integer));
+            stringBuilder.AppendLine("CR_ReloadTime" + ": " + GenText.ToStringByStyle((this.Props.reloadTicks / 60), ToStringStyle.Integer) + " s");
+            if (Props.ammoSet != null)
+                stringBuilder.AppendLine("CR_AmmoSet" + ": " + Props.ammoSet.LabelCap);
+            return stringBuilder.ToString();
         }
     }
 }

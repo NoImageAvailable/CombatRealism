@@ -45,7 +45,21 @@ namespace Combat_Realism
         {
             get
             {
-                return this.parentPawn.GetStatValue(StatDef.Named("CarryBulk")) - currentBulk;
+                return capacityBulk - currentBulk;
+            }
+        }
+        public float capacityBulk
+        {
+            get
+            {
+                return this.parentPawn.GetStatValue(StatDef.Named("CarryBulk"));
+            }
+        }
+        public float capacityWeight
+        {
+            get
+            {
+                return this.parentPawn.GetStatValue(StatDef.Named("CarryWeight"));
             }
         }
         private Pawn parentPawnInt = null;

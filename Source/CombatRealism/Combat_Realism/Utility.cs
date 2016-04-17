@@ -303,5 +303,25 @@ namespace Combat_Realism
                 TryUpdateInventory(tracker.pawn);
             }
         }
+
+        public static Loadout GetLoadout(this Pawn pawn)
+        {
+            if (pawn == null)
+                throw new ArgumentNullException("pawn");
+            if (!LoadoutManager.AssignedLoadouts.ContainsKey(pawn))
+                return null;
+            return LoadoutManager.AssignedLoadouts[pawn];
+        }
+
+
+        public static void SetLoadout(this Pawn pawn, Loadout loadout)
+        {
+            if (pawn == null)
+                throw new ArgumentNullException("pawn");
+            if (!LoadoutManager.AssignedLoadouts.ContainsKey(pawn))
+                LoadoutManager.AssignedLoadouts.Add(pawn, loadout);
+            else
+                LoadoutManager.AssignedLoadouts[pawn] = loadout;
+        }
     }
 }
