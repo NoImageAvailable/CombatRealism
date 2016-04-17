@@ -83,7 +83,7 @@
     <comps>
       <li Class="Combat_Realism.CompProperties_AP">
         <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.5</armorPenetration>
+        <armorPenetration>0.525</armorPenetration>
       </li>
     </comps>
   </ThingDef>
@@ -103,7 +103,7 @@
     <comps>
       <li Class="Combat_Realism.CompProperties_AP">
         <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.65</armorPenetration>
+        <armorPenetration>0.675</armorPenetration>
       </li>
     </comps>
   </ThingDef>
@@ -124,7 +124,7 @@
     <comps>
       <li Class="Combat_Realism.CompProperties_AP">
         <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.35</armorPenetration>
+        <armorPenetration>0.375</armorPenetration>
       </li>
     </comps>
   </ThingDef>
@@ -146,7 +146,7 @@
     <comps>
       <li Class="Combat_Realism.CompProperties_AP">
         <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.5</armorPenetration>
+        <armorPenetration>0.525</armorPenetration>
       </li>
     </comps>
   </ThingDef>
@@ -166,7 +166,7 @@
     <comps>
       <li Class="Combat_Realism.CompProperties_AP">
         <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.65</armorPenetration>
+        <armorPenetration>0.675</armorPenetration>
       </li>
     </comps>
   </ThingDef>
@@ -187,7 +187,7 @@
     <comps>
       <li Class="Combat_Realism.CompProperties_AP">
         <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.35</armorPenetration>
+        <armorPenetration>0.375</armorPenetration>
       </li>
     </comps>
   </ThingDef>

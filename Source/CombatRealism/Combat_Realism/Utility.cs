@@ -253,7 +253,7 @@ namespace Combat_Realism
         {
             float originalDamage = damAmount;
             bool deflected = false;
-            float penetrationChance = Mathf.Clamp((pierceAmount - armorRating) * 4, 0, 1);
+            float penetrationChance = Mathf.Clamp((pierceAmount - armorRating) * 6, 0, 1);
 
             //Shot is deflected
             if (penetrationChance == 0 || Rand.Value > penetrationChance)
@@ -261,7 +261,7 @@ namespace Combat_Realism
                 deflected = true;
             }
             //Damage calculations
-            damAmount *= 1 - Mathf.Clamp(2 * armorRating - pierceAmount, 0, 1);
+            damAmount *= Mathf.Clamp(0.5f + (pierceAmount - armorRating) * 3, 0, 1);
 
             //Damage armor
             if (armorThing != null && armorThing as Pawn == null)

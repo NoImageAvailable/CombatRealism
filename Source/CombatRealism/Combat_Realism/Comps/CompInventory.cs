@@ -64,14 +64,14 @@ namespace Combat_Realism
         {
             get
             {
-                return Mathf.Lerp(0.75f, 1f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryWeight")));
+                return Mathf.Lerp(1f, 0.75f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryWeight")));
             }
         }
         public float workSpeedFactor
         {
             get
             {
-                return Mathf.Lerp(0.75f, 1f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryBulk")));
+                return Mathf.Lerp(1f, 0.75f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryBulk")));
             }
         }
         public float encumberPenalty
@@ -259,10 +259,13 @@ namespace Combat_Realism
             parentPawn.equipment.AddEquipment(newEq);
         }
 
-        // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
         public override void CompTick()
         {
             base.CompTick();
+
+            // -TODO- Add handling for going over the bulk limit
+
+            // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
             float lastWeight = this.currentWeightCached;
             float lastBulk = this.currentBulkCached;
             this.UpdateInventory();
