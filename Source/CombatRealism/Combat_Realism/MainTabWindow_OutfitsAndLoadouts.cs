@@ -210,23 +210,23 @@ namespace Combat_Realism
 
             // LOADOUTS
             // main button
-            if ( Widgets.TextButton( labelLoadoutRect, p.outfits.CurrentOutfit.label, true, false ) )
+            if ( Widgets.TextButton( labelLoadoutRect, p.GetLoadout().LabelCap, true, false ) )
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
-                foreach ( Outfit outfit in Find.Map.outfitDatabase.AllOutfits )
+                foreach ( Loadout loadout in LoadoutManager.Loadouts )
                 {
                     // need to create a local copy for delegate
-                    Outfit localOutfit = outfit;
-                    options.Add( new FloatMenuOption( localOutfit.label, delegate
+                    Loadout localLoadout = loadout;
+                    options.Add( new FloatMenuOption( localLoadout.LabelCap, delegate
                     {
-                        p.outfits.CurrentOutfit = localOutfit;
+                        p.SetLoadout( localLoadout );
                     }, MenuOptionPriority.Medium, null, null ) );
                 }
                 Find.WindowStack.Add( new FloatMenu( options, false ) );
             }
 
             // edit button
-            TooltipHandler.TipRegion( editLoadoutRect, "CR.EditX".Translate( "CR.loadout".Translate() + " " +  p.outfits.CurrentOutfit.label ) );
+            TooltipHandler.TipRegion( editLoadoutRect, "CR.EditX".Translate( "CR.loadout".Translate() + " " +  p.GetLoadout().LabelCap ) );
             if ( Widgets.ImageButton( editLoadoutRect, _iconEdit ) )
             {
                 Find.WindowStack.Add( new Dialog_ManageLoadouts( p.GetLoadout() ) );
@@ -238,21 +238,8 @@ namespace Combat_Realism
 
             if ( comp != null )
             {
-                // weight
-                bool overweight = comp.currentWeight > comp.capacityWeight;
-                float weightFillPercentage = overweight ? 1f : comp.currentWeight / comp.capacityWeight;
-                Widgets.FillableBar( weightRect, weightFillPercentage );
-                if ( overweight )
-                    Utility_UI.DrawBarThreshold( weightRect, comp.capacityWeight / comp.currentWeight, 1f );
-                TooltipHandler.TipRegion( weightRect, "CR.ITabWeightTip".Translate( comp.capacityWeight, comp.currentWeight, comp.moveSpeedFactor, comp.encumberPenalty ) );
-
-                // bulk
-                bool overbulk = comp.currentBulk > comp.capacityBulk;
-                float bulkFillPercentage = overbulk ? 1f : comp.currentBulk / comp.capacityBulk;
-                Widgets.FillableBar( bulkRect, bulkFillPercentage );
-                if ( overbulk )
-                    Utility_UI.DrawBarThreshold( bulkRect, comp.capacityBulk / comp.currentBulk, 1f );
-                TooltipHandler.TipRegion( bulkRect, "CR.ITabBulkTip".Translate( comp.capacityBulk, comp.currentBulk, comp.workSpeedFactor ) );
+                Utility_Loadouts.DrawBar( bulkRect, comp.currentBulk, comp.capacityBulk, "", "CR.ITabBulkTip".Translate( comp.capacityBulk, comp.currentBulk, comp.workSpeedFactor ) );
+                Utility_Loadouts.DrawBar( weightRect, comp.currentWeight, comp.capacityWeight, "", "CR.ITabWeightTip".Translate( comp.capacityWeight, comp.currentWeight, comp.moveSpeedFactor, comp.encumberPenalty ) );
             }
         }
 

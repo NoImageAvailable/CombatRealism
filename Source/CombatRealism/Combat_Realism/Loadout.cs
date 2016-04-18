@@ -13,6 +13,8 @@ namespace Combat_Realism
     {
         #region Fields
 
+        public bool canBeDeleted = true;
+        public bool defaultLoadout = false;
         public string label;
         private List<LoadoutSlot> _slots = new List<LoadoutSlot>();
 
@@ -26,12 +28,12 @@ namespace Combat_Realism
             int i = 1;
             do
             {
-                label = "CR.DefaultLoadoutName".Translate(i++);
+                label = "CR.DefaultLoadoutName".Translate( i++ );
             }
-            while (LoadoutManager.Loadouts.Any(l => l.label == label));
+            while ( LoadoutManager.Loadouts.Any( l => l.label == label ) );
         }
 
-        public Loadout(string label)
+        public Loadout( string label )
         {
             this.label = label;
         }
@@ -40,74 +42,72 @@ namespace Combat_Realism
 
         #region Properties
 
-        public string LabelCap { get { return label.CapitalizeFirst(); } }
-        public int SlotCount { get { return _slots.Count; } }
-        public List<LoadoutSlot> Slots { get { return _slots; } }
+        public float Bulk
+        {
+            get
+            {
+                return _slots.Select( slot => slot.Def.GetStatValueAbstract( StatDef.Named( "Bulk" ) ) * slot.Count ).Sum();
+            }
+        }
+
+        public string LabelCap => label.CapitalizeFirst();
+
+        public int SlotCount => _slots.Count;
+
+        public List<LoadoutSlot> Slots => _slots;
+
+        public float Weight
+        {
+            get
+            {
+                return _slots.Select( slot => slot.Def.GetStatValueAbstract( StatDef.Named( "Weight" ) ) * slot.Count ).Sum();
+            }
+        }
 
         #endregion Properties
 
         #region Methods
 
-        public void AddSlot(LoadoutSlot slot)
+        public void AddSlot( LoadoutSlot slot )
         {
-            _slots.Add(slot);
+            _slots.Add( slot );
         }
 
-        public void MoveSlot(LoadoutSlot slot, int toIndex)
+        public void MoveSlot( LoadoutSlot slot, int toIndex )
         {
-            int fromIndex = _slots.IndexOf(slot);
-            MoveTo(fromIndex, toIndex);
+            int fromIndex = _slots.IndexOf( slot );
+            MoveTo( fromIndex, toIndex );
         }
 
-        public int OrderBottom(int index)
+        public void RemoveSlot( LoadoutSlot slot )
         {
-            return MoveTo(index, SlotCount - 1);
+            _slots.Remove( slot );
         }
 
-        public int OrderDown(int index)
+        public void RemoveSlot( int index )
         {
-            return MoveTo(index, index + 1);
+            _slots.RemoveAt( index );
         }
 
-        public int OrderTop(int index)
+        private int MoveTo( int fromIndex, int toIndex )
         {
-            return MoveTo(index, 0);
-        }
-
-        public int OrderUp(int index)
-        {
-            return MoveTo(index, index - 1);
-        }
-
-        public void RemoveSlot(LoadoutSlot slot)
-        {
-            _slots.Remove(slot);
-        }
-
-        public void RemoveSlot(int index)
-        {
-            _slots.RemoveAt(index);
-        }
-
-        private int MoveTo(int fromIndex, int toIndex)
-        {
-            if (fromIndex < 0 || fromIndex >= _slots.Count || toIndex < 0 || toIndex >= _slots.Count)
+            if ( fromIndex < 0 || fromIndex >= _slots.Count || toIndex < 0 || toIndex >= _slots.Count )
             {
-                throw new Exception("Attempted to move i " + fromIndex + " to " + toIndex + ", bounds are [0," + (_slots.Count - 1) + "].");
+                throw new Exception( "Attempted to move i " + fromIndex + " to " + toIndex + ", bounds are [0," + ( _slots.Count-1 ) + "]." );
             }
 
             // fetch the filter we're moving
             var temp = _slots[fromIndex];
 
             // remove from old location
-            _slots.RemoveAt(fromIndex);
+            _slots.RemoveAt( fromIndex );
 
             // this may have changed the toIndex
-            if (fromIndex + 1 < toIndex)
+            if ( fromIndex + 1 < toIndex )
                 toIndex--;
 
             // insert at new location
-            _slots.Insert(toIndex, temp);
+            _slots.Insert( toIndex, temp );
             return toIndex;
         }
 

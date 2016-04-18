@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Combat_Realism
 {
-    class CompInventory : ThingComp
+    public class CompInventory : ThingComp
     {
         public CompProperties_Inventory Props
         {
@@ -163,6 +163,7 @@ namespace Combat_Realism
             // Add inventory items
             if (parentPawn.inventory != null && parentPawn.inventory.container != null)
             {
+                ammoListCached.Clear();
                 foreach (Thing thing in parentPawn.inventory.container)
                 {
                     newBulk += thing.GetStatValue(StatDef.Named("Bulk")) * thing.stackCount;
@@ -229,7 +230,7 @@ namespace Combat_Realism
         /// Attempts to equip a weapon from the inventory, puts currently equipped weapon into inventory if it exists
         /// </summary>
         /// <param name="useFists">Whether to put the currently equipped weapon away even if no replacement is found</param>
-        public void SwitchToNextViableWeapon(bool useFists)
+        public void SwitchToNextViableWeapon(bool useFists = true)
         {
             ThingWithComps newEquipment = null;
             foreach (Thing thing in container)
@@ -277,7 +278,12 @@ namespace Combat_Realism
         {
             base.CompTick();
 
-            // -TODO- Add handling for going over the bulk limit
+            // Remove items from inventory if we're over the bulk limit
+            while(availableBulk < 0 && container.Count > 0)
+            {
+                Thing droppedThing;
+                container.TryDrop(container.Last(), ThingPlaceMode.Near, out droppedThing);
+            }
 
             // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
             float lastWeight = this.currentWeightCached;

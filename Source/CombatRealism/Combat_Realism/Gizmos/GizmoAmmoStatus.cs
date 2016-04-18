@@ -37,17 +37,17 @@ namespace Combat_Realism
 
             var inRect = overRect.ContractedBy(6);
 
-            //Item label
+            // Item label
             var textRect = inRect;
             textRect.height = overRect.height / 2;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(textRect, compAmmo.parent.def.LabelCap);
+            Widgets.Label(textRect, compAmmo.currentAmmo == null ? compAmmo.parent.def.LabelCap : compAmmo.currentAmmo.ammoClass.LabelCap);
 
-            //Bar
+            // Bar
             var barRect = inRect;
             barRect.yMin = overRect.y + overRect.height / 2f;
             var ePct = (float)compAmmo.curMagCount / compAmmo.Props.magazineSize;
-            Widgets.FillableBar(barRect, ePct, FullTex, EmptyTex, false);
+            Widgets.FillableBar(barRect, ePct);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
             Widgets.Label(barRect, compAmmo.curMagCount + " / " + compAmmo.Props.magazineSize);

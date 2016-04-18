@@ -119,7 +119,7 @@
     <defName>Ammo_303British_FMJ</defName>
     <label>.303 British bullet (FMJ)</label>
     <graphicData>
-      <texPath>Things/Ammo/Rifle/AP</texPath>
+      <texPath>Things/Ammo/Rifle/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>

@@ -11,6 +11,8 @@ namespace Combat_Realism
 {
     static class Utility
     {
+        #region Misc
+
         /// <summary>
         /// Generates a random Vector2 in a circle with given radius
         /// </summary>
@@ -87,7 +89,9 @@ namespace Combat_Realism
             return manningPawn;
         }
 
-        //------------------------------ Physics Calculations ------------------------------
+        #endregion Misc
+
+        #region Physics
 
         public const float gravityConst = 9.8f;
         public const float collisionHeightFactor = 1.0f;
@@ -132,7 +136,9 @@ namespace Combat_Realism
             return pawn.BodySize * (Utility.humanoidBodyList.Contains(pawn.RaceProps.body.defName) ? collisionWidthFactorHumanoid : collisionWidthFactor);
         }
 
-        //------------------------------ Armor Calculations ------------------------------
+        #endregion Physics
+
+        #region Armor
 
         public static readonly DamageDef absorbDamageDef = DamageDefOf.Blunt;   //The damage def to convert absorbed shots into
 
@@ -278,17 +284,17 @@ namespace Combat_Realism
             return deflected;
         }
 
-        //------------------------------ Inventory functions ------------------------------
+        #endregion Armor
+
+        #region Inventory
 
         public static void TryUpdateInventory(Pawn pawn)
         {
-            Log.Message("TryUpdateInventory(Pawn) :: calling for Pawn " + (pawn == null ? "null" : pawn.ToString()));
             if (pawn != null)
             {
                 CompInventory comp = pawn.TryGetComp<CompInventory>();
                 if (comp != null)
                 {
-                    Log.Message("TryUpdateInventory(Pawn) :: comp not null");
                     comp.UpdateInventory();
                 }
             }
@@ -296,32 +302,12 @@ namespace Combat_Realism
 
         public static void TryUpdateInventory(Pawn_InventoryTracker tracker)
         {
-            Log.Message("TryUpdateInventory(Pawn_InventoryTracker) :: calling for tracker " + (tracker == null ? "null" : tracker.ToString()));
             if (tracker != null && tracker.pawn != null)
             {
-                Log.Message("TryUpdateInventory(Pawn_InventoryTracker) :: comp not null");
                 TryUpdateInventory(tracker.pawn);
             }
         }
 
-        public static Loadout GetLoadout(this Pawn pawn)
-        {
-            if (pawn == null)
-                throw new ArgumentNullException("pawn");
-            if (!LoadoutManager.AssignedLoadouts.ContainsKey(pawn))
-                return null;
-            return LoadoutManager.AssignedLoadouts[pawn];
-        }
-
-
-        public static void SetLoadout(this Pawn pawn, Loadout loadout)
-        {
-            if (pawn == null)
-                throw new ArgumentNullException("pawn");
-            if (!LoadoutManager.AssignedLoadouts.ContainsKey(pawn))
-                LoadoutManager.AssignedLoadouts.Add(pawn, loadout);
-            else
-                LoadoutManager.AssignedLoadouts[pawn] = loadout;
-        }
+        #endregion Inventory
     }
 }

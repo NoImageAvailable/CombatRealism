@@ -9,7 +9,6 @@ namespace Combat_Realism
 {
     public class ITab_Inventory : ITab_Pawn_Gear
     {
-
         #region Fields
 
         private const float _barHeight                 = 20f;
@@ -60,7 +59,10 @@ namespace Combat_Realism
                 throw new InvalidOperationException( "Gear tab on non-pawn non-corpse " + base.SelThing );
             }
         }
+
         #endregion Properties
+
+        #region Methods
 
         protected override void FillTab()
         {
@@ -68,60 +70,21 @@ namespace Combat_Realism
             CompInventory comp = SelPawn.TryGetComp<CompInventory>();
 
             // set up rects
-            Rect listRect = new Rect( _margin,
-                                           _topPadding,
-                                           size.x - 2 * _margin,
-                                           size.y - _topPadding - _margin );
+            Rect listRect = new Rect(
+                _margin,
+                _topPadding,
+                size.x - 2 * _margin,
+                size.y - _topPadding - _margin );
 
             if ( comp != null )
             {
                 // adjust rects if comp found
-                listRect.height -= _margin * 4 + _barHeight * 2;
-                Rect weightRect = new Rect( 0f, listRect.yMax + _margin, size.x, _barHeight + _margin * 2 );
-                Rect bulkRect = new Rect( 0f, weightRect.yMax, size.x, _barHeight + _margin * 2 );
+                listRect.height -= ( _margin + _barHeight ) * 2;
+                Rect weightRect = new Rect( _margin, listRect.yMax + _margin, listRect.width, _barHeight );
+                Rect bulkRect = new Rect( _margin, weightRect.yMax + _margin, listRect.width, _barHeight );
 
-                // get size of label
-                int labelSize = (int)( _margin + Math.Max( Text.CalcSize( "CR.Weight".Translate() ).x, Text.CalcSize( "CR.Bulk".Translate() ).x ) );
-
-                // draw labels
-                Rect weightLabelRect = new Rect( weightRect ).ContractedBy( _margin );
-                Rect bulkLabelRect = new Rect( bulkRect ).ContractedBy( _margin );
-                weightLabelRect.xMax = labelSize;
-                bulkLabelRect.xMax = labelSize;
-                Widgets.Label( weightLabelRect, "CR.Weight".Translate() );
-                Widgets.Label( bulkLabelRect, "CR.Bulk".Translate() );
-
-                // draw bars
-                Rect weightBarRect = new Rect( weightRect ).ContractedBy( _margin );
-                Rect bulkBarRect = new Rect( bulkRect ).ContractedBy( _margin );
-                weightBarRect.xMin += labelSize;
-                bulkBarRect.xMin += labelSize;
-
-                bool overweight = comp.currentWeight > comp.capacityWeight;
-                float weightFillPercentage = overweight ? 1f : comp.currentWeight / comp.capacityWeight;
-                Widgets.DrawHighlightIfMouseover( weightRect );
-                Widgets.FillableBar( weightBarRect, weightFillPercentage );
-                if ( overweight )
-                {
-                    Widgets.FillableBar( weightBarRect, weightFillPercentage );
-                    Utility_UI.DrawBarThreshold( weightRect, comp.capacityWeight / comp.currentWeight, 1f );
-                }
-                else
-                    Widgets.FillableBar( weightBarRect, weightFillPercentage );
-
-                bool overbulk = comp.currentBulk > comp.capacityBulk;
-                float bulkFillPercentage = overbulk ? 1f : comp.currentBulk / comp.capacityBulk;
-                Widgets.DrawHighlightIfMouseover( bulkRect );
-                if ( overbulk )
-                {
-                    Utility_UI.DrawBarThreshold( bulkRect, comp.capacityBulk / comp.currentBulk, 1f );
-                }
-                else
-                    Widgets.FillableBar( bulkBarRect, bulkFillPercentage );
-
-                // tooltips
-                TooltipHandler.TipRegion( bulkRect, "CR.ITabBulkTip".Translate( comp.capacityBulk, comp.currentBulk, comp.workSpeedFactor ) );
-                TooltipHandler.TipRegion( weightRect, "CR.ITabWeightTip".Translate( comp.capacityWeight, comp.currentWeight, comp.moveSpeedFactor, comp.encumberPenalty ) );
+                Utility_Loadouts.DrawBar( bulkRect, comp.currentBulk, comp.capacityBulk, "CR.Bulk".Translate(), "CR.ITabBulkTip".Translate( comp.capacityBulk, comp.currentBulk, comp.workSpeedFactor ) );
+                Utility_Loadouts.DrawBar( weightRect, comp.currentWeight, comp.capacityWeight, "CR.Weight".Translate(), "CR.ITabWeightTip".Translate( comp.capacityWeight, comp.currentWeight, comp.moveSpeedFactor, comp.encumberPenalty ) );
             }
 
             // start drawing list (rip from ITab_Pawn_Gear)
@@ -168,7 +131,7 @@ namespace Combat_Realism
             GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
         }
-        
+
         private void DrawThingRow( ref float y, float width, Thing thing )
         {
             Rect rect = new Rect( 0f, y, width, 28f );
@@ -234,5 +197,6 @@ namespace Combat_Realism
             y += 28f;
         }
 
+        #endregion Methods
     }
 }

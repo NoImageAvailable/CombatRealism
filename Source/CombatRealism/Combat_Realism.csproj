@@ -70,12 +70,14 @@
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />
+    <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />
     <Compile Include="Combat_Realism\ITabInjector.cs" />
     <Compile Include="Combat_Realism\ITab_Inventory.cs" />
     <Compile Include="Combat_Realism\Loadout.cs" />
     <Compile Include="Combat_Realism\LoadoutSlot.cs" />
     <Compile Include="Combat_Realism\MainTabWindow_OutfitsAndLoadouts.cs" />
     <Compile Include="Combat_Realism\MapComp_LoadoutManager.cs" />
+    <Compile Include="Combat_Realism\Plants\Plant_Blazebulb.cs" />
     <Compile Include="Combat_Realism\Projectiles\ArtilleryMarker.cs" />
     <Compile Include="Combat_Realism\Comps\CompExplosiveCR.cs" />
     <Compile Include="Combat_Realism\Comps\CompInventory.cs" />
@@ -91,7 +93,7 @@
     <Compile Include="Combat_Realism\Comps\CompProperties_AP.cs" />
     <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR.cs" />
     <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
-    <Compile Include="Combat_Realism\Utility_UI.cs" />
+    <Compile Include="Combat_Realism\Utility_Loadouts.cs" />
     <Compile Include="Detours\DetourInjector.cs" />
     <Compile Include="Combat_Realism\FireMode.cs" />
     <Compile Include="Combat_Realism\Projectiles\BulletCR.cs" />

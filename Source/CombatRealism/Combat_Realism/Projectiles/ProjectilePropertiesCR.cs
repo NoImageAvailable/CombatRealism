@@ -12,6 +12,6 @@ namespace Combat_Realism
     {
         public float projectileArmorPenetration = 0;
         public int pelletCount = 1;
-        public float spreadModifier = 0;
+        public float spreadMult = 1;
     }
 }

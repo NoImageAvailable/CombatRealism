@@ -16,7 +16,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <damageAmountBase>8</damageAmountBase>
+      <damageAmountBase>10</damageAmountBase>
 	  <pelletCount>8</pelletCount>
     </projectile>
   </ThingDef>
@@ -29,8 +29,9 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <damageAmountBase>3</damageAmountBase>
+      <damageAmountBase>4</damageAmountBase>
 	  <pelletCount>40</pelletCount>
+	  <spreadMult>1.75</spreadMult>
     </projectile>
   </ThingDef>
 
