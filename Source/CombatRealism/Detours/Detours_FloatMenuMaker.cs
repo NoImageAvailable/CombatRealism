@@ -390,19 +390,19 @@ namespace Combat_Realism.Detours
                         if (!pawn.CanReach(equipment, PathEndMode.ClosestTouch, Danger.Deadly, false, TraverseMode.ByPawn))
                         {
                             equipOption = new FloatMenuOption("CannotEquip".Translate(new object[]
-					{
-						eqLabel
-					}) + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Medium, null, null);
+					        {
+						        eqLabel
+					        }) + " (" + "NoPath".Translate() + ")", null, MenuOptionPriority.Medium, null, null);
                         }
                         else if (!pawn.CanReserve(equipment, 1))
                         {
                             equipOption = new FloatMenuOption("CannotEquip".Translate(new object[]
-					{
-						eqLabel
-					}) + " (" + "ReservedBy".Translate(new object[]
-					{
-						Find.Reservations.FirstReserverOf(equipment, pawn.Faction).LabelBaseShort
-					}) + ")", null, MenuOptionPriority.Medium, null, null);
+					        {
+						        eqLabel
+					        }) + " (" + "ReservedBy".Translate(new object[]
+					        {
+						        Find.Reservations.FirstReserverOf(equipment, pawn.Faction).LabelBaseShort
+					        }) + ")", null, MenuOptionPriority.Medium, null, null);
                         }
                         else if (!pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
                         {
@@ -421,15 +421,15 @@ namespace Combat_Realism.Detours
                             }
                             else
                             {
-                                string text4 = "Equip".Translate(new object[]
+                                string equipOptionLabel = "Equip".Translate(new object[]
 					                {
 						                eqLabel
 					                });
                                 if (equipment.def.IsRangedWeapon && pawn.story != null && pawn.story.traits.HasTrait(TraitDefOf.Brawler))
                                 {
-                                    text4 = text4 + " " + "EquipWarningBrawler".Translate();
+                                    equipOptionLabel = equipOptionLabel + " " + "EquipWarningBrawler".Translate();
                                 }
-                                equipOption = new FloatMenuOption(text4, new Action(delegate
+                                equipOption = new FloatMenuOption(equipOptionLabel, new Action(delegate
                                 {
                                     equipment.SetForbidden(false, true);
                                     Job job = new Job(JobDefOf.Equip, equipment);

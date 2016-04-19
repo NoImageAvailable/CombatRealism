@@ -16,13 +16,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>14</damageAmountBase>
       <speed>188</speed>
+      <armorPenetration>0.5</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.5</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="BaseBullet">
@@ -36,13 +31,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>11</damageAmountBase>
       <speed>188</speed>
+      <armorPenetration>0.65</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.65</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="BaseBullet">
@@ -57,13 +47,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>17</damageAmountBase>
       <speed>188</speed>
+      <armorPenetration>0.35</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.35</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 	
 	<!-- ================== 7.62x51mm NATO ================== -->
@@ -79,13 +64,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>18</damageAmountBase>
       <speed>167</speed>
+	  <armorPenetration>0.5</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.5</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="BaseBullet">
@@ -99,13 +79,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>15</damageAmountBase>
       <speed>167</speed>
+	  <armorPenetration>0.65</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.65</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="BaseBullet">
@@ -120,13 +95,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>21</damageAmountBase>
       <speed>167</speed>
+	  <armorPenetration>0.35</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.35</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 	
 	<!-- ================== .303 British ================== -->
@@ -142,13 +112,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>18</damageAmountBase>
       <speed>150</speed>
+	  <armorPenetration>0.5</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.5</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="BaseBullet">
@@ -162,13 +127,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>15</damageAmountBase>
       <speed>150</speed>
+	  <armorPenetration>0.65</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.65</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="BaseBullet">
@@ -183,13 +143,8 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>21</damageAmountBase>
       <speed>150</speed>
+	  <armorPenetration>0.35</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.35</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 
 

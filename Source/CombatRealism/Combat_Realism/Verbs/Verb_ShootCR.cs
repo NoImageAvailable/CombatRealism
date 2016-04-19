@@ -98,6 +98,9 @@ namespace Combat_Realism
         /// </summary>
         public override void WarmupComplete()
         {
+            if (xpTicks <= 0)
+                xpTicks = Mathf.CeilToInt(verbProps.warmupTicks * 0.5f);
+
             if (this.shouldAim && !this.isAiming)
             {
                 float targetDist = (this.currentTarget.Cell - this.caster.Position).LengthHorizontal;

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<HediffDefs>
+
+  <HediffDef Name="InjuryBase" Abstract="True">
+    <hediffClass>Hediff_Injury</hediffClass>
+    <displayWound>true</displayWound>
+  </HediffDef>
+
+
+  <!-- Injuries -->
+
+	<HediffDef ParentName="InjuryBase">
+		<defName>Blast</defName>
+		<label>blasted</label>
+		<naturallyHealed>true</naturallyHealed>
+    <comps>
+      <li>
+        <compClass>HediffComp_Tendable</compClass>
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTended>poorly bandaged</labelTended>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelTendedInner>poorly sutured</labelTendedInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+        <labelSolidTended>poorly set</labelSolidTended>
+      </li>
+      <li>
+        <compClass>HediffComp_Infecter</compClass>
+        <infectionChance>0.30</infectionChance>
+      </li>
+      <li>
+        <compClass>HediffComp_GetsOld</compClass>
+			  <oldLabel>scar</oldLabel>
+      </li>
+    </comps>
+		<injuryProps>
+      <painPerSeverity>0.0125</painPerSeverity>
+      <averagePainPerSeverityOld>0.00625</averagePainPerSeverityOld>
+			<bleeding>2</bleeding>
+			<canMerge>true</canMerge>
+			<destroyedLabel>Torn off</destroyedLabel>
+			<destroyedOutLabel>Torn out</destroyedOutLabel>
+		</injuryProps>
+	</HediffDef>
+	
+
+</HediffDefs>

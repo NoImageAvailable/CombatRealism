@@ -43,7 +43,7 @@
     <statBases>
       <MaxHitPoints>65</MaxHitPoints>
       <Beauty>1</Beauty>
-      <Flammability>100</Flammability>
+      <Flammability>1</Flammability>
     </statBases>
     <graphicData>
       <texPath>Things/Plant/Blazebulb</texPath>

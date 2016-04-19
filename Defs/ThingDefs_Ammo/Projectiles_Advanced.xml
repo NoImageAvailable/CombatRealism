@@ -15,9 +15,9 @@
 	<projectile Class="Combat_Realism.ProjectilePropertiesCR"/>
   </ThingDef>
 	
-  <!-- ==================== 30x32mm Fuel Cell ========================== -->
+  <!-- ==================== 30x64mm Fuel Cell ========================== -->
 	
-  <ThingDef Name="Base30x32mmFuelBullet" ParentName="BaseBullet" Abstract="true">
+  <ThingDef Name="Base30x64mmFuelBullet" ParentName="BaseBullet" Abstract="true">
     <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <graphicData>
       <texPath>Things/Projectile/InfernoCannonShot</texPath>
@@ -29,8 +29,8 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef ParentName="Base30x32mmFuelBullet">
-    <defName>Bullet_30x32mmFuel_Incendiary</defName>
+  <ThingDef ParentName="Base30x64mmFuelBullet">
+    <defName>Bullet_30x64mmFuel_Incendiary</defName>
     <label>incendiary bolt</label>
     <projectile>
       <damageDef>Flame</damageDef>
@@ -39,8 +39,8 @@
     </projectile>
   </ThingDef>
   
-  <ThingDef ParentName="Base30x32mmFuelBullet">
-    <defName>Bullet_30x32mmFuel_Thermobaric</defName>
+  <ThingDef ParentName="Base30x64mmFuelBullet">
+    <defName>Bullet_30x64mmFuel_Thermobaric</defName>
     <label>thermobaric bolt</label>
     <projectile>
       <damageDef>Flame</damageDef>
@@ -49,10 +49,10 @@
     </projectile>
   </ThingDef>
   
-  <!-- ==================== 80x128mm Fuel Cell ========================== -->
+  <!-- ==================== 80x256mm Fuel Cell ========================== -->
   
   <ThingDef>
-    <defName>Bullet_80x128mmFuel_Thermobaric</defName>
+    <defName>Bullet_80x256mmFuel_Thermobaric</defName>
     <label>inferno cannon shell</label>
     <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <graphicData>

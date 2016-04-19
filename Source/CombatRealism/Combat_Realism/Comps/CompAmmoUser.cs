@@ -47,6 +47,7 @@ namespace Combat_Realism
                 return Props.ammoSet != null;
             }
         }
+        public bool hasAmmo => compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Contains(x.def));
         private AmmoDef currentAmmoInt = null;
         public AmmoDef currentAmmo
         {
@@ -154,7 +155,7 @@ namespace Combat_Realism
                     }
                 }
                 // Check for ammo
-                if (!compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Contains(x.def)))
+                if (!hasAmmo)
                 {
                     this.DoOutOfAmmoAction();
                     return;

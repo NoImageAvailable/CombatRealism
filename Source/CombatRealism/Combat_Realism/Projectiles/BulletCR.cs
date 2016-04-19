@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Verse;
 using Verse.Sound;
 using RimWorld;
@@ -15,8 +18,36 @@ namespace Combat_Realism
             {
                 int damageAmountBase = this.def.projectile.damageAmountBase;
                 BodyPartDamageInfo value = new BodyPartDamageInfo(null, null);
-                DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.launcher, this.ExactRotation.eulerAngles.y, new BodyPartDamageInfo?(value), this.equipmentDef);
-                hitThing.TakeDamage(dinfo);
+                DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.launcher, this.ExactRotation.eulerAngles.y, new BodyPartDamageInfo?(value), this.def);
+
+                ProjectilePropertiesCR propsCR = def.projectile as ProjectilePropertiesCR;
+                if (propsCR != null && !propsCR.secondaryDamage.NullOrEmpty())
+                {
+                    // Get the correct body part
+                    Pawn pawn = hitThing as Pawn;
+                    if (pawn != null && def.projectile.damageDef.workerClass == typeof(DamageWorker_AddInjuryCR))
+                    {
+                        dinfo = new DamageInfo(dinfo.Def, 
+                            dinfo.Amount, 
+                            dinfo.Instigator, 
+                            dinfo.Angle, 
+                            new BodyPartDamageInfo(DamageWorker_AddInjuryCR.GetExactPartFromDamageInfo(dinfo, pawn), false, (HediffDef)null), 
+                            dinfo.Source);
+                    }
+                    List<DamageInfo> dinfoList = new List<DamageInfo>() { dinfo };
+                    foreach(SecondaryDamage secDamage in propsCR.secondaryDamage)
+                    {
+                        dinfoList.Add(new DamageInfo(secDamage.def, secDamage.amount, dinfo.Instigator, dinfo.Part, dinfo.Source));
+                    }
+                    foreach(DamageInfo curDinfo in dinfoList)
+                    {
+                        hitThing.TakeDamage(curDinfo);
+                    }
+                }
+                else
+                {
+                    hitThing.TakeDamage(dinfo);
+                }
             }
             else
             {

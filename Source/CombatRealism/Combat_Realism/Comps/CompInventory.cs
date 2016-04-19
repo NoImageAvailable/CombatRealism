@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RimWorld;
 using Verse;
+using Verse.Sound;
 using UnityEngine;
 
 namespace Combat_Realism
@@ -119,6 +120,10 @@ namespace Combat_Realism
                 return ammoListCached;
             }
         }
+        private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
+        public List<ThingWithComps> meleeWeaponList => meleeWeaponListCached;
+        private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
+        public List<ThingWithComps> rangedWeaponList => rangedWeaponListCached;
 
         public override void Initialize(CompProperties props)
         {
@@ -164,15 +169,43 @@ namespace Combat_Realism
             if (parentPawn.inventory != null && parentPawn.inventory.container != null)
             {
                 ammoListCached.Clear();
+                meleeWeaponListCached.Clear();
+                rangedWeaponListCached.Clear();
                 foreach (Thing thing in parentPawn.inventory.container)
                 {
                     newBulk += thing.GetStatValue(StatDef.Named("Bulk")) * thing.stackCount;
                     newWeight += thing.GetStatValue(StatDef.Named("Weight")) * thing.stackCount;
 
-                    // Update ammo list
-                    if (thing.def is AmmoDef)
+                    // Check for weapons
+                    ThingWithComps eq = thing as ThingWithComps;
+                    CompEquippable compEq = thing.TryGetComp<CompEquippable>();
+                    if (eq != null && compEq != null)
                     {
-                        ammoListCached.Add(thing);
+                        if (compEq.PrimaryVerb != null)
+                        {
+                            rangedWeaponListCached.Add(eq);
+                        }
+                        else
+                        {
+                            meleeWeaponListCached.Add(eq);
+                        }
+                        // Calculate equipment weight
+                        float eqWeight;
+                        float eqBulk;
+                        GetEquipmentStats(eq, out eqWeight, out eqBulk);
+                        newWeight += eqWeight;
+                        newBulk += eqBulk;
+                    }
+                    else
+                    {
+                        // Update ammo list
+                        if (thing.def is AmmoDef)
+                        {
+                            ammoListCached.Add(thing);
+                        }
+                        // Add item weight
+                        newBulk += thing.GetStatValue(StatDef.Named("Bulk")) * thing.stackCount;
+                        newWeight += thing.GetStatValue(StatDef.Named("Weight")) * thing.stackCount;
                     }
                 }
             }
@@ -232,31 +265,34 @@ namespace Combat_Realism
         /// <param name="useFists">Whether to put the currently equipped weapon away even if no replacement is found</param>
         public void SwitchToNextViableWeapon(bool useFists = true)
         {
-            ThingWithComps newEquipment = null;
-            foreach (Thing thing in container)
+            ThingWithComps newEq = null;
+
+            // Cycle through available ranged weapons
+            foreach(ThingWithComps gun in rangedWeaponListCached)
             {
-                ThingWithComps thingWithComps = thing as ThingWithComps;
-                if (thingWithComps != null && thingWithComps.TryGetComp<CompEquippable>() != null)
+                CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
+                if (compAmmo == null
+                    || !compAmmo.useAmmo
+                    || compAmmo.curMagCount > 0
+                    || compAmmo.hasAmmo)
                 {
-                    if (thingWithComps.def.stackLimit > 1 && thingWithComps.stackCount > 1)
-                    {
-                        newEquipment = (ThingWithComps)thingWithComps.SplitOff(1);
-                    }
-                    else
-                    {
-                        newEquipment = thingWithComps;
-                    }
+                    newEq = gun;
                     break;
                 }
             }
-            if ((newEquipment != null || useFists) && parentPawn.equipment.Primary != null)
+            // If no ranged weapon was found, use first available melee weapons
+            if(newEq == null)
+                newEq = meleeWeaponListCached.FirstOrDefault();
+            
+            // Equip the weapon
+            if(newEq != null)
             {
-                ThingWithComps oldEquipment;
-                parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEquipment);
+                this.TrySwitchToWeapon(newEq);
             }
-            if (newEquipment != null)
+            else if (useFists && parentPawn.equipment?.Primary != null)
             {
-                parentPawn.equipment.AddEquipment(newEquipment);
+                ThingWithComps oldEq;
+                parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
             }
         }
 
@@ -271,7 +307,14 @@ namespace Combat_Realism
                 ThingWithComps oldEq;
                 parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
             }
+            // Split stack if our weapon has a stack count
+            if (newEq.stackCount > 1)
+            {
+                newEq = (ThingWithComps)newEq.SplitOff(1);
+            }
+            container.Remove(newEq);
             parentPawn.equipment.AddEquipment(newEq);
+            newEq.def.soundInteract.PlayOneShot(parent.Position);
         }
 
         public override void CompTick()
@@ -282,7 +325,7 @@ namespace Combat_Realism
             while(availableBulk < 0 && container.Count > 0)
             {
                 Thing droppedThing;
-                container.TryDrop(container.Last(), ThingPlaceMode.Near, out droppedThing);
+                container.TryDrop(container.Last(), this.parent.Position, ThingPlaceMode.Near, out droppedThing);
             }
 
             // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release

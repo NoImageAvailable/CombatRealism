@@ -24,9 +24,9 @@
     </thingCategories>
   </ThingDef>
   
-  <!-- ==================== 30x32mm Fuel Cell ========================== -->
+  <!-- ==================== 30x64mm Fuel Cell ========================== -->
 
-  <ThingDef Class="Combat_Realism.AmmoDef" Name="30x32mmFuelBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="30x64mmFuelBase" ParentName="AmmoBase" Abstract="True">
     <description>Container holding fuel for incendiary shot firearms.</description>
     <statBases>
 	  <Weight>0.3</Weight>
@@ -34,9 +34,9 @@
     </statBases>
   </ThingDef>
 
-  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x32mmFuelBase">
-    <defName>Ammo_30x32mmFuel_Incendiary</defName>
-    <label>30x32mm Fuel Cell (Incendiary)</label>
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
+    <defName>Ammo_30x64mmFuel_Incendiary</defName>
+    <label>30x64mm Fuel Cell (Incendiary)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Incendiary</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -44,13 +44,13 @@
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_30x32mmFuel_Incendiary</linkedProjectile>
+	<linkedProjectile>Bullet_30x64mmFuel_Incendiary</linkedProjectile>
 	<ammoClass>IncendiaryFuel</ammoClass>
   </ThingDef>
 
-  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x32mmFuelBase">
-    <defName>Ammo_30x32mmFuel_Thermobaric</defName>
-    <label>30x32mm Fuel Cell (Thermobaric)</label>
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
+    <defName>Ammo_30x64mmFuel_Thermobaric</defName>
+    <label>30x64mm Fuel Cell (Thermobaric)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -58,13 +58,13 @@
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_30x32mmFuel_Thermobaric</linkedProjectile>
+	<linkedProjectile>Bullet_30x64mmFuel_Thermobaric</linkedProjectile>
 	<ammoClass>ThermobaricFuel</ammoClass>
   </ThingDef>
   
   <!-- ==================== 80x128mm Fuel Cell ========================== -->
 
-  <ThingDef Class="Combat_Realism.AmmoDef" Name="80x128mmFuelBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="80x256mmFuelBase" ParentName="AmmoBase" Abstract="True">
     <description>Container holding fuel for incendiary shot firearms.</description>
     <statBases>
 	  <Weight>2.0</Weight>
@@ -72,9 +72,9 @@
     </statBases>
   </ThingDef>
 
-  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x32mmFuelBase">
-    <defName>Ammo_80x128mmFuel_Thermobaric</defName>
-    <label>80x128mm Fuel Cell (Thermobaric)</label>
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="80x256mmFuelBase">
+    <defName>Ammo_80x256mmFuel_Thermobaric</defName>
+    <label>80x256mm Fuel Cell (Thermobaric)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -82,7 +82,7 @@
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_80x128mmFuel_Thermobaric</linkedProjectile>
+	<linkedProjectile>Bullet_80x256mmFuel_Thermobaric</linkedProjectile>
 	<ammoClass>ThermobaricFuel</ammoClass>
   </ThingDef>
   

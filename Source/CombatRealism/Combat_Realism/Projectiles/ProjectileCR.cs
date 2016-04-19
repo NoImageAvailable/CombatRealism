@@ -309,8 +309,8 @@ namespace Combat_Realism
                 if (compSuppressable != null)
                 {
                     float suppressionAmount = this.def.projectile.damageAmountBase;
-                    CompAP compAP = this.TryGetComp<CompAP>();
-                    float penetrationAmount = compAP == null ? 0f : compAP.Props.armorPenetration;
+                    ProjectilePropertiesCR propsCR = def.projectile as ProjectilePropertiesCR;
+                    float penetrationAmount = propsCR == null ? 0f : propsCR.armorPenetration;
                     suppressionAmount *= 1 - Mathf.Clamp(compSuppressable.parentArmor - penetrationAmount, 0, 1);
                     compSuppressable.AddSuppression(suppressionAmount, this.origin.ToIntVec3());
                 }

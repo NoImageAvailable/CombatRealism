@@ -45,5 +45,6 @@
 	<CR_FireModes>Fire modes</CR_FireModes>
 	<CR_AimedBurstCount>Burst shot count</CR_AimedBurstCount>
 	<CR_OutOfAmmo>Out of ammo</CR_OutOfAmmo>
+	<CR_PutAway>Put away {0}</CR_PutAway>
 	
 </LanguageData>

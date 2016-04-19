@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
+    <Compile Include="Combat_Realism\Defs\DamageDef_CR.cs" />
     <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />
     <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />
     <Compile Include="Combat_Realism\ITabInjector.cs" />
@@ -77,7 +78,9 @@
     <Compile Include="Combat_Realism\LoadoutSlot.cs" />
     <Compile Include="Combat_Realism\MainTabWindow_OutfitsAndLoadouts.cs" />
     <Compile Include="Combat_Realism\MapComp_LoadoutManager.cs" />
-    <Compile Include="Combat_Realism\Plants\Plant_Blazebulb.cs" />
+    <Compile Include="Combat_Realism\Things\Apparel_VisibleAccessory.cs" />
+    <Compile Include="Combat_Realism\Things\IncendiaryFuel.cs" />
+    <Compile Include="Combat_Realism\Things\Plant_Blazebulb.cs" />
     <Compile Include="Combat_Realism\Projectiles\ArtilleryMarker.cs" />
     <Compile Include="Combat_Realism\Comps\CompExplosiveCR.cs" />
     <Compile Include="Combat_Realism\Comps\CompInventory.cs" />
@@ -90,7 +93,6 @@
     <Compile Include="Combat_Realism\Comps\CompProperties_Inventory.cs" />
     <Compile Include="Combat_Realism\Comps\CompProperties_AmmoUser.cs" />
     <Compile Include="Combat_Realism\Comps\CompProperties_Charges.cs" />
-    <Compile Include="Combat_Realism\Comps\CompProperties_AP.cs" />
     <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR.cs" />
     <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
     <Compile Include="Combat_Realism\Utility_Loadouts.cs" />
@@ -99,10 +101,8 @@
     <Compile Include="Combat_Realism\Projectiles\BulletCR.cs" />
     <Compile Include="Combat_Realism\Comps\CompFireModes.cs" />
     <Compile Include="Combat_Realism\Comps\CompSuppressable.cs" />
-    <Compile Include="Combat_Realism\Comps\CompAP.cs" />
     <Compile Include="Combat_Realism\Comps\CompCharges.cs" />
     <Compile Include="Combat_Realism\Comps\CompTurretInit.cs" />
-    <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR - old.cs" />
     <Compile Include="Combat_Realism\Gizmos\GizmoAmmoStatus.cs" />
     <Compile Include="Combat_Realism\Jobs\JobDriver_HunkerDown.cs" />
     <Compile Include="Combat_Realism\Jobs\JobGiver_HunkerDown.cs" />
@@ -137,6 +137,7 @@
     <Compile Include="Combat_Realism\Jobs\ExternalPawnDrafter.cs" />
     <Compile Include="Combat_Realism\Jobs\JobDriver_Reload.cs" />
     <Compile Include="Combat_Realism\Verbs\Verb_ShootCRReload.cs" />
+    <Compile Include="Combat_Realism\SecondaryDamage.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

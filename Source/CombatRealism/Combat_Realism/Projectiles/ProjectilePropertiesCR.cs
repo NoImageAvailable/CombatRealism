@@ -10,8 +10,9 @@ namespace Combat_Realism
 {
     public class ProjectilePropertiesCR : ProjectileProperties
     {
-        public float projectileArmorPenetration = 0;
+        public float armorPenetration = 0;
         public int pelletCount = 1;
         public float spreadMult = 1;
+        public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
     }
 }

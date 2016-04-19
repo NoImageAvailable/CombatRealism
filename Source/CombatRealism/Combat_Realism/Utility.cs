@@ -145,45 +145,29 @@ namespace Combat_Realism
         /// <summary>
         /// Calculates deflection chance and damage through armor
         /// </summary>
-        public static int GetAfterArmorDamage(Pawn pawn, int amountInt, BodyPartRecord part, DamageInfo dinfo, bool damageArmor, ref bool deflected)
+        public static int GetAfterArmorDamage(Pawn pawn, int damAmountInt, BodyPartRecord part, DamageInfo dinfo, bool damageArmor, ref bool deflected)
         {
             DamageDef damageDef = dinfo.Def;
             if (damageDef.armorCategory == DamageArmorCategory.IgnoreArmor)
             {
-                return amountInt;
+                return damAmountInt;
             }
 
-            float damageAmount = (float)amountInt;
+            float damageAmount = (float)damAmountInt;
             StatDef deflectionStat = damageDef.armorCategory.DeflectionStat();
+
+            // Get armor penetration value
             float pierceAmount = 0f;
-
-            //Check if the projectile has the armor-piercing comp
-            CompProperties_AP props = null;
-            /*if (dinfo.Source != null)
+            if (dinfo.Source != null)
             {
-                VerbProperties verbProps = dinfo.Source.Verbs.Where(x => x.isPrimary).First();
-                if (verbProps != null)
+                ProjectilePropertiesCR projectileProps = dinfo.Source.projectile as ProjectilePropertiesCR;
+                if (projectileProps != null)
                 {
-                    ThingDef projectile = verbProps.projectileDef;
-                    if (projectile != null && projectile.HasComp(typeof(CompAP)))
-                    {
-                        props = (CompProperties_AP)projectile.GetCompProperties(typeof(CompAP));
-                    }
+                    pierceAmount = projectileProps.armorPenetration;
                 }
-
-                //Check weapon for comp if projectile doesn't have it
-                if (props == null && dinfo.Source.HasComp(typeof(CompAP)))
-                {
-                    props = (CompProperties_AP)dinfo.Source.GetCompProperties(typeof(CompAP));
-                }
-            }*/
-
-            if (props != null)
-            {
-                pierceAmount = props.armorPenetration;
             }
 
-            //Run armor calculations on all apparel
+            // Run armor calculations on all apparel
             if (pawn.apparel != null)
             {
                 List<Apparel> wornApparel = new List<Apparel>(pawn.apparel.WornApparel);
@@ -246,20 +230,14 @@ namespace Combat_Realism
             return Mathf.RoundToInt(damageAmount);
         }
 
-        /// <summary>
-        /// For use with misc DamageWorker functions
-        /// </summary>
-        public static int GetAfterArmorDamage(Pawn pawn, int amountInt, BodyPartRecord part, DamageInfo dinfo)
-        {
-            bool flag = false;
-            return Utility.GetAfterArmorDamage(pawn, amountInt, part, dinfo, false, ref flag);
-        }
-
         private static bool ApplyArmor(ref float damAmount, ref float pierceAmount, float armorRating, Thing armorThing, DamageDef damageDef)
         {
             float originalDamage = damAmount;
             bool deflected = false;
-            float penetrationChance = Mathf.Clamp((pierceAmount - armorRating) * 6, 0, 1);
+            DamageDef_CR damageDefCR = damageDef as DamageDef_CR;
+            float penetrationChance = 1;
+            if(damageDefCR != null && damageDefCR.deflectable)
+                penetrationChance = Mathf.Clamp((pierceAmount - armorRating) * 6, 0, 1);
 
             //Shot is deflected
             if (penetrationChance == 0 || Rand.Value > penetrationChance)
@@ -267,7 +245,23 @@ namespace Combat_Realism
                 deflected = true;
             }
             //Damage calculations
-            damAmount *= Mathf.Clamp(0.5f + (pierceAmount - armorRating) * 3, 0, 1);
+            float dMult = 1;
+            if (damageDefCR != null)
+            {
+                if (damageDefCR.absorbable && deflected)
+                {
+                    dMult = 0;
+                }
+                else if (damageDefCR.deflectable)
+                {
+                    dMult = Mathf.Clamp01(0.5f + (pierceAmount - armorRating) * 3);
+                }
+            }
+            else
+            {
+                dMult = Mathf.Clamp01(1 - armorRating);
+            }
+            damAmount *= dMult;
 
             //Damage armor
             if (armorThing != null && armorThing as Pawn == null)
@@ -280,7 +274,7 @@ namespace Combat_Realism
                 armorThing.TakeDamage(new DamageInfo(damageDef, Mathf.CeilToInt(absorbedDamage), null, null, null));
             }
 
-            pierceAmount *= Mathf.Max(0, 1 - armorRating);
+            pierceAmount *= dMult;
             return deflected;
         }
 
