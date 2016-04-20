@@ -9,6 +9,9 @@
 	  <Weight>0.012</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
@@ -61,6 +64,9 @@
 	  <Weight>0.025</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
@@ -113,6 +119,9 @@
 	  <Weight>0.025</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">

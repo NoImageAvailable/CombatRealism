@@ -10,7 +10,7 @@ namespace Combat_Realism
 {
     public class CompProperties_AmmoUser : CompProperties
     {
-        public int magazineSize = 1;
+        public int magazineSize = 0;
         public int reloadTicks = 300;
         public bool throwMote = true;
         public AmmoSetDef ammoSet = null;

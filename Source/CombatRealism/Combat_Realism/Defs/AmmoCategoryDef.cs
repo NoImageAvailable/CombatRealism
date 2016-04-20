@@ -8,5 +8,6 @@ namespace Combat_Realism
 {
     public class AmmoCategoryDef : Def
     {
+        public bool advanced = false;
     }
 }

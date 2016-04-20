@@ -86,7 +86,7 @@ namespace Combat_Realism
         {
             get
             {
-                return Mathf.Lerp(1f, 0.75f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryBulk")));
+                return Mathf.Lerp(1f, 0.75f, currentWeight / 40f);
             }
         }
         public float encumberPenalty
@@ -124,6 +124,8 @@ namespace Combat_Realism
         public List<ThingWithComps> meleeWeaponList => meleeWeaponListCached;
         private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
         public List<ThingWithComps> rangedWeaponList => rangedWeaponListCached;
+        private bool initializedLoadouts = false;
+        private int ticksToInitLoadout = 5;         // Generate loadouts this many ticks after spawning
 
         public override void Initialize(CompProperties props)
         {
@@ -319,6 +321,38 @@ namespace Combat_Realism
 
         public override void CompTick()
         {
+            // Initialize loadouts on first tick
+            if (ticksToInitLoadout > 0)
+            {
+                ticksToInitLoadout--;
+            }
+            else if (!initializedLoadouts)
+            {
+                // Find all loadout generators
+                List<LoadoutGeneratorThing> genList = new List<LoadoutGeneratorThing>();
+                foreach(Thing thing in container)
+                {
+                    LoadoutGeneratorThing lGenThing = thing as LoadoutGeneratorThing;
+                    if (lGenThing != null && lGenThing.loadoutGenerator != null)
+                        genList.Add(lGenThing);
+                }
+
+                // Sort list by execution priority
+                genList.Sort(delegate (LoadoutGeneratorThing x, LoadoutGeneratorThing y)
+                {
+                    return x.priority.CompareTo(y.priority);
+                });
+
+                // Generate loadouts
+                foreach(LoadoutGeneratorThing thing in genList)
+                {
+                    thing.loadoutGenerator.GenerateLoadout(this);
+                    Thing unused;
+                    container.TryDrop(thing, this.parent.Position, ThingPlaceMode.Near, out unused);
+                }
+                initializedLoadouts = true;
+            }
+
             base.CompTick();
 
             // Remove items from inventory if we're over the bulk limit
@@ -329,12 +363,15 @@ namespace Combat_Realism
             }
 
             // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
-            float lastWeight = this.currentWeightCached;
-            float lastBulk = this.currentBulkCached;
-            this.UpdateInventory();
-            if (lastWeight != this.currentWeightCached || lastBulk != this.currentBulkCached)
+            if(ticksToInitLoadout <= 2)
             {
-                Log.Error(this.parent.ToString() + " failed inventory validation");
+                float lastWeight = this.currentWeightCached;
+                float lastBulk = this.currentBulkCached;
+                this.UpdateInventory();
+                if (lastWeight != this.currentWeightCached || lastBulk != this.currentBulkCached)
+                {
+                    Log.Error(this.parent.ToString() + " failed inventory validation");
+                }
             }
         }
     }

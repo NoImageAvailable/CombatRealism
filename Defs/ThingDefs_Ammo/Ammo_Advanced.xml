@@ -22,6 +22,10 @@
     <thingCategories>
       <li>Ammo</li>
     </thingCategories>
+	<tradeTags>
+	  <li>CR_Ammo</li>
+	</tradeTags>
+	<tradeability>Sellable</tradeability>
   </ThingDef>
   
   <!-- ==================== 30x64mm Fuel Cell ========================== -->
@@ -32,6 +36,9 @@
 	  <Weight>0.3</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
@@ -60,6 +67,21 @@
     </statBases>
 	<linkedProjectile>Bullet_30x64mmFuel_Thermobaric</linkedProjectile>
 	<ammoClass>ThermobaricFuel</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
+    <defName>Ammo_30x64mmFuel_Foam</defName>
+    <label>30x64mm Fuel Cell (Foam)</label>
+    <graphicData>
+      <texPath>Things/Ammo/FuelCell/Foam</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_30x64mmFuel_Foam</linkedProjectile>
+	<ammoClass>FoamFuel</ammoClass>
+	<canBeSpawningInventory>false</canBeSpawningInventory>
   </ThingDef>
   
   <!-- ==================== 80x128mm Fuel Cell ========================== -->
@@ -94,6 +116,9 @@
 	  <Weight>0.009</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="6x24mmChargedBase">
@@ -136,6 +161,7 @@
     </statBases>
 	<linkedProjectile>Bullet_6x24mmCharged_Ion</linkedProjectile>
 	<ammoClass>Ionized</ammoClass>
+	<canBeSpawningInventory>false</canBeSpawningInventory>
   </ThingDef>
   
   <!-- ==================== 5x35mm Charged ========================== -->

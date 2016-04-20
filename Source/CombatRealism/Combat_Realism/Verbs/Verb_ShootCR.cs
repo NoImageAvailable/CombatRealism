@@ -41,6 +41,18 @@ namespace Combat_Realism
                 return this.compFireModesInt;
             }
         }
+        private CompAmmoUser compAmmoInt = null;
+        private CompAmmoUser compAmmo
+        {
+            get
+            {
+                if (compAmmoInt == null)
+                {
+                    compAmmoInt = this.ownerEquipment.TryGetComp<CompAmmoUser>();
+                }
+                return compAmmoInt;
+            }
+        }
 
         private bool shouldAim
         {
@@ -48,6 +60,11 @@ namespace Combat_Realism
             {
                 if(this.CasterIsPawn)
                 {
+                    // Check for hunting job
+                    if (CasterPawn.jobs != null && CasterPawn.jobs.curJob != null && CasterPawn.jobs.curJob.def == JobDefOf.Hunt)
+                        return true;
+
+                    // Check for suppression
                     CompSuppressable comp = this.caster.TryGetComp<CompSuppressable>();
                     if (comp != null)
                     {
@@ -62,8 +79,10 @@ namespace Combat_Realism
             }
         }
         private bool isAiming = false;
-        private int xpTicks = 0;                // Tracker to see how much xp should be awarded for time spent aiming + bursting
-        private const int aimTicksMin = 30;         // How much time to spend on aiming
+        private int xpTicks = 0;                        // Tracker to see how much xp should be awarded for time spent aiming + bursting
+
+        // How much time to spend on aiming
+        private const int aimTicksMin = 30;             
         private const int aimTicksMax = 240;
 
         // XP amounts
@@ -168,6 +187,7 @@ namespace Combat_Realism
             {
                 this.compFireModes.ResetModes();
             }
+            caster = null;
         }
 
         /// <summary>
@@ -179,5 +199,19 @@ namespace Combat_Realism
                 return false;
             return base.CanHitTargetFrom(root, targ);
         }
-	}
+
+        protected override bool TryCastShot()
+        {
+            if (compAmmo != null)
+            {
+                if (!compAmmo.TryReduceAmmoCount())
+                {
+                    if (compAmmo.hasMagazine)
+                        compAmmo.StartReload();
+                    return false;
+                }
+            }
+            return base.TryCastShot();
+        }
+    }
 }

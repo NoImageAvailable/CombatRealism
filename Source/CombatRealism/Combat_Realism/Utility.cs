@@ -13,6 +13,8 @@ namespace Combat_Realism
     {
         #region Misc
 
+        public static List<ThingDef> allWeaponDefs = new List<ThingDef>();
+
         /// <summary>
         /// Generates a random Vector2 in a circle with given radius
         /// </summary>

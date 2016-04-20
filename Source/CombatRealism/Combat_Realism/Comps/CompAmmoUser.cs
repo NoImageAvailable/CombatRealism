@@ -20,12 +20,12 @@ namespace Combat_Realism
             }
         }
 
-        private int curAmmoCountInt;
+        private int curMagCountInt;
         public int curMagCount
         {
             get
             {
-                return curAmmoCountInt;
+                return curMagCountInt;
             }
         }
         public CompEquippable compEquippable
@@ -47,7 +47,16 @@ namespace Combat_Realism
                 return Props.ammoSet != null;
             }
         }
-        public bool hasAmmo => compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Contains(x.def));
+        public bool hasAmmo
+        {
+            get
+            {
+                if (compInventory == null)
+                    return false;
+                return compInventory.ammoList.Any(x => Props.ammoSet.ammoTypes.Contains(x.def));
+            }
+        }
+        public bool hasMagazine => Props.magazineSize > 0;
         private AmmoDef currentAmmoInt = null;
         public AmmoDef currentAmmo
         {
@@ -69,7 +78,7 @@ namespace Combat_Realism
         {
             base.Initialize(vprops);
 
-            curAmmoCountInt = Props.magazineSize;
+            curMagCountInt = Props.magazineSize;
 
             // Initialize ammo with default if none is set
             if (useAmmo)
@@ -92,7 +101,7 @@ namespace Combat_Realism
         {
             base.PostExposeData();
 
-            Scribe_Values.LookValue(ref curAmmoCountInt, "count", 1);
+            Scribe_Values.LookValue(ref curMagCountInt, "count", 0);
             Scribe_Defs.LookDef(ref currentAmmoInt, "currentAmmo");
             Scribe_Defs.LookDef(ref selectedAmmo, "selectedAmmo");
         }
@@ -112,17 +121,41 @@ namespace Combat_Realism
         /// <summary>
         /// Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam)
         /// </summary>
-        public void ReduceAmmoCount()
+        public bool TryReduceAmmoCount()
         {
-            if (curAmmoCountInt <= 0)
+            // Mag-less weapons feed directly from inventory
+            if (!hasMagazine)
             {
-                Log.Error("Tried reducing current ammo of " + this.parent.ToString() + " below zero");
-                curAmmoCountInt = 0;
-                return;
+                if (useAmmo)
+                {
+                    Thing ammo;
+
+                    if (!TryFindAmmoInInventory(out ammo))
+                    {
+                        return false;
+                    }
+
+                    if (ammo.stackCount > 1)
+                        ammo = ammo.SplitOff(1);
+
+                    ammo.Destroy();
+                    compInventory.UpdateInventory();
+                }
+                return true;
             }
-            curAmmoCountInt--;
+            // If magazine is empty, return false
+            else if (curMagCountInt <= 0)
+            {
+                curMagCountInt = 0;
+                return false;
+            }
+            // Reduce ammo count and update inventory
+            curMagCountInt--;
             if (compInventory != null)
+            {
                 compInventory.UpdateInventory();
+            }
+            return true;
         }
 
         public void StartReload()
@@ -134,14 +167,19 @@ namespace Combat_Realism
                 return;
             }
 
+            if (!hasMagazine)
+            {
+                return;
+            }
+
             if (useAmmo)
             {
                 // Add remaining ammo back to inventory
-                if (curAmmoCountInt > 0)
+                if (curMagCountInt > 0)
                 {
                     Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
-                    ammoThing.stackCount = curAmmoCountInt;
-                    curAmmoCountInt = 0;
+                    ammoThing.stackCount = curMagCountInt;
+                    curMagCountInt = 0;
 
                     if (compInventory != null)
                     {
@@ -189,7 +227,10 @@ namespace Combat_Realism
         {
             if(Props.throwMote)
                 MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_OutOfAmmo".Translate() + "!");
-            compInventory.SwitchToNextViableWeapon();
+            if (compInventory != null)
+                compInventory.SwitchToNextViableWeapon();
+            if (wielder != null && wielder.jobs != null)
+                wielder.jobs.StopAll();
         }
 
         public void FinishReload()
@@ -210,19 +251,20 @@ namespace Combat_Realism
                     currentAmmoInt = (AmmoDef)ammoThing.def;
                     if (Props.magazineSize < ammoThing.stackCount)
                     {
-                        curAmmoCountInt = Props.magazineSize;
+                        curMagCountInt = Props.magazineSize;
                         ammoThing.stackCount -= Props.magazineSize;
+                        compInventory.UpdateInventory();
                     }
                     else
                     {
-                        curAmmoCountInt = ammoThing.stackCount;
+                        curMagCountInt = ammoThing.stackCount;
                         compInventory.container.Remove(ammoThing);
                     }
                 }
             }
             else
             {
-                curAmmoCountInt = Props.magazineSize;
+                curMagCountInt = Props.magazineSize;
             }
             parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(wielder.Position));
             if (Props.throwMote)
@@ -236,7 +278,6 @@ namespace Combat_Realism
             ammoThing = null;
             if (compInventory == null)
             {
-                Log.Error(this.parent.ToString() + " tried searching inventory for ammo with no CompInventory");
                 return false;
             }
 
@@ -284,7 +325,7 @@ namespace Combat_Realism
                 {
                     compAmmo = this,
                     action = this.StartReload,
-                    defaultLabel = "CR_ReloadLabel".Translate(),
+                    defaultLabel = hasMagazine ? "CR_ReloadLabel".Translate() : "",
                     defaultDesc = "CR_ReloadDesc".Translate(),
                     icon = this.currentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : CommunityCoreLibrary.Def_Extensions.IconTexture(this.selectedAmmo)
                 };

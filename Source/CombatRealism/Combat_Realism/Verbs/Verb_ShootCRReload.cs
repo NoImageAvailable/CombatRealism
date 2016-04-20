@@ -33,7 +33,7 @@ namespace Combat_Realism
                 return false;
             }
 
-            compAmmo.ReduceAmmoCount();
+            compAmmo.TryReduceAmmoCount();
             if ( compAmmo.curMagCount <= 0 )
             {
                 compAmmo.StartReload();

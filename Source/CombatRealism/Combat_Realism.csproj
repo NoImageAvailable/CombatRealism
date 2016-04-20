@@ -69,12 +69,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
+    <Compile Include="Combat_Realism\AmmoInjector.cs" />
     <Compile Include="Combat_Realism\Defs\DamageDef_CR.cs" />
+    <Compile Include="Combat_Realism\Defs\LoadoutGeneratorDef.cs" />
+    <Compile Include="Combat_Realism\Things\LoadoutGeneratorThing.cs" />
     <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />
     <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />
     <Compile Include="Combat_Realism\ITabInjector.cs" />
     <Compile Include="Combat_Realism\ITab_Inventory.cs" />
     <Compile Include="Combat_Realism\Loadout.cs" />
+    <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator.cs" />
+    <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_AmmoPrimary.cs" />
+    <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_AmmoSecondary.cs" />
+    <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_WeaponByTag.cs" />
+    <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_List.cs" />
     <Compile Include="Combat_Realism\LoadoutSlot.cs" />
     <Compile Include="Combat_Realism\MainTabWindow_OutfitsAndLoadouts.cs" />
     <Compile Include="Combat_Realism\MapComp_LoadoutManager.cs" />

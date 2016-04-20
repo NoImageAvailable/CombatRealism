@@ -35,6 +35,7 @@
     <defName>ExplosiveAP</defName>
     <label>armor-piercing high-explosive</label>
     <description>Filled with high-explosives that detonate on impact for additional damage.</description>
+	<advanced>true</advanced>
   </AmmoCategoryDef>
   
 </Defs>

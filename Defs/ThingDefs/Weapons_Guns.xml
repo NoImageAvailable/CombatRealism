@@ -115,9 +115,12 @@
       <Steel>30</Steel>
       <Components>2</Components>
     </costList>
+    <weaponTags>
+      <li>CR_Sidearm</li>
+    </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-        <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
+        <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Pistol</projectileDef>
         <warmupTicks>54</warmupTicks>

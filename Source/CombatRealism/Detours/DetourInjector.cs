@@ -117,6 +117,10 @@ namespace Combat_Realism.Detours
                 typeof(Detours_Pawn_EquipmentTracker).GetMethod("TryTransferEquipmentToContainer", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(Pawn_EquipmentTracker).GetMethod("TryStartAttack", BindingFlags.Instance | BindingFlags.Public),
+                typeof(Detours_Pawn_EquipmentTracker).GetMethod("TryStartAttack", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
             return true;
         }
     }

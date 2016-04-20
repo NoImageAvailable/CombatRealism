@@ -58,7 +58,7 @@
       <MaxHitPoints>150</MaxHitPoints>
     </statBases>
     <equippedStatOffsets>
-      <CarryBulk>-20</CarryBulk>
+      <CarryBulk>20</CarryBulk>
     </equippedStatOffsets>
     <apparel>
       <bodyPartGroups>

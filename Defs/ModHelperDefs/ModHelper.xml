@@ -8,6 +8,7 @@
 		<SpecialInjectors>
 			<li>Combat_Realism.Detours.DetourInjector</li>
             <li>Combat_Realism.ITabInjector</li>
+            <li>Combat_Realism.AmmoInjector</li>
 		</SpecialInjectors>
         <ThingComps>
             <li>
