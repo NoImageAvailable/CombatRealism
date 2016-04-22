@@ -144,15 +144,11 @@ namespace Combat_Realism
             {
                 if (compReloader != null)
                 {
-                    Log.Message(this.ownerEquipment.ToString() + "CompReloader is not null");
                     if (compReloader.currentAmmo != null)
                     {
-                        Log.Message(this.ownerEquipment.ToString() + "currentAmmo is not null");
-                        Log.Message("Returning projectileDef " + compReloader.currentAmmo.linkedProjectile.ToString());
                         return compReloader.currentAmmo.linkedProjectile;
                     }
                 }
-                Log.Message("Returning vanilla def");
                 return this.verbPropsCR.projectileDef;
             }
         }
@@ -319,7 +315,7 @@ namespace Combat_Realism
             }
             report.shotSpeed = this.shotSpeed;
             report.swayDegrees = this.swayAmplitude;
-            report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread"));
+            report.spreadDegrees = this.ownerEquipment.GetStatValue(StatDef.Named("ShotSpread")) * this.projectilePropsCR.spreadMult;
             Thing cover;
             this.GetPartialCoverBetween(this.caster.Position.ToVector3Shifted(), targetCell.ToVector3Shifted(), out cover);
             report.cover = cover;

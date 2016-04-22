@@ -152,9 +152,7 @@ namespace Combat_Realism
 
         public Vector2 GetRandSpreadVec()
         {
-            //Vector2 vec = Utility.GenRandInCircle(spreadDegrees);
-            Vector2 vec = UnityEngine.Random.insideUnitCircle;
-            vec.y *= 0.5f;
+            Vector2 vec = UnityEngine.Random.insideUnitCircle * spreadDegrees;
             return vec;
         }
 

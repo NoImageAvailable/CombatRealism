@@ -104,19 +104,23 @@
     <statBases>
       <WorkToMake>6000</WorkToMake>
       <MarketValue>200</MarketValue>
-      <AccuracyTouch>0.91</AccuracyTouch>
-      <AccuracyShort>0.71</AccuracyShort>
-      <AccuracyMedium>0.50</AccuracyMedium>
-      <AccuracyLong>0.32</AccuracyLong>
-      <RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
+	  <AimEfficiency>0.35</AimEfficiency>
+	  <ShotSpread>0.16</ShotSpread>
+	  <SwayFactor>2.05</SwayFactor>
+      <RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+	  <Bulk>2</Bulk>
+	  <Weight>1</Weight>
     </statBases>
     <costList>
       <Steel>30</Steel>
       <Components>2</Components>
     </costList>
+    <weaponTags>
+      <li>CR_Sidearm</li>
+    </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-        <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
+        <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Pistol</projectileDef>
         <warmupTicks>54</warmupTicks>
@@ -165,10 +169,8 @@
     <statBases>
       <WorkToMake>7500</WorkToMake>
       <MarketValue>400</MarketValue>
-      <AccuracyTouch>0.80</AccuracyTouch>
-      <AccuracyShort>0.87</AccuracyShort>
-      <AccuracyMedium>0.77</AccuracyMedium>
-      <AccuracyLong>0.64</AccuracyLong>
+	  <ShotSpread>2.5</ShotSpread>
+	  <SwayFactor>1.54</SwayFactor>
       <RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
     </statBases>
     <costList>
@@ -490,9 +492,9 @@
       <speed>40</speed>
       <damageDef>Flame</damageDef>
       <damageAmountBase>10</damageAmountBase>
-      <explosionRadius>1.1</explosionRadius>
+      <explosionRadius>1.5</explosionRadius>
       <preExplosionSpawnThingDef>Puddle_Fuel</preExplosionSpawnThingDef>
-      <explosionSpawnChance>0.6</explosionSpawnChance>
+      <explosionSpawnChance>1</explosionSpawnChance>
     </projectile>
   </ThingDef>
 

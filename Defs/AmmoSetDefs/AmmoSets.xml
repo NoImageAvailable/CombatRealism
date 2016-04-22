@@ -75,24 +75,24 @@
 	</ammoTypes>
   </AmmoSetDef>
   
-  <!-- ==================== 30x32mm Fuel Cell ========================== -->
+  <!-- ==================== 30x64mm Fuel Cell ========================== -->
 
   <AmmoSetDef>
-    <defName>AmmoSet_30x32mmFuel</defName>
-    <label>30x32mm Fuel Cell</label>
+    <defName>AmmoSet_30x64mmFuel</defName>
+    <label>30x64mm Fuel Cell</label>
 	<ammoTypes>
-	  <li>Ammo_30x32mmFuel_Incendiary</li>
-	  <li>Ammo_30x32mmFuel_Thermobaric</li>
+	  <li>Ammo_30x64mmFuel_Incendiary</li>
+	  <li>Ammo_30x64mmFuel_Thermobaric</li>
 	</ammoTypes>
   </AmmoSetDef>
   
-  <!-- ==================== 80x128mm Fuel Cell ========================== -->
+  <!-- ==================== 80x256mm Fuel Cell ========================== -->
 
   <AmmoSetDef>
-    <defName>AmmoSet_80x128mmFuel</defName>
-    <label>80x128mm Fuel Cell</label>
+    <defName>AmmoSet_80x256mmFuel</defName>
+    <label>80x256mm Fuel Cell</label>
 	<ammoTypes>
-	  <li>Ammo_80x128mmFuel_Thermobaric</li>
+	  <li>Ammo_80x256mmFuel_Thermobaric</li>
 	</ammoTypes>
   </AmmoSetDef>
   

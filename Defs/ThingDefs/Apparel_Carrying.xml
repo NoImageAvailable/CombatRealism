@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+  
+  <!-- ============= Stuffed apparel =================-->
+
+
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_TacRigging</defName>
+    <label>tactical vest</label>
+	<ThingClass>Combat_Realism.Apparel_VisibleAccessory</ThingClass>
+    <description>A loadbearing vest with a number of pouches to store magazines and other equipment.</description>
+    <graphicData>
+      <texPath>Things/Apparel/TacRigging/TacRigging</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+    <equippedStatOffsets>
+      <CarryBulk>20</CarryBulk>
+    </equippedStatOffsets>
+    <apparel>
+      <bodyPartGroups>
+        <li>Shoulders</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Accessory</li>
+      </layers>
+      <commonality>1</commonality>
+      <tags>
+        <li>Outlander</li>
+        <li>Military</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags> </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.33,0.33,0.33,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+  </ThingDef>
+
+
+  <ThingDef ParentName="ApparelBase">
+    <defName>Apparel_Backpack</defName>
+    <label>backpack</label>
+	<ThingClass>Combat_Realism.Apparel_VisibleAccessory</ThingClass>
+    <description>A comfortable and spacious backpack for storing all kinds of items.</description>
+    <graphicData>
+      <texPath>Things/Apparel/Backpack/Milpack</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>150</MaxHitPoints>
+    </statBases>
+    <equippedStatOffsets>
+      <CarryBulk>20</CarryBulk>
+    </equippedStatOffsets>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Accessory</li>
+      </layers>
+      <commonality>1</commonality>
+      <tags>
+        <li>Outlander</li>
+        <li>Military</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags> </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>RGBA(0.33,0.33,0.33,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+  </ThingDef>
+
+
+
+
+</ThingDefs>

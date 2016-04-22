@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
-  <DamageDef Name="LocalInjuryBase" Abstract="True">
+  <DamageDef Class="Combat_Realism.DamageDef_CR" Name="LocalInjuryBase" Abstract="True">
     <workerClass>Combat_Realism.DamageWorker_AddInjuryCR</workerClass>
   </DamageDef>
 
@@ -16,6 +16,7 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
+	<deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -57,9 +58,10 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
+	<deflectable>true</deflectable>
   </DamageDef>
 
-  <DamageDef ParentName="LocalInjuryBase">
+  <DamageDef Name="DamageBulletBase" ParentName="LocalInjuryBase">
     <defName>Bullet</defName>
     <label>bullet</label>
     <externalViolence>true</externalViolence>
@@ -69,6 +71,16 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Bullet</impactSoundType>
     <armorCategory>Sharp</armorCategory>
+	<deflectable>true</deflectable>
+  </DamageDef>
+
+  <DamageDef ParentName="DamageBulletBase">
+    <defName>Fragment</defName>
+    <label>fragment</label>
+    <deathMessage>{0} has been shredded to death.</deathMessage>
+    <hediff>Shredded</hediff>
+    <hediffSolid>Crack</hediffSolid>
+    <spreadOut>true</spreadOut>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -82,6 +94,7 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Bullet</impactSoundType>
     <armorCategory>Sharp</armorCategory>
+	<deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -95,6 +108,8 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
+	<deflectable>true</deflectable>
+	<absorbable>true</absorbable>
   </DamageDef>
 
   <DamageDef Name="Bite" ParentName="LocalInjuryBase">
@@ -108,6 +123,7 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Slice</impactSoundType>
     <armorCategory>Sharp</armorCategory>
+	<deflectable>true</deflectable>
   </DamageDef>
   
   <DamageDef ParentName="Bite">
@@ -119,16 +135,18 @@
         <severityPerDamageDealt>0.001</severityPerDamageDealt>
       </li>
     </additionalHediffs>
+	<deflectable>true</deflectable>
+	<absorbable>true</absorbable>
   </DamageDef>
 
-  <DamageDef ParentName="LocalInjuryBase">
+  <DamageDef Name="DamageBombBase" ParentName="LocalInjuryBase">
     <defName>Bomb</defName>
     <label>bomb</label>
     <externalViolence>true</externalViolence>
     <isExplosive>true</isExplosive>
     <battleWound>true</battleWound>
     <deathMessage>{0} has died in an explosion.</deathMessage>
-    <hediff>Shredded</hediff>
+    <hediff>Blast</hediff>
     <hediffSolid>Crack</hediffSolid>
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Blunt</impactSoundType>
@@ -140,20 +158,14 @@
     <explosionHeatEnergyPerCell>5</explosionHeatEnergyPerCell>
     <explosionCellMote>Mote_BlastDry</explosionCellMote>
     <soundExplosion>Explosion_Bomb</soundExplosion>
+	<deflectable>true</deflectable>
   </DamageDef>
-
-  <DamageDef ParentName="LocalInjuryBase">
-    <defName>Fragment</defName>
-    <label>fragment</label>
-    <externalViolence>true</externalViolence>
-    <battleWound>true</battleWound>
-    <deathMessage>{0} has been shredded to death.</deathMessage>
-    <hediff>Shredded</hediff>
-    <hediffSolid>Crack</hediffSolid>
-    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
-    <impactSoundType>Bullet</impactSoundType>
-    <armorCategory>Sharp</armorCategory>
-    <spreadOut>true</spreadOut>
+  
+  <DamageDef ParentName="DamageBombBase">
+    <defName>Bomb_Secondary</defName>
+    <label>bomb</label>
+    <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+    <spreadOut>false</spreadOut>
   </DamageDef>
 
 </Defs>

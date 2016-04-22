@@ -147,5 +147,51 @@ namespace Combat_Realism.Detours
 
             return resultingEq == null;
         }
+
+        internal static bool TryStartAttack(this Pawn_EquipmentTracker _this, TargetInfo targ)
+        {
+            Pawn pawn = (Pawn)pawnFieldInfo.GetValue(_this);
+            if (pawn.stances.FullBodyBusy)
+            {
+                return false;
+            }
+            if (pawn.story != null && pawn.story.DisabledWorkTags.Contains(WorkTags.Violent))
+            {
+                return false;
+            }
+            bool allowManualCastWeapons = !pawn.IsColonist;
+            Verb verb = pawn.TryGetAttackVerb(allowManualCastWeapons);
+
+            // Check for reload before attacking
+            Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: PrimaryEq null " + (_this.PrimaryEq == null).ToString());
+            Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: verb null " + (verb == null).ToString());
+            Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: verb is primary verb " + (verb == _this.PrimaryEq.PrimaryVerb).ToString());
+            if (_this.PrimaryEq != null && verb != null && verb == _this.PrimaryEq.PrimaryVerb)
+            {
+                Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: Primary null " + (_this.Primary == null).ToString());
+                if (_this.Primary != null)
+                {
+                    CompAmmoUser compAmmo = _this.Primary.TryGetComp<CompAmmoUser>();
+                    Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: compAmmo null " + (compAmmo == null).ToString());
+                    if (compAmmo != null)
+                    {
+                        if(!compAmmo.hasMagazine)
+                        {
+                            Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: compAmmo has no magazine, return false? " + (compAmmo.useAmmo && !compAmmo.hasAmmo).ToString());
+                            if (compAmmo.useAmmo && !compAmmo.hasAmmo)
+                                return false;
+                        }
+                        else if(compAmmo.curMagCount <= 0)
+                        {
+                            Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: compAmmo has no ammo, start reload");
+                            compAmmo.StartReload();
+                            Log.Message("Pawn_EquipmentTracker :: TryStartAttack :: return false");
+                            return false;
+                        }
+                    }
+                }
+            }
+            return verb != null && verb.TryStartCastOn(targ, false);
+        }
     }
 }

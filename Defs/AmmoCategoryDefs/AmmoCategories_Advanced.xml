@@ -29,6 +29,7 @@
     <defName>ThermobaricFuel</defName>
     <label>FC-T</label>
     <description>Filled with high-explosive aerosol that causes a large explosion and ignites flammable materials.</description>
+	<advanced>true</advanced>
   </AmmoCategoryDef>
   
 </Defs>

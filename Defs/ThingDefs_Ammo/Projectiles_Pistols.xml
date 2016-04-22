@@ -20,12 +20,6 @@
     <projectile>
       <damageAmountBase>10</damageAmountBase>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.425</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="Base9x19mmParaBullet">
@@ -34,12 +28,6 @@
     <projectile>
       <damageAmountBase>8</damageAmountBase>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.575</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="Base9x19mmParaBullet">
@@ -48,12 +36,6 @@
     <projectile>
       <damageAmountBase>12</damageAmountBase>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.275</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 	
 	<!-- ================== .45 ACP ================== -->
@@ -74,13 +56,8 @@
     <label>.45 ACP bullet (FMJ)</label>
     <projectile>
       <damageAmountBase>13</damageAmountBase>
+	  <armorPenetration>0.4</armorPenetration>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.4</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="Base45ACPParaBullet">
@@ -88,13 +65,14 @@
     <label>.45 ACP bullet (AP)</label>
     <projectile>
       <damageAmountBase>11</damageAmountBase>
+	  <armorPenetration>0.55</armorPenetration>
+	  <secondaryDamage>
+	    <li>
+		  <def>Bomb_Secondary</def>
+		  <amount>10</amount>
+		</li>
+	  </secondaryDamage>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.55</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
   
   <ThingDef ParentName="Base45ACPParaBullet">
@@ -103,12 +81,6 @@
     <projectile>
       <damageAmountBase>16</damageAmountBase>
     </projectile>
-    <comps>
-      <li Class="Combat_Realism.CompProperties_AP">
-        <compClass>Combat_Realism.CompAP</compClass>
-        <armorPenetration>0.25</armorPenetration>
-      </li>
-    </comps>
   </ThingDef>
 
 

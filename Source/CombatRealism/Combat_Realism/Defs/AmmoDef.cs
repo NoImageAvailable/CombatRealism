@@ -12,5 +12,6 @@ namespace Combat_Realism
     {
         public ThingDef linkedProjectile;
         public AmmoCategoryDef ammoClass;
+        public int defaultAmmoCount = 1;
     }
 }

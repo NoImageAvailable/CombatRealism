@@ -54,7 +54,7 @@ namespace Combat_Realism
             }
         }
         private List<FireMode> availableFireModes = new List<FireMode>();
-        private List<AimMode> availableAimModes = new List<AimMode> { AimMode.Snapshot, AimMode.AimedShot, AimMode.SuppressFire, AimMode.HoldFire };
+        private List<AimMode> availableAimModes = new List<AimMode> { AimMode.Snapshot, AimMode.AimedShot, AimMode.HoldFire };
 
         private FireMode currentFireModeInt;
         public FireMode currentFireMode
@@ -167,14 +167,14 @@ namespace Combat_Realism
             StringBuilder stringBuilder = new StringBuilder();
             if (this.availableFireModes.Count > 0)
             {
-                stringBuilder.AppendLine("Fire modes: ");
+                stringBuilder.AppendLine("CR_FireModes" + ": ");
                 foreach (FireMode fireMode in this.availableFireModes)
                 {
                     stringBuilder.AppendLine("   -" + ("CR_" + fireMode.ToString() + "Label").Translate());
                 }
                 if (this.Props.aimedBurstShotCount > 0 && this.availableFireModes.Contains(FireMode.BurstFire))
                 {
-                    stringBuilder.AppendLine("Burst shot count: " + GenText.ToStringByStyle(this.Props.aimedBurstShotCount, ToStringStyle.Integer));
+                    stringBuilder.AppendLine("CR_AimedBurstCount" + ": " + GenText.ToStringByStyle(this.Props.aimedBurstShotCount, ToStringStyle.Integer));
                 }
             }
             return stringBuilder.ToString();

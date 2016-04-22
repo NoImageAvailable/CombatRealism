@@ -16,7 +16,8 @@ namespace Combat_Realism
 		{
 			public bool wounded;
 			public bool headshot;
-			public bool deflected;
+            public bool deflected;
+			public bool absorbed;
 			public BodyPartRecord lastHitPart;
 			public float totalDamageDealt;
 
@@ -26,7 +27,8 @@ namespace Combat_Realism
 				{
 					wounded = false,
 					headshot = false,
-					deflected = false,
+                    deflected = false,
+					absorbed = false,
 					lastHitPart = null,
 					totalDamageDealt = 0f
 				};
@@ -109,7 +111,7 @@ namespace Combat_Realism
 					}
 				}
 			}
-			if (localInjuryResult.deflected)
+			if (localInjuryResult.absorbed)
 			{
 				if (pawn.health.deflectionEffecter == null)
 				{
@@ -184,29 +186,50 @@ namespace Combat_Realism
 			if (exactPartFromDamageInfo == null)
 			{
 				return;
-			}
-			bool flag = true;
-			if (dinfo.InstantOldInjury)
+            }
+
+            // Only apply armor if we propagate damage to the outside or the body part itself is outside, secondary damage types should directly damage organs, bypassing armor
+            bool involveArmor = !dinfo.InstantOldInjury 
+                && !result.deflected
+                && (dinfo.Def.harmAllLayersUntilOutside || exactPartFromDamageInfo.depth == BodyPartDepth.Outside);
+			int damageAmount = dinfo.Amount;
+
+			if (involveArmor)
+            {
+                damageAmount = Utility.GetAfterArmorDamage(pawn, dinfo.Amount, exactPartFromDamageInfo, dinfo, true, ref result.deflected);
+            }
+			if ((double)damageAmount < 0.001)
 			{
-				flag = false;
-			}
-			int num = dinfo.Amount;
-			if (flag)
-			{
-				num = ArmorUtility.GetAfterArmorDamage(pawn, dinfo.Amount, exactPartFromDamageInfo, dinfo.Def);
-			}
-			if ((double)num < 0.001)
-			{
-				result.deflected = true;
+				result.absorbed = true;
 				return;
-			}
-			HediffDef hediffDefFromDamage = HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, exactPartFromDamageInfo);
+            }
+
+            // Shot absorbed and converted into blunt
+            DamageDef_CR damageDefCR = dinfo.Def as DamageDef_CR;
+            if (damageDefCR != null 
+                && damageDefCR.deflectable 
+                && result.deflected
+                && dinfo.Def != Utility.absorbDamageDef)
+            {
+                // Get outer parent of struck part
+                BodyPartRecord currentPart = exactPartFromDamageInfo;
+                while (currentPart != null && currentPart.parent != null && currentPart.depth != BodyPartDepth.Outside)
+                {
+                    currentPart = currentPart.parent;
+                }
+                DamageInfo dinfo2 = new DamageInfo(Utility.absorbDamageDef, damageAmount, dinfo.Instigator, new BodyPartDamageInfo(currentPart, false), dinfo.Source);
+                this.ApplyDamagePartial(dinfo2, pawn, ref result);
+                return;
+            }
+
+            //Creating the Hediff
+            HediffDef hediffDefFromDamage = HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, exactPartFromDamageInfo);
 			Hediff_Injury hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(hediffDefFromDamage, pawn, null);
 			hediff_Injury.Part = exactPartFromDamageInfo;
 			hediff_Injury.source = dinfo.Source;
 			hediff_Injury.sourceBodyPartGroup = dinfo.LinkedBodyPartGroup;
 			hediff_Injury.sourceHediffDef = dinfo.LinkedHediffDef;
-			hediff_Injury.Severity = (float)num;
+			hediff_Injury.Severity = (float)damageAmount;
 			if (dinfo.InstantOldInjury)
 			{
 				HediffComp_GetsOld hediffComp_GetsOld = hediff_Injury.TryGetComp<HediffComp_GetsOld>();
@@ -236,8 +259,8 @@ namespace Combat_Realism
 				return;
 			}
 			this.FinalizeAndAddInjury(pawn, hediff_Injury, dinfo, ref result);
-			this.CheckPropagateDamageToInnerSolidParts(dinfo, pawn, hediff_Injury, flag, ref result);
-			this.CheckDuplicateDamageToOuterParts(dinfo, pawn, hediff_Injury, flag, ref result);
+			this.CheckPropagateDamageToInnerSolidParts(dinfo, pawn, hediff_Injury, !dinfo.InstantOldInjury, damageAmount, ref result);
+			this.CheckDuplicateDamageToOuterParts(dinfo, pawn, hediff_Injury, !dinfo.InstantOldInjury, damageAmount, ref result);
 		}
 
 		private void FinalizeAndAddInjury(Pawn pawn, Hediff_Injury injury, DamageInfo dinfo, ref DamageWorker_AddInjuryCR.LocalInjuryResult result)
@@ -276,7 +299,7 @@ namespace Combat_Realism
 			}
 		}
 
-		private void CheckPropagateDamageToInnerSolidParts(DamageInfo dinfo, Pawn pawn, Hediff_Injury injury, bool involveArmor, ref DamageWorker_AddInjuryCR.LocalInjuryResult result)
+		private void CheckPropagateDamageToInnerSolidParts(DamageInfo dinfo, Pawn pawn, Hediff_Injury injury, bool involveArmor, int postArmorDamage, ref DamageWorker_AddInjuryCR.LocalInjuryResult result)
 		{
 			if (!dinfo.AllowDamagePropagation)
 			{
@@ -304,8 +327,8 @@ namespace Combat_Realism
 					hediff_Injury.Severity = (float)(dinfo.Amount / 2);
 					if (involveArmor)
 					{
-						hediff_Injury.Severity = (float)ArmorUtility.GetAfterArmorDamage(pawn, dinfo.Amount / 2, part, dinfo.Def);
-					}
+						hediff_Injury.Severity = (float)postArmorDamage;
+                    }
 					if (hediff_Injury.Severity <= 0f)
 					{
 						return;
@@ -316,7 +339,7 @@ namespace Combat_Realism
 			}
 		}
 
-		private void CheckDuplicateDamageToOuterParts(DamageInfo dinfo, Pawn pawn, Hediff_Injury injury, bool involveArmor, ref DamageWorker_AddInjuryCR.LocalInjuryResult result)
+		private void CheckDuplicateDamageToOuterParts(DamageInfo dinfo, Pawn pawn, Hediff_Injury injury, bool involveArmor, int postArmorDamage, ref DamageWorker_AddInjuryCR.LocalInjuryResult result)
 		{
 			if (!dinfo.AllowDamagePropagation)
 			{
@@ -336,9 +359,9 @@ namespace Combat_Realism
 						hediff_Injury.sourceBodyPartGroup = injury.sourceBodyPartGroup;
 						hediff_Injury.Severity = (float)dinfo.Amount;
 						if (involveArmor)
-						{
-							hediff_Injury.Severity = (float)ArmorUtility.GetAfterArmorDamage(pawn, dinfo.Amount, parent, dinfo.Def);
-						}
+                        {
+                            hediff_Injury.Severity = (float)postArmorDamage;
+                        }
 						if (hediff_Injury.Severity <= 0f)
 						{
 							hediff_Injury.Severity = 1f;
@@ -369,7 +392,7 @@ namespace Combat_Realism
 			return !dinfo.InstantOldInjury && injury.Part.groups.Contains(BodyPartGroupDefOf.FullHead) && dinfo.Def == DamageDefOf.Bullet;
 		}
 
-		private static BodyPartRecord GetExactPartFromDamageInfo(DamageInfo dinfo, Pawn pawn)
+		internal static BodyPartRecord GetExactPartFromDamageInfo(DamageInfo dinfo, Pawn pawn)
 		{
 			if (dinfo.Part.Value.Part == null)
 			{
@@ -381,15 +404,16 @@ namespace Combat_Realism
 				return randomNotMissingPart;
 			}
 			if (!dinfo.Part.Value.CanMissBodyPart)
-			{
-				return pawn.health.hediffSet.GetNotMissingParts(null, null).Where(x => x == dinfo.Part.Value.Part).FirstOrDefault<BodyPartRecord>();
+            {
+                BodyPartRecord part = pawn.health.hediffSet.GetNotMissingParts(null, null).Where(x => x == dinfo.Part.Value.Part).FirstOrDefault<BodyPartRecord>();
+                return part;
 			}
 			BodyPartRecord randomNotMissingPart2 = pawn.health.hediffSet.GetRandomNotMissingPart(null, null);
 			if (randomNotMissingPart2 == null)
 			{
 				Log.Warning("GetRandomNotMissingPart returned null (specified part).");
-			}
-			return randomNotMissingPart2;
+            }
+            return randomNotMissingPart2;
 		}
 
 		private static void PlayWoundedVoiceSound(DamageInfo dinfo, Pawn pawn)

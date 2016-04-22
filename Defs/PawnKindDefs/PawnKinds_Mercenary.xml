@@ -42,25 +42,11 @@
       <li>Advanced</li>
     </techHediffsTags>
     <techHediffsChance>0.003</techHediffsChance>
-    <inventoryOptions>
-      <skipChance>0.8</skipChance>
-      <subOptionsChooseOne>
-        <li>
-          <thingDef>Silver</thingDef>
-          <countRange>
-            <min>50</min>
-            <max>200</max>
-          </countRange>
-        </li>
-        <li>
-          <thingDef>Medicine</thingDef>
-          <countRange>
-            <min>1</min>
-            <max>1</max>
-          </countRange>
-        </li>
-      </subOptionsChooseOne>
-    </inventoryOptions>
+	<fixedInventory>
+	  <LoadoutGen_Test>1</LoadoutGen_Test>
+	  <LoadoutGen_TestSidearm>1</LoadoutGen_TestSidearm>
+	  <LoadoutGen_TestSidearmAmmo>1</LoadoutGen_TestSidearmAmmo>
+	</fixedInventory>
   </PawnKindDef>
 
 
@@ -112,7 +98,7 @@
           <thingDef>Medicine</thingDef>
           <countRange>
             <min>1</min>
-            <max>2</max>
+            <max>50</max>
           </countRange>
         </li>
       </subOptionsChooseOne>
