@@ -3,32 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-<<<<<<< HEAD
-=======
-using RimWorld;
-using Verse;
-using Verse.Sound;
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace Combat_Realism
 {
-<<<<<<< HEAD
-    internal class CompInventory : ThingComp
-=======
     public class CompInventory : ThingComp
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
     {
         #region Fields
 
         private List<Thing> ammoListCached = new List<Thing>();
-
+        private int BticksToInitLoadout = 5;
         private float currentBulkCached;
-
         private float currentWeightCached;
-
+        private bool initializedLoadouts = false;
+        private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
         private Pawn parentPawnInt = null;
+        private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
 
         #endregion Fields
 
@@ -54,25 +46,7 @@ namespace Combat_Realism
         {
             get
             {
-<<<<<<< HEAD
                 return capacityWeight - currentWeight;
-=======
-                return capacityBulk - currentBulk;
-            }
-        }
-        public float capacityBulk
-        {
-            get
-            {
-                return this.parentPawn.GetStatValue(StatDef.Named("CarryBulk"));
-            }
-        }
-        public float capacityWeight
-        {
-            get
-            {
-                return this.parentPawn.GetStatValue(StatDef.Named("CarryWeight"));
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
             }
         }
 
@@ -96,11 +70,7 @@ namespace Combat_Realism
         {
             get
             {
-<<<<<<< HEAD
                 return currentBulkCached;
-=======
-                return Mathf.Lerp(1f, 0.75f, currentWeight / this.parentPawn.GetStatValue(StatDef.Named("CarryWeight")));
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
             }
         }
 
@@ -108,11 +78,7 @@ namespace Combat_Realism
         {
             get
             {
-<<<<<<< HEAD
                 return currentWeightCached;
-=======
-                return Mathf.Lerp(1f, 0.75f, currentWeight / 40f);
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
             }
         }
 
@@ -129,6 +95,8 @@ namespace Combat_Realism
             }
         }
 
+        public List<ThingWithComps> meleeWeaponList => meleeWeaponListCached;
+
         public float moveSpeedFactor
         {
             get
@@ -144,12 +112,9 @@ namespace Combat_Realism
                 return (CompProperties_Inventory)this.props;
             }
         }
-        private List<ThingWithComps> meleeWeaponListCached = new List<ThingWithComps>();
-        public List<ThingWithComps> meleeWeaponList => meleeWeaponListCached;
-        private List<ThingWithComps> rangedWeaponListCached = new List<ThingWithComps>();
+
         public List<ThingWithComps> rangedWeaponList => rangedWeaponListCached;
-        private bool initializedLoadouts = false;
-        private int ticksToInitLoadout = 5;         // Generate loadouts this many ticks after spawning
+        // Generate loadouts this many ticks after spawning
 
         public float workSpeedFactor
         {
@@ -171,59 +136,9 @@ namespace Combat_Realism
             }
         }
 
-<<<<<<< HEAD
         #endregion Properties
 
         #region Methods
-=======
-            // Add inventory items
-            if (parentPawn.inventory != null && parentPawn.inventory.container != null)
-            {
-                ammoListCached.Clear();
-                meleeWeaponListCached.Clear();
-                rangedWeaponListCached.Clear();
-                foreach (Thing thing in parentPawn.inventory.container)
-                {
-                    newBulk += thing.GetStatValue(StatDef.Named("Bulk")) * thing.stackCount;
-                    newWeight += thing.GetStatValue(StatDef.Named("Weight")) * thing.stackCount;
-
-                    // Check for weapons
-                    ThingWithComps eq = thing as ThingWithComps;
-                    CompEquippable compEq = thing.TryGetComp<CompEquippable>();
-                    if (eq != null && compEq != null)
-                    {
-                        if (compEq.PrimaryVerb != null)
-                        {
-                            rangedWeaponListCached.Add(eq);
-                        }
-                        else
-                        {
-                            meleeWeaponListCached.Add(eq);
-                        }
-                        // Calculate equipment weight
-                        float eqWeight;
-                        float eqBulk;
-                        GetEquipmentStats(eq, out eqWeight, out eqBulk);
-                        newWeight += eqWeight;
-                        newBulk += eqBulk;
-                    }
-                    else
-                    {
-                        // Update ammo list
-                        if (thing.def is AmmoDef)
-                        {
-                            ammoListCached.Add(thing);
-                        }
-                        // Add item weight
-                        newBulk += thing.GetStatValue(StatDef.Named("Bulk")) * thing.stackCount;
-                        newWeight += thing.GetStatValue(StatDef.Named("Weight")) * thing.stackCount;
-                    }
-                }
-            }
-            this.currentBulkCached = newBulk;
-            this.currentWeightCached = newWeight;
-        }
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
 
         /// <summary>
         /// Determines if and how many of an item currently fit into the inventory with regards to weight/bulk constraints.
@@ -282,8 +197,7 @@ namespace Combat_Realism
         /// Attempts to equip a weapon from the inventory, puts currently equipped weapon into inventory if it exists
         /// </summary>
         /// <param name="useFists">Whether to put the currently equipped weapon away even if no replacement is found</param>
-<<<<<<< HEAD
-        public void SwitchToNextViableWeapon( bool useFists )
+        public void SwitchToNextViableWeapon( bool useFists = true )
         {
             ThingWithComps newEquipment = null;
             foreach ( Thing thing in container )
@@ -310,38 +224,6 @@ namespace Combat_Realism
             if ( newEquipment != null )
             {
                 parentPawn.equipment.AddEquipment( newEquipment );
-=======
-        public void SwitchToNextViableWeapon(bool useFists = true)
-        {
-            ThingWithComps newEq = null;
-
-            // Cycle through available ranged weapons
-            foreach(ThingWithComps gun in rangedWeaponListCached)
-            {
-                CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
-                if (compAmmo == null
-                    || !compAmmo.useAmmo
-                    || compAmmo.curMagCount > 0
-                    || compAmmo.hasAmmo)
-                {
-                    newEq = gun;
-                    break;
-                }
-            }
-            // If no ranged weapon was found, use first available melee weapons
-            if(newEq == null)
-                newEq = meleeWeaponListCached.FirstOrDefault();
-            
-            // Equip the weapon
-            if(newEq != null)
-            {
-                this.TrySwitchToWeapon(newEq);
-            }
-            else if (useFists && parentPawn.equipment?.Primary != null)
-            {
-                ThingWithComps oldEq;
-                parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
             }
         }
 
@@ -356,7 +238,6 @@ namespace Combat_Realism
                 ThingWithComps oldEq;
                 parentPawn.equipment.TryTransferEquipmentToContainer( parentPawn.equipment.Primary, container, out oldEq );
             }
-<<<<<<< HEAD
             parentPawn.equipment.AddEquipment( newEq );
         }
 
@@ -422,71 +303,6 @@ namespace Combat_Realism
             {
                 weight += comp.currentAmmo.GetStatValueAbstract( StatDef.Named( "Weight" ) ) * comp.curMagCount;
                 bulk += comp.currentAmmo.GetStatValueAbstract( StatDef.Named( "Bulk" ) ) * comp.curMagCount;
-=======
-            // Split stack if our weapon has a stack count
-            if (newEq.stackCount > 1)
-            {
-                newEq = (ThingWithComps)newEq.SplitOff(1);
-            }
-            container.Remove(newEq);
-            parentPawn.equipment.AddEquipment(newEq);
-            newEq.def.soundInteract.PlayOneShot(parent.Position);
-        }
-
-        public override void CompTick()
-        {
-            // Initialize loadouts on first tick
-            if (ticksToInitLoadout > 0)
-            {
-                ticksToInitLoadout--;
-            }
-            else if (!initializedLoadouts)
-            {
-                // Find all loadout generators
-                List<LoadoutGeneratorThing> genList = new List<LoadoutGeneratorThing>();
-                foreach(Thing thing in container)
-                {
-                    LoadoutGeneratorThing lGenThing = thing as LoadoutGeneratorThing;
-                    if (lGenThing != null && lGenThing.loadoutGenerator != null)
-                        genList.Add(lGenThing);
-                }
-
-                // Sort list by execution priority
-                genList.Sort(delegate (LoadoutGeneratorThing x, LoadoutGeneratorThing y)
-                {
-                    return x.priority.CompareTo(y.priority);
-                });
-
-                // Generate loadouts
-                foreach(LoadoutGeneratorThing thing in genList)
-                {
-                    thing.loadoutGenerator.GenerateLoadout(this);
-                    Thing unused;
-                    container.TryDrop(thing, this.parent.Position, ThingPlaceMode.Near, out unused);
-                }
-                initializedLoadouts = true;
-            }
-
-            base.CompTick();
-
-            // Remove items from inventory if we're over the bulk limit
-            while(availableBulk < 0 && container.Count > 0)
-            {
-                Thing droppedThing;
-                container.TryDrop(container.Last(), this.parent.Position, ThingPlaceMode.Near, out droppedThing);
-            }
-
-            // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
-            if(ticksToInitLoadout <= 2)
-            {
-                float lastWeight = this.currentWeightCached;
-                float lastBulk = this.currentBulkCached;
-                this.UpdateInventory();
-                if (lastWeight != this.currentWeightCached || lastBulk != this.currentBulkCached)
-                {
-                    Log.Error(this.parent.ToString() + " failed inventory validation");
-                }
->>>>>>> 53ea4fc78b637a2fc21b0d7d95b0250ca7f25e83
             }
         }
 
