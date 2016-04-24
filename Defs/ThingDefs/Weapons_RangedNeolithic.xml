@@ -98,10 +98,11 @@
     <statBases>
       <WorkToMake>1200</WorkToMake>
       <MarketValue>60</MarketValue>
-      <AccuracyTouch>0.89</AccuracyTouch>
-      <AccuracyShort>0.64</AccuracyShort>
-      <AccuracyMedium>0.41</AccuracyMedium>
-      <AccuracyLong>0.22</AccuracyLong>
+      <AimEfficiency>0.35</AimEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>2.05</SwayFactor>
+      <Bulk>2</Bulk>
+      <Weight>1</Weight>
       <RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
@@ -116,7 +117,7 @@
       </recipeUsers>
     </recipeMaker>
     <verbs>
-      <li>
+      <li Class="Combat_Realism.VerbPropertiesCR">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Arrow_Short</projectileDef>
@@ -125,6 +126,17 @@
         <soundCast>BowSmall</soundCast>
       </li>
     </verbs>
+	<comps>
+	  <li Class="Combat_Realism.CompProperties_AmmoUser">
+	    <magazineSize>7</magazineSize>
+		<reloadTicks>180</reloadTicks>
+		<ammoSet>AmmoSet_45ACP</ammoSet>
+	  </li>
+	  <li Class="Combat_Realism.CompProperties_FireModes">
+		<aiUseBurstMode>false</aiUseBurstMode>
+		<aiUseAimMode>false</aiUseAimMode>
+	  </li>
+	</comps>
   </ThingDef>
 
 
@@ -144,31 +156,35 @@
   </ThingDef>
   <ThingDef ParentName="BaseWeaponNeolithic">
     <defName>Pila</defName>
-    <label>pila</label>
-    <description>A bundle of pila, non-reusable throwing spears.</description>
+    <label>pilum</label>
+    <description>A non-reusable throwing spear.</description>
     <graphicData>
-      <texPath>Things/Item/Equipment/WeaponRanged/Pilum</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Ammo/Neolithic/Pilum</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <soundInteract>Interact_BeatFire</soundInteract>
     <costList>
-      <WoodLog>120</WoodLog>
+      <WoodLog>1</WoodLog>
+      <Steel>1</Steel>
     </costList>
     <statBases>
       <WorkToMake>1400</WorkToMake>
-      <MarketValue>90</MarketValue>
-      <AccuracyTouch>0.91</AccuracyTouch>
-      <AccuracyShort>0.71</AccuracyShort>
-      <AccuracyMedium>0.50</AccuracyMedium>
-      <AccuracyLong>0.32</AccuracyLong>
+      <MarketValue>1.8</MarketValue>
+      <AimEfficiency>0.35</AimEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>2.05</SwayFactor>
+      <Bulk>2</Bulk>
+      <Weight>1</Weight>
       <RangedWeapon_Cooldown>4</RangedWeapon_Cooldown>
     </statBases>
+    <equippedAngleOffset>30</equippedAngleOffset>
+    <stackLimit>75</stackLimit>
     <weaponTags>
       <li>NeolithicRanged</li>
 	  <li>CR_Pila</li>
     </weaponTags>
     <verbs>
-      <li>
+      <li Class="Combat_Realism.VerbPropertiesCR">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Pilum_Thrown</projectileDef>
@@ -177,6 +193,17 @@
         <soundCast>Interact_BeatFire</soundCast>
       </li>
     </verbs>
+	<comps>
+	  <li Class="Combat_Realism.CompProperties_AmmoUser">
+	    <magazineSize>7</magazineSize>
+		<reloadTicks>180</reloadTicks>
+		<ammoSet>AmmoSet_45ACP</ammoSet>
+	  </li>
+	  <li Class="Combat_Realism.CompProperties_FireModes">
+		<aiUseBurstMode>false</aiUseBurstMode>
+		<aiUseAimMode>false</aiUseAimMode>
+	  </li>
+	</comps>
   </ThingDef>
 
 
@@ -210,10 +237,11 @@
     <statBases>
       <WorkToMake>1700</WorkToMake>
       <MarketValue>180</MarketValue>
-      <AccuracyTouch>0.93</AccuracyTouch>
-      <AccuracyShort>0.85</AccuracyShort>
-      <AccuracyMedium>0.75</AccuracyMedium>
-      <AccuracyLong>0.50</AccuracyLong>
+      <AimEfficiency>0.35</AimEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>2.05</SwayFactor>
+      <Bulk>2</Bulk>
+      <Weight>1</Weight>
       <RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
@@ -221,7 +249,7 @@
       <li>CR_Bow</li>
     </weaponTags>
     <verbs>
-      <li>
+      <li Class="Combat_Realism.VerbPropertiesCR">
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Arrow_Great</projectileDef>
@@ -230,6 +258,17 @@
         <soundCast>BowGreat</soundCast>
       </li>
     </verbs>
+	<comps>
+	  <li Class="Combat_Realism.CompProperties_AmmoUser">
+	    <magazineSize>7</magazineSize>
+		<reloadTicks>180</reloadTicks>
+		<ammoSet>AmmoSet_45ACP</ammoSet>
+	  </li>
+	  <li Class="Combat_Realism.CompProperties_FireModes">
+		<aiUseBurstMode>false</aiUseBurstMode>
+		<aiUseAimMode>false</aiUseAimMode>
+	  </li>
+	</comps>
   </ThingDef>
 
 </ThingDefs>

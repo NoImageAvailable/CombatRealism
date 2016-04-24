@@ -32,7 +32,7 @@
     <armorCategory>Blunt</armorCategory>
   </DamageDef>
 
-  <DamageDef ParentName="LocalInjuryBase">
+  <DamageDef Name="Blunt" ParentName="LocalInjuryBase">
     <defName>Blunt</defName>
     <label>blunt</label>
     <externalViolence>true</externalViolence>
@@ -45,6 +45,18 @@
     <hasChanceToAdditionallyDamageInnerSolidParts>true</hasChanceToAdditionallyDamageInnerSolidParts>
     <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Blunt</armorCategory>
+  </DamageDef>
+  
+  <DamageDef ParentName="Blunt">
+    <defName>Beanbag</defName>
+    <label>beanbag</label>
+    <deathMessage>{0} has been shot to death.</deathMessage>
+    <additionalHediffs>
+      <li>
+        <hediff>MuscleSpasms</hediff>
+        <severityPerDamageDealt>0.0075</severityPerDamageDealt>
+      </li>
+    </additionalHediffs>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -162,13 +174,12 @@
   
   <DamageDef ParentName="DamageBombBase">
     <defName>Bomb_Secondary</defName>
-    <label>bomb</label>
     <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
     <spreadOut>false</spreadOut>
 	<deflectable>true</deflectable>
   </DamageDef>
 
-  <DamageDef ParentName="LocalInjuryBase">
+  <DamageDef Name="Flame" ParentName="LocalInjuryBase">
     <defName>Flame</defName>
     <workerClass>Combat_Realism.DamageWorker_FlameCR</workerClass>
     <label>flame</label>
@@ -185,6 +196,13 @@
     <explosionHeatEnergyPerCell>15</explosionHeatEnergyPerCell>
     <explosionCellMote>Mote_BlastFlame</explosionCellMote>
     <soundExplosion>Explosion_Flame</soundExplosion>
+  </DamageDef>
+  
+  <DamageDef ParentName="Flame">
+    <defName>Flame_Secondary</defName>
+    <harmAllLayersUntilOutside>false</harmAllLayersUntilOutside>
+    <spreadOut>false</spreadOut>
+	<deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">

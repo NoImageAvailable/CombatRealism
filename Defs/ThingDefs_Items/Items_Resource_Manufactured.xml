@@ -136,8 +136,8 @@
     <label>prometheum</label>
     <description>Military-grade incendiary agent, ignites on contact with oxygen. The raw resource is used to craft incendiary ammo of all kinds.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Components</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Resources/Prometheum</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
@@ -146,8 +146,8 @@
       <MaxHitPoints>70</MaxHitPoints>
       <MarketValue>6</MarketValue>
       <Flammability>1.0</Flammability>
-	  <Weight>3.0</Weight>
-	  <Bulk>6</Bulk>
+	  <Weight>1.5</Weight>
+	  <Bulk>5</Bulk>
     </statBases>
     <thingCategories>
       <li>Manufactured</li>
@@ -159,8 +159,8 @@
     <label>FSX</label>
     <description>High-explosive chemical extracted from Boomalope sacks, it is used in a variety of industrial and military applications.</description>
     <graphicData>
-      <texPath>Things/Item/Resource/Components</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Resources/FSX</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <soundInteract>Metal_Drop</soundInteract>
     <soundDrop>Standard_Drop</soundDrop>
@@ -169,8 +169,8 @@
       <MaxHitPoints>70</MaxHitPoints>
       <MarketValue>10</MarketValue>
       <Flammability>1.0</Flammability>
-	  <Weight>4.5</Weight>
-	  <Bulk>6</Bulk>
+	  <Weight>2</Weight>
+	  <Bulk>5</Bulk>
     </statBases>
     <thingCategories>
       <li>Manufactured</li>

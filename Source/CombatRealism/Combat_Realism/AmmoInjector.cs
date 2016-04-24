@@ -11,7 +11,18 @@ namespace Combat_Realism
 {
     public class AmmoInjector : SpecialInjector
     {
-        private const string enableTag = "CR_AutoEnableTrade";      // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
+        private const string enableTradeTag = "CR_AutoEnableTrade";             // The trade tag which designates ammo defs for being automatically switched to Tradeability.Stockable
+        private const string enableCraftingTag = "CR_AutoEnableCrafting";        // The trade tag which designates ammo defs for having their crafting recipes automatically added to the crafting table
+        private static ThingDef ammoCraftingStationInt;                         // The crafting station to which ammo will be automatically added
+        private static ThingDef ammoCraftingStation
+        {
+            get
+            {
+                if (ammoCraftingStationInt == null)
+                    ammoCraftingStationInt = ThingDef.Named("TableMachining");
+                return ammoCraftingStationInt;
+            }
+        }
 
         public override bool Inject()
         {
@@ -37,9 +48,36 @@ namespace Combat_Realism
                     foreach(ThingDef curDef in props.ammoSet.ammoTypes)
                     {
                         AmmoDef ammoDef = curDef as AmmoDef;
-                        if(ammoDef != null && ammoDef.tradeTags.Contains(enableTag))
+                        if(ammoDef != null)
                         {
-                            ammoDef.tradeability = Tradeability.Stockable;
+                            // Enable trading
+                            if (ammoDef.tradeTags.Contains(enableTradeTag))
+                                ammoDef.tradeability = Tradeability.Stockable;
+
+                            // Enable recipe
+                            if (ammoDef.tradeTags.Contains(enableCraftingTag))
+                            {
+                                RecipeDef recipe = DefDatabase<RecipeDef>.GetNamed(("Make" + ammoDef.defName), false);
+                                if (recipe == null)
+                                {
+                                    Log.Error("CR ammo injector found no recipe named Make" + ammoDef.defName);
+                                }
+                                else
+                                {
+                                    if (ammoCraftingStation == null)
+                                    {
+                                        Log.ErrorOnce("CR ammo injector crafting station is null", 84653201);
+                                    }
+                                    else
+                                    {
+                                        if (!recipe.recipeUsers.Contains(ammoCraftingStation))
+                                        {
+                                            Log.Message("Adding user " + ammoCraftingStation.ToString() + " to recipe " + recipe.ToString());
+                                            recipe.recipeUsers.Add(ammoCraftingStation);
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

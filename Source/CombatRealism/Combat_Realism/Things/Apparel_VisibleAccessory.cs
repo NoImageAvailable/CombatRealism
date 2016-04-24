@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace Combat_Realism
 {
-    class Apparel_VisibleAccessory : Apparel
+    public abstract class Apparel_VisibleAccessory : Apparel
     {
         public override void DrawWornExtras()
         {
             Vector3 drawVec = this.wearer.Drawer.DrawPos;
-            drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn) + 0.04f;
+            drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
             
             // Get the graphic path
@@ -31,18 +31,17 @@ namespace Combat_Realism
                     angle = (float)newAngle;
                 rotation = LayingFacing();
             }
+            drawVec.y += GetAltitudeOffset(rotation);
             Material mat = apparelGraphic.graphic.MatAt(rotation);
-            
-            if (rotation == Rot4.North)
-            {
-                drawVec.y += 0.02f;
-            }
+
             mat.shader = ShaderDatabase.Cutout;
             mat.color = DrawColor;
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(drawVec, Quaternion.AngleAxis(angle, Vector3.up), s);
             Graphics.DrawMesh(rotation == Rot4.West ? MeshPool.plane10Flip : MeshPool.plane10, matrix, mat, 0);
         }
+
+        protected abstract float GetAltitudeOffset(Rot4 rotation);
 
         // Copied from PawnRenderer
         private Rot4 LayingFacing()

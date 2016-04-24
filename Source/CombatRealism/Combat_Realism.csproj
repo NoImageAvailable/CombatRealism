@@ -75,6 +75,8 @@
     <Compile Include="Combat_Realism\Defs\LoadoutGeneratorDef.cs" />
     <Compile Include="Combat_Realism\LoadoutAssignment.cs" />
     <Compile Include="Combat_Realism\Things\AmmoThing.cs" />
+    <Compile Include="Combat_Realism\Things\Apparel_Backpack.cs" />
+    <Compile Include="Combat_Realism\Things\Apparel_TacVest.cs" />
     <Compile Include="Combat_Realism\Things\LoadoutGeneratorThing.cs" />
     <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />
     <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />

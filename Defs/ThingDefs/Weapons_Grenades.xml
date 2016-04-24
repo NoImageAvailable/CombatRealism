@@ -62,9 +62,9 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <explosionRadius>1.0</explosionRadius >
+      <explosionRadius>1.5</explosionRadius >
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>40</damageAmountBase>
+      <damageAmountBase>80</damageAmountBase>
       <explosionDelay>60</explosionDelay>
     </projectile>
 	<comps>
@@ -91,7 +91,7 @@
     <soundInteract>InteractGrenade</soundInteract>
     <techLevel>Midworld</techLevel>
     <statBases>
-      <MarketValue>7</MarketValue>
+      <MarketValue>5.25</MarketValue>
       <AimEfficiency>0.15</AimEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
@@ -153,7 +153,7 @@
     <soundInteract>InteractMolotovCocktail</soundInteract>
     <techLevel>Midworld</techLevel>
     <statBases>
-      <MarketValue>3.5</MarketValue>
+      <MarketValue>2.10</MarketValue>
       <AimEfficiency>0.15</AimEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
@@ -192,7 +192,7 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <explosionRadius>3.5</explosionRadius>
+      <explosionRadius>4</explosionRadius>
       <damageDef>EMP</damageDef>
       <damageAmountBase>80</damageAmountBase>
       <explosionDelay>60</explosionDelay>
@@ -201,7 +201,7 @@
 	  <li Class="Combat_Realism.CompProperties_ExplosiveCR">
 	    <explosionDamage>20</explosionDamage>
 	    <explosionDamageDef>Electrical</explosionDamageDef>
-	    <explosionRadius>3.5</explosionRadius>
+	    <explosionRadius>4</explosionRadius>
 	    <soundExplode>MortarEMP_Explode</soundExplode>
 	  </li>
 	</comps>
@@ -219,7 +219,7 @@
     <soundInteract>InteractGrenade</soundInteract>
     <techLevel>Midworld</techLevel>
     <statBases>
-      <MarketValue>10</MarketValue>
+      <MarketValue>7.65</MarketValue>
       <AimEfficiency>0.15</AimEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
@@ -280,7 +280,7 @@
     <soundInteract>InteractGrenade</soundInteract>
     <techLevel>Midworld</techLevel>
     <statBases>
-      <MarketValue>8.2</MarketValue>
+      <MarketValue>4.85</MarketValue>
       <AimEfficiency>0.15</AimEfficiency>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>

@@ -6,11 +6,12 @@
   <ThingDef Class="Combat_Realism.AmmoDef" Name="12GaugeBase" ParentName="AmmoBase" Abstract="True">
     <description>Extremely common shotgun caliber used in almost every application, from hunting over riot control to military firearms.</description>
     <statBases>
-	  <Weight>0.035</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>0.08</Weight>
+	  <Bulk>0.15</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -22,7 +23,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.19</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Buck</linkedProjectile>
 	<ammoClass>BuckShot</ammoClass>
@@ -36,7 +37,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.19</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Bird</linkedProjectile>
 	<ammoClass>BirdShot</ammoClass>
@@ -50,7 +51,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+	  <Weight>0.1</Weight>
+      <MarketValue>0.24</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Slug</linkedProjectile>
 	<ammoClass>Slug</ammoClass>
@@ -65,7 +67,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.16</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Beanbag</linkedProjectile>
 	<ammoClass>Beanbag</ammoClass>
@@ -79,7 +81,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.47</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_ElectroSlug</linkedProjectile>
 	<ammoClass>ElectroSlug</ammoClass>

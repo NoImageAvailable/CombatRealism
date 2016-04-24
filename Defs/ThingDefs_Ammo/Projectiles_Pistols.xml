@@ -12,8 +12,9 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <speed>30</speed>
+      <speed>71</speed>
       <damageAmountBase>6</damageAmountBase>
+	  <armorPenetration>0.1</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -26,7 +27,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <speed>78</speed>
+      <speed>62</speed>
     </projectile>
   </ThingDef>
   
@@ -34,7 +35,8 @@
     <defName>Bullet_32ACP_FMJ</defName>
     <label>.32 ACP bullet (FMJ)</label>
     <projectile>
-      <damageAmountBase>10</damageAmountBase>
+      <damageAmountBase>8</damageAmountBase>
+	  <armorPenetration>0.25</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -42,7 +44,8 @@
     <defName>Bullet_32ACP_AP</defName>
     <label>.32 ACP bullet (AP)</label>
     <projectile>
-      <damageAmountBase>8</damageAmountBase>
+      <damageAmountBase>6</damageAmountBase>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -50,7 +53,8 @@
     <defName>Bullet_32ACP_HP</defName>
     <label>.32 ACP bullet (HP)</label>
     <projectile>
-      <damageAmountBase>12</damageAmountBase>
+      <damageAmountBase>11</damageAmountBase>
+	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -63,7 +67,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <speed>78</speed>
+      <speed>82</speed>
     </projectile>
   </ThingDef>
   
@@ -71,7 +75,8 @@
     <defName>Bullet_762x25mmTokarev_FMJ</defName>
     <label>7.62mm Tokarev bullet (FMJ)</label>
     <projectile>
-      <damageAmountBase>10</damageAmountBase>
+      <damageAmountBase>11</damageAmountBase>
+	  <armorPenetration>0.35</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -80,6 +85,7 @@
     <label>7.62mm Tokarev bullet (AP)</label>
     <projectile>
       <damageAmountBase>8</damageAmountBase>
+	  <armorPenetration>0.45</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -87,7 +93,8 @@
     <defName>Bullet_762x25mmTokarev_HP</defName>
     <label>7.62mm Tokarev bullet (HP)</label>
     <projectile>
-      <damageAmountBase>12</damageAmountBase>
+      <damageAmountBase>14</damageAmountBase>
+	  <armorPenetration>0.275</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -108,7 +115,8 @@
     <defName>Bullet_9x19mmPara_FMJ</defName>
     <label>9mm Para bullet (FMJ)</label>
     <projectile>
-      <damageAmountBase>10</damageAmountBase>
+      <damageAmountBase>12</damageAmountBase>
+	  <armorPenetration>0.325</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -116,7 +124,8 @@
     <defName>Bullet_9x19mmPara_AP</defName>
     <label>9mm Para bullet (AP)</label>
     <projectile>
-      <damageAmountBase>8</damageAmountBase>
+      <damageAmountBase>9</damageAmountBase>
+	  <armorPenetration>0.425</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -124,7 +133,8 @@
     <defName>Bullet_9x19mmPara_HP</defName>
     <label>9mm Para bullet (HP)</label>
     <projectile>
-      <damageAmountBase>12</damageAmountBase>
+      <damageAmountBase>15</damageAmountBase>
+	  <armorPenetration>0.25</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -137,7 +147,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <speed>55</speed>
+      <speed>50</speed>
     </projectile>
   </ThingDef>
   
@@ -145,8 +155,8 @@
     <defName>Bullet_45ACP_FMJ</defName>
     <label>.45 ACP bullet (FMJ)</label>
     <projectile>
-      <damageAmountBase>13</damageAmountBase>
-	  <armorPenetration>0.4</armorPenetration>
+      <damageAmountBase>14</damageAmountBase>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -155,7 +165,7 @@
     <label>.45 ACP bullet (AP)</label>
     <projectile>
       <damageAmountBase>11</damageAmountBase>
-	  <armorPenetration>0.55</armorPenetration>
+	  <armorPenetration>0.4</armorPenetration>
 	  <secondaryDamage>
 	    <li>
 		  <def>Bomb_Secondary</def>
@@ -169,7 +179,8 @@
     <defName>Bullet_45ACP_HP</defName>
     <label>.45 ACP bullet (HP)</label>
     <projectile>
-      <damageAmountBase>16</damageAmountBase>
+      <damageAmountBase>17</damageAmountBase>
+	  <armorPenetration>0.225</armorPenetration>
     </projectile>
   </ThingDef>
 

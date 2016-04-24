@@ -22,6 +22,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>24</damageAmountBase>
       <speed>160</speed>
+	  <armorPenetration>0.4</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -36,6 +37,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>36</damageAmountBase>
       <speed>140</speed>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -51,6 +53,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>48</damageAmountBase>
       <speed>120</speed>
+	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -67,6 +70,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>36</damageAmountBase>
       <speed>160</speed>
+	  <armorPenetration>0.4</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -81,6 +85,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>48</damageAmountBase>
       <speed>140</speed>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -96,6 +101,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>60</damageAmountBase>
       <speed>120</speed>
+	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -112,6 +118,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>36</damageAmountBase>
       <speed>160</speed>
+	  <armorPenetration>0.4</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -126,6 +133,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>48</damageAmountBase>
       <speed>140</speed>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -141,6 +149,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>60</damageAmountBase>
       <speed>120</speed>
+	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
 
@@ -157,6 +166,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>24</damageAmountBase>
       <speed>160</speed>
+	  <armorPenetration>0.4</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -171,6 +181,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>36</damageAmountBase>
       <speed>140</speed>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -186,6 +197,7 @@
       <damageDef>Fragment</damageDef>
       <damageAmountBase>48</damageAmountBase>
       <speed>120</speed>
+	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
 

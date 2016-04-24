@@ -1,17 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <RecipeDefs>
 
-  <RecipeDef>
-    <defName>MakeAmmo</defName>
-    <label>make improvised turret</label>
-    <description>Craft an improvised turret.</description>
-    <jobString>Making improvised turret.</jobString>
+  <RecipeDef Name="AmmoRecipeBase" Abstract="true">
     <workSpeedStat>SmithingSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
     <workAmount>2500</workAmount>
     <targetCountAdjustment>5</targetCountAdjustment>
+    <workSkill>Crafting</workSkill>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo</defName>
+    <label>make improvised turret</label>
+    <description>Craft an improvised turret.</description>
+    <jobString>Making improvised turret.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -30,10 +34,6 @@
     <products>
       <TurretGun>1</TurretGun>
     </products>
-    <workSkill>Crafting</workSkill>
-	<recipeUsers>
-		<li>TableMachining</li>
-	</recipeUsers>
   </RecipeDef>
 
 </RecipeDefs>

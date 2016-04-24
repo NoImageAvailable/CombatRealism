@@ -18,8 +18,8 @@
 	<loadoutGenerator Class="Combat_Realism.LoadoutGenerator">
 	  <skipChance>0</skipChance>
 	  <thingDef>Pila</thingDef>
-	  <minCount>5</minCount>
-	  <maxCount>20</maxCount>
+	  <minCount>2</minCount>
+	  <maxCount>5</maxCount>
 	</loadoutGenerator>
 	<priority>10</priority>
   </ThingDef>

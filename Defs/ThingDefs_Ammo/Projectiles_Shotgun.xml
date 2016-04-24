@@ -19,7 +19,7 @@
       <damageAmountBase>10</damageAmountBase>
 	  <pelletCount>8</pelletCount>
 	  <armorPenetration>0.3</armorPenetration>
-	  <spreadMult>2.5</spreadMult>
+	  <spreadMult>5</spreadMult>
     </projectile>
   </ThingDef>
 
@@ -33,7 +33,8 @@
     <projectile>
       <damageAmountBase>4</damageAmountBase>
 	  <pelletCount>40</pelletCount>
-	  <spreadMult>1.75</spreadMult>
+	  <spreadMult>8.5</spreadMult>
+	  <armorPenetration>0.1</armorPenetration>
     </projectile>
   </ThingDef>
 
@@ -45,7 +46,9 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <damageAmountBase>25</damageAmountBase>
+      <speed>110</speed>
+      <damageAmountBase>30</damageAmountBase>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
 
@@ -57,7 +60,8 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <damageAmountBase>25</damageAmountBase>
+      <damageDef>Beanbag</damageDef>
+      <damageAmountBase>6</damageAmountBase>
     </projectile>
   </ThingDef>
 
@@ -69,7 +73,14 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <damageAmountBase>25</damageAmountBase>
+      <damageDef>EMP</damageDef>
+      <damageAmountBase>20</damageAmountBase>
+	  <secondaryDamage>
+	    <li>
+		  <def>Electrical</def>
+		  <amount>5</amount>
+		</li>
+	  </secondaryDamage>
     </projectile>
   </ThingDef>
 

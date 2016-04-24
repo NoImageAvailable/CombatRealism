@@ -17,7 +17,7 @@
     <defName>Centipede</defName>
     <label>centipede</label>
     <race>Mechanoid_Centipede</race>
-    <combatPower>580</combatPower>
+    <combatPower>870</combatPower>
     <defaultFactionType>Mechanoid</defaultFactionType>
     <aiAvoidCover>true</aiAvoidCover>
     <lifeStages>

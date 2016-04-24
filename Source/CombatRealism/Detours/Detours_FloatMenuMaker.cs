@@ -509,7 +509,7 @@ namespace Combat_Realism.Detours
                     List<Thing> thingList = clickCell.GetThingList();
                     if (!thingList.NullOrEmpty<Thing>())
                     {
-                        Thing item = thingList.FirstOrDefault(thing => thing.def.alwaysHaulable);
+                        Thing item = thingList.FirstOrDefault(thing => thing.def.alwaysHaulable && !(thing is Corpse));
                         if (item != null)
                         {
                             FloatMenuOption pickUpOption;

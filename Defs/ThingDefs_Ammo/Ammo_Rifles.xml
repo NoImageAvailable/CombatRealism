@@ -7,10 +7,11 @@
     <description>Small, high-velocity rifle bullet used in a variety of assault rifles.</description>
     <statBases>
 	  <Weight>0.012</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Bulk>0.03</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -22,7 +23,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.04</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_556x45mmNATO_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -36,7 +37,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.05</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_556x45mmNATO_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -50,7 +51,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.05</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_556x45mmNATO_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -62,10 +63,11 @@
     <description>Intermediate rifle cartridge used by certain older assault rifles.</description>
     <statBases>
 	  <Weight>0.016</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Bulk>0.04</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -77,7 +79,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.06</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x39mmSoviet_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -91,7 +93,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.08</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x39mmSoviet_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -105,7 +107,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.08</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x39mmSoviet_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -116,11 +118,12 @@
   <ThingDef Class="Combat_Realism.AmmoDef" Name="303BritishBase" ParentName="AmmoBase" Abstract="True">
     <description>Large rifle bullet found mostly in outdated bolt-action firearms.</description>
     <statBases>
-	  <Weight>0.025</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>0.022</Weight>
+	  <Bulk>0.05</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -132,7 +135,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.08</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_303British_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -146,7 +149,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_303British_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -160,7 +163,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_303British_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -172,10 +175,11 @@
     <description>Large rifle bullet used in machine guns, sniper rifles and the occasional assault rifle.</description>
     <statBases>
 	  <Weight>0.025</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Bulk>0.05</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -187,7 +191,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.09</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x51mmNATO_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -201,7 +205,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.11</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x51mmNATO_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -215,7 +219,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.11</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x51mmNATO_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -227,10 +231,11 @@
     <description>Rimmed rifle cartridge used by many machine guns, bolt-action and sniper rifles.</description>
     <statBases>
 	  <Weight>0.022</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Bulk>0.05</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -242,7 +247,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.08</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x54mmR_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -256,7 +261,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x54mmR_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -270,7 +275,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x54mmR_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>

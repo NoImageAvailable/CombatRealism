@@ -31,23 +31,35 @@ namespace Combat_Realism
                 {
                     // Damage type/amount
                     stringBuilder.AppendLine("\n" + "CR_DescDamage".Translate() + ": ");
-                    stringBuilder.AppendLine("   " + props.damageDef.LabelCap + ": " + GenText.ToStringByStyle(props.damageAmountBase, ToStringStyle.Integer));
+                    stringBuilder.AppendLine("   " + GenText.ToStringByStyle(props.damageAmountBase, ToStringStyle.Integer) + " (" + props.damageDef.LabelCap + ")");
                     if (!props.secondaryDamage.NullOrEmpty())
                     {
                         foreach(SecondaryDamage sec in props.secondaryDamage)
                         {
-                            stringBuilder.AppendLine("   " + sec.def.LabelCap + ": " + GenText.ToStringByStyle(sec.amount, ToStringStyle.Integer));
+                            stringBuilder.AppendLine("   " + GenText.ToStringByStyle(sec.amount, ToStringStyle.Integer) + " (" + sec.def.LabelCap + ")");
                         }
                     }
                     // Explosion radius
                     if (props.explosionRadius > 0)
-                        stringBuilder.AppendLine("CR_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(props.explosionRadius, ToStringStyle.FloatTwo));
+                        stringBuilder.AppendLine("CR_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(props.explosionRadius, ToStringStyle.FloatOne));
 
                     // Secondary explosion
-                    // -TODO-
+                    CompProperties_ExplosiveCR secExpProps = ammoDef.GetCompProperties<CompProperties_ExplosiveCR>();
+                    if (secExpProps != null)
+                    {
+                        if (secExpProps.explosionRadius > 0)
+                        {
+                            stringBuilder.AppendLine("CR_DescSecondaryExplosion".Translate());
+                            stringBuilder.AppendLine("   " + "CR_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(secExpProps.explosionRadius, ToStringStyle.FloatOne));
+                            stringBuilder.AppendLine("   " + "CR_DescDamage".Translate() + ": " + 
+                                GenText.ToStringByStyle(secExpProps.explosionDamage, ToStringStyle.Integer) + " (" + secExpProps.explosionDamageDef.LabelCap + ")");
+                        }
+                        if (secExpProps.fragRange > 0)
+                            stringBuilder.AppendLine("CR_DescFragRange".Translate() + GenText.ToStringByStyle(secExpProps.fragRange, ToStringStyle.FloatTwo));
+                    }
 
                     // CR stats
-                    stringBuilder.AppendLine("CR_DescArmorPenetration".Translate() + ": " + GenText.ToStringByStyle(props.armorPenetration, ToStringStyle.PercentTwo));
+                    stringBuilder.AppendLine("CR_DescArmorPenetration".Translate() + ": " + GenText.ToStringByStyle(props.armorPenetration, ToStringStyle.PercentOne));
                     if (props.pelletCount > 1)
                         stringBuilder.AppendLine("CR_DescPelletCount".Translate() + ": " + GenText.ToStringByStyle(props.pelletCount, ToStringStyle.Integer));
                     if (props.spreadMult != 1)

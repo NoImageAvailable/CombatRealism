@@ -34,10 +34,11 @@
     <description>Container holding fuel for incendiary shot firearms.</description>
     <statBases>
 	  <Weight>0.3</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Bulk>0.5</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -49,7 +50,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>1.13</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_30x64mmFuel_Incendiary</linkedProjectile>
 	<ammoClass>IncendiaryFuel</ammoClass>
@@ -63,7 +64,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>1.6</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_30x64mmFuel_Thermobaric</linkedProjectile>
 	<ammoClass>ThermobaricFuel</ammoClass>
@@ -77,7 +78,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.52</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_30x64mmFuel_Foam</linkedProjectile>
 	<ammoClass>FoamFuel</ammoClass>
@@ -87,10 +88,10 @@
   <!-- ==================== 80x128mm Fuel Cell ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="80x256mmFuelBase" ParentName="AmmoBase" Abstract="True">
-    <description>Container holding fuel for incendiary shot firearms.</description>
+    <description>Large fuel container for incendiary shot cannons.</description>
     <statBases>
-	  <Weight>2.0</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>3.0</Weight>
+	  <Bulk>8</Bulk>
     </statBases>
   </ThingDef>
 
@@ -98,11 +99,11 @@
     <defName>Ammo_80x256mmFuel_Thermobaric</defName>
     <label>80x256mm Fuel Cell (Thermobaric)</label>
     <graphicData>
-      <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
+      <texPath>Things/Ammo/FuelCell/Large</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>10.88</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_80x256mmFuel_Thermobaric</linkedProjectile>
 	<ammoClass>ThermobaricFuel</ammoClass>
@@ -113,11 +114,12 @@
   <ThingDef Class="Combat_Realism.AmmoDef" Name="6x24mmChargedBase" ParentName="AmmoBase" Abstract="True">
     <description>Charged shot ammo used by advanced assault rifle designs.</description>
     <statBases>
-	  <Weight>0.009</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>0.01</Weight>
+	  <Bulk>0.03</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -129,7 +131,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.49</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_6x24mmCharged</linkedProjectile>
 	<ammoClass>Charged</ammoClass>
@@ -143,7 +145,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.49</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_6x24mmCharged_AP</linkedProjectile>
 	<ammoClass>ChargedAP</ammoClass>
@@ -157,7 +159,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.49</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_6x24mmCharged_Ion</linkedProjectile>
 	<ammoClass>Ionized</ammoClass>
@@ -167,9 +169,9 @@
   <!-- ==================== 5x35mm Charged ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="5x35mmChargedBase" ParentName="AmmoBase" Abstract="True">
-    <description>Mechanoid-designed charged shot ammo designed for high-velocity fire and armor penetration.</description>
+    <description>Mechanoid-built charged shot ammo designed for high-velocity fire and armor penetration.</description>
     <statBases>
-	  <Weight>0.01</Weight>
+	  <Weight>0.012</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
   </ThingDef>
@@ -182,7 +184,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.59</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_5x35mmCharged</linkedProjectile>
 	<ammoClass>Charged</ammoClass>
@@ -191,10 +193,10 @@
   <!-- ==================== 12x64mm Charged ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="12x64mmChargedBase" ParentName="AmmoBase" Abstract="True">
-    <description>Mechanoid-designed high-caliber charged shot ammo used in heavy weapons.</description>
+    <description>Mechanoid-built high-caliber charged shot ammo used in heavy weapons.</description>
     <statBases>
-	  <Weight>0.01</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>0.1</Weight>
+	  <Bulk>0.1</Bulk>
     </statBases>
   </ThingDef>
 
@@ -206,7 +208,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>2.96</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12x64mmCharged</linkedProjectile>
 	<ammoClass>Charged</ammoClass>

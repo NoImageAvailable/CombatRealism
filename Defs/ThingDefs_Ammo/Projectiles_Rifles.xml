@@ -16,7 +16,7 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>14</damageAmountBase>
       <speed>188</speed>
-      <armorPenetration>0.5</armorPenetration>
+      <armorPenetration>0.525</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -31,7 +31,7 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>11</damageAmountBase>
       <speed>188</speed>
-      <armorPenetration>0.65</armorPenetration>
+      <armorPenetration>0.625</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -47,7 +47,7 @@
       <damageDef>Bullet</damageDef>
       <damageAmountBase>17</damageAmountBase>
       <speed>188</speed>
-      <armorPenetration>0.35</armorPenetration>
+      <armorPenetration>0.375</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -62,9 +62,9 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <damageAmountBase>18</damageAmountBase>
-      <speed>167</speed>
-	  <armorPenetration>0.5</armorPenetration>
+      <damageAmountBase>16</damageAmountBase>
+      <speed>146</speed>
+	  <armorPenetration>0.55</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -77,8 +77,8 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <damageAmountBase>15</damageAmountBase>
-      <speed>167</speed>
+      <damageAmountBase>13</damageAmountBase>
+      <speed>146</speed>
 	  <armorPenetration>0.65</armorPenetration>
     </projectile>
   </ThingDef>
@@ -91,11 +91,10 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <flyOverhead>false</flyOverhead>
       <damageDef>Bullet</damageDef>
-      <damageAmountBase>21</damageAmountBase>
-      <speed>167</speed>
-	  <armorPenetration>0.35</armorPenetration>
+      <damageAmountBase>19</damageAmountBase>
+      <speed>146</speed>
+	  <armorPenetration>0.4</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -111,8 +110,8 @@
     <projectile>
       <damageDef>Bullet</damageDef>
       <damageAmountBase>18</damageAmountBase>
-      <speed>150</speed>
-	  <armorPenetration>0.5</armorPenetration>
+      <speed>169</speed>
+	  <armorPenetration>0.6</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -126,8 +125,8 @@
     <projectile>
       <damageDef>Bullet</damageDef>
       <damageAmountBase>15</damageAmountBase>
-      <speed>150</speed>
-	  <armorPenetration>0.65</armorPenetration>
+      <speed>169</speed>
+	  <armorPenetration>0.7</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -142,8 +141,8 @@
       <flyOverhead>false</flyOverhead>
       <damageDef>Bullet</damageDef>
       <damageAmountBase>21</damageAmountBase>
-      <speed>150</speed>
-	  <armorPenetration>0.35</armorPenetration>
+      <speed>169</speed>
+	  <armorPenetration>0.45</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -165,7 +164,7 @@
     <label>7.62mm NATO bullet (FMJ)</label>
     <projectile>
       <damageAmountBase>18</damageAmountBase>
-	  <armorPenetration>0.5</armorPenetration>
+	  <armorPenetration>0.6</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -174,7 +173,7 @@
     <label>7.62mm NATO bullet (AP)</label>
     <projectile>
       <damageAmountBase>15</damageAmountBase>
-	  <armorPenetration>0.65</armorPenetration>
+	  <armorPenetration>0.7</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -183,7 +182,7 @@
     <label>7.62mm NATO bullet (HP)</label>
     <projectile>
       <damageAmountBase>21</damageAmountBase>
-	  <armorPenetration>0.35</armorPenetration>
+	  <armorPenetration>0.45</armorPenetration>
     </projectile>
   </ThingDef>
 	
@@ -196,7 +195,7 @@
     </graphicData>
     <projectile>
       <damageDef>Bullet</damageDef>
-      <speed>167</speed>
+      <speed>157</speed>
     </projectile>
   </ThingDef>
   
@@ -205,7 +204,7 @@
     <label>7.62mmR bullet (FMJ)</label>
     <projectile>
       <damageAmountBase>18</damageAmountBase>
-	  <armorPenetration>0.5</armorPenetration>
+	  <armorPenetration>0.6</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -214,7 +213,7 @@
     <label>7.62mmR bullet (AP)</label>
     <projectile>
       <damageAmountBase>15</damageAmountBase>
-	  <armorPenetration>0.65</armorPenetration>
+	  <armorPenetration>0.7</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -223,7 +222,7 @@
     <label>7.62mmR bullet (HP)</label>
     <projectile>
       <damageAmountBase>21</damageAmountBase>
-	  <armorPenetration>0.35</armorPenetration>
+	  <armorPenetration>0.45</armorPenetration>
     </projectile>
   </ThingDef>
 

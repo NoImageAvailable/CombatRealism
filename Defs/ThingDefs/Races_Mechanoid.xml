@@ -61,7 +61,7 @@
       <ArmorRating_Sharp>0.85</ArmorRating_Sharp>
       <MeatAmount>0</MeatAmount>
       <CarryWeight>500</CarryWeight>
-      <CarryBulk>300</CarryBulk>
+      <CarryBulk>200</CarryBulk>
     </statBases>
     <verbs>
       <li>
@@ -117,8 +117,8 @@
       <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
       <MeatAmount>30</MeatAmount>
-      <CarryWeight>40</CarryWeight>
-      <CarryBulk>40</CarryBulk>
+      <CarryWeight>50</CarryWeight>
+      <CarryBulk>50</CarryBulk>
     </statBases>
     <verbs>
       <li>

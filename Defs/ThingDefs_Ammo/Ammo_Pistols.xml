@@ -9,14 +9,15 @@
     <description>Ultra-light cartridge for use in derringer pistols.</description>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
     <graphicData>
       <texPath>Things/Ammo/Pistol/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
-	  <Weight>0.005</Weight>
+      <MarketValue>0.01</MarketValue>
+	  <Weight>0.012</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
 	<linkedProjectile>Bullet_40Rimfire</linkedProjectile>
@@ -26,13 +27,14 @@
   <!-- ==================== .32 ACP ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="32ACPBase" ParentName="AmmoBase" Abstract="True">
-    <description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
+    <description>Low caliber handgun cartridge lacking in stopping power.</description>
     <statBases>
 	  <Weight>0.01</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Bulk>0.02</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -44,7 +46,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.02</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_32ACP_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -58,7 +60,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.03</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_32ACP_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -72,7 +74,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.03</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_32ACP_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -84,10 +86,11 @@
     <description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
     <statBases>
 	  <Weight>0.01</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Bulk>0.02</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -99,7 +102,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.02</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x25mmTokarev_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -113,7 +116,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.03</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x25mmTokarev_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -127,7 +130,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.03</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x25mmTokarev_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -138,11 +141,12 @@
   <ThingDef Class="Combat_Realism.AmmoDef" Name="9x19mmParaBase" ParentName="AmmoBase" Abstract="True">
     <description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
     <statBases>
-	  <Weight>0.01</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>0.012</Weight>
+	  <Bulk>0.02</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -154,7 +158,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.04</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_9x19mmPara_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -168,7 +172,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.05</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_9x19mmPara_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -182,7 +186,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.05</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_9x19mmPara_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -193,11 +197,12 @@
   <ThingDef Class="Combat_Realism.AmmoDef" Name="45ACPBase" ParentName="AmmoBase" Abstract="True">
     <description>Pistol cartridge favoured for its above average stopping power.</description>
     <statBases>
-	  <Weight>0.015</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>0.02</Weight>
+	  <Bulk>0.03</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
   </ThingDef>
 
@@ -209,7 +214,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.07</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45ACP_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -223,7 +228,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.09</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45ACP_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -237,7 +242,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>2.0</MarketValue>
+      <MarketValue>0.09</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45ACP_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
