@@ -73,6 +73,7 @@
     <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_FlameCR.cs" />
     <Compile Include="Combat_Realism\Defs\DamageDef_CR.cs" />
     <Compile Include="Combat_Realism\Defs\LoadoutGeneratorDef.cs" />
+    <Compile Include="Combat_Realism\LoadoutAssignment.cs" />
     <Compile Include="Combat_Realism\Things\AmmoThing.cs" />
     <Compile Include="Combat_Realism\Things\LoadoutGeneratorThing.cs" />
     <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />

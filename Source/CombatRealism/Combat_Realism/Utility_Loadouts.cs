@@ -101,10 +101,13 @@ namespace Combat_Realism
             if ( pawn == null )
                 throw new ArgumentNullException( "pawn" );
 
-            if ( !LoadoutManager.AssignedLoadouts.ContainsKey( pawn ) )
-                pawn.SetLoadout( LoadoutManager.DefaultLoadout );
-
-            return LoadoutManager.AssignedLoadouts[pawn];
+            Loadout loadout;
+            if ( !LoadoutManager.AssignedLoadouts.TryGetValue( pawn, out loadout ) )
+            {
+                LoadoutManager.AssignedLoadouts.Add( pawn, LoadoutManager.DefaultLoadout );
+                loadout = LoadoutManager.DefaultLoadout;
+            }
+            return loadout;
         }
 
         public static void SetLoadout( this Pawn pawn, Loadout loadout )
@@ -112,10 +115,10 @@ namespace Combat_Realism
             if ( pawn == null )
                 throw new ArgumentNullException( "pawn" );
 
-            if ( !LoadoutManager.AssignedLoadouts.ContainsKey( pawn ) )
-                LoadoutManager.AssignedLoadouts.Add( pawn, loadout );
-            else
+            if ( LoadoutManager.AssignedLoadouts.ContainsKey( pawn ) )
                 LoadoutManager.AssignedLoadouts[pawn] = loadout;
+            else
+                LoadoutManager.AssignedLoadouts.Add( pawn, loadout );
         }
 
         #endregion Methods

@@ -9,13 +9,14 @@ using Verse;
 
 namespace Combat_Realism
 {
-    public class Loadout
+    public class Loadout : IExposable, ILoadReferenceable
     {
         #region Fields
 
         public bool canBeDeleted = true;
         public bool defaultLoadout = false;
         public string label;
+        internal int uniqueID;
         private List<LoadoutSlot> _slots = new List<LoadoutSlot>();
 
         #endregion Fields
@@ -24,18 +25,27 @@ namespace Combat_Realism
 
         public Loadout()
         {
+            // this constructor is also used by the scribe, in which case defaults generated here will get overwritten.
+
             // create a unique default name.
-            int i = 1;
-            do
-            {
-                label = "CR.DefaultLoadoutName".Translate( i++ );
-            }
-            while ( LoadoutManager.Loadouts.Any( l => l.label == label ) );
+            label = LoadoutManager.GetUniqueLabel();
+
+            // create a unique ID.
+            uniqueID = LoadoutManager.GetUniqueID();
         }
 
         public Loadout( string label )
         {
             this.label = label;
+
+            // create a unique ID.
+            uniqueID = LoadoutManager.GetUniqueID();
+        }
+
+        public Loadout( string label, int uniqueID )
+        {
+            this.label = label;
+            this.uniqueID = uniqueID;
         }
 
         #endregion Constructors
@@ -71,6 +81,23 @@ namespace Combat_Realism
         public void AddSlot( LoadoutSlot slot )
         {
             _slots.Add( slot );
+        }
+
+        public void ExposeData()
+        {
+            // basic info about this loadout
+            Scribe_Values.LookValue( ref label, "label" );
+            Scribe_Values.LookValue( ref uniqueID, "uniqueID" );
+            Scribe_Values.LookValue( ref canBeDeleted, "canBeDeleted", true );
+            Scribe_Values.LookValue( ref defaultLoadout, "defaultLoadout", false );
+
+            // slots
+            Scribe_Collections.LookList( ref _slots, "slots", LookMode.Deep );
+        }
+
+        public string GetUniqueLoadID()
+        {
+            return "Loadout_" + label + "_" + uniqueID;
         }
 
         public void MoveSlot( LoadoutSlot slot, int toIndex )
