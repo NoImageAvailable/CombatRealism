@@ -48,7 +48,8 @@ namespace Combat_Realism
                 int maxCount;
                 if(compInvInt.CanFitInInventory(thing, out maxCount))
                 {
-                    GenSpawn.Spawn(thing, inventory.parent.Position);
+                    IntVec3 spawnPos = inventory.parent.Position.InBounds() ? inventory.parent.Position : IntVec3.Zero;
+                    GenSpawn.Spawn(thing, spawnPos);
 
                     // If we cant fit the whole stack, fit as much as we can and return
                     if(maxCount < thing.stackCount)
@@ -82,7 +83,12 @@ namespace Combat_Realism
                 }
                 thingToMake = thingDef;
             }
-            Thing thing = ThingMaker.MakeThing(thingToMake);
+            ThingDef stuff = null;
+            if (thingToMake.MadeFromStuff)
+            {
+                stuff = GenStuff.RandomStuffFor(thingToMake);
+            }
+            Thing thing = ThingMaker.MakeThing(thingToMake, stuff);
             thing.stackCount = UnityEngine.Random.Range(1, Mathf.Min(thing.def.stackLimit, max));
             return thing;
         }

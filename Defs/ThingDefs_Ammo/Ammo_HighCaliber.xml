@@ -4,10 +4,11 @@
   <!-- ==================== .50 BMG ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="Ammo50BMGBase" ParentName="AmmoBase" Abstract="True">
+    <label>.50 BMG cartridge</label>
     <description>Large caliber bullet used by many heavy machine guns and anti-materiel rifles.</description>
     <statBases>
-	  <Weight>0.012</Weight>
-	  <Bulk>0.01</Bulk>
+	  <Weight>0.11</Weight>
+	  <Bulk>0.11</Bulk>
     </statBases>
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
@@ -16,7 +17,6 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_FMJ</defName>
-    <label>.50 BMG bullet (FMJ)</label>
     <graphicData>
       <texPath>Things/Ammo/HighCaliber/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -30,7 +30,6 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_AP</defName>
-    <label>.50 BMG bullet (Sabot)</label>
     <graphicData>
       <texPath>Things/Ammo/HighCaliber/Sabot</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -44,7 +43,6 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_HE</defName>
-    <label>.50 BMG bullet (HE)</label>
     <graphicData>
       <texPath>Things/Ammo/HighCaliber/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -58,7 +56,6 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
     <defName>Ammo_50BMG_Incendiary</defName>
-    <label>.50 BMG bullet (AP-I)</label>
     <graphicData>
       <texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>

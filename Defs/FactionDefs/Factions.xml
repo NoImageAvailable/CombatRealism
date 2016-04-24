@@ -52,10 +52,6 @@
             <kind>TownCouncilman</kind>
           </li>
           <li>
-            <selectionWeight>50</selectionWeight>
-            <kind>GrenadierDestructive</kind>
-          </li>
-          <li>
             <selectionWeight>100</selectionWeight>
             <kind>MercenaryGunner</kind>
           </li>
@@ -82,10 +78,6 @@
           <li>
             <selectionWeight>250</selectionWeight>
             <kind>TownGuard</kind>
-          </li>
-          <li>
-            <selectionWeight>50</selectionWeight>
-            <kind>GrenadierDestructive</kind>
           </li>
           <li>
             <selectionWeight>100</selectionWeight>
@@ -142,14 +134,6 @@
             <selectionWeight>70</selectionWeight>
             <kind>Thrasher</kind>
           </li>
-          <li>
-            <selectionWeight>100</selectionWeight>
-            <kind>GrenadierDestructive</kind>
-          </li>
-          <li>
-            <selectionWeight>50</selectionWeight>
-            <kind>GrenadierEMP</kind>
-          </li> 
           <li>
             <selectionWeight>100</selectionWeight>
             <kind>Scavenger</kind>

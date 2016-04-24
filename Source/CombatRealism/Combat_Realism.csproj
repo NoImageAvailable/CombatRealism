@@ -70,8 +70,10 @@
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\AmmoInjector.cs" />
+    <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_FlameCR.cs" />
     <Compile Include="Combat_Realism\Defs\DamageDef_CR.cs" />
     <Compile Include="Combat_Realism\Defs\LoadoutGeneratorDef.cs" />
+    <Compile Include="Combat_Realism\Things\AmmoThing.cs" />
     <Compile Include="Combat_Realism\Things\LoadoutGeneratorThing.cs" />
     <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />
     <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />
@@ -101,7 +103,7 @@
     <Compile Include="Combat_Realism\Comps\CompProperties_Inventory.cs" />
     <Compile Include="Combat_Realism\Comps\CompProperties_AmmoUser.cs" />
     <Compile Include="Combat_Realism\Comps\CompProperties_Charges.cs" />
-    <Compile Include="Combat_Realism\DamageWorker_AddInjuryCR.cs" />
+    <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_AddInjuryCR.cs" />
     <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
     <Compile Include="Combat_Realism\Utility_Loadouts.cs" />
     <Compile Include="Detours\DetourInjector.cs" />
@@ -144,7 +146,6 @@
     <Compile Include="Combat_Realism\Comps\CompAmmoUser.cs" />
     <Compile Include="Combat_Realism\Jobs\ExternalPawnDrafter.cs" />
     <Compile Include="Combat_Realism\Jobs\JobDriver_Reload.cs" />
-    <Compile Include="Combat_Realism\Verbs\Verb_ShootCRReload.cs" />
     <Compile Include="Combat_Realism\SecondaryDamage.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -126,27 +126,27 @@ namespace Combat_Realism
         }
 
         // Ammo variables
-        private CompAmmoUser compReloaderInt = null;
-        private CompAmmoUser compReloader
+        protected CompAmmoUser compAmmoInt = null;
+        protected CompAmmoUser compAmmo
         {
             get
             {
-                if (compReloaderInt == null && this.ownerEquipment != null)
+                if (compAmmoInt == null && this.ownerEquipment != null)
                 {
-                    compReloaderInt = this.ownerEquipment.TryGetComp<CompAmmoUser>();
+                    compAmmoInt = this.ownerEquipment.TryGetComp<CompAmmoUser>();
                 }
-                return compReloaderInt;
+                return compAmmoInt;
             }
         }
         private ThingDef projectileDef
         {
             get
             {
-                if (compReloader != null)
+                if (compAmmo != null)
                 {
-                    if (compReloader.currentAmmo != null)
+                    if (compAmmo.currentAmmo != null)
                     {
-                        return compReloader.currentAmmo.linkedProjectile;
+                        return compAmmo.currentAmmo.linkedProjectile;
                     }
                 }
                 return this.verbPropsCR.projectileDef;
@@ -283,7 +283,7 @@ namespace Combat_Realism
         {
             Vector2 recoilVec = new Vector2(0, 0); 
             recoilVec.Set(UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetX.x, this.verbPropsCR.recoilOffsetX.y), UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetY.x, this.verbPropsCR.recoilOffsetY.y));
-            recoilVec *= (float)Math.Sqrt((5 - shootingAccuracy) * Mathf.Min(20, this.numShotsFired));
+            recoilVec *= (float)Math.Sqrt((5 - shootingAccuracy) * Mathf.Min(15, this.numShotsFired));
             return recoilVec;
         }
 

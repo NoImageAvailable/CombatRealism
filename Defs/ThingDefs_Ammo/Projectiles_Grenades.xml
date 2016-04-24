@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ThingDefs>
+
+	<!-- ================== 30x29mm Grenade ================== -->
+
+	<ThingDef Name="Base30x29mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>171</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x29mmGrenadeBullet">
+		<defName>Bullet_30x29mmGrenade_HE</defName>
+		<label>30x29mm Grenade bullet (HE)</label>
+		<projectile>
+			<damageAmountBase>45</damageAmountBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base30x29mmGrenadeBullet">
+		<defName>Bullet_30x29mmGrenade_EMP</defName>
+		<label>30x29mm Grenade bullet (EMP)</label>
+		<projectile>
+			<damageAmountBase>45</damageAmountBase>
+		</projectile>
+	</ThingDef>
+	
+	<!-- ================== 30x29mm Grenade ================== -->
+
+	<ThingDef Name="Base40x46mmGrenadeBullet" ParentName="BaseBullet" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<speed>171</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_HE</defName>
+		<label>30x29mm Grenade bullet (HE)</label>
+		<projectile>
+			<damageAmountBase>45</damageAmountBase>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="Base40x46mmGrenadeBullet">
+		<defName>Bullet_40x46mmGrenade_EMP</defName>
+		<label>30x29mm Grenade bullet (EMP)</label>
+		<projectile>
+			<damageAmountBase>45</damageAmountBase>
+		</projectile>
+	</ThingDef>
+
+
+</ThingDefs>

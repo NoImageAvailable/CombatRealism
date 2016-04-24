@@ -16,7 +16,11 @@ namespace Combat_Realism
 				}
 				return true;
 			}
-			if (this.burstShotsLeft < this.verbProps.burstShotCount)
+            if(compAmmo!=null && compAmmo.hasMagazine && compAmmo.curMagCount <= 0)
+            {
+                this.SelfConsume();
+            }
+			else if (this.burstShotsLeft < this.verbProps.burstShotCount)
 			{
 				this.SelfConsume();
 			}
@@ -33,6 +37,14 @@ namespace Combat_Realism
 		{
 			if (this.ownerEquipment != null && !this.ownerEquipment.Destroyed)
 			{
+                if (CasterIsPawn)
+                {
+                    CompInventory inventory = CasterPawn.TryGetComp<CompInventory>();
+                    if (inventory != null)
+                    {
+                        inventory.SwitchToNextViableWeapon();
+                    }
+                }
 				this.ownerEquipment.Destroy(DestroyMode.Vanish);
 			}
 		}

@@ -24,6 +24,20 @@
     <saveCompressible>true</saveCompressible>
     <stackLimit>1</stackLimit>
     <tradeability>Never</tradeability>
+    <damageMultipliers>
+      <li>
+        <damageDef>Bomb</damageDef>
+        <multiplier>2</multiplier>
+      </li>
+      <li>
+        <damageDef>Bullet</damageDef>
+        <multiplier>0.05</multiplier>
+      </li>
+      <li>
+        <damageDef>Fragment</damageDef>
+        <multiplier>0.05</multiplier>
+      </li>
+    </damageMultipliers>
   </ThingDef>
 
 
@@ -39,7 +53,9 @@
     <statBases>
       <MarketValue>1.9</MarketValue>
       <SharpDamageMultiplier>0.6</SharpDamageMultiplier>
-      <BluntDamageMultiplier>1.0</BluntDamageMultiplier>
+      <BluntDamageMultiplier>1.6</BluntDamageMultiplier>
+	  <Weight>4.0</Weight>
+	  <Bulk>1.0</Bulk>
     </statBases>
     <thingCategories>
       <li>StoneBlocks</li>
@@ -62,6 +78,7 @@
         <DoorOpenSpeed>0.45</DoorOpenSpeed>
         <BedRestEffectiveness>0.9</BedRestEffectiveness>
         <MeleeWeapon_Cooldown>1.35</MeleeWeapon_Cooldown>
+        <Weight>2.0</Weight>
       </statFactors>
     </stuffProps>
   </ThingDef>

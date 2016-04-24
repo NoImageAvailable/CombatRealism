@@ -168,6 +168,9 @@
       <texPath>Things/Item/Equipment/WeaponMelee/Knife</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <weaponTags>
+      <li>CR_Sidearm_Melee</li>
+    </weaponTags>
     <soundInteract>InteractPistol</soundInteract>
     <costStuffCount>40</costStuffCount>
     <statBases>
@@ -196,6 +199,9 @@
       <texPath>Things/Item/Equipment/WeaponMelee/Shiv</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <weaponTags>
+      <li>CR_Sidearm_Melee</li>
+    </weaponTags>
     <soundInteract>InteractPistol</soundInteract>
     <tradeability>Sellable</tradeability>
     <costStuffCount>10</costStuffCount>
@@ -303,6 +309,7 @@
     <weaponTags>
       <li>Neolithic</li>
       <li>NeolithicMelee</li>
+      <li>CR_Sidearm_Tribal</li>
     </weaponTags>
     <tradeability>Sellable</tradeability>
     <costStuffCount>40</costStuffCount>

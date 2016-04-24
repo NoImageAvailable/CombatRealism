@@ -16,7 +16,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
     <defName>Ammo_556x45mmNATO_FMJ</defName>
-    <label>5.56x45mm NATO bullet (FMJ)</label>
+    <label>5.56x45mm NATO cartridge (FMJ)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -30,7 +30,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
     <defName>Ammo_556x45mmNATO_AP</defName>
-    <label>5.56x45mm NATO bullet (AP)</label>
+    <label>5.56x45mm NATO cartridge (AP)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -44,7 +44,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
     <defName>Ammo_556x45mmNATO_HP</defName>
-    <label>5.56x45mm NATO bullet (HP)</label>
+    <label>5.56x45mm NATO cartridge (HP)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/HP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -56,12 +56,12 @@
 	<ammoClass>HollowPoint</ammoClass>
   </ThingDef>
   
-  <!-- ==================== 7.62x51mm NATO ========================== -->
+  <!-- ==================== 7.62x39mm Soviet ========================== -->
 
-  <ThingDef Class="Combat_Realism.AmmoDef" Name="762x51mmNATOBase" ParentName="AmmoBase" Abstract="True">
-    <description>Large rifle bullet commonly used in machine guns and sniper rifles.</description>
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="762x39mmSovietBase" ParentName="AmmoBase" Abstract="True">
+    <description>Intermediate rifle cartridge used by certain older assault rifles.</description>
     <statBases>
-	  <Weight>0.025</Weight>
+	  <Weight>0.016</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
 	<tradeTags>
@@ -69,9 +69,9 @@
 	</tradeTags>
   </ThingDef>
 
-  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
-    <defName>Ammo_762x51mmNATO_FMJ</defName>
-    <label>7.62x51mm NATO bullet (FMJ)</label>
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x39mmSovietBase">
+    <defName>Ammo_762x39mmSoviet_FMJ</defName>
+    <label>7.62x39mm Soviet cartridge (FMJ)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -79,13 +79,13 @@
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_762x51mmNATO_FMJ</linkedProjectile>
+	<linkedProjectile>Bullet_762x39mmSoviet_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
   </ThingDef>
 
-  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
-    <defName>Ammo_762x51mmNATO_AP</defName>
-    <label>7.62x51mm NATO bullet (AP)</label>
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x39mmSovietBase">
+    <defName>Ammo_762x39mmSoviet_AP</defName>
+    <label>7.62x39mm Soviet cartridge (AP)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -93,13 +93,13 @@
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_762x51mmNATO_AP</linkedProjectile>
+	<linkedProjectile>Bullet_762x39mmSoviet_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
   </ThingDef>
 
-  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
-    <defName>Ammo_762x51mmNATO_HP</defName>
-    <label>7.62x51mm NATO bullet (HP)</label>
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x39mmSovietBase">
+    <defName>Ammo_762x39mmSoviet_HP</defName>
+    <label>7.62x39mm Soviet cartridge (HP)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/HP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -107,7 +107,7 @@
     <statBases>
       <MarketValue>2.0</MarketValue>
     </statBases>
-	<linkedProjectile>Bullet_762x51mmNATO_HP</linkedProjectile>
+	<linkedProjectile>Bullet_762x39mmSoviet_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
   </ThingDef>
   
@@ -126,7 +126,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">
     <defName>Ammo_303British_FMJ</defName>
-    <label>.303 British bullet (FMJ)</label>
+    <label>.303 British cartridge (FMJ)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -140,7 +140,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">
     <defName>Ammo_303British_AP</defName>
-    <label>.303 British bullet (AP)</label>
+    <label>.303 British cartridge (AP)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -154,7 +154,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">
     <defName>Ammo_303British_HP</defName>
-    <label>.303 British bullet (HP)</label>
+    <label>.303 British cartridge (HP)</label>
     <graphicData>
       <texPath>Things/Ammo/Rifle/HP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -163,6 +163,116 @@
       <MarketValue>2.0</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_303British_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== 7.62x51mm NATO ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="762x51mmNATOBase" ParentName="AmmoBase" Abstract="True">
+    <description>Large rifle bullet used in machine guns, sniper rifles and the occasional assault rifle.</description>
+    <statBases>
+	  <Weight>0.025</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
+    <defName>Ammo_762x51mmNATO_FMJ</defName>
+    <label>7.62x51mm NATO cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x51mmNATO_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
+    <defName>Ammo_762x51mmNATO_AP</defName>
+    <label>7.62x51mm NATO cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x51mmNATO_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
+    <defName>Ammo_762x51mmNATO_HP</defName>
+    <label>7.62x51mm NATO cartridge (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x51mmNATO_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== 7.62x54mmR ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="762x54mmRBase" ParentName="AmmoBase" Abstract="True">
+    <description>Rimmed rifle cartridge used by many machine guns, bolt-action and sniper rifles.</description>
+    <statBases>
+	  <Weight>0.022</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x54mmRBase">
+    <defName>Ammo_762x54mmR_FMJ</defName>
+    <label>7.62x54mmR cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x54mmR_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x54mmRBase">
+    <defName>Ammo_762x54mmR_AP</defName>
+    <label>7.62x54mmR cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x54mmR_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x54mmRBase">
+    <defName>Ammo_762x54mmR_HP</defName>
+    <label>7.62x54mmR cartridge (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Rifle/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x54mmR_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
   </ThingDef>
   

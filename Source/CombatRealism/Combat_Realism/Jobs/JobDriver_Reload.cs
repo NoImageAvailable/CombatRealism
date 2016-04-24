@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using RimWorld;
 using Verse;
 using Verse.AI;
+using UnityEngine;
 
 namespace Combat_Realism
 {
@@ -13,6 +15,7 @@ namespace Combat_Realism
                 return TargetThingB.TryGetComp<CompAmmoUser>();
             }
         }
+
         protected override IEnumerable< Toil > MakeNewToils()
         {
             this.FailOnDespawnedOrNull( TargetIndex.A );
@@ -22,7 +25,7 @@ namespace Combat_Realism
             var waitToil = new Toil();
             waitToil.initAction = () => waitToil.actor.pather.StopDead();
             waitToil.defaultCompleteMode = ToilCompleteMode.Delay;
-            waitToil.defaultDuration = compReloader.Props.reloadTicks;
+            waitToil.defaultDuration = Mathf.CeilToInt(compReloader.Props.reloadTicks / pawn.GetStatValue(StatDef.Named("ReloadSpeed")));
             yield return waitToil;
 
             //Actual reloader

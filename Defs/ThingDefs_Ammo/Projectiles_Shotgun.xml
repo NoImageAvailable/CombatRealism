@@ -18,6 +18,8 @@
     <projectile>
       <damageAmountBase>10</damageAmountBase>
 	  <pelletCount>8</pelletCount>
+	  <armorPenetration>0.3</armorPenetration>
+	  <spreadMult>2.5</spreadMult>
     </projectile>
   </ThingDef>
 

@@ -33,7 +33,15 @@ namespace Combat_Realism
 
         public override void Tick()
         {
-            FireUtility.TryStartFireIn(Position, maxFireSize);
+            if(Position.GetThingList().Any(x => x.def == ThingDefOf.FilthFireFoam))
+            {
+                if (!Destroyed)
+                    Destroy();
+            }
+            else
+            {
+                FireUtility.TryStartFireIn(Position, maxFireSize);
+            }
         }
     }
 }

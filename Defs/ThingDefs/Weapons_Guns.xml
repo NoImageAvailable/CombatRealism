@@ -179,7 +179,7 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-        <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
+        <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_PumpShotgun</projectileDef>
         <warmupTicks>90</warmupTicks>
@@ -240,7 +240,7 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-        <verbClass>Combat_Realism.Verb_ShootCRReload</verbClass>
+        <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_SurvivalRifle</projectileDef>
         <warmupTicks>150</warmupTicks>
@@ -654,6 +654,14 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+	<comps>
+	  <li Class="Combat_Realism.CompProperties_AmmoUser">
+	    <magazineSize>60</magazineSize>
+		<reloadTicks>180</reloadTicks>
+		<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+	  </li>
+	  <li Class="Combat_Realism.CompProperties_FireModes"/>
+	</comps>
   </ThingDef>
 
 

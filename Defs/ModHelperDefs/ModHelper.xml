@@ -33,6 +33,8 @@
                 </compProps>
                 <targetDefs>
                     <li>Human</li>
+                    <li>Mechanoid_Centipede</li>
+                    <li>Mechanoid_Scyther</li>
                 </targetDefs>
             </li>
         </ThingComps>

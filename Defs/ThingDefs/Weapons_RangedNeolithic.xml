@@ -106,6 +106,7 @@
     </statBases>
     <weaponTags>
       <li>NeolithicRanged</li>
+      <li>CR_Bow</li>
     </weaponTags>
     <recipeMaker>
       <recipeUsers>
@@ -164,6 +165,7 @@
     </statBases>
     <weaponTags>
       <li>NeolithicRanged</li>
+	  <li>CR_Pila</li>
     </weaponTags>
     <verbs>
       <li>
@@ -216,6 +218,7 @@
     </statBases>
     <weaponTags>
       <li>NeolithicRanged</li>
+      <li>CR_Bow</li>
     </weaponTags>
     <verbs>
       <li>

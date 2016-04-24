@@ -30,49 +30,53 @@
       </li>
     </comps>
   </ThingDef>
-
-  <ThingDef Name="ApparelMakeableBase" ParentName="ApparelBase" Abstract="True">
+  
+  <ThingDef Name="ArmorMakeableBase" ParentName="ApparelBase" Abstract="True">
     <recipeMaker>
-      <workSpeedStat>TailoringSpeed</workSpeedStat>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
       <workSkill>Crafting</workSkill>
-      <effectWorking>Tailor</effectWorking>
-      <soundWorking>Recipe_Tailor</soundWorking>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Machining</soundWorking>
       <recipeUsers>
-        <li>ElectricTailoringBench</li>
-        <li>HandTailoringBench</li>
+        <li>TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
     </recipeMaker>
   </ThingDef>
   
   
-  
-  
-  
-  <!-- ============= Stuffed apparel =================-->
 
-
-  <ThingDef ParentName="ApparelMakeableBase">
+  <!-- ============= Stuff-less apparel =================-->
+  
+  <ThingDef ParentName="ArmorMakeableBase">
     <defName>Apparel_VestPlate</defName>
     <label>armor vest</label>
     <description>A vest with armor plates inserted on the chest and back. Protects against gunfire.</description>
+    <techLevel>Midworld</techLevel>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+    </recipeMaker>
     <graphicData>
       <texPath>Things/Pawn/Humanlike/Apparel/VestPlate/VestPlate</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
-    <costStuffCount>100</costStuffCount>
+    <costStuffCount>80</costStuffCount>
     <stuffCategories>
         <li>Steeled</li>
     </stuffCategories>
     <statBases>
-      <WorkToMake>10000</WorkToMake>
+      <WorkToMake>9500</WorkToMake>
       <MaxHitPoints>200</MaxHitPoints>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+      <ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+	  <Weight>13</Weight>
+	  <Bulk>5</Bulk>
+	  <WornWeight>13</WornWeight>
+	  <WornBulk>5</WornBulk>
     </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.16</MoveSpeed>
-    </equippedStatOffsets>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
     <apparel>
       <bodyPartGroups>
         <li>Torso</li>
@@ -88,7 +92,57 @@
       </tags>
       <defaultOutfitTags>
         <li>Soldier</li>
-      </defaultOutfitTags> </apparel>
+      </defaultOutfitTags>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="ArmorMakeableBase">
+    <defName>Apparel_CompositeVest</defName>
+    <label>composite vest</label>
+    <description>A vest with armor plates inserted on the chest and back. Composite plating offers superior protection against gunfire compared to regular vests.</description>
+    <techLevel>Midworld</techLevel>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+    </recipeMaker>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/VestPlate/VestPlate</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <WorkToMake>9500</WorkToMake>
+      <MaxHitPoints>150</MaxHitPoints>
+      <MarketValue>430</MarketValue>
+      <ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.7</ArmorRating_Sharp>
+	  <Weight>12</Weight>
+	  <Bulk>5</Bulk>
+	  <WornWeight>12</WornWeight>
+	  <WornBulk>5</WornBulk>
+    </statBases>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <costList>
+      <Steel>60</Steel>
+      <DevilstrandCloth>20</DevilstrandCloth>
+    </costList>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+      </bodyPartGroups>
+      <worngraphicPath>Things/Pawn/Humanlike/Apparel/VestPlate/VestPlate</worngraphicPath>
+      <layers>
+        <li>Middle</li>
+      </layers>
+      <commonality>0.7</commonality>
+      <tags>
+        <li>Outlander</li>
+        <li>Military</li>
+      </tags>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+    </apparel>
     <colorGenerator Class="ColorGenerator_Options">
       <options>
         <li>
@@ -108,69 +162,46 @@
     </colorGenerator>
   </ThingDef>
 
-  <ThingDef ParentName="ApparelMakeableBase">
-    <defName>Apparel_MilitaryHelmet</defName>
-    <label>military helmet</label>
-    <description>Old-looking and heavy, but effective. Protects against low-velocity projectiles, shrapnel, falling debris, and cuts to the head.</description>
-    <graphicData>
-      <texPath>Things/Pawn/Humanlike/Apparel/MilitaryHelmet/MilitaryHelmet</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <costStuffCount>40</costStuffCount>
-    <stuffCategories>
-        <li>Steeled</li>
-    </stuffCategories>
-    <statBases>
-      <WorkToMake>4000</WorkToMake>
-      <MaxHitPoints>100</MaxHitPoints>
-      <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.3</ArmorRating_Sharp>
-    </statBases>
-    <equippedStatOffsets>
-      <MoveSpeed>-0.08</MoveSpeed>
-      <PsychicSensitivity>-0.10</PsychicSensitivity>
-    </equippedStatOffsets>
-    <apparel>
-      <bodyPartGroups>
-        <li>UpperHead</li>
-      </bodyPartGroups>
-      <worngraphicPath>Things/Pawn/Humanlike/Apparel/MilitaryHelmet/MilitaryHelmet</worngraphicPath>
-      <layers>
-        <li>Overhead</li>
-      </layers>
-      <commonality>1</commonality>
-      <tags>
-        <li>Military</li>
-      </tags>
-      <defaultOutfitTags>
-        <li>Soldier</li>
-      </defaultOutfitTags>
-    </apparel>
-  </ThingDef>
-  
-  <!-- ============= Stuff-less apparel =================-->
 
-
-  <ThingDef ParentName="ApparelBase">
+  <ThingDef ParentName="ArmorMakeableBase">
     <defName>Apparel_PowerArmor</defName>
     <label>power armor</label>
-    <description>Powered armor usually used by assault troops from advanced glitterworld planets.</description>
+    <description>Powered armor usually used by assault troops from advanced glitterworld planets.\n\nBulky and heavy, but the advanced servo-motors greatly increase the wearer's load bearing capacity and assist in weapon-handling.</description>
+    <techLevel>Spacer</techLevel>
+    <recipeMaker>
+      <unfinishedThingDef>UnfinishedTechArmor</unfinishedThingDef>
+      <researchPrerequisite>PoweredArmor</researchPrerequisite>
+    </recipeMaker>
     <graphicData>
       <texPath>Things/Pawn/Humanlike/Apparel/PowerArmor/PowerArmor</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
+      <WorkToMake>40000</WorkToMake>
       <MaxHitPoints>400</MaxHitPoints>
       <MarketValue>4500</MarketValue>
       <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.65</ArmorRating_Sharp>
+      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
       <ArmorRating_Heat>0.30</ArmorRating_Heat>
       <Insulation_Cold>-45</Insulation_Cold>
+      <Insulation_Heat>25</Insulation_Heat>
+	  <Weight>60</Weight>
+	  <Bulk>100</Bulk>
+	  <WornWeight>60</WornWeight>
+	  <WornBulk>15</WornBulk>
     </statBases>
     <equippedStatOffsets>
-      <MoveSpeed>-0.10</MoveSpeed>
-      <WorkSpeedGlobal>-0.10</WorkSpeedGlobal>
+	  <CarryWeight>80</CarryWeight>
+	  <CarryBulk>10</CarryBulk>
+	  <ShootingAccuracy>1.15</ShootingAccuracy>
     </equippedStatOffsets>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
+    <costList>
+      <Components>18</Components>
+      <Plasteel>135</Plasteel>
+    </costList>
     <apparel>
       <bodyPartGroups>
         <li>Torso</li>

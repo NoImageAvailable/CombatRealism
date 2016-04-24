@@ -36,7 +36,14 @@
 		<defName>Bullet_50BMG_HE</defName>
 		<label>.50 BMG bullet (AP-HE)</label>
 		<projectile>
-			<damageAmountBase>45</damageAmountBase>
+			<damageAmountBase>25</damageAmountBase>
+			<armorPenetration>0.8</armorPenetration>
+			<secondaryDamage>
+				<li>
+					<def>Bomb_Secondary</def>
+					<amount>25</amount>
+				</li>
+			</secondaryDamage>
 		</projectile>
 	</ThingDef>
 

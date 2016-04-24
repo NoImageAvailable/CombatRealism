@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef Name="AmmoBase" Abstract="True">
-    <thingClass>ThingWithComps</thingClass>
+    <thingClass>Combat_Realism.AmmoThing</thingClass>
     <label>unspecified ammunition</label>
     <category>Item</category>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>

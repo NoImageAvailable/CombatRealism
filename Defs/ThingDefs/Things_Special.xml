@@ -21,5 +21,20 @@
     <description>Burns on the ground.</description>
   </ThingDef>
 
+  <ThingDef>
+    <defName>ArtilleryMarker</defName>
+    <label>artillery marker</label>
+    <thingClass>Combat_Realism.ArtilleryMarker</thingClass>
+    <category>Attachment</category>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>Things/Special/ArtilleryMarker</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData> 
+    <altitudeLayer>MetaOverlays</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
+  </ThingDef>
+
 
 </ThingDefinitions>

@@ -8,17 +8,28 @@
     <defName>Apparel_TacRigging</defName>
     <label>tactical vest</label>
 	<ThingClass>Combat_Realism.Apparel_VisibleAccessory</ThingClass>
-    <description>A loadbearing vest with a number of pouches to store magazines and other equipment.</description>
+    <description>A loadbearing vest with a number of pouches to store magazines and other equipment.\n\nSpeeds up reloading but is quite bulky to wear.</description>
     <graphicData>
       <texPath>Things/Apparel/TacRigging/TacRigging</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MaxHitPoints>150</MaxHitPoints>
+      <MaxHitPoints>120</MaxHitPoints>
+      <MarketValue>125</MarketValue>
+      <WorkToMake>8000</WorkToMake>
+	  <Weight>2</Weight>
+	  <Bulk>10</Bulk>
+	  <WornWeight>2</WornWeight>
+	  <WornBulk>8</WornBulk>
     </statBases>
     <equippedStatOffsets>
-      <CarryBulk>20</CarryBulk>
+      <CarryBulk>30</CarryBulk>
+      <ReloadSpeed>0.1</ReloadSpeed>
     </equippedStatOffsets>
+    <costList>
+      <Components>1</Components>
+      <Cloth>60</Cloth>
+    </costList>
     <apparel>
       <bodyPartGroups>
         <li>Shoulders</li>
@@ -55,11 +66,20 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
-      <MaxHitPoints>150</MaxHitPoints>
+      <MaxHitPoints>120</MaxHitPoints>
+      <MarketValue>125</MarketValue>
+      <WorkToMake>8000</WorkToMake>
+	  <Weight>1</Weight>
+	  <Bulk>3</Bulk>
+	  <WornWeight>0</WornWeight>
     </statBases>
     <equippedStatOffsets>
-      <CarryBulk>20</CarryBulk>
+      <CarryBulk>30</CarryBulk>
     </equippedStatOffsets>
+    <costList>
+      <Components>1</Components>
+      <Cloth>60</Cloth>
+    </costList>
     <apparel>
       <bodyPartGroups>
         <li>Torso</li>

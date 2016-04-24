@@ -49,6 +49,18 @@
     </projectile>
   </ThingDef>
   
+  <ThingDef ParentName="Base30x64mmFuelBullet">
+    <defName>Bullet_30x64mmFuel_Foam</defName>
+    <label>foam bolt</label>
+    <projectile>
+      <damageDef>Extinguish</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <explosionRadius>3.0</explosionRadius>
+      <postExplosionSpawnThingDef>FilthFireFoam</postExplosionSpawnThingDef>
+      <explosionSpawnChance>1</explosionSpawnChance>
+    </projectile>
+  </ThingDef>
+  
   <!-- ==================== 80x256mm Fuel Cell ========================== -->
   
   <ThingDef>

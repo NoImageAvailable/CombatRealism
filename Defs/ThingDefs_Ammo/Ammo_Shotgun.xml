@@ -58,7 +58,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12GaugeBase">
     <defName>Ammo_12Gauge_Beanbag</defName>
-    <label>12 Gauge shell (Beanbag)</label>
+    <label>12 Gauge shell (Bean)</label>
 	<canBeSpawningInventory>false</canBeSpawningInventory>
     <graphicData>
       <texPath>Things/Ammo/Shotgun/Beanbag</texPath>

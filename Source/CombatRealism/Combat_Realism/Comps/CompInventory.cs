@@ -157,13 +157,10 @@ namespace Combat_Realism
             {
                 foreach (Thing apparel in parentPawn.apparel.WornApparel)
                 {
-                    float apparelBulk = apparel.GetStatValue(StatDef.Named("Bulk"));
-                    float apparelWeight = apparel.GetStatValue(StatDef.Named("Weight"));
-                    if (apparelBulk != StatDef.Named("Bulk").defaultBaseValue && apparelWeight != StatDef.Named("Weight").defaultBaseValue)
-                    {
-                        newBulk += apparelBulk;
-                        newWeight += apparelWeight;
-                    }
+                    float apparelBulk = apparel.GetStatValue(StatDef.Named("WornBulk"));
+                    float apparelWeight = apparel.GetStatValue(StatDef.Named("WornWeight"));
+                    newBulk += apparelBulk;
+                    newWeight += apparelWeight;
                 }
             }
 
@@ -175,9 +172,6 @@ namespace Combat_Realism
                 rangedWeaponListCached.Clear();
                 foreach (Thing thing in parentPawn.inventory.container)
                 {
-                    newBulk += thing.GetStatValue(StatDef.Named("Bulk")) * thing.stackCount;
-                    newWeight += thing.GetStatValue(StatDef.Named("Weight")) * thing.stackCount;
-
                     // Check for weapons
                     ThingWithComps eq = thing as ThingWithComps;
                     CompEquippable compEq = thing.TryGetComp<CompEquippable>();
@@ -221,20 +215,32 @@ namespace Combat_Realism
         /// <param name="thing">Thing to check</param>
         /// <param name="count">Maximum amount of that item that can fit into the inventory</param>
         /// <param name="ignoreEquipment">Whether to include currently equipped weapons when calculating current weight/bulk</param>
-        /// <param name="ignoreDefaultStats">Whether to ignore items that haven't had their weight/bulk stats changed from the defaults</param>
+        /// <param name="useApparelCalculations">Whether to use calculations for worn apparel. This will factor in equipped stat offsets boosting inventory space and use the worn bulk and weight.</param>
         /// <returns>True if one or more items fit into the inventory</returns>
-        public bool CanFitInInventory(Thing thing, out int count, bool ignoreEquipment = false, bool ignoreDefaultStats = false)
+        public bool CanFitInInventory(Thing thing, out int count, bool ignoreEquipment = false, bool useApparelCalculations = false)
         {
-            float thingWeight = thing.GetStatValue(StatDef.Named("Weight"));
-            float thingBulk = thing.GetStatValue(StatDef.Named("Bulk"));
+            float thingWeight;
+            float thingBulk;
 
-            if (ignoreDefaultStats && thingBulk != StatDef.Named("Bulk").defaultBaseValue && thingWeight != StatDef.Named("Weight").defaultBaseValue)
+            if (useApparelCalculations)
             {
-                count = 1;
-                return true;
+                thingWeight = thing.GetStatValue(StatDef.Named("WornWeight"));
+                thingBulk = thing.GetStatValue(StatDef.Named("WornBulk"));
+                if(thingWeight <= 0 && thingBulk <= 0)
+                {
+                    count = 1;
+                    return true;
+                }
+                // Subtract the stat offsets we get from wearing this
+                thingWeight -= thing.def.equippedStatOffsets.GetStatOffsetFromList(StatDef.Named("CarryWeight"));
+                thingBulk -= thing.def.equippedStatOffsets.GetStatOffsetFromList(StatDef.Named("CarryBulk"));
             }
-
-            // Equipment weight
+            else
+            {
+                thingWeight = thing.GetStatValue(StatDef.Named("Weight"));
+                thingBulk = thing.GetStatValue(StatDef.Named("Bulk"));
+            }
+            // Subtract weight of currently equipped weapon
             float eqBulk = 0f;
             float eqWeight = 0f;
             if (ignoreEquipment && this.parentPawn.equipment != null && this.parentPawn.equipment.Primary != null)
@@ -242,9 +248,9 @@ namespace Combat_Realism
                 ThingWithComps eq = this.parentPawn.equipment.Primary;
                 GetEquipmentStats(eq, out eqWeight, out eqBulk);
             }
-
-            float amountByWeight = (availableWeight + eqWeight) / thingWeight;
-            float amountByBulk = (availableBulk + eqBulk) / thingBulk;
+            // Calculate how many items we can fit into our inventory
+            float amountByWeight = thingWeight <= 0 ? thing.stackCount : (availableWeight + eqWeight) / thingWeight;
+            float amountByBulk = thingBulk <= 0 ? thing.stackCount : (availableBulk + eqBulk) / thingBulk;
             count = Mathf.FloorToInt(Mathf.Min(amountByBulk, amountByWeight, thing.stackCount));
             return count > 0;
         }
@@ -268,6 +274,10 @@ namespace Combat_Realism
         public void SwitchToNextViableWeapon(bool useFists = true)
         {
             ThingWithComps newEq = null;
+
+            // Stop current job
+            if (parentPawn.jobs != null)
+                parentPawn.jobs.StopAll();
 
             // Cycle through available ranged weapons
             foreach(ThingWithComps gun in rangedWeaponListCached)
@@ -347,9 +357,9 @@ namespace Combat_Realism
                 foreach(LoadoutGeneratorThing thing in genList)
                 {
                     thing.loadoutGenerator.GenerateLoadout(this);
-                    Thing unused;
-                    container.TryDrop(thing, this.parent.Position, ThingPlaceMode.Near, out unused);
+                    container.Remove(thing);
                 }
+                UpdateInventory();
                 initializedLoadouts = true;
             }
 
@@ -358,8 +368,16 @@ namespace Combat_Realism
             // Remove items from inventory if we're over the bulk limit
             while(availableBulk < 0 && container.Count > 0)
             {
-                Thing droppedThing;
-                container.TryDrop(container.Last(), this.parent.Position, ThingPlaceMode.Near, out droppedThing);
+                if (this.parent.Position.InBounds())
+                {
+                    Thing droppedThing;
+                    container.TryDrop(container.Last(), this.parent.Position, ThingPlaceMode.Near, 1, out droppedThing);
+                }
+                else
+                {
+                    container.Remove(container.Last());
+                    UpdateInventory();
+                }
             }
 
             // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release

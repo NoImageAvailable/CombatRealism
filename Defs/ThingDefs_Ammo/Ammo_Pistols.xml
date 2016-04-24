@@ -1,6 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
+  <!-- ==================== .40 Rimfire ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="AmmoBase">
+    <defName>Ammo_40Rimfire</defName>
+    <label>.40 Rimfire cartridge</label>
+    <description>Ultra-light cartridge for use in derringer pistols.</description>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+	  <Weight>0.005</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+	<linkedProjectile>Bullet_40Rimfire</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== .32 ACP ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="32ACPBase" ParentName="AmmoBase" Abstract="True">
+    <description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
+    <statBases>
+	  <Weight>0.01</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="32ACPBase">
+    <defName>Ammo_32ACP_FMJ</defName>
+    <label>.32 ACP cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_32ACP_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="32ACPBase">
+    <defName>Ammo_32ACP_AP</defName>
+    <label>.32 ACP cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_32ACP_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="32ACPBase">
+    <defName>Ammo_32ACP_HP</defName>
+    <label>.32 ACP cartridge (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_32ACP_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== 7.62x25mm Tokarev ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="762x25mmTokarevBase" ParentName="AmmoBase" Abstract="True">
+    <description>Common pistol cartridge used by a variety of handguns and SMGs.</description>
+    <statBases>
+	  <Weight>0.01</Weight>
+	  <Bulk>0.01</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	</tradeTags>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x25mmTokarevBase">
+    <defName>Ammo_762x25mmTokarev_FMJ</defName>
+    <label>7.62x25mm Tokarev cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x25mmTokarev_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x25mmTokarevBase">
+    <defName>Ammo_762x25mmTokarev_AP</defName>
+    <label>7.62x25mm Tokarev cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x25mmTokarev_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x25mmTokarevBase">
+    <defName>Ammo_762x25mmTokarev_HP</defName>
+    <label>7.62x25mm Tokarev cartridge (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_762x25mmTokarev_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
   <!-- ==================== 9x19mm Parabellum ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="9x19mmParaBase" ParentName="AmmoBase" Abstract="True">
@@ -16,7 +148,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="9x19mmParaBase">
     <defName>Ammo_9x19mmPara_FMJ</defName>
-    <label>9x19mm Para bullet (FMJ)</label>
+    <label>9x19mm Para cartridge (FMJ)</label>
     <graphicData>
       <texPath>Things/Ammo/Pistol/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -30,7 +162,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="9x19mmParaBase">
     <defName>Ammo_9x19mmPara_AP</defName>
-    <label>9x19mm Para bullet (AP)</label>
+    <label>9x19mm Para cartridge (AP)</label>
     <graphicData>
       <texPath>Things/Ammo/Pistol/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -44,7 +176,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="9x19mmParaBase">
     <defName>Ammo_9x19mmPara_HP</defName>
-    <label>9x19mm Para bullet (HP)</label>
+    <label>9x19mm Para cartridge (HP)</label>
     <graphicData>
       <texPath>Things/Ammo/Pistol/HP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -71,7 +203,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ACPBase">
     <defName>Ammo_45ACP_FMJ</defName>
-    <label>.45 ACP bullet (FMJ)</label>
+    <label>.45 ACP cartridge (FMJ)</label>
     <graphicData>
       <texPath>Things/Ammo/Pistol/FMJ</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -85,7 +217,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ACPBase">
     <defName>Ammo_45ACP_AP</defName>
-    <label>.45 ACP bullet (AP)</label>
+    <label>.45 ACP cartridge (AP)</label>
     <graphicData>
       <texPath>Things/Ammo/Pistol/AP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -99,7 +231,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ACPBase">
     <defName>Ammo_45ACP_HP</defName>
-    <label>.45 ACP bullet (HP)</label>
+    <label>.45 ACP cartridge (HP)</label>
     <graphicData>
       <texPath>Things/Ammo/Pistol/HP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>

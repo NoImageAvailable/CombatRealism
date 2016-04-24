@@ -41,18 +41,6 @@ namespace Combat_Realism
                 return this.compFireModesInt;
             }
         }
-        private CompAmmoUser compAmmoInt = null;
-        private CompAmmoUser compAmmo
-        {
-            get
-            {
-                if (compAmmoInt == null)
-                {
-                    compAmmoInt = this.ownerEquipment.TryGetComp<CompAmmoUser>();
-                }
-                return compAmmoInt;
-            }
-        }
 
         private bool shouldAim
         {
