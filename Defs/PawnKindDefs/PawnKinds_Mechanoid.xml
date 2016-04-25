@@ -8,9 +8,6 @@
     <dessicatedBodyGraphicData>
       <shaderType>Cutout</shaderType>
     </dessicatedBodyGraphicData>
-	<fixedInventory>
-	  <LoadoutGen_MechanoidAmmo>1</LoadoutGen_MechanoidAmmo>
-	</fixedInventory>
   </PawnKindDef>
 
   <PawnKindDef>
@@ -39,6 +36,9 @@
     <weaponTags>
       <li>MechanoidGunHeavy</li>
     </weaponTags>
+	<fixedInventory>
+	  <LoadoutGen_MechanoidAmmo>1</LoadoutGen_MechanoidAmmo>
+	</fixedInventory>
   </PawnKindDef>
 
 
@@ -68,6 +68,9 @@
     <weaponTags>
       <li>MechanoidGunMedium</li>
     </weaponTags>
+	<fixedInventory>
+	  <LoadoutGen_MechanoidAmmo>1</LoadoutGen_MechanoidAmmo>
+	</fixedInventory>
   </PawnKindDef>
 
 </PawnKindDefs>

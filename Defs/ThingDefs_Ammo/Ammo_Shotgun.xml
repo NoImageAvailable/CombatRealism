@@ -13,6 +13,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo410Bore</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="410BoreBase">
@@ -41,6 +44,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo12Gauge</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12GaugeBase">

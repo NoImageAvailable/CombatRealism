@@ -13,6 +13,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo30x29mmGrenades</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x29mmGrenadeBase">
@@ -55,6 +58,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo40x46mmGrenades</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="40x46mmGrenadeBase">

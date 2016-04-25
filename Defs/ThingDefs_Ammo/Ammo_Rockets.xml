@@ -9,6 +9,10 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>AmmoRPG7Grenades</li>
+    </thingCategories>
+    <stackLimit>25</stackLimit>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="RPG-7GrenadeBase">

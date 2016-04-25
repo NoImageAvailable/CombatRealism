@@ -22,9 +22,11 @@
     <tickerType>Never</tickerType>
     <comps>
       <li Class="CompProperties_Forbiddable"/>
+	  <!--
       <li>
         <compClass>CompColorable</compClass>
       </li>
+	  -->
     </comps>
     <recipeMaker>
       <workSpeedStat>TailoringSpeed</workSpeedStat>
@@ -83,6 +85,7 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags> </apparel>
+	  <!--
     <colorGenerator Class="ColorGenerator_Options">
       <options>
         <li>
@@ -91,6 +94,7 @@
         </li>
       </options>
     </colorGenerator>
+	-->
   </ThingDef>
 
 
@@ -133,6 +137,7 @@
       <defaultOutfitTags>
         <li>Soldier</li>
       </defaultOutfitTags> </apparel>
+	  <!--
     <colorGenerator Class="ColorGenerator_Options">
       <options>
         <li>
@@ -141,6 +146,7 @@
         </li>
       </options>
     </colorGenerator>
+	-->
   </ThingDef>
 
 

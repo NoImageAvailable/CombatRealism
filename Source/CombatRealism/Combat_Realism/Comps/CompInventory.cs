@@ -317,7 +317,13 @@ namespace Combat_Realism
             if (parentPawn.equipment.Primary != null)
             {
                 ThingWithComps oldEq;
-                parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
+                parentPawn.equipment.TryDropEquipment(parentPawn.equipment.Primary, out oldEq, parentPawn.Position.InBounds() ? parentPawn.Position : IntVec3.Zero);
+
+                int count;
+                if (CanFitInInventory(oldEq, out count))
+                {
+                    container.TryAdd(oldEq);
+                }
             }
             // Split stack if our weapon has a stack count
             if (newEq.stackCount > 1)
@@ -381,6 +387,7 @@ namespace Combat_Realism
             }
 
             // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
+            /*
             if(ticksToInitLoadout <= 2)
             {
                 float lastWeight = this.currentWeightCached;
@@ -391,6 +398,7 @@ namespace Combat_Realism
                     Log.Error(this.parent.ToString() + " failed inventory validation");
                 }
             }
+            */
         }
     }
 }

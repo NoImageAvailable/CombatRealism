@@ -19,9 +19,6 @@
     <drawGUIOverlay>true</drawGUIOverlay>
     <rotatable>false</rotatable>
     <pathCost>15</pathCost>
-    <thingCategories>
-      <li>Ammo</li>
-    </thingCategories>
 	<tradeTags>
 	  <li>CR_Ammo</li>
 	</tradeTags>
@@ -40,6 +37,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo30x64mmFuelCell</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
@@ -93,6 +93,9 @@
 	  <Weight>3.0</Weight>
 	  <Bulk>8</Bulk>
     </statBases>
+    <thingCategories>
+      <li>Ammo80x128mmFuelCell</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="80x256mmFuelBase">
@@ -121,6 +124,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo6x24mmCharged</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="6x24mmChargedBase">
@@ -174,6 +180,9 @@
 	  <Weight>0.012</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
+    <thingCategories>
+      <li>Ammo5x35mmCharged</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="5x35mmChargedBase">
@@ -198,6 +207,9 @@
 	  <Weight>0.1</Weight>
 	  <Bulk>0.1</Bulk>
     </statBases>
+    <thingCategories>
+      <li>Ammo12x64mmCharged</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12x64mmChargedBase">

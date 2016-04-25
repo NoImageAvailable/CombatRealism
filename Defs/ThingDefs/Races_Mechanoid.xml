@@ -61,7 +61,8 @@
       <ArmorRating_Sharp>0.85</ArmorRating_Sharp>
       <MeatAmount>0</MeatAmount>
       <CarryWeight>500</CarryWeight>
-      <CarryBulk>200</CarryBulk>
+      <CarryBulk>100</CarryBulk>
+      <AimingAccuracy>0.9</AimingAccuracy>
     </statBases>
     <verbs>
       <li>
@@ -118,7 +119,8 @@
       <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
       <MeatAmount>30</MeatAmount>
       <CarryWeight>50</CarryWeight>
-      <CarryBulk>50</CarryBulk>
+      <CarryBulk>20</CarryBulk>
+      <AimingAccuracy>0.9</AimingAccuracy>
     </statBases>
     <verbs>
       <li>

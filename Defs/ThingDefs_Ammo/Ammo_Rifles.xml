@@ -13,6 +13,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo556x45mmNATO</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="556x45mmNATOBase">
@@ -69,6 +72,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo762x39mmSoviet</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x39mmSovietBase">
@@ -125,6 +131,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo303British</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="303BritishBase">
@@ -181,6 +190,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo762x51mmNATO</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x51mmNATOBase">
@@ -237,6 +249,9 @@
 	  <li>CR_AutoEnableTrade</li>
 	  <li>CR_AutoEnableCrafting</li>
 	</tradeTags>
+    <thingCategories>
+      <li>Ammo762x54mmR</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="762x54mmRBase">

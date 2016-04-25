@@ -142,17 +142,55 @@ namespace Combat_Realism
             }
             if ( Widgets.InvisibleButton( rect ) && Event.current.button == 1 )
             {
-                List<FloatMenuOption> list = new List<FloatMenuOption>();
-                list.Add( new FloatMenuOption( "ThingInfo".Translate(), delegate
+                List<FloatMenuOption> floatOptionList = new List<FloatMenuOption>();
+                floatOptionList.Add( new FloatMenuOption( "ThingInfo".Translate(), delegate
                 {
                     Find.WindowStack.Add( new Dialog_InfoCard( thing ) );
                 }, MenuOptionPriority.Medium, null, null ) );
                 if ( this.CanEdit )
                 {
-                    Action action = null;
+                    // Equip option
                     ThingWithComps eq = thing as ThingWithComps;
+                    if (eq != null && eq.TryGetComp<CompEquippable>() != null)
+                    {
+                        CompInventory compInventory = SelPawnForGear.TryGetComp<CompInventory>();
+                        if (compInventory != null)
+                        {
+                            FloatMenuOption equipOption;
+                            string eqLabel = GenLabel.ThingLabel(eq.def, eq.Stuff, 1);
+                            if (SelPawnForGear.equipment.AllEquipment.Contains(eq) && SelPawnForGear.inventory != null)
+                            {
+                                equipOption = new FloatMenuOption("CR_PutAway".Translate(new object[] { eqLabel }),
+                                    new Action(delegate
+                                    {
+                                        ThingWithComps oldEq;
+                                        SelPawnForGear.equipment.TryTransferEquipmentToContainer(SelPawnForGear.equipment.Primary, SelPawnForGear.inventory.container, out oldEq);
+                                    }));
+                            }
+                            else if (!SelPawnForGear.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+                            {
+                                equipOption = new FloatMenuOption("CannotEquip".Translate(new object[] { eqLabel }), null);
+                            }
+                            else
+                            {
+                                string equipOptionLabel = "Equip".Translate(new object[] { eqLabel });
+                                if (eq.def.IsRangedWeapon && SelPawnForGear.story != null && SelPawnForGear.story.traits.HasTrait(TraitDefOf.Brawler))
+                                {
+                                    equipOptionLabel = equipOptionLabel + " " + "EquipWarningBrawler".Translate();
+                                }
+                                equipOption = new FloatMenuOption(equipOptionLabel, new Action(delegate
+                                {
+                                    compInventory.TrySwitchToWeapon(eq);
+                                }));
+                            }
+                            floatOptionList.Add(equipOption);
+                        }
+                    }
+
+                    // Drop option
+                    Action action = null;
                     Apparel ap = thing as Apparel;
-                    if ( ap != null )
+                    if ( ap != null && SelPawnForGear.apparel.WornApparel.Contains(ap))
                     {
                         Apparel unused;
                         action = delegate
@@ -176,9 +214,9 @@ namespace Combat_Realism
                             this.SelPawnForGear.inventory.container.TryDrop( thing, this.SelPawnForGear.Position, ThingPlaceMode.Near, out unused );
                         };
                     }
-                    list.Add( new FloatMenuOption( "DropThing".Translate(), action, MenuOptionPriority.Medium, null, null ) );
+                    floatOptionList.Add( new FloatMenuOption( "DropThing".Translate(), action, MenuOptionPriority.Medium, null, null ) );
                 }
-                FloatMenu window = new FloatMenu( list, thing.LabelCap, false, false );
+                FloatMenu window = new FloatMenu( floatOptionList, thing.LabelCap, false, false );
                 Find.WindowStack.Add( window );
             }
             if ( thing.def.DrawMatSingle != null && thing.def.DrawMatSingle.mainTexture != null )

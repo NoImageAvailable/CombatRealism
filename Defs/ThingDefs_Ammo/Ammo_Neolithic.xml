@@ -12,6 +12,9 @@
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
 	</tradeTags>
+    <thingCategories>
+      <li>AmmoArrows</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="AmmoArrowBase">
@@ -28,7 +31,7 @@
 	<ammoClass>StoneArrow</ammoClass>
   </ThingDef>
   
-  <!-- ==================== Arrows ========================== -->
+  <!-- ==================== Great arrows ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="AmmoGreatArrowBase" ParentName="AmmoBase" Abstract="True">
     <description>Heavy arrow designed to be fired from a great bow.</description>
@@ -39,6 +42,9 @@
 	<tradeTags>
 	  <li>CR_AutoEnableTrade</li>
 	</tradeTags>
+    <thingCategories>
+      <li>AmmoGreatArrows</li>
+    </thingCategories>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="AmmoGreatArrowBase">

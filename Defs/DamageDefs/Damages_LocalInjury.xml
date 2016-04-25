@@ -30,6 +30,7 @@
     <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
     <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Blunt</armorCategory>
+	<deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef Name="Blunt" ParentName="LocalInjuryBase">
@@ -45,6 +46,7 @@
     <hasChanceToAdditionallyDamageInnerSolidParts>true</hasChanceToAdditionallyDamageInnerSolidParts>
     <impactSoundType>Blunt</impactSoundType>
     <armorCategory>Blunt</armorCategory>
+	<deflectable>true</deflectable>
   </DamageDef>
   
   <DamageDef ParentName="Blunt">
@@ -54,9 +56,11 @@
     <additionalHediffs>
       <li>
         <hediff>MuscleSpasms</hediff>
-        <severityPerDamageDealt>0.0075</severityPerDamageDealt>
+        <severityPerDamageDealt>0.035</severityPerDamageDealt>
       </li>
     </additionalHediffs>
+    <armorCategory>Blunt</armorCategory>
+	<deflectable>true</deflectable>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -233,6 +237,7 @@
     <explosionCellMote>Mote_BlastEMP</explosionCellMote>
     <explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
     <soundExplosion>Explosion_EMP</soundExplosion>
+	<deflectable>true</deflectable>
   </DamageDef>
 
 </Defs>
