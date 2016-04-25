@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <ThingDefs>
 
   <ThingDef Name="BaseMeleeWeapon" Abstract="True">
@@ -30,7 +29,7 @@
       <li>WeaponsMelee</li>
     </thingCategories>
     <comps>
-      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Forbiddable" />
       <li>
         <compClass>CompEquippable</compClass>
       </li>
@@ -109,8 +108,8 @@
     <costStuffCount>50</costStuffCount>
     <statBases>
       <WorkToMake>20000</WorkToMake>
-      <MeleeWeapon_DamageAmount>12</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>1.95</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>18</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>0.975</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -140,8 +139,8 @@
     <costStuffCount>120</costStuffCount>
     <statBases>
       <WorkToMake>40000</WorkToMake>
-      <MeleeWeapon_DamageAmount>17</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>2.5</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>20</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.25</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -175,8 +174,8 @@
     <costStuffCount>40</costStuffCount>
     <statBases>
       <WorkToMake>6000</WorkToMake>
-      <MeleeWeapon_DamageAmount>9</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>1.66</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>12</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>0.83</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -207,9 +206,9 @@
     <costStuffCount>10</costStuffCount>
     <statBases>
       <WorkToMake>300</WorkToMake>
-      <MeleeWeapon_DamageAmount>8</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_DamageAmount>11</MeleeWeapon_DamageAmount>
       <DeteriorationRate>0.5</DeteriorationRate>
-      <MeleeWeapon_Cooldown>1.66</MeleeWeapon_Cooldown>
+      <MeleeWeapon_Cooldown>0.83</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -249,8 +248,8 @@
     <costStuffCount>90</costStuffCount>
     <statBases>
       <WorkToMake>25000</WorkToMake>
-      <MeleeWeapon_DamageAmount>15</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>2.3</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>18</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.15</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-25</equippedAngleOffset>
     <stuffCategories>
@@ -278,8 +277,8 @@
     <costStuffCount>75</costStuffCount>
     <statBases>
       <WorkToMake>15000</WorkToMake>
-      <MeleeWeapon_DamageAmount>10</MeleeWeapon_DamageAmount>
-      <MeleeWeapon_Cooldown>2.1</MeleeWeapon_Cooldown>
+      <MeleeWeapon_DamageAmount>20</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_Cooldown>1.05</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>
@@ -315,9 +314,9 @@
     <costStuffCount>40</costStuffCount>
     <statBases>
       <WorkToMake>500</WorkToMake>
-      <MeleeWeapon_DamageAmount>11</MeleeWeapon_DamageAmount>
+      <MeleeWeapon_DamageAmount>16</MeleeWeapon_DamageAmount>
       <DeteriorationRate>0.5</DeteriorationRate>
-      <MeleeWeapon_Cooldown>2.7</MeleeWeapon_Cooldown>
+      <MeleeWeapon_Cooldown>1.35</MeleeWeapon_Cooldown>
     </statBases>
     <equippedAngleOffset>-65</equippedAngleOffset>
     <stuffCategories>

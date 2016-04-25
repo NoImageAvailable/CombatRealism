@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <!-- ==================== 30x29mm Grenade ========================== -->
+  <!-- ==================== 30x29mm Grenades ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="30x29mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
-    <label>30x29mm Grenade ammo</label>
     <description>Relatively small, low velocity grenade for use in grenade launchers.</description>
     <statBases>
 	  <Weight>0.2</Weight>
@@ -18,6 +17,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x29mmGrenadeBase">
     <defName>Ammo_30x29mmGrenade_HE</defName>
+    <label>30x29mm grenade (HE)</label>
     <graphicData>
       <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -31,6 +31,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x29mmGrenadeBase">
     <defName>Ammo_30x29mmGrenade_EMP</defName>
+    <label>30x29mm grenade (EMP)</label>
     <graphicData>
       <texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -42,10 +43,9 @@
 	<ammoClass>GrenadeEMP</ammoClass>
   </ThingDef>
 
-  <!-- ==================== 40x46mm Grenade ========================== -->
+  <!-- ==================== 40x46mm Grenades ========================== -->
 
   <ThingDef Class="Combat_Realism.AmmoDef" Name="40x46mmGrenadeBase" ParentName="AmmoBase" Abstract="True">
-    <label>40x46mm Grenade ammo</label>
     <description>Low velocity grenade fired from handheld grenade launchers.</description>
     <statBases>
 	  <Weight>0.3</Weight>
@@ -59,6 +59,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="40x46mmGrenadeBase">
     <defName>Ammo_40x46mmGrenade_HE</defName>
+    <label>40x46mm grenade (HE)</label>
     <graphicData>
       <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -72,6 +73,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="40x46mmGrenadeBase">
     <defName>Ammo_40x46mmGrenade_EMP</defName>
+    <label>40x46mm grenade (EMP)</label>
     <graphicData>
       <texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>

@@ -72,7 +72,6 @@ namespace Combat_Realism
                                     {
                                         if (!recipe.recipeUsers.Contains(ammoCraftingStation))
                                         {
-                                            Log.Message("Adding user " + ammoCraftingStation.ToString() + " to recipe " + recipe.ToString());
                                             recipe.recipeUsers.Add(ammoCraftingStation);
                                         }
                                     }

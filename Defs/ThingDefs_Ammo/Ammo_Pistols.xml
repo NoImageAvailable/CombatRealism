@@ -52,7 +52,7 @@
 	<ammoClass>FullMetalJacket</ammoClass>
   </ThingDef>
 
-  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="32ACPBase">
+  <!--<ThingDef Class="Combat_Realism.AmmoDef" ParentName="32ACPBase">
     <defName>Ammo_32ACP_AP</defName>
     <label>.32 ACP cartridge (AP)</label>
     <graphicData>
@@ -78,7 +78,7 @@
     </statBases>
 	<linkedProjectile>Bullet_32ACP_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
-  </ThingDef>
+  </ThingDef>-->
   
   <!-- ==================== 7.62x25mm Tokarev ========================== -->
 
@@ -245,6 +245,62 @@
       <MarketValue>0.09</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45ACP_HP</linkedProjectile>
+	<ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+  
+  <!-- ==================== .45 Colt ========================== -->
+
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="45ColtBase" ParentName="AmmoBase" Abstract="True">
+    <description>Ancient pistol cartridge originally designed for revolvers.</description>
+    <statBases>
+	  <Weight>0.02</Weight>
+	  <Bulk>0.03</Bulk>
+    </statBases>
+	<tradeTags>
+	  <li>CR_AutoEnableTrade</li>
+	  <li>CR_AutoEnableCrafting</li>
+	</tradeTags>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ColtBase">
+    <defName>Ammo_45Colt_FMJ</defName>
+    <label>.45 Colt cartridge (FMJ)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.07</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_45Colt_FMJ</linkedProjectile>
+	<ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ColtBase">
+    <defName>Ammo_45Colt_AP</defName>
+    <label>.45 Colt cartridge (AP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.09</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_45Colt_AP</linkedProjectile>
+	<ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="Combat_Realism.AmmoDef" ParentName="45ColtBase">
+    <defName>Ammo_45Colt_HP</defName>
+    <label>.45 Colt cartridge (HP)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Pistol/HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>0.09</MarketValue>
+    </statBases>
+	<linkedProjectile>Bullet_45Colt_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
   </ThingDef>
   

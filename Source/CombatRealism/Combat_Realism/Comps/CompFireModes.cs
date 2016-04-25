@@ -167,7 +167,7 @@ namespace Combat_Realism
             StringBuilder stringBuilder = new StringBuilder();
             if (this.availableFireModes.Count > 0)
             {
-                stringBuilder.AppendLine("CR_FireModes" + ": ");
+                stringBuilder.AppendLine("CR_FireModes".Translate() + ": ");
                 foreach (FireMode fireMode in this.availableFireModes)
                 {
                     stringBuilder.AppendLine("   -" + ("CR_" + fireMode.ToString() + "Label").Translate());

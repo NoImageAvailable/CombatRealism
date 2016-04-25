@@ -72,6 +72,7 @@
       <Beauty>-60</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
+    <minifiedDef>TurretGun_Kit</minifiedDef>
     <comps>
       <li Class="CompProperties_Explosive">
         <explosiveRadius>3.9</explosiveRadius>
@@ -100,7 +101,6 @@
       <Components>3</Components>
     </costList>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Security</designationCategory>
     <specialDisplayRadius>25.9</specialDisplayRadius>
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
@@ -137,10 +137,6 @@
     </statBases>
     <tickerType>Normal</tickerType>
     <comps>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>4.9</explosiveRadius>
-        <explosiveDamageType>Bomb</explosiveDamageType>
-      </li>
       <li Class="CompProperties_Forbiddable"/>
       <li Class="CompProperties_Mannable">
         <manWorkType>Violent</manWorkType>
@@ -165,7 +161,7 @@
       <turretGunDef>Artillery_MortarBomb</turretGunDef>
       <turretShellDef>ArtilleryShell</turretShellDef>
       <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
-      <turretBurstCooldownTicks>3000</turretBurstCooldownTicks>
+      <turretBurstCooldownTicks>450</turretBurstCooldownTicks>
       <turretTopgraphicPath>Things/Building/Security/TurretMortarBomb_Top</turretTopgraphicPath>
       <buildingTags>
         <li>Artillery</li>
@@ -205,10 +201,6 @@
     </statBases>
     <tickerType>Normal</tickerType>
     <comps>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>4.9</explosiveRadius>
-        <explosiveDamageType>Flame</explosiveDamageType>
-      </li>
       <li Class="CompProperties_Forbiddable"/>
       <li Class="CompProperties_Mannable">
         <manWorkType>Violent</manWorkType>
@@ -233,7 +225,7 @@
       <turretGunDef>Artillery_MortarIncendiary</turretGunDef>
       <turretShellDef>ArtilleryShell</turretShellDef>
       <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
-      <turretBurstCooldownTicks>3000</turretBurstCooldownTicks>
+      <turretBurstCooldownTicks>450</turretBurstCooldownTicks>
       <turretTopgraphicPath>Things/Building/Security/TurretMortarIncendiary_Top</turretTopgraphicPath>
       <buildingTags>
         <li>Artillery</li>
@@ -274,10 +266,6 @@
     </statBases>
     <tickerType>Normal</tickerType>
     <comps>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>4.9</explosiveRadius>
-        <explosiveDamageType>EMP</explosiveDamageType>
-      </li>
       <li Class="CompProperties_Forbiddable"/>
       <li Class="CompProperties_Mannable">
         <manWorkType>Violent</manWorkType>
@@ -302,7 +290,7 @@
       <turretGunDef>Artillery_MortarEMP</turretGunDef>
       <turretShellDef>ArtilleryShell</turretShellDef>
       <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
-      <turretBurstCooldownTicks>3000</turretBurstCooldownTicks>
+      <turretBurstCooldownTicks>450</turretBurstCooldownTicks>
       <turretTopgraphicPath>Things/Building/Security/TurretMortarEMP_Top</turretTopgraphicPath>
       <buildingTags>
         <li>Artillery</li>

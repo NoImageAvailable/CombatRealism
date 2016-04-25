@@ -44,7 +44,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
     <defName>Ammo_30x64mmFuel_Incendiary</defName>
-    <label>30x64mm Fuel Cell (Incendiary)</label>
+    <label>30x64mm fuel cell (Incendiary)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Incendiary</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -58,7 +58,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
     <defName>Ammo_30x64mmFuel_Thermobaric</defName>
-    <label>30x64mm Fuel Cell (Thermobaric)</label>
+    <label>30x64mm fuel cell (Thermobaric)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Thermobaric</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -72,7 +72,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x64mmFuelBase">
     <defName>Ammo_30x64mmFuel_Foam</defName>
-    <label>30x64mm Fuel Cell (Foam)</label>
+    <label>30x64mm fuel cell (Foam)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Foam</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -97,7 +97,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="80x256mmFuelBase">
     <defName>Ammo_80x256mmFuel_Thermobaric</defName>
-    <label>80x256mm Fuel Cell (Thermobaric)</label>
+    <label>80x256mm fuel cell (Thermobaric)</label>
     <graphicData>
       <texPath>Things/Ammo/FuelCell/Large</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -125,7 +125,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="6x24mmChargedBase">
     <defName>Ammo_6x24mmCharged</defName>
-    <label>6x24mm Charged bullet</label>
+    <label>6x24mm Charged cartridge</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Regular</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -139,7 +139,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="6x24mmChargedBase">
     <defName>Ammo_6x24mmCharged_AP</defName>
-    <label>6x24mm Charged bullet (AP)</label>
+    <label>6x24mm Charged cartridge (Conc.)</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Concentrated</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -153,7 +153,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="6x24mmChargedBase">
     <defName>Ammo_6x24mmCharged_Ion</defName>
-    <label>6x24mm Charged bullet (Ion)</label>
+    <label>6x24mm Charged cartridge (Ion)</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Ion</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -178,7 +178,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="5x35mmChargedBase">
     <defName>Ammo_5x35mmCharged</defName>
-    <label>5x35mm Charged bullet</label>
+    <label>5x35mm Charged cartridge</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Concentrated</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -202,7 +202,7 @@
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="12x64mmChargedBase">
     <defName>Ammo_12x64mmCharged</defName>
-    <label>12x64mm Charged bullet</label>
+    <label>12x64mm Charged cartridge</label>
     <graphicData>
       <texPath>Things/Ammo/Charged/Large</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
