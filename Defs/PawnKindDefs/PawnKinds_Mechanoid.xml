@@ -14,7 +14,7 @@
     <defName>Centipede</defName>
     <label>centipede</label>
     <race>Mechanoid_Centipede</race>
-    <combatPower>650</combatPower>
+    <combatPower>870</combatPower>
     <defaultFactionType>Mechanoid</defaultFactionType>
     <aiAvoidCover>true</aiAvoidCover>
     <lifeStages>
@@ -36,6 +36,9 @@
     <weaponTags>
       <li>MechanoidGunHeavy</li>
     </weaponTags>
+	<fixedInventory>
+	  <LoadoutGen_MechanoidAmmo>1</LoadoutGen_MechanoidAmmo>
+	</fixedInventory>
   </PawnKindDef>
 
 
@@ -65,6 +68,9 @@
     <weaponTags>
       <li>MechanoidGunMedium</li>
     </weaponTags>
+	<fixedInventory>
+	  <LoadoutGen_MechanoidAmmo>1</LoadoutGen_MechanoidAmmo>
+	</fixedInventory>
   </PawnKindDef>
 
 </PawnKindDefs>

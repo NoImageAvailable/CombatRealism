@@ -104,5 +104,28 @@
       </li>
     </capacityFactors>
   </StatDef>
+
+  <StatDef>
+    <defName>ReloadSpeed</defName>
+    <label>reload speed</label>
+    <description>The speed at which firearms are reloaded.</description>
+    <category>PawnCombat</category>
+    <displayPriorityInCategory>60</displayPriorityInCategory>
+    <defaultBaseValue>1</defaultBaseValue>
+    <minValue>0.001</minValue>
+    <toStringStyle>PercentZero</toStringStyle>
+    <showOnAnimals>false</showOnAnimals>
+	<showOnMechanoids>false</showOnMechanoids>
+    <capacityFactors>
+      <li>
+        <capacity>Consciousness</capacity>
+        <weight>1</weight>
+      </li>
+      <li>
+        <capacity>Manipulation</capacity>
+        <weight>1</weight>
+      </li>
+    </capacityFactors>
+  </StatDef>
   
 </Defs>

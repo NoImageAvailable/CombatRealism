@@ -35,16 +35,16 @@
   <ThingDef ParentName="BasePawn" Name="BaseMechanoid" Abstract="True">
     <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
     <statBases>
+      <PsychicSensitivity>0</PsychicSensitivity>
       <Flammability>0</Flammability>
       <ComfyTemperatureMin>-100</ComfyTemperatureMin>
       <ComfyTemperatureMax>250</ComfyTemperatureMax>
     </statBases>
     <race>
-      <mechanoid>true</mechanoid>
+      <fleshType>Mechanoid</fleshType>
       <needsRest>false</needsRest>
       <hasGenders>false</hasGenders>
-      <isFlesh>false</isFlesh>
-      <diet>NeverEats</diet>
+      <foodType>None</foodType>
     </race>
   </ThingDef>
 
@@ -58,8 +58,11 @@
     <statBases>
       <MoveSpeed>1.33</MoveSpeed>
       <ArmorRating_Blunt>0.35</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
-      <MeatAmount>30</MeatAmount>
+      <ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+      <MeatAmount>0</MeatAmount>
+      <CarryWeight>500</CarryWeight>
+      <CarryBulk>100</CarryBulk>
+      <AimingAccuracy>0.9</AimingAccuracy>
     </statBases>
     <verbs>
       <li>
@@ -72,11 +75,10 @@
     </verbs>
     <race>
       <intelligence>ToolUser</intelligence>
-      <mechanoid>true</mechanoid>
-      <thinkTree>Mechanoid</thinkTree>
+      <thinkTreeMain>Mechanoid</thinkTreeMain>
       <body>MechanicalCentipede</body>
       <baseBodySize>2.0</baseBodySize>
-      <baseHealthScale>1.8</baseHealthScale>
+      <baseHealthScale>2.0</baseHealthScale>
       <lifeStageAges>
         <li>
           <def>MechanoidFullyFormed</def>
@@ -101,6 +103,7 @@
     <butcherProducts>
       <Steel>80</Steel>
       <Plasteel>50</Plasteel>
+      <Components>2</Components>
     </butcherProducts>
   </ThingDef>
 
@@ -109,12 +112,15 @@
   <ThingDef ParentName="BaseMechanoid">
     <defName>Mechanoid_Scyther</defName>
     <label>scyther</label>
-    <description>Fast, spindly, human-sized combat mechanoids. They usually carry one primary ranged weapon, and their bodies are adorned with two articulated blades to make them deadly in melee combat. They don't use cover. Best handled by concentrated, overwhelming force.</description>
+    <description>Fast, spindly, human-sized combat mechanoids. They usually carry one primary ranged weapon, and their bodies are adorned with two articulated blades to make them deadly in melee combat. Best handled by concentrated, overwhelming force.</description>
     <statBases>
       <MoveSpeed>6.6</MoveSpeed>
       <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.45</ArmorRating_Sharp>
       <MeatAmount>30</MeatAmount>
+      <CarryWeight>50</CarryWeight>
+      <CarryBulk>20</CarryBulk>
+      <AimingAccuracy>0.9</AimingAccuracy>
     </statBases>
     <verbs>
       <li>
@@ -134,8 +140,7 @@
     </verbs>
     <race>
       <intelligence>ToolUser</intelligence>
-      <mechanoid>true</mechanoid>
-      <thinkTree>Mechanoid</thinkTree>
+      <thinkTreeMain>Mechanoid</thinkTreeMain>
       <body>Scyther</body>
       <baseBodySize>1.0</baseBodySize>
       <baseHealthScale>1.0</baseHealthScale>
@@ -162,8 +167,9 @@
       <li>ShutDownMechanoid</li>
     </recipes>
     <butcherProducts>
-      <Steel>45</Steel>
+      <Steel>40</Steel>
       <Plasteel>25</Plasteel>
+      <Components>1</Components>
     </butcherProducts>
   </ThingDef>
 

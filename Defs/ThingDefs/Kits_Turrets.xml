@@ -11,9 +11,7 @@
     <!-- for CompForbiddable -->
     <drawerType>RealtimeOnly</drawerType>
     <comps>
-      <li>
-        <compClass>CompForbiddable</compClass>
-      </li>
+      <li Class="CompProperties_Forbiddable"/>
     </comps>
     <alwaysHaulable>true</alwaysHaulable>
     <rotatable>false</rotatable>
