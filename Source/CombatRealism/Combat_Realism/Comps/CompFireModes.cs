@@ -73,9 +73,9 @@ namespace Combat_Realism
             }
         }
 
-        public override void Initialize(CompProperties props)
+        public override void PostSpawnSetup()
         {
-            base.Initialize(props);
+            base.PostSpawnSetup();
 
             // Calculate available fire modes
             if (this.verb.verbProps.burstShotCount > 1 || this.Props.noSingleShot)

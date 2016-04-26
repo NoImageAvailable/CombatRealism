@@ -14,11 +14,11 @@
     <damageMultipliers>
       <li>
         <damageDef>Bomb</damageDef>
-        <multiplier>2</multiplier>
+        <multiplier>3</multiplier>
       </li>
       <li>
         <damageDef>Bullet</damageDef>
-        <multiplier>0.1</multiplier>
+        <multiplier>0.2</multiplier>
       </li>
       <li>
         <damageDef>Fragment</damageDef>
@@ -26,7 +26,7 @@
       </li>
       <li>
         <damageDef>Electrical</damageDef>
-        <multiplier>0.5</multiplier>
+        <multiplier>0.2</multiplier>
       </li>
     </damageMultipliers>
   </ThingDef>
