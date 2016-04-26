@@ -86,7 +86,7 @@ namespace Combat_Realism
         {
             get
             {
-                return Mathf.Lerp(1f, 0.75f, currentWeight / 40f);
+                return Mathf.Lerp(1f, 0.75f, currentBulk / 40f);
             }
         }
         public float encumberPenalty
