@@ -83,8 +83,8 @@ namespace Combat_Realism
                 Rect weightRect = new Rect( _margin, listRect.yMax + _margin, listRect.width, _barHeight );
                 Rect bulkRect = new Rect( _margin, weightRect.yMax + _margin, listRect.width, _barHeight );
 
-                Utility_Loadouts.DrawBar( bulkRect, comp.currentBulk, comp.capacityBulk, "CR.Bulk".Translate(), "CR.ITabBulkTip".Translate( comp.capacityBulk, comp.currentBulk, comp.workSpeedFactor ) );
-                Utility_Loadouts.DrawBar( weightRect, comp.currentWeight, comp.capacityWeight, "CR.Weight".Translate(), "CR.ITabWeightTip".Translate( comp.capacityWeight, comp.currentWeight, comp.moveSpeedFactor, comp.encumberPenalty ) );
+                Utility_Loadouts.DrawBar( bulkRect, comp.currentBulk, comp.capacityBulk, "CR.Bulk".Translate(), SelPawn.GetBulkTip() );
+                Utility_Loadouts.DrawBar( weightRect, comp.currentWeight, comp.capacityWeight, "CR.Weight".Translate(), SelPawn.GetWeightTip() );
             }
 
             // start drawing list (rip from ITab_Pawn_Gear)
@@ -135,6 +135,7 @@ namespace Combat_Realism
         private void DrawThingRow( ref float y, float width, Thing thing )
         {
             Rect rect = new Rect( 0f, y, width, 28f );
+            TooltipHandler.TipRegion( rect, thing.GetWeightAndBulkTip() );
             if ( Mouse.IsOver( rect ) )
             {
                 GUI.color = _highlightColor;
@@ -151,46 +152,46 @@ namespace Combat_Realism
                 {
                     // Equip option
                     ThingWithComps eq = thing as ThingWithComps;
-                    if (eq != null && eq.TryGetComp<CompEquippable>() != null)
+                    if ( eq != null && eq.TryGetComp<CompEquippable>() != null )
                     {
                         CompInventory compInventory = SelPawnForGear.TryGetComp<CompInventory>();
-                        if (compInventory != null)
+                        if ( compInventory != null )
                         {
                             FloatMenuOption equipOption;
-                            string eqLabel = GenLabel.ThingLabel(eq.def, eq.Stuff, 1);
-                            if (SelPawnForGear.equipment.AllEquipment.Contains(eq) && SelPawnForGear.inventory != null)
+                            string eqLabel = GenLabel.ThingLabel( eq.def, eq.Stuff, 1 );
+                            if ( SelPawnForGear.equipment.AllEquipment.Contains( eq ) && SelPawnForGear.inventory != null )
                             {
-                                equipOption = new FloatMenuOption("CR_PutAway".Translate(new object[] { eqLabel }),
-                                    new Action(delegate
-                                    {
-                                        ThingWithComps oldEq;
-                                        SelPawnForGear.equipment.TryTransferEquipmentToContainer(SelPawnForGear.equipment.Primary, SelPawnForGear.inventory.container, out oldEq);
-                                    }));
+                                equipOption = new FloatMenuOption( "CR_PutAway".Translate( new object[] { eqLabel } ),
+                                    new Action( delegate
+                                     {
+                                         ThingWithComps oldEq;
+                                         SelPawnForGear.equipment.TryTransferEquipmentToContainer( SelPawnForGear.equipment.Primary, SelPawnForGear.inventory.container, out oldEq );
+                                     } ) );
                             }
-                            else if (!SelPawnForGear.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+                            else if ( !SelPawnForGear.health.capacities.CapableOf( PawnCapacityDefOf.Manipulation ) )
                             {
-                                equipOption = new FloatMenuOption("CannotEquip".Translate(new object[] { eqLabel }), null);
+                                equipOption = new FloatMenuOption( "CannotEquip".Translate( new object[] { eqLabel } ), null );
                             }
                             else
                             {
-                                string equipOptionLabel = "Equip".Translate(new object[] { eqLabel });
-                                if (eq.def.IsRangedWeapon && SelPawnForGear.story != null && SelPawnForGear.story.traits.HasTrait(TraitDefOf.Brawler))
+                                string equipOptionLabel = "Equip".Translate( new object[] { eqLabel } );
+                                if ( eq.def.IsRangedWeapon && SelPawnForGear.story != null && SelPawnForGear.story.traits.HasTrait( TraitDefOf.Brawler ) )
                                 {
                                     equipOptionLabel = equipOptionLabel + " " + "EquipWarningBrawler".Translate();
                                 }
-                                equipOption = new FloatMenuOption(equipOptionLabel, new Action(delegate
-                                {
-                                    compInventory.TrySwitchToWeapon(eq);
-                                }));
+                                equipOption = new FloatMenuOption( equipOptionLabel, new Action( delegate
+                                  {
+                                      compInventory.TrySwitchToWeapon( eq );
+                                  } ) );
                             }
-                            floatOptionList.Add(equipOption);
+                            floatOptionList.Add( equipOption );
                         }
                     }
 
                     // Drop option
                     Action action = null;
                     Apparel ap = thing as Apparel;
-                    if ( ap != null && SelPawnForGear.apparel.WornApparel.Contains(ap))
+                    if ( ap != null && SelPawnForGear.apparel.WornApparel.Contains( ap ) )
                     {
                         Apparel unused;
                         action = delegate

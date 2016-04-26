@@ -238,8 +238,8 @@ namespace Combat_Realism
 
             if ( comp != null )
             {
-                Utility_Loadouts.DrawBar( bulkRect, comp.currentBulk, comp.capacityBulk, "", "CR.ITabBulkTip".Translate( comp.capacityBulk, comp.currentBulk, comp.workSpeedFactor ) );
-                Utility_Loadouts.DrawBar( weightRect, comp.currentWeight, comp.capacityWeight, "", "CR.ITabWeightTip".Translate( comp.capacityWeight, comp.currentWeight, comp.moveSpeedFactor, comp.encumberPenalty ) );
+                Utility_Loadouts.DrawBar( bulkRect, comp.currentBulk, comp.capacityBulk, "", p.GetBulkTip() );
+                Utility_Loadouts.DrawBar( weightRect, comp.currentWeight, comp.capacityWeight, "", p.GetWeightTip() );
             }
         }
 

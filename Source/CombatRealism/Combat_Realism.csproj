@@ -49,11 +49,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld1135Win_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Community Core Library">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\Community Core Library.dll</HintPath>
+      <HintPath>..\..\..\Community Core Library\Assemblies\Community Core Library.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -63,7 +63,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2013\Source-DLLs\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\RimWorld1135Win_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -74,24 +74,24 @@
     <Compile Include="Combat_Realism\Defs\DamageDef_CR.cs" />
     <Compile Include="Combat_Realism\Defs\LoadoutGeneratorDef.cs" />
     <Compile Include="Combat_Realism\Jobs\JobGiver_UpdateLoadout.cs" />
-    <Compile Include="Combat_Realism\LoadoutAssignment.cs" />
+    <Compile Include="Combat_Realism\Loadouts\LoadoutAssignment.cs" />
     <Compile Include="Combat_Realism\Things\AmmoThing.cs" />
     <Compile Include="Combat_Realism\Things\Apparel_Backpack.cs" />
     <Compile Include="Combat_Realism\Things\Apparel_TacVest.cs" />
     <Compile Include="Combat_Realism\Things\LoadoutGeneratorThing.cs" />
-    <Compile Include="Combat_Realism\Dialog_ManageLoadouts.cs" />
+    <Compile Include="Combat_Realism\Loadouts\Dialog_ManageLoadouts.cs" />
     <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />
-    <Compile Include="Combat_Realism\ITabInjector.cs" />
-    <Compile Include="Combat_Realism\ITab_Inventory.cs" />
-    <Compile Include="Combat_Realism\Loadout.cs" />
+    <Compile Include="Combat_Realism\Loadouts\ITabInjector.cs" />
+    <Compile Include="Combat_Realism\Loadouts\ITab_Inventory.cs" />
+    <Compile Include="Combat_Realism\Loadouts\Loadout.cs" />
     <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator.cs" />
     <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_AmmoPrimary.cs" />
     <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_AmmoSecondary.cs" />
     <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_WeaponByTag.cs" />
     <Compile Include="Combat_Realism\LoadoutGen\LoadoutGenerator_List.cs" />
-    <Compile Include="Combat_Realism\LoadoutSlot.cs" />
-    <Compile Include="Combat_Realism\MainTabWindow_OutfitsAndLoadouts.cs" />
-    <Compile Include="Combat_Realism\MapComp_LoadoutManager.cs" />
+    <Compile Include="Combat_Realism\Loadouts\LoadoutSlot.cs" />
+    <Compile Include="Combat_Realism\Loadouts\MainTabWindow_OutfitsAndLoadouts.cs" />
+    <Compile Include="Combat_Realism\Loadouts\MapComp_LoadoutManager.cs" />
     <Compile Include="Combat_Realism\Things\Apparel_VisibleAccessory.cs" />
     <Compile Include="Combat_Realism\Things\IncendiaryFuel.cs" />
     <Compile Include="Combat_Realism\Things\Plant_Blazebulb.cs" />
@@ -109,7 +109,7 @@
     <Compile Include="Combat_Realism\Comps\CompProperties_Charges.cs" />
     <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_AddInjuryCR.cs" />
     <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
-    <Compile Include="Combat_Realism\Utility_Loadouts.cs" />
+    <Compile Include="Combat_Realism\Loadouts\Utility_Loadouts.cs" />
     <Compile Include="Detours\DetourInjector.cs" />
     <Compile Include="Combat_Realism\FireMode.cs" />
     <Compile Include="Combat_Realism\Projectiles\BulletCR.cs" />
