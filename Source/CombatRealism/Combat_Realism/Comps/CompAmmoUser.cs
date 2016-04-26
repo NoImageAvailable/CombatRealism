@@ -123,6 +123,11 @@ namespace Combat_Realism
         /// </summary>
         public bool TryReduceAmmoCount()
         {
+            if (wielder == null)
+            {
+                return false;
+            }
+
             // Mag-less weapons feed directly from inventory
             if (!hasMagazine)
             {
@@ -235,6 +240,11 @@ namespace Combat_Realism
 
         public void FinishReload()
         {
+            if (wielder == null)
+            {
+                return;
+            }
+
             if (useAmmo)
             {
                 // Check for inventory

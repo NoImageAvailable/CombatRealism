@@ -44,21 +44,6 @@ namespace Combat_Realism.Detours
             if (!CommunityCoreLibrary.Detours.TryDetourFromTo(tryAddSource, typeof(Detours_ThingContainer).GetMethod("TryAdd", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
-            MethodInfo tryDrop1Source = typeof(ThingContainer).GetMethod("TryDrop",
-                BindingFlags.Instance | BindingFlags.Public,
-                null,
-                new Type[] { typeof(Thing), typeof(IntVec3), typeof(ThingPlaceMode), typeof(Thing).MakeByRefType() },
-                null);
-
-            MethodInfo tryDrop1Dest = typeof(Detours_ThingContainer).GetMethod("TryDrop",
-                BindingFlags.Static | BindingFlags.NonPublic,
-                null,
-                new Type[] { typeof(ThingContainer), typeof(Thing), typeof(IntVec3), typeof(ThingPlaceMode), typeof(Thing).MakeByRefType() },
-                null);
-
-            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(tryDrop1Source, tryDrop1Dest))
-                return false;
-
             MethodInfo tryDrop2Source = typeof(ThingContainer).GetMethod("TryDrop",
                 BindingFlags.Instance | BindingFlags.Public,
                 null,
@@ -72,6 +57,14 @@ namespace Combat_Realism.Detours
                 null);
 
             if (!CommunityCoreLibrary.Detours.TryDetourFromTo(tryDrop2Source, tryDrop2Dest))
+                return false;
+
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(ThingContainer).GetMethod("Get", BindingFlags.Instance | BindingFlags.Public),
+                typeof(Detours_ThingContainer).GetMethod("Get", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(ThingContainer).GetMethod("Remove", BindingFlags.Instance | BindingFlags.Public),
+                typeof(Detours_ThingContainer).GetMethod("Remove", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
             // Pawn_ApparelTracker
@@ -119,6 +112,11 @@ namespace Combat_Realism.Detours
 
             if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(Pawn_EquipmentTracker).GetMethod("TryStartAttack", BindingFlags.Instance | BindingFlags.Public),
                 typeof(Detours_Pawn_EquipmentTracker).GetMethod("TryStartAttack", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
+            // WorkGiver_InteractAnimal
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(WorkGiver_InteractAnimal).GetMethod("TakeFoodForAnimalInteractJob", BindingFlags.Instance | BindingFlags.NonPublic),
+                typeof(Detours_WorkGiver_InteractAnimal).GetMethod("TakeFoodForAnimalInteractJob", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
             return true;

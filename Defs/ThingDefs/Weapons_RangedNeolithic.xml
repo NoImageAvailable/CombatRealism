@@ -34,9 +34,6 @@
       <li>
         <compClass>CompEquippable</compClass>
       </li>
-      <li>
-        <compClass>CompQuality</compClass>
-      </li>
     </comps>
     <recipeMaker>
       <workSpeedStat>SmithingSpeed</workSpeedStat>
@@ -49,7 +46,13 @@
     </recipeMaker>
   </ThingDef>
 
-
+  <ThingDef Name="BaseWeaponBow" ParentName="BaseWeaponNeolithic" Abstract="True">
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
+  </ThingDef>
 
   <ThingDef Name="BaseProjectileNeolithic" Abstract="True">
     <category>Projectile</category>
@@ -85,7 +88,7 @@
 	  <armorPenetration>0.15</armorPenetration>
     </projectile>
   </ThingDef>
-  <ThingDef ParentName="BaseWeaponNeolithic">
+  <ThingDef ParentName="BaseWeaponBow">
     <defName>Bow_Short</defName>
     <label>short bow</label>
     <description>A simple short bow, made with skill, but using only the most primitive technologies.</description>
@@ -103,7 +106,7 @@
       <AimEfficiency>0.35</AimEfficiency>
       <ShotSpread>2</ShotSpread>
       <SwayFactor>1</SwayFactor>
-      <Bulk>4.00</Bulk>
+      <Bulk>3.00</Bulk>
       <Weight>2.00</Weight>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
@@ -165,6 +168,7 @@
     <graphicData>
       <texPath>Things/Ammo/Neolithic/Pilum</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
+      <onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
     </graphicData>
     <soundInteract>Interact_BeatFire</soundInteract>
     <costList>
@@ -177,7 +181,7 @@
       <AimEfficiency>0.25</AimEfficiency>
       <ShotSpread>2.5</ShotSpread>
       <SwayFactor>2</SwayFactor>
-      <Bulk>6.00</Bulk>
+      <Bulk>4.00</Bulk>
       <Weight>3.00</Weight>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>
@@ -222,7 +226,7 @@
 	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
-  <ThingDef ParentName="BaseWeaponNeolithic">
+  <ThingDef ParentName="BaseWeaponBow">
     <defName>Bow_Great</defName>
     <label>great bow</label>
     <description>A powerful greatbow. Fires a heavy arrow long distances.</description>
@@ -240,7 +244,7 @@
       <AimEfficiency>0.35</AimEfficiency>
       <ShotSpread>2</ShotSpread>
       <SwayFactor>1</SwayFactor>
-      <Bulk>6.00</Bulk>
+      <Bulk>5.00</Bulk>
       <Weight>2.00</Weight>
       <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
     </statBases>

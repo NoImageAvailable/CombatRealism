@@ -96,7 +96,7 @@
     <deathMessage>{0} has been shredded to death.</deathMessage>
     <hediff>Shredded</hediff>
     <hediffSolid>Crack</hediffSolid>
-    <spreadOut>true</spreadOut>
+    <spreadOut>false</spreadOut>
   </DamageDef>
 
   <DamageDef ParentName="LocalInjuryBase">
@@ -237,7 +237,7 @@
     <explosionCellMote>Mote_BlastEMP</explosionCellMote>
     <explosionInteriorMote>Mote_ElectricalSpark</explosionInteriorMote>
     <soundExplosion>Explosion_EMP</soundExplosion>
-	<deflectable>true</deflectable>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
   </DamageDef>
 
 </Defs>

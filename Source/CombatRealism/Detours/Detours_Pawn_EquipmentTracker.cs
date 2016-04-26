@@ -73,6 +73,11 @@ namespace Combat_Realism.Detours
                 pawn.stances.CancelBusyStanceSoft();
 
             Utility.TryUpdateInventory(pawn);   // Equipment was destroyed, update inventory
+
+            // Try switching to the next available weapon
+            CompInventory inventory = pawn.TryGetComp<CompInventory>();
+            if (inventory != null)
+                inventory.SwitchToNextViableWeapon(false);
         }
 
         internal static bool TryDropEquipment(this Pawn_EquipmentTracker _this, ThingWithComps eq, out ThingWithComps resultingEq, IntVec3 pos, bool forbid = true)

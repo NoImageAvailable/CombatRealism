@@ -25,9 +25,9 @@
       <li Class="Combat_Realism.CompProperties_ExplosiveCR">
         <fragRange>2.5</fragRange>
         <fragments>
-          <Fragment_GrenadeFragSmall>40</Fragment_GrenadeFragSmall>
-          <Fragment_GrenadeFragMedium>30</Fragment_GrenadeFragMedium>
-          <Fragment_GrenadeFragLarge>8</Fragment_GrenadeFragLarge>
+          <Fragment_GrenadeFragSmall>120</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>90</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>24</Fragment_GrenadeFragLarge>
         </fragments>
       </li>
     </comps>
@@ -75,9 +75,9 @@
       <li Class="Combat_Realism.CompProperties_ExplosiveCR">
         <fragRange>3</fragRange>
         <fragments>
-          <Fragment_GrenadeFragSmall>45</Fragment_GrenadeFragSmall>
-          <Fragment_GrenadeFragMedium>35</Fragment_GrenadeFragMedium>
-          <Fragment_GrenadeFragLarge>10</Fragment_GrenadeFragLarge>
+          <Fragment_GrenadeFragSmall>140</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>105</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>30</Fragment_GrenadeFragLarge>
         </fragments>
       </li>
     </comps>
