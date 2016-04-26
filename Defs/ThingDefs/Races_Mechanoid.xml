@@ -18,6 +18,7 @@
       <li>ITab_Pawn_Gear</li>
       <li>ITab_Pawn_Guest</li>
       <li>ITab_Pawn_Prisoner</li>
+      <li>ITab_Pawn_Social</li>
     </inspectorTabs>
     <comps>
       <li>
