@@ -35,7 +35,8 @@
     <projectile>
       <damageDef>Flame</damageDef>
       <damageAmountBase>50</damageAmountBase>
-      <explosionRadius>3.0</explosionRadius>
+      <explosionRadius>2.0</explosionRadius>
+      <preExplosionSpawnThingDef>Puddle_Fuel</preExplosionSpawnThingDef>
     </projectile>
   </ThingDef>
   
@@ -44,14 +45,14 @@
     <label>thermobaric bolt</label>
     <projectile>
       <damageDef>Bomb</damageDef>
-      <damageAmountBase>150</damageAmountBase>
-      <explosionRadius>3.0</explosionRadius>
+      <damageAmountBase>100</damageAmountBase>
+      <explosionRadius>2.0</explosionRadius>
     </projectile>
 	<comps>
 	  <li Class="Combat_Realism.CompProperties_ExplosiveCR">
 	    <explosionDamage>20</explosionDamage>
 	    <explosionDamageDef>Flame</explosionDamageDef>
-	    <explosionRadius>3.0</explosionRadius>
+	    <explosionRadius>2.0</explosionRadius>
 	    <soundExplode>MortarBomb_Explode</soundExplode>
 	  </li>
 	</comps>

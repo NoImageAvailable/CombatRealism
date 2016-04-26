@@ -9,6 +9,7 @@
 	<ammoTypes>
 	  <li>Ammo_30x64mmFuel_Incendiary</li>
 	  <li>Ammo_30x64mmFuel_Thermobaric</li>
+	  <li>Ammo_30x64mmFuel_Foam</li>
 	</ammoTypes>
   </AmmoSetDef>
   
