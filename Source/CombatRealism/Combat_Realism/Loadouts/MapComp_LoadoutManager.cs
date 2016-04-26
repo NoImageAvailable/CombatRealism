@@ -84,7 +84,10 @@ namespace Combat_Realism
 
             // convert back into useable dictionary
             if ( Scribe.mode == LoadSaveMode.PostLoadInit )
-                Instance._assignedLoadouts = Instance._assignedLoadoutsScribeHelper.ToDictionary( k => k.pawn, v => v.loadout );
+                Instance._assignedLoadouts = Instance
+                    ._assignedLoadoutsScribeHelper
+                    .Where( a => a.Valid ) // removes assignments that for some reason have a null value.
+                    .ToDictionary( k => k.pawn, v => v.loadout );
         }
 
         internal static int GetUniqueID()

@@ -16,6 +16,14 @@ namespace Combat_Realism
 
         #endregion Fields
 
+        public bool Valid
+        {
+            get
+            {
+                return pawn != null && loadout != null;
+            }
+        }
+
         #region Methods
 
         public void ExposeData()
