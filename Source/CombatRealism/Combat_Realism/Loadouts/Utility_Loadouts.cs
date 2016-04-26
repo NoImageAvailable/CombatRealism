@@ -12,6 +12,12 @@ namespace Combat_Realism
     {
         #region Fields
 
+        public static StatDef Bulk = StatDef.Named( "Bulk" ); // for items in inventory
+        public static StatDef CarryBulk = StatDef.Named( "CarryBulk" ); // pawn capacity
+        public static StatDef CarryWeight = StatDef.Named( "CarryWeight" ); // pawn capacity
+        public static StatDef Weight = StatDef.Named( "Weight" ); // items in inventory
+        public static StatDef WornBulk = StatDef.Named( "WornBulk" ); // apparel offsets
+        public static StatDef WornWeight = StatDef.Named( "WornWeight" ); // apparel offsets
         private static float _labelSize = -1f;
         private static float _margin = 6f;
         private static Texture2D _overburdenedTex;
@@ -96,6 +102,42 @@ namespace Combat_Realism
             GUI.color = Color.white;
         }
 
+        public static string GetBulkTip( this Loadout loadout )
+        {
+            float baseBulkCapacity = ThingDefOf.Human.GetStatValueAbstract( CarryBulk );
+            float workSpeedFactor = Mathf.Lerp( 1f, 0.75f, loadout.Bulk / baseBulkCapacity );
+
+            return "CR.DetailedBaseBulkTip".Translate(
+                CarryBulk.ValueToString( baseBulkCapacity, CarryBulk.toStringNumberSense ),
+                CarryBulk.ValueToString( loadout.Bulk, CarryBulk.toStringNumberSense ),
+                workSpeedFactor.ToStringPercent() );
+        }
+
+        public static string GetBulkTip( this Pawn pawn )
+        {
+            var comp = pawn.TryGetComp<CompInventory>();
+            if ( comp != null )
+                return "CR.DetailedBulkTip".Translate( CarryBulk.ValueToString( comp.capacityBulk, CarryBulk.toStringNumberSense ),
+                                                       CarryBulk.ValueToString( comp.currentBulk, CarryBulk.toStringNumberSense ),
+                                                       comp.workSpeedFactor.ToStringPercent() );
+            else
+                return String.Empty;
+        }
+
+        public static string GetBulkTip( this Thing thing, int count = 1 )
+        {
+            return
+                "CR.Bulk".Translate() + ": " +
+                Bulk.ValueToString( thing.GetStatValue( Bulk ) * count, Bulk.toStringNumberSense );
+        }
+
+        public static string GetBulkTip( this ThingDef def, int count = 1 )
+        {
+            return
+                "CR.Bulk".Translate() + ": " +
+                Bulk.ValueToString( def.GetStatValueAbstract( Bulk ) * count, Bulk.toStringNumberSense );
+        }
+
         public static Loadout GetLoadout( this Pawn pawn )
         {
             if ( pawn == null )
@@ -108,6 +150,68 @@ namespace Combat_Realism
                 loadout = LoadoutManager.DefaultLoadout;
             }
             return loadout;
+        }
+
+        public static string GetWeightAndBulkTip( this Loadout loadout )
+        {
+            return loadout.GetWeightTip() + "\n\n" + loadout.GetBulkTip();
+        }
+
+        public static string GetWeightAndBulkTip( this Pawn pawn )
+        {
+            return pawn.GetWeightTip() + "\n\n" + pawn.GetBulkTip();
+        }
+
+        public static string GetWeightAndBulkTip( this Thing thing )
+        {
+            return thing.LabelCap + "\n" + thing.GetWeightTip( thing.stackCount ) + "\n" + thing.GetBulkTip( thing.stackCount );
+        }
+
+        public static string GetWeightAndBulkTip( this ThingDef def, int count = 1 )
+        {
+            return def.LabelCap +
+                ( count != 1 ? " x" + count : "" ) +
+                "\n" + def.GetWeightTip( count ) + "\n" + def.GetBulkTip( count );
+        }
+
+        public static string GetWeightTip( this ThingDef def, int count = 1 )
+        {
+            return
+                "CR.Weight".Translate() + ": " +
+                Weight.ValueToString( def.GetStatValueAbstract( Weight ) * count, Weight.toStringNumberSense );
+        }
+
+        public static string GetWeightTip( this Thing thing, int count = 1 )
+        {
+            return
+                "CR.Weight".Translate() + ": " +
+                Weight.ValueToString( thing.GetStatValue( Weight ) * count, Weight.toStringNumberSense );
+        }
+
+        public static string GetWeightTip( this Loadout loadout )
+        {
+            float baseWeightCapacity = ThingDefOf.Human.GetStatValueAbstract( CarryWeight );
+            float moveSpeedFactor = Mathf.Lerp( 1f, 0.75f, loadout.Weight / baseWeightCapacity );
+            float encumberPenalty = loadout.Weight > baseWeightCapacity ?
+                loadout.Weight / baseWeightCapacity - 1 :
+                0f;
+
+            return "CR.DetailedBaseWeightTip".Translate( CarryWeight.ValueToString( baseWeightCapacity, CarryWeight.toStringNumberSense ),
+                                                 CarryWeight.ValueToString( loadout.Weight, CarryWeight.toStringNumberSense ),
+                                                 moveSpeedFactor.ToStringPercent(),
+                                                 encumberPenalty.ToStringPercent() );
+        }
+
+        public static string GetWeightTip( this Pawn pawn )
+        {
+            var comp = pawn.TryGetComp<CompInventory>();
+            if ( comp != null )
+                return "CR.DetailedWeightTip".Translate( CarryWeight.ValueToString( comp.capacityWeight, CarryWeight.toStringNumberSense ),
+                                                     CarryWeight.ValueToString( comp.currentWeight, CarryWeight.toStringNumberSense ),
+                                                     comp.moveSpeedFactor.ToStringPercent(),
+                                                     comp.encumberPenalty.ToStringPercent() );
+            else
+                return "";
         }
 
         public static void SetLoadout( this Pawn pawn, Loadout loadout )

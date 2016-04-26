@@ -233,8 +233,8 @@ namespace Combat_Realism
             // bars
             if ( CurrentLoadout != null )
             {
-                Utility_Loadouts.DrawBar( weightBarRect, CurrentLoadout.Weight, StatDef.Named( "CarryWeight" ).defaultBaseValue, "CR.Weight".Translate() );
-                Utility_Loadouts.DrawBar( bulkBarRect, CurrentLoadout.Bulk, StatDef.Named( "CarryBulk" ).defaultBaseValue, "CR.Bulk".Translate() );
+                Utility_Loadouts.DrawBar( weightBarRect, CurrentLoadout.Weight, StatDef.Named( "CarryWeight" ).defaultBaseValue, "CR.Weight".Translate(), CurrentLoadout.GetWeightTip() );
+                Utility_Loadouts.DrawBar( bulkBarRect, CurrentLoadout.Bulk, StatDef.Named( "CarryBulk" ).defaultBaseValue, "CR.Bulk".Translate(), CurrentLoadout.GetBulkTip() );
             }
 
             // done!
@@ -399,7 +399,7 @@ namespace Combat_Realism
             if ( !Mouse.IsOver( deleteRect ) )
             {
                 Widgets.DrawHighlightIfMouseover( row );
-                TooltipHandler.TipRegion( row, slot.Def.LabelCap );
+                TooltipHandler.TipRegion( row, slot.Def.GetWeightAndBulkTip( slot.Count ) );
             }
 
             // label
@@ -543,6 +543,7 @@ namespace Combat_Realism
             {
                 Rect row = new Rect( 0f, i * _rowHeight, canvas.width, _rowHeight );
                 Rect labelRect = new Rect( row );
+                TooltipHandler.TipRegion( row, _source[i].GetWeightAndBulkTip() );
 
                 labelRect.xMin += _margin;
                 if ( i % 2 == 0 )
