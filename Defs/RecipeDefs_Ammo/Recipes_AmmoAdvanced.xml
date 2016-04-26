@@ -6,9 +6,9 @@
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
-    <workAmount>2500</workAmount>
-    <targetCountAdjustment>5</targetCountAdjustment>
+    <workAmount>10000</workAmount>
     <workSkill>Crafting</workSkill>
+    <targetCountAdjustment>500</targetCountAdjustment>
 	<recipeUsers>
 	  <!-- Need an empty list here or the ammo injector will throw a null ref exception -->
 	</recipeUsers>

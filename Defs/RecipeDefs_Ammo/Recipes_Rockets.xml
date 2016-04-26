@@ -8,7 +8,7 @@
     <label>make RPG-7 HEAT grenades x5</label>
     <description>Craft 5 RPG-7 HEAT grenades.</description>
     <jobString>Making RPG-7 HEAT grenades.</jobString>
-    <workAmount>7500</workAmount>
+    <workAmount>30000</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -52,7 +52,7 @@
     <label>make RPG-7 thermobaric grenades x5</label>
     <description>Craft 5 RPG-7 thermobaric grenades.</description>
     <jobString>Making RPG-7 thermobaric grenades.</jobString>
-    <workAmount>7500</workAmount>
+    <workAmount>30000</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -91,13 +91,12 @@
     </products>
   </RecipeDef>
 
-  <!--
   <RecipeDef ParentName="AmmoRecipeBase">
     <defName>MakeAmmo_RPG7Grenade_Frag</defName>
     <label>make RPG-7 frag grenades x5</label>
     <description>Craft 5 RPG-7 frag grenades.</description>
     <jobString>Making RPG-7 frag grenades.</jobString>
-    <workAmount>7500</workAmount>
+    <workAmount>30000</workAmount>
     <ingredients>
       <li>
         <filter>
@@ -135,6 +134,5 @@
       <Ammo_RPG7Grenade_Frag>5</Ammo_RPG7Grenade_Frag>
     </products>
   </RecipeDef>
-  -->
 
 </RecipeDefs>

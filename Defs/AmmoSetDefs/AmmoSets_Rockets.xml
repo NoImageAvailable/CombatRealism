@@ -9,6 +9,7 @@
 	<ammoTypes>
 	  <li>Ammo_RPG7Grenade_HEAT</li>
 	  <li>Ammo_RPG7Grenade_Thermobaric</li>
+	  <li>Ammo_RPG7Grenade_Frag</li>
 	</ammoTypes>
   </AmmoSetDef>
   

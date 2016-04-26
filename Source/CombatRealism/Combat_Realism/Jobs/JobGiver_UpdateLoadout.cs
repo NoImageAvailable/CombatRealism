@@ -25,6 +25,15 @@ namespace Combat_Realism
                 foreach (LoadoutSlot slot in loadout.Slots)
                 {
                     int numContained = inventory.container.NumContained(slot.Def);
+
+                    // Add currently equipped gun
+                    if (pawn.equipment != null && pawn.equipment.Primary != null)
+                    {
+                        if (pawn.equipment.Primary.def == slot.Def)
+                            numContained++;
+                    }
+
+                    // Find closest thing to pick up
                     if (numContained < slot.Count)
                     {
                         Thing thing = GenClosest.ClosestThingReachable(pawn.Position,

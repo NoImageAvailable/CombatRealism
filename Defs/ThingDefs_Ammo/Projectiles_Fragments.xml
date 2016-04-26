@@ -6,56 +6,6 @@
 		<alwaysFreeIntercept>true</alwaysFreeIntercept>
 	</projectile>
   </ThingDef>
-
-
-	
-	<!-- ================== 40mm grenade ================== -->
-  
-  <ThingDef ParentName="BaseFragment">
-    <defName>Fragment_Grenade40mmFragSmall</defName>
-    <label>small shell fragments</label>
-    <graphicData>
-      <texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Fragment</damageDef>
-      <damageAmountBase>24</damageAmountBase>
-      <speed>160</speed>
-	  <armorPenetration>0.4</armorPenetration>
-    </projectile>
-  </ThingDef>
-  
-  <ThingDef ParentName="BaseFragment">
-    <defName>Fragment_Grenade40mmFragMedium</defName>
-    <label>medium shell fragments</label>
-    <graphicData>
-      <texPath>Things/Projectile/Fragments/Fragment_Medium</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Fragment</damageDef>
-      <damageAmountBase>36</damageAmountBase>
-      <speed>140</speed>
-	  <armorPenetration>0.3</armorPenetration>
-    </projectile>
-  </ThingDef>
-  
-  <ThingDef ParentName="BaseFragment">
-    <defName>Fragment_Grenade40mmFragLarge</defName>
-    <label>large shell fragments</label>
-    <graphicData>
-      <texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <flyOverhead>false</flyOverhead>
-      <damageDef>Fragment</damageDef>
-      <damageAmountBase>48</damageAmountBase>
-      <speed>120</speed>
-	  <armorPenetration>0.2</armorPenetration>
-    </projectile>
-  </ThingDef>
   
   <!-- ================== 120mm mortar shell ================== -->
 
@@ -68,7 +18,7 @@
     </graphicData>
     <projectile>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>36</damageAmountBase>
+      <damageAmountBase>8</damageAmountBase>
       <speed>160</speed>
 	  <armorPenetration>0.4</armorPenetration>
     </projectile>
@@ -83,7 +33,7 @@
     </graphicData>
     <projectile>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>48</damageAmountBase>
+      <damageAmountBase>11</damageAmountBase>
       <speed>140</speed>
 	  <armorPenetration>0.3</armorPenetration>
     </projectile>
@@ -99,72 +49,24 @@
     <projectile>
       <flyOverhead>false</flyOverhead>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>60</damageAmountBase>
-      <speed>120</speed>
-	  <armorPenetration>0.2</armorPenetration>
-    </projectile>
-  </ThingDef>
-  
-  <!-- ================== 120mm HEAT shell ================== -->
-
-  <ThingDef ParentName="BaseFragment">
-    <defName>Fragment_HeatSmall</defName>
-    <label>small shell fragments</label>
-    <graphicData>
-      <texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Fragment</damageDef>
-      <damageAmountBase>36</damageAmountBase>
-      <speed>160</speed>
-	  <armorPenetration>0.4</armorPenetration>
-    </projectile>
-  </ThingDef>
-  
-  <ThingDef ParentName="BaseFragment">
-    <defName>Fragment_HeatMedium</defName>
-    <label>medium shell fragments</label>
-    <graphicData>
-      <texPath>Things/Projectile/Fragments/Fragment_Medium</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <damageDef>Fragment</damageDef>
-      <damageAmountBase>48</damageAmountBase>
-      <speed>140</speed>
-	  <armorPenetration>0.3</armorPenetration>
-    </projectile>
-  </ThingDef>
-  
-  <ThingDef ParentName="BaseFragment">
-    <defName>Fragment_HeatLarge</defName>
-    <label>large shell fragments</label>
-    <graphicData>
-      <texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-    </graphicData>
-    <projectile>
-      <flyOverhead>false</flyOverhead>
-      <damageDef>Fragment</damageDef>
-      <damageAmountBase>60</damageAmountBase>
+      <damageAmountBase>14</damageAmountBase>
       <speed>120</speed>
 	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
 
-  <!-- ================== Hand grenade ================== -->
+  <!-- ================== Grenade ================== -->
   
   <ThingDef ParentName="BaseFragment">
     <defName>Fragment_GrenadeFragSmall</defName>
-    <label>small shell fragments</label>
+    <label>small grenade fragments</label>
     <graphicData>
       <texPath>Things/Projectile/Fragments/Fragment_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>24</damageAmountBase>
+      <damageAmountBase>6</damageAmountBase>
       <speed>160</speed>
 	  <armorPenetration>0.4</armorPenetration>
     </projectile>
@@ -172,14 +74,14 @@
   
   <ThingDef ParentName="BaseFragment">
     <defName>Fragment_GrenadeFragMedium</defName>
-    <label>medium shell fragments</label>
+    <label>medium grenade fragments</label>
     <graphicData>
       <texPath>Things/Projectile/Fragments/Fragment_Medium</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>36</damageAmountBase>
+      <damageAmountBase>8</damageAmountBase>
       <speed>140</speed>
 	  <armorPenetration>0.3</armorPenetration>
     </projectile>
@@ -187,7 +89,7 @@
   
   <ThingDef ParentName="BaseFragment">
     <defName>Fragment_GrenadeFragLarge</defName>
-    <label>large shell fragments</label>
+    <label>large grenade fragments</label>
     <graphicData>
       <texPath>Things/Projectile/Fragments/Fragment_Large</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -195,7 +97,7 @@
     <projectile>
       <flyOverhead>false</flyOverhead>
       <damageDef>Fragment</damageDef>
-      <damageAmountBase>48</damageAmountBase>
+      <damageAmountBase>10</damageAmountBase>
       <speed>120</speed>
 	  <armorPenetration>0.2</armorPenetration>
     </projectile>

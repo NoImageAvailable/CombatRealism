@@ -57,7 +57,7 @@
     <defName>Bullet_RPG7Grenade_Frag</defName>
     <label>RPG-7 grenade (Frag)</label>
     <graphicData>
-		<texPath>Things/Projectile/RPG/Thermobaric</texPath>
+		<texPath>Things/Projectile/RPG/Frag</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <projectile>
@@ -69,9 +69,9 @@
       <li Class="Combat_Realism.CompProperties_ExplosiveCR">
         <fragRange>10</fragRange>
         <fragments>
-          <Fragment_GrenadeFragSmall>150</Fragment_GrenadeFragSmall>
-          <Fragment_GrenadeFragMedium>90</Fragment_GrenadeFragMedium>
-          <Fragment_GrenadeFragLarge>30</Fragment_GrenadeFragLarge>
+          <Fragment_GrenadeFragSmall>450</Fragment_GrenadeFragSmall>
+          <Fragment_GrenadeFragMedium>270</Fragment_GrenadeFragMedium>
+          <Fragment_GrenadeFragLarge>90</Fragment_GrenadeFragLarge>
         </fragments>
       </li>
     </comps>

@@ -189,8 +189,8 @@ namespace Combat_Realism
                         float eqWeight;
                         float eqBulk;
                         GetEquipmentStats(eq, out eqWeight, out eqBulk);
-                        newWeight += eqWeight;
-                        newBulk += eqBulk;
+                        newWeight += eqWeight * thing.stackCount;
+                        newBulk += eqBulk * thing.stackCount;
                     }
                     else
                     {
@@ -304,34 +304,51 @@ namespace Combat_Realism
             else if (useFists && parentPawn.equipment?.Primary != null)
             {
                 ThingWithComps oldEq;
-                parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
+                if (!parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq))
+                {
+                    if (parentPawn.Position.InBounds())
+                    {
+                        ThingWithComps unused;
+                        parentPawn.equipment.TryDropEquipment(oldEq, out unused, parentPawn.Position);
+                    }
+                    else
+                    {
+#if DEBUG
+                        Log.Message("CR :: CompInventory :: SwitchToNextViableWeapon :: destroying out of bounds equipment" + oldEq.ToString());
+#endif
+                        if (!oldEq.Destroyed)
+                        {
+                            oldEq.Destroy();
+                        }
+                    }
+                }
             }
         }
 
         public void TrySwitchToWeapon(ThingWithComps newEq)
         {
-            if (newEq == null || !this.container.Contains(newEq))
+            if (newEq == null || parentPawn.equipment == null || !this.container.Contains(newEq) )
             {
                 return;
             }
             if (parentPawn.equipment.Primary != null)
             {
-                ThingWithComps oldEq;
-                parentPawn.equipment.TryDropEquipment(parentPawn.equipment.Primary, out oldEq, parentPawn.Position.InBounds() ? parentPawn.Position : IntVec3.Zero);
 
+                ThingWithComps oldEq;
                 int count;
-                if (CanFitInInventory(oldEq, out count))
+                if (CanFitInInventory(parentPawn.equipment.Primary, out count, true))
                 {
-                    container.TryAdd(oldEq);
+                    parentPawn.equipment.TryTransferEquipmentToContainer(parentPawn.equipment.Primary, container, out oldEq);
+                }
+                else
+                {
+#if DEBUG
+                    Log.Warning("CR :: CompInventory :: TrySwitchToWeapon :: failed to add current equipment to inventory");
+#endif
+                    parentPawn.equipment.MakeRoomFor(newEq);
                 }
             }
-            // Split stack if our weapon has a stack count
-            if (newEq.stackCount > 1)
-            {
-                newEq = (ThingWithComps)newEq.SplitOff(1);
-            }
-            container.Remove(newEq);
-            parentPawn.equipment.AddEquipment(newEq);
+            parentPawn.equipment.AddEquipment((ThingWithComps)container.Get(newEq, 1));
             newEq.def.soundInteract.PlayOneShot(parent.Position);
         }
 
@@ -365,7 +382,6 @@ namespace Combat_Realism
                     thing.loadoutGenerator.GenerateLoadout(this);
                     container.Remove(thing);
                 }
-                UpdateInventory();
                 initializedLoadouts = true;
             }
 
@@ -382,12 +398,11 @@ namespace Combat_Realism
                 else
                 {
                     container.Remove(container.Last());
-                    UpdateInventory();
                 }
             }
-
-            // Debug validation - checks to make sure the inventory cache is being refreshed properly, remove before final release
             /*
+#if DEBUG
+            // Debug validation - checks to make sure the inventory cache is being refreshed properly
             if(ticksToInitLoadout <= 2)
             {
                 float lastWeight = this.currentWeightCached;
@@ -398,6 +413,7 @@ namespace Combat_Realism
                     Log.Error(this.parent.ToString() + " failed inventory validation");
                 }
             }
+#endif
             */
         }
     }

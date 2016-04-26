@@ -57,9 +57,9 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <projectile>
-      <damageAmountBase>4</damageAmountBase>
+      <damageAmountBase>3</damageAmountBase>
 	  <pelletCount>40</pelletCount>
-	  <spreadMult>8.5</spreadMult>
+	  <spreadMult>10</spreadMult>
 	  <armorPenetration>0.1</armorPenetration>
     </projectile>
   </ThingDef>
