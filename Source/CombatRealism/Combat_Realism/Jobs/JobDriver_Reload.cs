@@ -16,20 +16,20 @@ namespace Combat_Realism
             }
         }
 
-        private bool HasNoGunToReload()
+        private bool HasNoGunOrAmmo()
         {
-            if (TargetThingB.DestroyedOrNull())
-            {
+            if (TargetThingB.DestroyedOrNull() || pawn.equipment == null || pawn.equipment.Primary == null || pawn.equipment.Primary != TargetThingB)
                 return true;
-            }
-            return pawn.equipment == null || pawn.equipment.Primary == null || pawn.equipment.Primary != TargetThingB;
+
+            CompAmmoUser comp = pawn.equipment.Primary.TryGetComp<CompAmmoUser>();
+            return comp != null && comp.useAmmo && !comp.hasAmmo;
         }
 
         protected override IEnumerable< Toil > MakeNewToils()
         {
             this.FailOnDespawnedOrNull( TargetIndex.A );
             this.FailOnMentalState(TargetIndex.A);
-            this.FailOn(HasNoGunToReload);
+            this.FailOn(HasNoGunOrAmmo);
             
             //Toil of do-nothing		
             var waitToil = new Toil();

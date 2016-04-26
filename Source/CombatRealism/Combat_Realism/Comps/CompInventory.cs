@@ -86,7 +86,7 @@ namespace Combat_Realism
         {
             get
             {
-                return Mathf.Lerp(1f, 0.75f, currentWeight / 40f);
+                return Mathf.Lerp(1f, 0.75f, currentBulk / 40f);
             }
         }
         public float encumberPenalty
@@ -127,10 +127,10 @@ namespace Combat_Realism
         private bool initializedLoadouts = false;
         private int ticksToInitLoadout = 5;         // Generate loadouts this many ticks after spawning
 
-        public override void Initialize(CompProperties props)
+        public override void PostSpawnSetup()
         {
-            base.Initialize(props);
-            this.UpdateInventory();
+            base.PostSpawnSetup();
+            UpdateInventory();
         }
 
         /// <summary>
@@ -414,7 +414,7 @@ namespace Combat_Realism
                 }
             }
 #endif
-            */
+*/
         }
     }
 }

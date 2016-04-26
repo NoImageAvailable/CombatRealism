@@ -39,6 +39,9 @@
       </recipeUsers>
       <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
     </recipeMaker>
+    <thingCategories>
+      <li>Apparel</li>
+    </thingCategories>
   </ThingDef>
   
   <!-- ============= Stuffed apparel =================-->

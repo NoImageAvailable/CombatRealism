@@ -276,7 +276,8 @@ namespace Combat_Realism
             {
                 curMagCountInt = Props.magazineSize;
             }
-            parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(wielder.Position));
+            if (parent.def.soundInteract != null)
+                parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(wielder.Position));
             if (Props.throwMote)
             {
                 MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_ReloadedMote".Translate());

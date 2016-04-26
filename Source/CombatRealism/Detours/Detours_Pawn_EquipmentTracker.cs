@@ -150,6 +150,10 @@ namespace Combat_Realism.Detours
 
             Utility.TryUpdateInventory(pawn);   // Equipment was stored away, update inventory
 
+            // Cancel current job (use verb, etc.)
+            if (pawn.Spawned)
+                pawn.stances.CancelBusyStanceSoft();
+
             return resultingEq == null;
         }
 
