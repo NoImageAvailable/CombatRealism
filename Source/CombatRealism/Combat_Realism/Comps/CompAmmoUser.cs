@@ -227,12 +227,17 @@ namespace Combat_Realism
             };
 
             // Store the current job so we can reassign it later
-            if (this.wielder.drafter != null
+            if (this.wielder.Faction == Faction.OfColony
                 && this.wielder.CurJob != null
-                && (this.wielder.CurJob.def == JobDefOf.AttackStatic || this.wielder.CurJob.def == JobDefOf.Goto))
+                && (this.wielder.CurJob.def == JobDefOf.AttackStatic || this.wielder.CurJob.def == JobDefOf.Goto || wielder.CurJob.def == JobDefOf.Hunt))
             {
                 this.storedTarget = this.wielder.CurJob.targetA.HasThing ? new TargetInfo(this.wielder.CurJob.targetA.Thing) : new TargetInfo(this.wielder.CurJob.targetA.Cell);
                 this.storedJobDef = this.wielder.CurJob.def;
+            }
+            else
+            {
+                storedTarget = null;
+                storedJobDef = null;
             }
             this.AssignJobToWielder(reloadJob);
         }

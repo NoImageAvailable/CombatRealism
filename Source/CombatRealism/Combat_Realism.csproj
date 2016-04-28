@@ -110,6 +110,7 @@
     <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_AddInjuryCR.cs" />
     <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
     <Compile Include="Combat_Realism\Loadouts\Utility_Loadouts.cs" />
+    <Compile Include="Combat_Realism\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
     <Compile Include="Detours\DetourInjector.cs" />
     <Compile Include="Combat_Realism\FireMode.cs" />
     <Compile Include="Combat_Realism\Projectiles\BulletCR.cs" />
