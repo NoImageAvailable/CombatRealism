@@ -4,7 +4,6 @@
 	<!-- ================== RPG-7 Grenade ================== -->
 
 	<ThingDef Name="BaseRPG7Grenade" ParentName="BaseBullet" Abstract="true">
-		<thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
 		<projectile>
 			<speed>60</speed>
 		</projectile>
@@ -40,17 +39,15 @@
 		<graphicClass>Graphic_Single</graphicClass>
 	</graphicData>
     <projectile>
-      <explosionRadius>7.5</explosionRadius>
       <damageDef>Thermobaric</damageDef>
-      <damageAmountBase>150</damageAmountBase>
-	  <damageAdjacentTiles>true</damageAdjacentTiles>
-	  <soundExplode>MortarBomb_Explode</soundExplode>
+      <damageAmountBase>200</damageAmountBase>
     </projectile>
     <comps>
 	  <li Class="Combat_Realism.CompProperties_ExplosiveCR">
-	    <explosionDamage>150</explosionDamage>
+	    <explosionDamage>100</explosionDamage>
 	    <explosionDamageDef>Thermobaric</explosionDamageDef>
-	    <explosionRadius>2.5</explosionRadius>
+	    <explosionRadius>4.0</explosionRadius>
+	    <damageAdjacentTiles>true</damageAdjacentTiles>
 	    <soundExplode>MortarBomb_Explode</soundExplode>
 	  </li>
     </comps>
@@ -58,6 +55,7 @@
 
   <ThingDef ParentName="BaseRPG7Grenade">
     <defName>Bullet_RPG7Grenade_Frag</defName>
+	<thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <label>RPG-7 grenade (Frag)</label>
     <graphicData>
 		<texPath>Things/Projectile/RPG/Frag</texPath>

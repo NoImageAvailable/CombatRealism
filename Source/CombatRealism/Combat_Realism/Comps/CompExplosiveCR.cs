@@ -40,7 +40,7 @@ namespace Combat_Realism
                     this.parent.def,
                     Props.postExplosionSpawnThingDef,
                     Props.explosionSpawnChance,
-                    Props.damageAdjacentCells,
+                    Props.damageAdjacentTiles,
                     Props.preExplosionSpawnThingDef,
                     Props.explosionSpawnChance);
 
