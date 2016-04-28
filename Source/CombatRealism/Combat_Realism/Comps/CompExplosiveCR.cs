@@ -35,12 +35,12 @@ namespace Combat_Realism
                     Props.explosionRadius,
                     Props.explosionDamageDef,
                     this.parent,
-                    Props.soundExplode,
+                    Props.soundExplode == null ? Props.explosionDamageDef.soundExplosion : Props.soundExplode,
                     this.parent.def,
-                    instigator.def,
+                    this.parent.def,
                     Props.postExplosionSpawnThingDef,
                     Props.explosionSpawnChance,
-                    false,
+                    Props.damageAdjacentTiles,
                     Props.preExplosionSpawnThingDef,
                     Props.explosionSpawnChance);
 

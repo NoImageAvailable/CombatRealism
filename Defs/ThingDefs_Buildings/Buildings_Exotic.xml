@@ -14,7 +14,11 @@
     <damageMultipliers>
       <li>
         <damageDef>Bomb</damageDef>
-        <multiplier>3</multiplier>
+        <multiplier>2.5</multiplier>
+      </li>
+      <li>
+        <damageDef>Thermobaric</damageDef>
+        <multiplier>5</multiplier>
       </li>
       <li>
         <damageDef>Bullet</damageDef>
@@ -23,6 +27,10 @@
       <li>
         <damageDef>Fragment</damageDef>
         <multiplier>0.1</multiplier>
+      </li>
+      <li>
+        <damageDef>Arrow</damageDef>
+        <multiplier>0.05</multiplier>
       </li>
       <li>
         <damageDef>Electrical</damageDef>

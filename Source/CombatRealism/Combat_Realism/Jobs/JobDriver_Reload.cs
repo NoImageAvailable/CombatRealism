@@ -8,11 +8,13 @@ namespace Combat_Realism
 {
     public class JobDriver_Reload : JobDriver
     {
+        private CompAmmoUser _compReloader;
         private CompAmmoUser compReloader
         {
             get
             {
-                return TargetThingB.TryGetComp<CompAmmoUser>();
+                if (_compReloader == null) _compReloader = TargetThingB.TryGetComp<CompAmmoUser>();
+                return _compReloader;
             }
         }
 
@@ -27,6 +29,12 @@ namespace Combat_Realism
 
         protected override IEnumerable< Toil > MakeNewToils()
         {
+            if (compReloader == null)
+            {
+                Log.Error(pawn.ToString() + " tried to do reload job without compReloader");
+                yield return null;
+            }
+
             this.FailOnDespawnedOrNull( TargetIndex.A );
             this.FailOnMentalState(TargetIndex.A);
             this.FailOn(HasNoGunOrAmmo);

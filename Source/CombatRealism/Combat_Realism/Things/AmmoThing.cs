@@ -44,12 +44,12 @@ namespace Combat_Realism
                         stringBuilder.AppendLine("CR_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(props.explosionRadius, ToStringStyle.FloatOne));
 
                     // Secondary explosion
-                    CompProperties_ExplosiveCR secExpProps = ammoDef.GetCompProperties<CompProperties_ExplosiveCR>();
+                    CompProperties_ExplosiveCR secExpProps = ammoDef.linkedProjectile.GetCompProperties<CompProperties_ExplosiveCR>();
                     if (secExpProps != null)
                     {
                         if (secExpProps.explosionRadius > 0)
                         {
-                            stringBuilder.AppendLine("CR_DescSecondaryExplosion".Translate());
+                            stringBuilder.AppendLine("CR_DescSecondaryExplosion".Translate() + ":");
                             stringBuilder.AppendLine("   " + "CR_DescExplosionRadius".Translate() + ": " + GenText.ToStringByStyle(secExpProps.explosionRadius, ToStringStyle.FloatOne));
                             stringBuilder.AppendLine("   " + "CR_DescDamage".Translate() + ": " + 
                                 GenText.ToStringByStyle(secExpProps.explosionDamage, ToStringStyle.Integer) + " (" + secExpProps.explosionDamageDef.LabelCap + ")");

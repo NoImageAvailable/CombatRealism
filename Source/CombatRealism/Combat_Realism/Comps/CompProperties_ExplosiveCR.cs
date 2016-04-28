@@ -19,6 +19,7 @@ namespace Combat_Realism
         public SoundDef soundExplode;
         public List<ThingCount> fragments = new List<ThingCount>();
         public float fragRange = 0f;
+        public bool damageAdjacentTiles = false;
 
         public CompProperties_ExplosiveCR()
         {

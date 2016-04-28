@@ -12,15 +12,40 @@ namespace Combat_Realism
     {
         protected override float GetAltitudeOffset(Rot4 rotation)
         {
-            float offset = 0.001f;
             if (rotation == Rot4.North)
             {
-                return 0.06f;
+                return 0.1f;
             }
-            offset += 0.035f;
-            if (wearer.apparel.WornApparel.Any(x => x.def.apparel.LastLayer == ApparelLayer.Shell))
+            float offset = 0.0375f;
+            bool hasOnSkin = false;
+            bool hasMiddle = false;
+            bool hasShell = false;
+            for (int i = 0; i < wearer.apparel.WornApparel.Count && !(hasOnSkin && hasMiddle && hasShell); i++)
             {
-                offset += 0.006f;
+                switch (wearer.apparel.WornApparel[i].def.apparel.LastLayer)
+                {
+                    case ApparelLayer.OnSkin:
+                        if (!hasOnSkin)
+                        {
+                            offset += 0.005f;
+                            hasOnSkin = true;
+                        }
+                        break;
+                    case ApparelLayer.Middle:
+                        if (!hasMiddle)
+                        {
+                            offset += 0.005f;
+                            hasMiddle = true;
+                        }
+                        break;
+                    case ApparelLayer.Shell:
+                        if (!hasShell)
+                        {
+                            offset += 0.005f;
+                            hasShell = true;
+                        }
+                        break;
+                }
             }
             return offset;
         }

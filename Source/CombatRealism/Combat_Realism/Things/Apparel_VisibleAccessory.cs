@@ -12,6 +12,12 @@ namespace Combat_Realism
     {
         public override void DrawWornExtras()
         {
+            if (wearer == null || !wearer.Spawned) return;
+
+            // Check if wearer is in a bed
+            Building_Bed bed = wearer.CurrentBed();
+            if (bed != null && !bed.def.building.bed_showSleeperBody) return;
+
             Vector3 drawVec = this.wearer.Drawer.DrawPos;
             drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
@@ -26,15 +32,28 @@ namespace Combat_Realism
             float angle = 0;
             if(wearer.GetPosture() != PawnPosture.Standing)
             {
-                float? newAngle = wearer.Drawer?.renderer?.wiggler?.downedAngle;
-                if (newAngle != null)
-                    angle = (float)newAngle;
                 rotation = LayingFacing();
+                if (bed != null)
+                {
+                    Rot4 bedRotation = bed.Rotation;
+                    bedRotation.AsInt += 2;
+                    angle = bedRotation.AsAngle;
+                }
+                else if (wearer.Downed || wearer.Dead)
+                {
+                    float? newAngle = wearer.Drawer?.renderer?.wiggler?.downedAngle;
+                    if (newAngle != null)
+                        angle = (float)newAngle;
+                }
+                else
+                {
+                    angle = rotation.FacingCell.AngleFlat;
+                }
             }
             drawVec.y += GetAltitudeOffset(rotation);
             Material mat = apparelGraphic.graphic.MatAt(rotation);
 
-            mat.shader = ShaderDatabase.Cutout;
+            mat.shader = ShaderDatabase.CutoutComplex;
             mat.color = DrawColor;
             Matrix4x4 matrix = default(Matrix4x4);
             matrix.SetTRS(drawVec, Quaternion.AngleAxis(angle, Vector3.up), s);
