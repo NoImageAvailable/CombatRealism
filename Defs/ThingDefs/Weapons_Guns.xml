@@ -1015,7 +1015,7 @@
     </verbs>
 	<comps>
 	  <li Class="Combat_Realism.CompProperties_AmmoUser">
-	    <magazineSize>1</magazineSize>
+	    <magazineSize>0</magazineSize>
 		<ammoSet>AmmoSet_80x256mmFuel</ammoSet>
 	  </li>
 	  <li Class="Combat_Realism.CompProperties_FireModes">

@@ -201,12 +201,6 @@
         <!--<soundCast>Interact_BeatFire</soundCast>-->
       </li>
     </verbs>
-	<comps>
-	  <li Class="Combat_Realism.CompProperties_FireModes">
-		<aiUseBurstMode>false</aiUseBurstMode>
-		<aiUseAimMode>false</aiUseAimMode>
-	  </li>
-	</comps>
   </ThingDef>
 
 

@@ -73,10 +73,21 @@ namespace Combat_Realism
             }
         }
 
-        public override void PostSpawnSetup()
+        public override void Initialize(CompProperties props)
         {
-            base.PostSpawnSetup();
+            base.Initialize(props);
+            LongEventHandler.ExecuteWhenFinished(InitAvailableFireModes);
+        }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.LookValue(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
+            Scribe_Values.LookValue(ref currentAimModeInt, "currentAimMode", AimMode.Snapshot);
+        }
+
+        private void InitAvailableFireModes()
+        {
             // Calculate available fire modes
             if (this.verb.verbProps.burstShotCount > 1 || this.Props.noSingleShot)
             {
@@ -103,13 +114,6 @@ namespace Combat_Realism
             {
                 this.ResetModes();
             }
-        }
-
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Values.LookValue(ref currentFireModeInt, "currentFireMode", FireMode.AutoFire);
-            Scribe_Values.LookValue(ref currentAimModeInt, "currentAimMode", AimMode.Snapshot);
         }
 
         /// <summary>
@@ -174,7 +178,7 @@ namespace Combat_Realism
                 }
                 if (this.Props.aimedBurstShotCount > 0 && this.availableFireModes.Contains(FireMode.BurstFire))
                 {
-                    stringBuilder.AppendLine("CR_AimedBurstCount" + ": " + GenText.ToStringByStyle(this.Props.aimedBurstShotCount, ToStringStyle.Integer));
+                    stringBuilder.AppendLine("CR_AimedBurstCount".Translate() + ": " + GenText.ToStringByStyle(this.Props.aimedBurstShotCount, ToStringStyle.Integer));
                 }
             }
             return stringBuilder.ToString();

@@ -349,7 +349,8 @@ namespace Combat_Realism
                 }
             }
             parentPawn.equipment.AddEquipment((ThingWithComps)container.Get(newEq, 1));
-            newEq.def.soundInteract.PlayOneShot(parent.Position);
+            if (newEq.def.soundInteract != null)
+                newEq.def.soundInteract.PlayOneShot(parent.Position);
         }
 
         public override void CompTick()

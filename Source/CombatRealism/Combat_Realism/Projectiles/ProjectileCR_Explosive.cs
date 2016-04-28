@@ -37,6 +37,7 @@ namespace Combat_Realism
         protected virtual void Explode()
         {
             this.Destroy(DestroyMode.Vanish);
+            ProjectilePropertiesCR propsCR = def.projectile as ProjectilePropertiesCR;
             ThingDef preExplosionSpawnThingDef = this.def.projectile.preExplosionSpawnThingDef;
             GenExplosion.DoExplosion(base.Position,
                 this.def.projectile.explosionRadius,
@@ -47,7 +48,7 @@ namespace Combat_Realism
                 this.equipmentDef,
                 this.def.projectile.postExplosionSpawnThingDef,
                 this.def.projectile.explosionSpawnChance,
-                false,
+                propsCR == null ? false : propsCR.damageAdjacentTiles,
                 preExplosionSpawnThingDef,
                 this.def.projectile.explosionSpawnChance);
 

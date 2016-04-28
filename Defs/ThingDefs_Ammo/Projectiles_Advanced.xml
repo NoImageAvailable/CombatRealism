@@ -72,7 +72,7 @@
   
   <!-- ==================== 80x256mm Fuel Cell ========================== -->
   
-  <ThingDef>
+  <ThingDef ParentName="BaseBullet" >
     <defName>Bullet_80x256mmFuel_Thermobaric</defName>
     <label>inferno cannon shell</label>
     <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>

@@ -114,9 +114,18 @@ namespace Combat_Realism.Detours
                 typeof(Detours_Pawn_EquipmentTracker).GetMethod("TryStartAttack", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
+            // *************************************
+            // *** Detour inventory-related methods ***
+            // *************************************
+
             // WorkGiver_InteractAnimal
             if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(WorkGiver_InteractAnimal).GetMethod("TakeFoodForAnimalInteractJob", BindingFlags.Instance | BindingFlags.NonPublic),
                 typeof(Detours_WorkGiver_InteractAnimal).GetMethod("TakeFoodForAnimalInteractJob", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
+            // WorkGiver_HunterHunt
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(WorkGiver_HunterHunt).GetMethod("HasHuntingWeapon", BindingFlags.Static | BindingFlags.Public),
+                typeof(Detours_WorkGiver_HunterHunt).GetMethod("HasHuntingWeapon", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
             return true;

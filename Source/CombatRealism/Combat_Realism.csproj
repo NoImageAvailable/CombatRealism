@@ -145,6 +145,7 @@
     <Compile Include="Detours\Detours_ThingContainer.cs" />
     <Compile Include="Detours\Detours_TurretTop.cs" />
     <Compile Include="Detours\Detours_VerbTracker.cs" />
+    <Compile Include="Detours\Detours_WorkGiver_HunterHunt.cs" />
     <Compile Include="Detours\Detours_WorkGiver_InteractAnimal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Combat_Realism\Verbs\Verb_ShootCR.cs" />

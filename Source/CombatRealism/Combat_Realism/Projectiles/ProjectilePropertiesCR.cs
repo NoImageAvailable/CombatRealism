@@ -14,5 +14,6 @@ namespace Combat_Realism
         public int pelletCount = 1;
         public float spreadMult = 1;
         public List<SecondaryDamage> secondaryDamage = new List<SecondaryDamage>();
+        public bool damageAdjacentTiles = false;
     }
 }
