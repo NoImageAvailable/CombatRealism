@@ -70,6 +70,8 @@
   <ItemGroup>
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\AmmoInjector.cs" />
+    <Compile Include="Combat_Realism\Comps\CompProperties_TurretCR.cs" />
+    <Compile Include="Combat_Realism\Comps\CompTurretCR.cs" />
     <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_FlameCR.cs" />
     <Compile Include="Combat_Realism\Defs\DamageDef_CR.cs" />
     <Compile Include="Combat_Realism\Defs\LoadoutGeneratorDef.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Combat_Realism\Things\AmmoThing.cs" />
     <Compile Include="Combat_Realism\Things\Apparel_Backpack.cs" />
     <Compile Include="Combat_Realism\Things\Apparel_TacVest.cs" />
+    <Compile Include="Combat_Realism\Things\Building_TurretGunCR.cs" />
     <Compile Include="Combat_Realism\Things\LoadoutGeneratorThing.cs" />
     <Compile Include="Combat_Realism\Loadouts\Dialog_ManageLoadouts.cs" />
     <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />

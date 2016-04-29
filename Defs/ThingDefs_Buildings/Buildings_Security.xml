@@ -55,7 +55,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>TurretGun</defName>
     <label>improvised turret</label>
-    <thingClass>Building_TurretGun</thingClass>
+    <thingClass>Combat_Realism.Building_TurretGunCR</thingClass>
     <graphicData>
       <texPath>Things/Building/Security/TurretImprovised</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -74,10 +74,7 @@
     <tickerType>Normal</tickerType>
     <minifiedDef>TurretGun_Kit</minifiedDef>
     <comps>
-      <li Class="CompProperties_Explosive">
-        <explosiveRadius>3.9</explosiveRadius>
-        <explosiveDamageType>Bomb</explosiveDamageType>
-      </li>
+      <li Class="Combat_Realism.CompProperties_TurretInit"/>
       <li Class="CompProperties_Forbiddable"/>
       <li Class="CompProperties_Power">
         <compClass>CompPowerTrader</compClass>
@@ -105,10 +102,11 @@
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_TurretImprovised</turretGunDef>
-      <turretBurstCooldownTicks>410</turretBurstCooldownTicks>
+      <turretBurstCooldownTicks>90</turretBurstCooldownTicks>
       <turretTopgraphicPath>Things/Building/Security/TurretImprovised_Top</turretTopgraphicPath>
     </building>
     <designationHotKey>U</designationHotKey>
+    <designationCategory>Security</designationCategory>
   </ThingDef>
 
 

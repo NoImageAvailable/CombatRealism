@@ -240,15 +240,15 @@
       <li>AdvancedGun</li>
     </weaponTags>
     <apparelMoney>
-      <min>5000</min>
-      <max>8400</max>
+      <min>10000</min>
+      <max>16800</max>
     </apparelMoney>
-	<fixedInventory>
-	  <LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
-	  <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
-	  <LoadoutGen_MercSidearm>1</LoadoutGen_MercSidearm>
-	  <LoadoutGen_MercSidearmAmmo>1</LoadoutGen_MercSidearmAmmo>
-	</fixedInventory>
+		<fixedInventory>
+			<LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+			<LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+			<LoadoutGen_MercSidearm>1</LoadoutGen_MercSidearm>
+			<LoadoutGen_MercSidearmAmmo>1</LoadoutGen_MercSidearmAmmo>
+		</fixedInventory>
   </PawnKindDef>
 
 
@@ -259,12 +259,12 @@
     <weaponTags>
       <li>AdvancedGun</li>
     </weaponTags>
-	<fixedInventory>
-	  <LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
-	  <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
-	  <LoadoutGen_MercSidearm>1</LoadoutGen_MercSidearm>
-	  <LoadoutGen_MercSidearmAmmo>1</LoadoutGen_MercSidearmAmmo>
-	</fixedInventory>
+		<fixedInventory>
+			<LoadoutGen_MercAmmoPrimary>1</LoadoutGen_MercAmmoPrimary>
+			<LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+			<LoadoutGen_MercSidearm>1</LoadoutGen_MercSidearm>
+			<LoadoutGen_MercSidearmAmmo>1</LoadoutGen_MercSidearmAmmo>
+		</fixedInventory>
   </PawnKindDef>
 
 
@@ -275,10 +275,10 @@
     <weaponTags>
       <li>CR_MachineGun</li>
     </weaponTags>
-	<fixedInventory>
-	  <LoadoutGen_MercAmmoPrimaryDouble>1</LoadoutGen_MercAmmoPrimaryDouble>
-	  <LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
-	</fixedInventory>
+		<fixedInventory>
+			<LoadoutGen_MercAmmoPrimaryDouble>1</LoadoutGen_MercAmmoPrimaryDouble>
+			<LoadoutGen_MercSidearmMelee>1</LoadoutGen_MercSidearmMelee>
+		</fixedInventory>
   </PawnKindDef>
 
 

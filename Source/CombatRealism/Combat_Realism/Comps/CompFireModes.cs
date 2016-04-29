@@ -146,24 +146,32 @@ namespace Combat_Realism
         {
             if (this.casterPawn != null && this.casterPawn.Faction.Equals(Faction.OfColony))
             {
-                var toggleFireModeGizmo = new Command_Action
+                foreach(Command com in GenerateGizmos())
                 {
-                    action = this.ToggleFireMode,
-                    defaultLabel = ("CR_" + this.currentFireMode.ToString() + "Label").Translate(),
-                    defaultDesc = "CR_ToggleFireModeDesc".Translate(),
-                    icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + this.currentFireMode.ToString()), true)
-                };
-                yield return toggleFireModeGizmo;
-
-                var toggleAimModeGizmo = new Command_Action
-                {
-                    action = this.ToggleAimMode,
-                    defaultLabel = ("CR_" + this.currentAimMode.ToString() + "Label").Translate(),
-                    defaultDesc = "CR_ToggleAimModeDesc".Translate(),
-                    icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + this.currentAimMode.ToString()), true)
-                };
-                yield return toggleAimModeGizmo;
+                    yield return com;
+                }
             }
+        }
+
+        public IEnumerable<Command> GenerateGizmos()
+        {
+            var toggleFireModeGizmo = new Command_Action
+            {
+                action = this.ToggleFireMode,
+                defaultLabel = ("CR_" + this.currentFireMode.ToString() + "Label").Translate(),
+                defaultDesc = "CR_ToggleFireModeDesc".Translate(),
+                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + this.currentFireMode.ToString()), true)
+            };
+            yield return toggleFireModeGizmo;
+
+            var toggleAimModeGizmo = new Command_Action
+            {
+                action = this.ToggleAimMode,
+                defaultLabel = ("CR_" + this.currentAimMode.ToString() + "Label").Translate(),
+                defaultDesc = "CR_ToggleAimModeDesc".Translate(),
+                icon = ContentFinder<Texture2D>.Get(("UI/Buttons/" + this.currentAimMode.ToString()), true)
+            };
+            yield return toggleAimModeGizmo;
         }
 
         public override string GetDescriptionPart()

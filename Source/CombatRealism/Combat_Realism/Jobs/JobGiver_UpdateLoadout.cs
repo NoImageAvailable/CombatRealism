@@ -51,6 +51,26 @@ namespace Combat_Realism
                             }
                         }
                     }
+                    // Drop excess items
+                    else if(numContained > slot.Count)
+                    {
+                        Thing thing = inventory.container.FirstOrDefault(x => x.def == slot.Def);
+                        if (thing != null)
+                        {
+                            Thing droppedThing;
+                            if (inventory.container.TryDrop(thing, pawn.Position, ThingPlaceMode.Near, numContained - slot.Count, out droppedThing))
+                            {
+                                if (droppedThing != null)
+                                {
+                                    return HaulAIUtility.HaulToStorageJob(pawn, droppedThing);
+                                }
+                                else
+                                {
+                                    Log.Error(pawn.ToString() + " tried dropping " + thing.ToString() + " from loadout but resulting thing is null");
+                                }
+                            }
+                        }
+                    }
                 }
             }
             return null;

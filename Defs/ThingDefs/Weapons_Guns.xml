@@ -644,7 +644,6 @@
 
   <!-- ================ Improvised turret gun ============== -->
 
-  <!--
   <ThingDef ParentName="BaseHumanGun">
     <defName>Gun_TurretImprovised</defName>
     <label>improvised turret gun</label>
@@ -672,9 +671,9 @@
       <li Class="Combat_Realism.VerbPropertiesCR">
 	    <recoilOffsetX>(0,0)</recoilOffsetX>
 	    <recoilOffsetY>(0,0)</recoilOffsetY>
-        <verbClass>Verb_Shoot</verbClass>
+        <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Bullet_TurretImprovised</projectileDef>
+        <projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
         <warmupTicks>90</warmupTicks>
         <range>25.9</range>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
@@ -684,8 +683,20 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
+		<comps>
+			<!--
+			<li Class="Combat_Realism.CompProperties_AmmoUser">
+				<magazineSize>600</magazineSize>
+				<reloadTicks>60</reloadTicks>
+				<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+			</li>
+			-->
+			<li Class="Combat_Realism.CompProperties_FireModes">
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiUseAimMode>TRUE</aiUseAimMode>
+			</li>
+		</comps>
   </ThingDef>
-  -->
 
 
   <!-- ======================= Heavy weapons ======================= -->
@@ -734,17 +745,17 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
-	<comps>
-	  <li Class="Combat_Realism.CompProperties_AmmoUser">
-	    <magazineSize>600</magazineSize>
-		<reloadTicks>60</reloadTicks>
-		<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
-	  </li>
-	  <li Class="Combat_Realism.CompProperties_FireModes">
-		<aiUseBurstMode>FALSE</aiUseBurstMode>
-		<aiUseAimMode>TRUE</aiUseAimMode>
-	  </li>
-	</comps>
+		<comps>
+			<li Class="Combat_Realism.CompProperties_AmmoUser">
+				<magazineSize>600</magazineSize>
+				<reloadTicks>60</reloadTicks>
+				<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+			</li>
+			<li Class="Combat_Realism.CompProperties_FireModes">
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiUseAimMode>TRUE</aiUseAimMode>
+			</li>
+		</comps>
   </ThingDef>
 
 

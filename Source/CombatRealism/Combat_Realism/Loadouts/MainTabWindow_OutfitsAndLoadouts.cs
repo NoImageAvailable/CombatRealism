@@ -192,7 +192,7 @@ namespace Combat_Realism
             // clear forced button
             if ( p.outfits.forcedHandler.SomethingIsForced )
             {
-                TooltipHandler.TipRegion( forcedOutfitRect, "CR.ClearForced".Translate() );
+                TooltipHandler.TipRegion( forcedOutfitRect, "ClearForcedApparel".Translate() );
                 if ( Widgets.ImageButton( forcedOutfitRect, _iconClearForced ) )
                 {
                     p.outfits.forcedHandler.Reset();

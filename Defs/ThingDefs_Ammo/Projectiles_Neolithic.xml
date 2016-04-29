@@ -12,7 +12,7 @@
     </graphicData>
     <projectile>
       <damageDef>Arrow</damageDef>
-      <speed>88</speed>
+      <speed>44</speed>
     </projectile>
   </ThingDef>
 
@@ -21,7 +21,7 @@
     <label>arrow</label>
     <projectile>
       <damageAmountBase>10</damageAmountBase>
-	  <armorPenetration>0.1</armorPenetration>
+			<armorPenetration>0.15</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -34,16 +34,16 @@
     </graphicData>
     <projectile>
       <damageDef>Arrow</damageDef>
-      <speed>98</speed>
+      <speed>49</speed>
     </projectile>
   </ThingDef>
 
   <ThingDef ParentName="BaseGreatArrowProjectile">
     <defName>Projectile_GreatArrow</defName>
-    <label>arrow</label>
+    <label>great arrow</label>
     <projectile>
-      <damageAmountBase>12</damageAmountBase>
-	  <armorPenetration>0.15</armorPenetration>
+      <damageAmountBase>14</damageAmountBase>
+	  <armorPenetration>0.2</armorPenetration>
     </projectile>
   </ThingDef>
   
@@ -58,9 +58,9 @@
     </graphicData>
     <projectile Class="Combat_Realism.ProjectilePropertiesCR">
       <damageDef>Stab</damageDef>
-      <damageAmountBase>14</damageAmountBase>
-      <speed>52</speed>
-	  <armorPenetration>0.20</armorPenetration>
+      <damageAmountBase>16</damageAmountBase>
+      <speed>26</speed>
+	  <armorPenetration>0.3</armorPenetration>
     </projectile>
   </ThingDef>
 
