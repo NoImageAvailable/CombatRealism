@@ -67,16 +67,16 @@
       <damageAmountBase>80</damageAmountBase>
       <explosionDelay>60</explosionDelay>
     </projectile>
-	<comps>
+		<comps>
       <li Class="Combat_Realism.CompProperties_ExplosiveCR">
         <fragRange>4.0</fragRange>
-		<fragments>
-			<Fragment_GrenadeFragSmall>225</Fragment_GrenadeFragSmall>
-			<Fragment_GrenadeFragMedium>150</Fragment_GrenadeFragMedium>
-			<Fragment_GrenadeFragLarge>45</Fragment_GrenadeFragLarge>
-		</fragments>
+				<fragments>
+					<Fragment_GrenadeFragSmall>225</Fragment_GrenadeFragSmall>
+					<Fragment_GrenadeFragMedium>150</Fragment_GrenadeFragMedium>
+					<Fragment_GrenadeFragLarge>45</Fragment_GrenadeFragLarge>
+				</fragments>
       </li>
-	</comps>
+		</comps>
   </ThingDef>
 
   <ThingDef ParentName="BaseGrenadeEquipment">

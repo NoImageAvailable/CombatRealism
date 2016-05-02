@@ -68,7 +68,7 @@
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
-      <WorkToMake>10000</WorkToMake>
+      <WorkToMake>20000</WorkToMake>
       <Beauty>-60</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
@@ -86,7 +86,7 @@
     <description>An improvised turret that automatically fires at nearby enemies.</description>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
-    <fillPercent>0.4</fillPercent>
+    <fillPercent>0.75</fillPercent>
     <castEdgeShadows>true</castEdgeShadows>
     <hasTooltip>true</hasTooltip>
     <stuffCategories>
@@ -116,6 +116,12 @@
       <turretTopgraphicPath>Things/Building/Security/TurretImprovised_Top</turretTopgraphicPath>
     </building>
     <designationHotKey>U</designationHotKey>
+    <tradeTags>
+      <li>Turrets</li>
+    </tradeTags>
+    <thingCategories>
+      <li>WeaponsTurrets</li>
+    </thingCategories>
   </ThingDef>
 
   <!--=============== 81mm mortar ===============-->

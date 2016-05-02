@@ -3,19 +3,20 @@
   
   <!-- ==================== .50 BMG ========================== -->
 
-  <ThingDef Class="Combat_Realism.AmmoDef" Name="Ammo50BMGBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="Ammo50BMGBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Large caliber bullet used by many heavy machine guns and anti-materiel rifles.</description>
     <statBases>
 	  <Weight>0.11</Weight>
 	  <Bulk>0.15</Bulk>
     </statBases>
-	<tradeTags>
-	  <li>CR_AutoEnableTrade</li>
-	  <li>CR_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CR_AutoEnableTrade</li>
+			<li>CR_AutoEnableCrafting</li>
+		</tradeTags>
     <thingCategories>
       <li>Ammo50BMG</li>
     </thingCategories>
+    <stackLimit>200</stackLimit>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo50BMGBase">
@@ -76,7 +77,7 @@
   
   <!-- ==================== 14.5x114mm ========================== -->
 
-  <ThingDef Class="Combat_Realism.AmmoDef" Name="Ammo145x114mmBase" ParentName="AmmoBase" Abstract="True">
+  <ThingDef Class="Combat_Realism.AmmoDef" Name="Ammo145x114mmBase" ParentName="SmallAmmoBase" Abstract="True">
     <description>Old-school anti-tank cartridge originally designed for AT rifles, it is also used by a number of heavy machine guns.</description>
     <statBases>
 	  <Weight>0.2</Weight>
@@ -89,6 +90,7 @@
     <thingCategories>
       <li>Ammo145x114mm</li>
     </thingCategories>
+    <stackLimit>200</stackLimit>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="Ammo145x114mmBase">

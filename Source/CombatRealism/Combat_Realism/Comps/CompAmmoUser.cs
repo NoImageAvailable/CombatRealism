@@ -211,7 +211,7 @@ namespace Combat_Realism
             if (useAmmo)
             {
                 // Add remaining ammo back to inventory
-                if (curMagCountInt > 0 && (turret == null || selectedAmmo != currentAmmo))
+                if (curMagCountInt > 0)
                 {
                     Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
                     ammoThing.stackCount = curMagCountInt;
@@ -329,7 +329,7 @@ namespace Combat_Realism
             {
                 newMagCount = Props.magazineSize;
             }
-            curMagCountInt += newMagCount;
+            curMagCountInt = newMagCount;
             if (turret != null) turret.isReloading = false;
             if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(position));
             if (Props.throwMote) MoteThrower.ThrowText(position.ToVector3Shifted(), "CR_ReloadedMote".Translate());

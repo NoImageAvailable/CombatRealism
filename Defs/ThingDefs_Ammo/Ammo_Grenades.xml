@@ -16,6 +16,7 @@
     <thingCategories>
       <li>Ammo30x29mmGrenades</li>
     </thingCategories>
+    <stackLimit>75</stackLimit>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="30x29mmGrenadeBase">
@@ -61,6 +62,7 @@
     <thingCategories>
       <li>Ammo40x46mmGrenades</li>
     </thingCategories>
+    <stackLimit>75</stackLimit>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="40x46mmGrenadeBase">

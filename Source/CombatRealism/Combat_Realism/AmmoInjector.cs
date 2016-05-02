@@ -30,7 +30,7 @@ namespace Combat_Realism
             Utility.allWeaponDefs.Clear();
             foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
             {
-                if (def.IsWeapon && (def.canBeSpawningInventory || def.tradeability == Tradeability.Stockable))
+                if (def.IsWeapon && (def.canBeSpawningInventory || def.tradeability == Tradeability.Stockable || def.weaponTags.Contains("TurretGun")))
                     Utility.allWeaponDefs.Add(def);
             }
             if (Utility.allWeaponDefs.NullOrEmpty())

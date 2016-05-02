@@ -24,6 +24,7 @@
 			<li Class="Combat_Realism.CompProperties_AmmoUser">
 				<magazineSize>1</magazineSize>
 				<reloadTicks>150</reloadTicks>
+				<spawnUnloaded>true</spawnUnloaded>
 				<ammoSet>AmmoSet_81mmMortarShell</ammoSet>
 			</li>
     </comps>

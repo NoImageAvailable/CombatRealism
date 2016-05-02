@@ -12,6 +12,7 @@
     <thingCategories>
       <li>AmmoArrows</li>
     </thingCategories>
+    <stackLimit>200</stackLimit>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="AmmoArrowBase">
@@ -68,6 +69,7 @@
     <thingCategories>
       <li>AmmoGreatArrows</li>
     </thingCategories>
+    <stackLimit>200</stackLimit>
   </ThingDef>
 
   <ThingDef Class="Combat_Realism.AmmoDef" ParentName="AmmoGreatArrowBase">

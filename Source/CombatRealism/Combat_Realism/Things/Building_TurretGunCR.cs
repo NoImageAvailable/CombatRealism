@@ -348,10 +348,8 @@ namespace Combat_Realism
         protected void TryStartShootSomething()
         {
             // Check for ammo first
-            if (compAmmo != null && (compAmmo.curMagCount <= 0 || isReloading))
-            {
-                return;
-            }
+            if (compAmmo != null && (isReloading || (mannableComp == null && compAmmo.curMagCount <= 0))) return;
+
             if (this.forcedTarget.ThingDestroyed)
             {
                 this.forcedTarget = null;

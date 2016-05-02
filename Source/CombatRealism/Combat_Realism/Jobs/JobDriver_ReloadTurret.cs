@@ -38,6 +38,7 @@ namespace Combat_Realism
             yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.ClosestTouch);
             yield return Toils_Haul.StartCarryThing(TargetIndex.B);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch);
+            yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.A, null, false);
 
             // Wait in place
             var waitToil = new Toil();

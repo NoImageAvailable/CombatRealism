@@ -88,7 +88,7 @@
     <statBases>
       <MarketValue>27.83</MarketValue>
     </statBases>
-		<linkedProjectile>Bullet_90mmCannonShell_HE</linkedProjectile>
+		<linkedProjectile>Bullet_90mmCannonShell_HEAT</linkedProjectile>
 		<ammoClass>RocketHEAT</ammoClass>
   </ThingDef>
 
