@@ -55,7 +55,7 @@ namespace Combat_Realism
                                 GenText.ToStringByStyle(secExpProps.explosionDamage, ToStringStyle.Integer) + " (" + secExpProps.explosionDamageDef.LabelCap + ")");
                         }
                         if (secExpProps.fragRange > 0)
-                            stringBuilder.AppendLine("CR_DescFragRange".Translate() + GenText.ToStringByStyle(secExpProps.fragRange, ToStringStyle.FloatTwo));
+                            stringBuilder.AppendLine("CR_DescFragRange".Translate() + ": " + GenText.ToStringByStyle(secExpProps.fragRange, ToStringStyle.FloatTwo));
                     }
 
                     // CR stats

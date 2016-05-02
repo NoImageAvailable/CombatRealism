@@ -255,7 +255,7 @@ namespace Combat_Realism
             return count > 0;
         }
 
-        private void GetEquipmentStats(ThingWithComps eq, out float weight, out float bulk)
+        public static void GetEquipmentStats(ThingWithComps eq, out float weight, out float bulk)
         {
             weight = eq.GetStatValue(StatDef.Named("Weight"));
             bulk = eq.GetStatValue(StatDef.Named("Bulk"));
@@ -401,21 +401,6 @@ namespace Combat_Realism
                     container.Remove(container.Last());
                 }
             }
-            /*
-#if DEBUG
-            // Debug validation - checks to make sure the inventory cache is being refreshed properly
-            if(ticksToInitLoadout <= 2)
-            {
-                float lastWeight = this.currentWeightCached;
-                float lastBulk = this.currentBulkCached;
-                this.UpdateInventory();
-                if (lastWeight != this.currentWeightCached || lastBulk != this.currentBulkCached)
-                {
-                    Log.Error(this.parent.ToString() + " failed inventory validation");
-                }
-            }
-#endif
-*/
         }
     }
 }

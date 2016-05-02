@@ -19,10 +19,10 @@ namespace Combat_Realism
         }
         public Thing gun;
 
-        public override void Initialize(Verse.CompProperties props)
+        public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            Building_TurretGun turret = parent as Building_TurretGun;
+            Building_TurretGunCR turret = parent as Building_TurretGunCR;
             if (turret != null && turret.gun == null)
             {
                 gun = (Thing)ThingMaker.MakeThing(parent.def.building.turretGunDef);
@@ -30,7 +30,7 @@ namespace Combat_Realism
             }
         }
 
-        public override void PostSpawnSetup()
+        /*public override void PostSpawnSetup()
         {
             base.PostSpawnSetup();
             //It just needed first time.
@@ -39,6 +39,6 @@ namespace Combat_Realism
                 gun.Destroy();
                 gun = null;
             }
-        }
+        }*/
     }
 }

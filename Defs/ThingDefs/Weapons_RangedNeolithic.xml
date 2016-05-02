@@ -110,7 +110,7 @@
       <li Class="Combat_Realism.VerbPropertiesCR">
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Projectile_Arrow</projectileDef>
+        <projectileDef>Projectile_Arrow_Stone</projectileDef>
         <warmupTicks>60</warmupTicks>
         <range>23</range>
         <soundCast>BowSmall</soundCast>
@@ -203,7 +203,7 @@
       <li Class="Combat_Realism.VerbPropertiesCR">
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Projectile_GreatArrow</projectileDef>
+        <projectileDef>Projectile_GreatArrow_Stone</projectileDef>
         <warmupTicks>80</warmupTicks>
         <range>30</range>
         <soundCast>BowGreat</soundCast>

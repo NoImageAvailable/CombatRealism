@@ -57,7 +57,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.19</MarketValue>
+      <MarketValue>0.23</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Buck</linkedProjectile>
 	<ammoClass>BuckShot</ammoClass>
@@ -71,7 +71,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.19</MarketValue>
+      <MarketValue>0.23</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Bird</linkedProjectile>
 	<ammoClass>BirdShot</ammoClass>
@@ -86,7 +86,7 @@
     </graphicData>
     <statBases>
 	  <Weight>0.1</Weight>
-      <MarketValue>0.24</MarketValue>
+      <MarketValue>0.30</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Slug</linkedProjectile>
 	<ammoClass>Slug</ammoClass>
@@ -101,7 +101,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.16</MarketValue>
+      <MarketValue>0.18</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_Beanbag</linkedProjectile>
 	<ammoClass>Beanbag</ammoClass>
@@ -115,7 +115,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.47</MarketValue>
+      <MarketValue>0.48</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_12Gauge_ElectroSlug</linkedProjectile>
 	<ammoClass>ElectroSlug</ammoClass>

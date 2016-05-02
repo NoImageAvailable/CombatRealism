@@ -48,7 +48,7 @@ namespace Combat_Realism
 
             //Actual reloader
             var reloadToil = new Toil();
-            reloadToil.AddFinishAction( compReloader.FinishReload );
+            reloadToil.AddFinishAction( () => compReloader.LoadAmmo() );
             yield return reloadToil;
 
             //Continue previous job if possible

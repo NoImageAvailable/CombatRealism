@@ -19,7 +19,7 @@ namespace Combat_Realism
             get
             {
                 if (ammoCraftingStationInt == null)
-                    ammoCraftingStationInt = ThingDef.Named("TableMachining");
+                    ammoCraftingStationInt = ThingDef.Named("AmmoBench");
                 return ammoCraftingStationInt;
             }
         }

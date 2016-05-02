@@ -20,6 +20,8 @@ namespace Combat_Realism
         private AmmoDef currentAmmoInt = null;
         public AmmoDef selectedAmmo;
 
+        public Building_TurretGunCR turret;         // Cross-linked from CR turret
+
         #endregion
 
         #region Properties
@@ -45,7 +47,14 @@ namespace Combat_Realism
         }
         public Pawn wielder
         {
-            get { return compEquippable.PrimaryVerb.CasterPawn; }
+            get
+            {
+                if (compEquippable == null || compEquippable.PrimaryVerb == null)
+                {
+                    return null;
+                }
+                return compEquippable.PrimaryVerb.CasterPawn;
+            }
         }
         public bool useAmmo
         {
@@ -78,6 +87,15 @@ namespace Combat_Realism
                 return wielder.TryGetComp<CompInventory>();
             }
         }
+        private IntVec3 position
+        {
+            get
+            {
+                if (wielder != null) return wielder.Position;
+                else if (turret != null) return turret.Position;
+                else return parent.Position;
+            }
+        }
 
         #endregion
 
@@ -87,7 +105,7 @@ namespace Combat_Realism
         {
             base.Initialize(vprops);
 
-            curMagCountInt = Props.magazineSize;
+            curMagCountInt = Props.spawnUnloaded ? 0 : Props.magazineSize;
 
             // Initialize ammo with default if none is set
             if (useAmmo)
@@ -98,7 +116,7 @@ namespace Combat_Realism
                 }
                 else
                 {
-                    if(currentAmmoInt == null)
+                    if (currentAmmoInt == null)
                         currentAmmoInt = (AmmoDef)Props.ammoSet.ammoTypes[0];
                     if (selectedAmmo == null)
                         selectedAmmo = currentAmmoInt;
@@ -109,7 +127,6 @@ namespace Combat_Realism
         public override void PostExposeData()
         {
             base.PostExposeData();
-
             Scribe_Values.LookValue(ref curMagCountInt, "count", 0);
             Scribe_Defs.LookDef(ref currentAmmoInt, "currentAmmo");
             Scribe_Defs.LookDef(ref selectedAmmo, "selectedAmmo");
@@ -132,9 +149,9 @@ namespace Combat_Realism
         /// </summary>
         public bool TryReduceAmmoCount()
         {
-            if (wielder == null)
+            if (wielder == null && turret == null)
             {
-                return false;
+                Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
             }
 
             // Mag-less weapons feed directly from inventory
@@ -169,27 +186,32 @@ namespace Combat_Realism
             {
                 compInventory.UpdateInventory();
             }
+            if (curMagCountInt <= 0) TryStartReload();
             return true;
         }
 
-        public void StartReload()
+        public void TryStartReload()
         {
-            if (wielder == null)
-            {
-                Log.ErrorOnce("Wielder of " + parent + " is null!", 7381889);
-                FinishReload();
-                return;
-            }
-
             if (!hasMagazine)
             {
                 return;
+            }
+            IntVec3 position;
+            if (wielder == null)
+            {
+                if (turret == null) return;
+                turret.isReloading = true;
+                position = turret.Position;
+            }
+            else
+            {
+                position = wielder.Position;
             }
 
             if (useAmmo)
             {
                 // Add remaining ammo back to inventory
-                if (curMagCountInt > 0)
+                if (curMagCountInt > 0 && (turret == null || selectedAmmo != currentAmmo))
                 {
                     Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
                     ammoThing.stackCount = curMagCountInt;
@@ -197,17 +219,16 @@ namespace Combat_Realism
 
                     if (compInventory != null)
                     {
-                        compInventory.UpdateInventory();
                         compInventory.container.TryAdd(ammoThing, ammoThing.stackCount);
                     }
                     else
                     {
                         Thing outThing;
-                        GenThing.TryDropAndSetForbidden(ammoThing, wielder.Position, ThingPlaceMode.Near, out outThing, true);
+                        GenThing.TryDropAndSetForbidden(ammoThing, position, ThingPlaceMode.Near, out outThing, turret.Faction != Faction.OfColony);
                     }
                 }
                 // Check for ammo
-                if (!hasAmmo)
+                if (wielder != null && !hasAmmo)
                 {
                     this.DoOutOfAmmoAction();
                     return;
@@ -217,85 +238,101 @@ namespace Combat_Realism
             // Throw mote
             if (Props.throwMote)
             {
-                MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_ReloadingMote".Translate());
+                MoteThrower.ThrowText(position.ToVector3Shifted(), "CR_ReloadingMote".Translate());
             }
 
             // Issue reload job
-            var reloadJob = new Job(DefDatabase<JobDef>.GetNamed("ReloadWeapon"), wielder, parent)
+            if (wielder != null)
             {
-                playerForced = true
-            };
+                var reloadJob = new Job(DefDatabase<JobDef>.GetNamed("ReloadWeapon"), wielder, parent)
+                {
+                    playerForced = true
+                };
 
-            // Store the current job so we can reassign it later
-            if (this.wielder.Faction == Faction.OfColony
-                && this.wielder.CurJob != null
-                && (this.wielder.CurJob.def == JobDefOf.AttackStatic || this.wielder.CurJob.def == JobDefOf.Goto || wielder.CurJob.def == JobDefOf.Hunt))
-            {
-                this.storedTarget = this.wielder.CurJob.targetA.HasThing ? new TargetInfo(this.wielder.CurJob.targetA.Thing) : new TargetInfo(this.wielder.CurJob.targetA.Cell);
-                this.storedJobDef = this.wielder.CurJob.def;
+                // Store the current job so we can reassign it later
+                if (this.wielder.Faction == Faction.OfColony
+                    && this.wielder.CurJob != null
+                    && (this.wielder.CurJob.def == JobDefOf.AttackStatic || this.wielder.CurJob.def == JobDefOf.Goto || wielder.CurJob.def == JobDefOf.Hunt))
+                {
+                    this.storedTarget = this.wielder.CurJob.targetA.HasThing ? new TargetInfo(this.wielder.CurJob.targetA.Thing) : new TargetInfo(this.wielder.CurJob.targetA.Cell);
+                    this.storedJobDef = this.wielder.CurJob.def;
+                }
+                else
+                {
+                    storedTarget = null;
+                    storedJobDef = null;
+                }
+                this.AssignJobToWielder(reloadJob);
             }
-            else
-            {
-                storedTarget = null;
-                storedJobDef = null;
-            }
-            this.AssignJobToWielder(reloadJob);
         }
 
         private void DoOutOfAmmoAction()
         {
-            if(Props.throwMote)
-                MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_OutOfAmmo".Translate() + "!");
-            if (compInventory != null)
-                compInventory.SwitchToNextViableWeapon();
+            if (Props.throwMote)
+            {
+                MoteThrower.ThrowText(position.ToVector3Shifted(), "CR_OutOfAmmo".Translate() + "!");
+            }
             if (wielder != null && wielder.jobs != null)
+            {
+                if (wielder.CurJob.def != JobDefOf.Hunt && compInventory != null) compInventory.SwitchToNextViableWeapon();
                 wielder.jobs.StopAll();
+            }
         }
 
-        public void FinishReload()
+        public void LoadAmmo(Thing ammo = null)
         {
-            if (wielder == null)
+            if (wielder == null && turret == null)
             {
+                Log.Error(parent.ToString() + " tried loading ammo with no owner");
                 return;
             }
 
+            int newMagCount;
             if (useAmmo)
             {
-                // Check for inventory
-                if (compInventory != null)
+                Thing ammoThing;
+                bool ammoFromInventory = false;
+                if (ammo == null)
                 {
-                    Thing ammoThing;
-                    this.TryFindAmmoInInventory(out ammoThing);
-                    
-                    if (ammoThing == null)
+                    if (!TryFindAmmoInInventory(out ammoThing))
                     {
                         this.DoOutOfAmmoAction();
                         return;
                     }
-                    currentAmmoInt = (AmmoDef)ammoThing.def;
-                    if (Props.magazineSize < ammoThing.stackCount)
+                    ammoFromInventory = true;
+                }
+                else
+                {
+                    ammoThing = ammo;
+                }
+                currentAmmoInt = (AmmoDef)ammoThing.def;
+                if (Props.magazineSize < ammoThing.stackCount)
+                {
+                    newMagCount = Props.magazineSize;
+                    ammoThing.stackCount -= Props.magazineSize;
+                    if(compInventory != null) compInventory.UpdateInventory();
+                }
+                else
+                {
+                    newMagCount = ammoThing.stackCount;
+                    if (ammoFromInventory)
                     {
-                        curMagCountInt = Props.magazineSize;
-                        ammoThing.stackCount -= Props.magazineSize;
-                        compInventory.UpdateInventory();
-                    }
-                    else
-                    {
-                        curMagCountInt = ammoThing.stackCount;
                         compInventory.container.Remove(ammoThing);
+                    }
+                    else if (!ammoThing.Destroyed)
+                    {
+                        ammoThing.Destroy();
                     }
                 }
             }
             else
             {
-                curMagCountInt = Props.magazineSize;
+                newMagCount = Props.magazineSize;
             }
-            if (parent.def.soundInteract != null)
-                parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(wielder.Position));
-            if (Props.throwMote)
-            {
-                MoteThrower.ThrowText(wielder.Position.ToVector3Shifted(), "CR_ReloadedMote".Translate());
-            }
+            curMagCountInt += newMagCount;
+            if (turret != null) turret.isReloading = false;
+            if (parent.def.soundInteract != null) parent.def.soundInteract.PlayOneShot(SoundInfo.InWorld(position));
+            if (Props.throwMote) MoteThrower.ThrowText(position.ToVector3Shifted(), "CR_ReloadedMote".Translate());
         }
 
         private bool TryFindAmmoInInventory(out Thing ammoThing)
@@ -344,12 +381,16 @@ namespace Combat_Realism
             var ammoStatusGizmo = new GizmoAmmoStatus { compAmmo = this };
             yield return ammoStatusGizmo;
 
-            if (this.wielder != null)
+            if ((this.wielder != null && wielder.Faction == Faction.OfColony) || (turret != null && turret.Faction == Faction.OfColony))
             {
+                Action action = null;
+                if (wielder != null) action = TryStartReload;
+                else if (turret != null && turret.GetMannableComp() != null) action = turret.OrderReload;
+
                 var reloadCommandGizmo = new Command_Reload
                 {
                     compAmmo = this,
-                    action = this.StartReload,
+                    action = action,
                     defaultLabel = hasMagazine ? "CR_ReloadLabel".Translate() : "",
                     defaultDesc = "CR_ReloadDesc".Translate(),
                     icon = this.currentAmmo == null ? ContentFinder<Texture2D>.Get("UI/Buttons/Reload", true) : CommunityCoreLibrary.Def_Extensions.IconTexture(this.selectedAmmo)

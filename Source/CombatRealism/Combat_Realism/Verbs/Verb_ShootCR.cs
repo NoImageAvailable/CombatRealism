@@ -126,7 +126,7 @@ namespace Combat_Realism
                     Building_TurretGunCR turret = caster as Building_TurretGunCR;
                     if (turret != null)
                     {
-                        turret.SetWarmupTicksTo(aimTicks);
+                        turret.burstWarmupTicksLeft += aimTicks;
                         this.isAiming = true;
                         return;
                     }
@@ -199,7 +199,8 @@ namespace Combat_Realism
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, TargetInfo targ)
         {
-            if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire)
+            if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire 
+                && !(CasterIsPawn && CasterPawn.CurJob.def == JobDefOf.Hunt))
                 return false;
             return base.CanHitTargetFrom(root, targ);
         }
@@ -211,7 +212,7 @@ namespace Combat_Realism
                 if (!compAmmo.TryReduceAmmoCount())
                 {
                     if (compAmmo.hasMagazine)
-                        compAmmo.StartReload();
+                        compAmmo.TryStartReload();
                     return false;
                 }
             }

@@ -14,6 +14,7 @@ namespace Combat_Realism
         public bool aiUseAimMode = false;
         public bool aiUseBurstMode = false;
         public bool noSingleShot = false;
+        public bool noSnapshot = false;
 
         public CompProperties_FireModes()
         {

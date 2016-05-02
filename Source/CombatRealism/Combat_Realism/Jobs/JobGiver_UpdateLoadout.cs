@@ -18,10 +18,10 @@ namespace Combat_Realism
             if (inventory == null)
                 return null;
 
-            // Find missing items
             Loadout loadout = pawn.GetLoadout();
             if (loadout != null)
             {
+                // Find missing items
                 foreach (LoadoutSlot slot in loadout.Slots)
                 {
                     int numContained = inventory.container.NumContained(slot.Def);
@@ -72,6 +72,27 @@ namespace Combat_Realism
                         }
                     }
                 }
+                /*
+                // Remove items not in the loadout
+                if(pawn.CurJob == null || pawn.CurJob.def != JobDefOf.Tame)
+                {
+                    Thing thingToRemove = inventory.container.FirstOrDefault(t => 
+                    (t.def.ingestible == null || t.def.ingestible.preferability > FoodPreferability.Raw) 
+                    && !loadout.Slots.Any(s => s.Def == t.def));
+                    if (thingToRemove != null)
+                    {
+                        Thing droppedThing;
+                        if (inventory.container.TryDrop(thingToRemove, pawn.Position, ThingPlaceMode.Near, thingToRemove.stackCount, out droppedThing))
+                        {
+                            return HaulAIUtility.HaulToStorageJob(pawn, droppedThing);
+                        }
+                        else
+                        {
+                            Log.Error(pawn.ToString() + " tried dropping " + thingToRemove.ToString() + " from inventory but resulting thing is null");
+                        }
+                    }
+                }
+                */
             }
             return null;
         }

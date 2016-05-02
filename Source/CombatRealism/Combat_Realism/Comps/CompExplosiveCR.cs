@@ -31,18 +31,20 @@ namespace Combat_Realism
 		{
             // Regular explosion stuff
             if(this.Props.explosionRadius > 0 && this.Props.explosionDamage > 0)
-                GenExplosion.DoExplosion(this.parent.Position,
-                    Props.explosionRadius,
-                    Props.explosionDamageDef,
-                    this.parent,
-                    Props.soundExplode == null ? Props.explosionDamageDef.soundExplosion : Props.soundExplode,
-                    this.parent.def,
-                    this.parent.def,
-                    Props.postExplosionSpawnThingDef,
-                    Props.explosionSpawnChance,
-                    Props.damageAdjacentTiles,
-                    Props.preExplosionSpawnThingDef,
-                    Props.explosionSpawnChance);
+            {
+                Explosion explosion = (Explosion)GenSpawn.Spawn(ThingDefOf.Explosion, parent.Position);
+                explosion.radius = Props.explosionRadius;
+                explosion.damType = Props.explosionDamageDef;
+                explosion.instigator = instigator;
+                explosion.damAmount = GenMath.RoundRandom(Props.explosionDamage);
+                explosion.source = parent.def;
+                explosion.preExplosionSpawnThingDef = Props.preExplosionSpawnThingDef;
+                explosion.preExplosionSpawnChance = Props.explosionSpawnChance;
+                explosion.postExplosionSpawnThingDef = Props.postExplosionSpawnThingDef;
+                explosion.postExplosionSpawnChance = Props.explosionSpawnChance;
+                explosion.applyDamageToExplosionCellsNeighbors = Props.damageAdjacentTiles;
+                explosion.ExplosionStart(Props.soundExplode == null ? Props.explosionDamageDef.soundExplosion : Props.soundExplode);
+            }
 
             // Fragmentation stuff
             if (!Props.fragments.NullOrEmpty())

@@ -190,7 +190,7 @@ namespace Combat_Realism.Detours
                         }
                         else if(compAmmo.curMagCount <= 0)
                         {
-                            compAmmo.StartReload();
+                            compAmmo.TryStartReload();
                             return false;
                         }
                     }

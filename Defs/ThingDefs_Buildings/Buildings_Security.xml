@@ -68,7 +68,7 @@
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
-      <WorkToMake>2500</WorkToMake>
+      <WorkToMake>10000</WorkToMake>
       <Beauty>-60</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
@@ -83,22 +83,32 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
-    <description>An improvised turret that automatically fires at nearby enemies. Explodes when damaged. Its hacked-together AI brain isn't very smart, and can't be directly controlled, so beware of friendly fire.</description>
+    <description>An improvised turret that automatically fires at nearby enemies.</description>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
     <fillPercent>0.4</fillPercent>
     <castEdgeShadows>true</castEdgeShadows>
     <hasTooltip>true</hasTooltip>
     <stuffCategories>
-      <li>Metallic</li>
+      <li>Steeled</li>
     </stuffCategories>
     <costStuffCount>75</costStuffCount>
     <costList>
       <Steel>100</Steel>
-      <Components>3</Components>
+      <Components>10</Components>
     </costList>
+    <recipeMaker>
+      <workSpeedStat>SmithingSpeed</workSpeedStat>
+      <workSkill>Crafting</workSkill>
+      <effectWorking>Smith</effectWorking>
+      <soundWorking>Recipe_Smith</soundWorking>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <unfinishedThingDef>UnfinishedTurretGun</unfinishedThingDef>
+    </recipeMaker>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <specialDisplayRadius>25.9</specialDisplayRadius>
+    <specialDisplayRadius>27</specialDisplayRadius>
     <building>
       <ai_combatDangerous>true</ai_combatDangerous>
       <turretGunDef>Gun_TurretImprovised</turretGunDef>
@@ -106,15 +116,14 @@
       <turretTopgraphicPath>Things/Building/Security/TurretImprovised_Top</turretTopgraphicPath>
     </building>
     <designationHotKey>U</designationHotKey>
-    <designationCategory>Security</designationCategory>
   </ThingDef>
 
-
-  <!--=============== Mortar turret ===============-->
-  <ThingDef ParentName="BuildingBase">
-    <defName>Turret_MortarBomb</defName>
-    <label>mortar</label>
-    <thingClass>Building_TurretGun</thingClass>
+  <!--=============== 81mm mortar ===============-->
+	
+  <ThingDef Name="MortarBase" ParentName="BuildingBase" Abstract="true">
+    <label>81mm mortar</label>
+    <description>A mortar that launches explosive shells. Must be manned.</description>
+    <thingClass>Combat_Realism.Building_TurretGunCR</thingClass>
     <graphicData>
       <texPath>Things/Building/Security/TurretMortarBase</texPath>
       <graphicClass>Graphic_Single</graphicClass>
@@ -140,7 +149,6 @@
         <manWorkType>Violent</manWorkType>
       </li>
     </comps>
-    <description>A mortar that launches explosive shells. Must be manned. Explodes when damaged.</description>
     <size>(2,2)</size>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
@@ -154,151 +162,63 @@
       <Steel>150</Steel>
     </costList>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Security</designationCategory>
     <building>
-      <turretGunDef>Artillery_MortarBomb</turretGunDef>
+      <turretGunDef>Artillery_81mmMortar</turretGunDef>
       <turretShellDef>ArtilleryShell</turretShellDef>
       <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
-      <turretBurstCooldownTicks>450</turretBurstCooldownTicks>
+      <turretBurstCooldownTicks>300</turretBurstCooldownTicks>
       <turretTopgraphicPath>Things/Building/Security/TurretMortarBomb_Top</turretTopgraphicPath>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <researchPrerequisites><li>Mortars</li></researchPrerequisites>
+    <designationCategory>Security</designationCategory>
+  </ThingDef>
+
+  <!--=============== Mortar turret ===============-->
+	
+  <ThingDef ParentName="MortarBase">
+    <defName>Turret_MortarBomb</defName>
+    <building>
       <buildingTags>
         <li>Artillery</li>
         <li>Artillery_BaseDestroyer</li>
       </buildingTags>
     </building>
     <designationHotKey>I</designationHotKey>
-    <placeWorkers>
-      <li>PlaceWorker_NotUnderRoof</li>
-    </placeWorkers>
-    <researchPrerequisites><li>Mortars</li></researchPrerequisites>
   </ThingDef>
 
 
   <!--=============== Mortar turret ===============-->
-  <ThingDef ParentName="BuildingBase">
+	
+  <ThingDef ParentName="MortarBase">
     <defName>Turret_MortarIncendiary</defName>
-    <label>incendiary mortar</label>
-    <thingClass>Building_TurretGun</thingClass>
-    <graphicData>
-      <texPath>Things/Building/Security/TurretMortarBase</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(4,4)</drawSize>
-      <damageData>
-        <rect>(0.38,0.2,0.56375,0.8)</rect>
-        <cornerTL>Damage/Corner</cornerTL>
-      </damageData>
-    </graphicData>
-    <altitudeLayer>Waist</altitudeLayer>
-    <hasInteractionCell>True</hasInteractionCell>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-    <statBases>
-      <MaxHitPoints>180</MaxHitPoints>
-      <Flammability>1.0</Flammability>
-      <WorkToMake>2700</WorkToMake>
-      <Beauty>-60</Beauty>
-    </statBases>
-    <tickerType>Normal</tickerType>
-    <comps>
-      <li Class="CompProperties_Forbiddable"/>
-      <li Class="CompProperties_Mannable">
-        <manWorkType>Violent</manWorkType>
-      </li>
-    </comps>
-    <description>A mortar that launches incendiary shells. Must be manned. Explodes when damaged.</description>
-    <size>(2,2)</size>
-    <passability>PassThroughOnly</passability>
-    <pathCost>50</pathCost>
-    <fillPercent>0.4</fillPercent>
-    <castEdgeShadows>true</castEdgeShadows>
-    <stuffCategories>
-      <li>Metallic</li>
-    </stuffCategories>
-    <costStuffCount>100</costStuffCount>
-    <costList>
-      <Steel>150</Steel>
-    </costList>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Security</designationCategory>
     <building>
-      <turretGunDef>Artillery_MortarIncendiary</turretGunDef>
-      <turretShellDef>ArtilleryShell</turretShellDef>
-      <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
-      <turretBurstCooldownTicks>450</turretBurstCooldownTicks>
-      <turretTopgraphicPath>Things/Building/Security/TurretMortarIncendiary_Top</turretTopgraphicPath>
+      <turretShellDef>Artillery_81mmMortar</turretShellDef>
       <buildingTags>
         <li>Artillery</li>
         <li>Artillery_BaseDestroyer</li>
       </buildingTags>
     </building>
-    <designationHotKey>O</designationHotKey>
-    <placeWorkers>
-      <li>PlaceWorker_NotUnderRoof</li>
-    </placeWorkers>
-    <researchPrerequisites><li>Mortars</li></researchPrerequisites>
+		<menuHidden>true</menuHidden>
+    <researchPrerequisites><li>CommunityCoreLibraryResearchLocker</li></researchPrerequisites>
   </ThingDef>
 
 
 
   <!--=============== Mortar EMP ===============-->
-  <ThingDef ParentName="BuildingBase">
+	
+  <ThingDef ParentName="MortarBase">
     <defName>Turret_MortarEMP</defName>
-    <label>EMP mortar</label>
-    <thingClass>Building_TurretGun</thingClass>
-    <graphicData>
-      <texPath>Things/Building/Security/TurretMortarBase</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(4,4)</drawSize>
-      <damageData>
-        <rect>(0.38,0.2,0.56375,0.8)</rect>
-        <cornerTL>Damage/Corner</cornerTL>
-      </damageData>
-    </graphicData>
-    <altitudeLayer>Waist</altitudeLayer>
-    <hasInteractionCell>True</hasInteractionCell>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-    <statBases>
-      <MaxHitPoints>180</MaxHitPoints>
-      <Flammability>1.0</Flammability>
-      <WorkToMake>2700</WorkToMake>
-      <Beauty>-60</Beauty>
-    </statBases>
-    <tickerType>Normal</tickerType>
-    <comps>
-      <li Class="CompProperties_Forbiddable"/>
-      <li Class="CompProperties_Mannable">
-        <manWorkType>Violent</manWorkType>
-      </li>
-    </comps>
-    <description>A mortar that launches EMP bombs. Must be manned. Explodes when damaged.</description>
-    <size>(2,2)</size>
-    <passability>PassThroughOnly</passability>
-    <pathCost>50</pathCost>
-    <fillPercent>0.4</fillPercent>
-    <castEdgeShadows>true</castEdgeShadows>
-    <stuffCategories>
-      <li>Metallic</li>
-    </stuffCategories>
-    <costStuffCount>100</costStuffCount>
-    <costList>
-      <Steel>150</Steel>
-     </costList>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <designationCategory>Security</designationCategory>
     <building>
-      <turretGunDef>Artillery_MortarEMP</turretGunDef>
-      <turretShellDef>ArtilleryShell</turretShellDef>
-      <turretBurstWarmupTicks>300</turretBurstWarmupTicks>
-      <turretBurstCooldownTicks>450</turretBurstCooldownTicks>
-      <turretTopgraphicPath>Things/Building/Security/TurretMortarEMP_Top</turretTopgraphicPath>
+      <turretShellDef>Artillery_81mmMortar</turretShellDef>
       <buildingTags>
         <li>Artillery</li>
       </buildingTags>
     </building>
-    <designationHotkey>P</designationHotkey>
-    <placeWorkers>
-      <li>PlaceWorker_NotUnderRoof</li>
-    </placeWorkers>
-    <researchPrerequisites><li>Mortars</li></researchPrerequisites>
+		<menuHidden>true</menuHidden>
+    <researchPrerequisites><li>CommunityCoreLibraryResearchLocker</li></researchPrerequisites>
   </ThingDef>
 
   <!--==================== Traps ======================== -->

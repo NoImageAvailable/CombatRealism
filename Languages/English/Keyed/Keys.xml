@@ -8,6 +8,7 @@
     <CR_ReloadedMote>Reloaded!</CR_ReloadedMote>
 
     <CR_SuppressedMote>Suppressed!</CR_SuppressedMote>
+	<CR_TurretReloading>Reloading</CR_TurretReloading>
 	
 	<CR_AutoFireLabel>Auto</CR_AutoFireLabel>
 	<CR_BurstFireLabel>Burst</CR_BurstFireLabel>

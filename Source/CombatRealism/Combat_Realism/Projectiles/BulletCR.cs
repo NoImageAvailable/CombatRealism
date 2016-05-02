@@ -17,7 +17,12 @@ namespace Combat_Realism
             if (hitThing != null)
             {
                 int damageAmountBase = this.def.projectile.damageAmountBase;
-                BodyPartDamageInfo value = new BodyPartDamageInfo(null, null);
+
+                BodyPartDamageInfo value;
+                DamageDef_CR damDefCR = def.projectile.damageDef as DamageDef_CR;
+                if (damDefCR != null && damDefCR.harmOnlyOutsideLayers) value = new BodyPartDamageInfo(null, BodyPartDepth.Outside);
+                else value = new BodyPartDamageInfo(null, null);
+
                 DamageInfo dinfo = new DamageInfo(this.def.projectile.damageDef, damageAmountBase, this.launcher, this.ExactRotation.eulerAngles.y, new BodyPartDamageInfo?(value), this.def);
 
                 ProjectilePropertiesCR propsCR = def.projectile as ProjectilePropertiesCR;

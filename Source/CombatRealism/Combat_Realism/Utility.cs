@@ -113,6 +113,7 @@ namespace Combat_Realism
             if (pawn != null)
             {
                 float collisionHeight = pawn.BodySize;
+                if (!humanoidBodyList.Contains(pawn.def.race.body.defName)) collisionHeight *= 0.5f;
                 if (pawn.GetPosture() != PawnPosture.Standing)
                 {
                     collisionHeight = pawn.BodySize > 1 ? pawn.BodySize - 0.8f : 0.2f * pawn.BodySize;

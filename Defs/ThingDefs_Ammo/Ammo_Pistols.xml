@@ -19,7 +19,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.01</MarketValue>
+      <MarketValue>0.02</MarketValue>
 	  <Weight>0.012</Weight>
 	  <Bulk>0.01</Bulk>
     </statBases>
@@ -35,10 +35,10 @@
 	  <Weight>0.01</Weight>
 	  <Bulk>0.02</Bulk>
     </statBases>
-	<tradeTags>
-	  <li>CR_AutoEnableTrade</li>
-	  <li>CR_AutoEnableCrafting</li>
-	</tradeTags>
+		<tradeTags>
+			<li>CR_AutoEnableTrade</li>
+			<li>CR_AutoEnableCrafting</li>
+		</tradeTags>
     <thingCategories>
       <li>Ammo32ACP</li>
     </thingCategories>
@@ -52,7 +52,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.02</MarketValue>
+      <MarketValue>0.05</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_32ACP_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -111,7 +111,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.02</MarketValue>
+      <MarketValue>0.05</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x25mmTokarev_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -125,7 +125,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.03</MarketValue>
+      <MarketValue>0.06</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x25mmTokarev_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -139,7 +139,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.03</MarketValue>
+      <MarketValue>0.06</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_762x25mmTokarev_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -170,7 +170,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.04</MarketValue>
+      <MarketValue>0.06</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_9x19mmPara_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -184,7 +184,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.05</MarketValue>
+      <MarketValue>0.07</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_9x19mmPara_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -198,7 +198,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.05</MarketValue>
+      <MarketValue>0.07</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_9x19mmPara_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -229,7 +229,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.07</MarketValue>
+      <MarketValue>0.09</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45ACP_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -243,7 +243,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.09</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45ACP_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -257,7 +257,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.09</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45ACP_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>
@@ -288,7 +288,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.07</MarketValue>
+      <MarketValue>0.09</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45Colt_FMJ</linkedProjectile>
 	<ammoClass>FullMetalJacket</ammoClass>
@@ -302,7 +302,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.09</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45Colt_AP</linkedProjectile>
 	<ammoClass>ArmorPiercing</ammoClass>
@@ -316,7 +316,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <MarketValue>0.09</MarketValue>
+      <MarketValue>0.10</MarketValue>
     </statBases>
 	<linkedProjectile>Bullet_45Colt_HP</linkedProjectile>
 	<ammoClass>HollowPoint</ammoClass>

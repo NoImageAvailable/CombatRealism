@@ -108,9 +108,10 @@ namespace Combat_Realism
             {
                 this.availableFireModes.Add(FireMode.SingleFire);
             }
+            if (Props.noSnapshot) availableAimModes.Remove(AimMode.Snapshot);
 
             // Sanity check in case def changed
-            if (!this.availableFireModes.Contains(this.currentFireModeInt))
+            if (!this.availableFireModes.Contains(this.currentFireModeInt) || !availableAimModes.Contains(currentAimMode))
             {
                 this.ResetModes();
             }

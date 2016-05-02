@@ -24,11 +24,6 @@ namespace Combat_Realism.Detours
                 typeof(Detours_TooltipUtility).GetMethod("ShotCalculationTipString", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
-            // Detour DrawTurret
-            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(TurretTop).GetMethod("DrawTurret", BindingFlags.Instance | BindingFlags.Public),
-                typeof(Detours_TurretTop).GetMethod("DrawTurret", BindingFlags.Static | BindingFlags.NonPublic)))
-                return false;
-
             // Detour FloatMenuMaker
             if(!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.Public),
                 typeof(Detours_FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.NonPublic)))

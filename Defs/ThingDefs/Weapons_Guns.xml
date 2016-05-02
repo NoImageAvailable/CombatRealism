@@ -386,18 +386,21 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
-	<comps>
-	  <li Class="Combat_Realism.CompProperties_AmmoUser">
-	    <magazineSize>32</magazineSize>
-		<reloadTicks>240</reloadTicks>
-		<ammoSet>AmmoSet_9x19mmPara</ammoSet>
-	  </li>
-	  <li Class="Combat_Realism.CompProperties_FireModes">
-	    <aimedBurstShotCount>3</aimedBurstShotCount>
-		<aiUseBurstMode>FALSE</aiUseBurstMode>
-		<aiUseAimMode>FALSE</aiUseAimMode>
-	  </li>
-	</comps>
+		<comps>
+			<li Class="Combat_Realism.CompProperties_AmmoUser">
+				<magazineSize>32</magazineSize>
+				<reloadTicks>240</reloadTicks>
+				<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+			</li>
+			<li Class="Combat_Realism.CompProperties_FireModes">
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiUseAimMode>FALSE</aiUseAimMode>
+			</li>
+		</comps>
+		<weaponTags>
+			<li>CR_SMG</li>
+		</weaponTags>
   </ThingDef>
 
 
@@ -442,18 +445,21 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
-	<comps>
-	  <li Class="Combat_Realism.CompProperties_AmmoUser">
-	    <magazineSize>20</magazineSize>
-		<reloadTicks>240</reloadTicks>
-		<ammoSet>AmmoSet_45ACP</ammoSet>
-	  </li>
-	  <li Class="Combat_Realism.CompProperties_FireModes">
-	    <aimedBurstShotCount>3</aimedBurstShotCount>
-		<aiUseBurstMode>FALSE</aiUseBurstMode>
-		<aiUseAimMode>FALSE</aiUseAimMode>
-	  </li>
-	</comps>
+		<comps>
+			<li Class="Combat_Realism.CompProperties_AmmoUser">
+				<magazineSize>20</magazineSize>
+				<reloadTicks>240</reloadTicks>
+				<ammoSet>AmmoSet_45ACP</ammoSet>
+			</li>
+			<li Class="Combat_Realism.CompProperties_FireModes">
+				<aimedBurstShotCount>3</aimedBurstShotCount>
+				<aiUseBurstMode>FALSE</aiUseBurstMode>
+				<aiUseAimMode>FALSE</aiUseAimMode>
+			</li>
+		</comps>
+		<weaponTags>
+			<li>CR_SMG</li>
+		</weaponTags>
   </ThingDef>
 
   <!-- ==================== T-9 incendiary launcher ========================== -->
@@ -609,8 +615,8 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0, 0.25)</recoilOffsetX>
-	    <recoilOffsetY>(0.0, 0.75)</recoilOffsetY>
+				<recoilOffsetX>(0.0, 0.25)</recoilOffsetX>
+				<recoilOffsetY>(0.0, 0.75)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_6x24mmCharged</projectileDef>
@@ -658,42 +664,43 @@
     <tradeability>Never</tradeability>
     <statBases>
       <AimEfficiency>0.35</AimEfficiency>
-      <ShotSpread>0.16</ShotSpread>
-      <SwayFactor>2.05</SwayFactor>
+      <ShotSpread>0.08</ShotSpread>
+      <SwayFactor>0.92</SwayFactor>
       <Bulk>2</Bulk>
       <Weight>1</Weight>
-      <RangedWeapon_Cooldown>0.66</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
     </statBases>
     <weaponTags>
       <li>TurretGun</li>
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0,0)</recoilOffsetX>
-	    <recoilOffsetY>(0,0)</recoilOffsetY>
+				<recoilOffsetX>(-0.4,0.4)</recoilOffsetX>
+				<recoilOffsetY>(-0.4,1.2)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
-        <projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
+        <projectileDef>Bullet_556x45mmNATO_FMJ</projectileDef>
         <warmupTicks>90</warmupTicks>
-        <range>25.9</range>
-        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-        <burstShotCount>3</burstShotCount>
+        <range>27</range>
+        <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+        <burstShotCount>10</burstShotCount>
         <soundCast>GunShotA</soundCast>
         <soundCastTail>GunTail_Light</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
 		<comps>
-			<!--
 			<li Class="Combat_Realism.CompProperties_AmmoUser">
-				<magazineSize>600</magazineSize>
-				<reloadTicks>60</reloadTicks>
-				<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+				<magazineSize>300</magazineSize>
+				<reloadTicks>600</reloadTicks>
+				<spawnUnloaded>true</spawnUnloaded>
+				<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
 			</li>
-			-->
 			<li Class="Combat_Realism.CompProperties_FireModes">
 				<aiUseBurstMode>FALSE</aiUseBurstMode>
 				<aiUseAimMode>TRUE</aiUseAimMode>
+				<noSnapshot>true</noSnapshot>
+				<noSingleShot>true</noSingleShot>
 			</li>
 		</comps>
   </ThingDef>
@@ -915,9 +922,9 @@
 	<comps>
 	  <li Class="Combat_Realism.CompProperties_FireModes">
 	    <aimedBurstShotCount>1</aimedBurstShotCount>
-		<aiUseBurstMode>FALSE</aiUseBurstMode>
-		<aiUseAimMode>TRUE</aiUseAimMode>
-		<noSingleShot>true</noSingleShot>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiUseAimMode>TRUE</aiUseAimMode>
+			<noSingleShot>true</noSingleShot>
 	  </li>
 	</comps>
   </ThingDef>
@@ -1026,12 +1033,13 @@
     </verbs>
 	<comps>
 	  <li Class="Combat_Realism.CompProperties_AmmoUser">
-	    <magazineSize>0</magazineSize>
-		<ammoSet>AmmoSet_80x256mmFuel</ammoSet>
+	    <magazineSize>1</magazineSize>
+			<reloadTicks>270</reloadTicks>
+			<ammoSet>AmmoSet_80x256mmFuel</ammoSet>
 	  </li>
 	  <li Class="Combat_Realism.CompProperties_FireModes">
-		<aiUseBurstMode>FALSE</aiUseBurstMode>
-		<aiUseAimMode>TRUE</aiUseAimMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiUseAimMode>TRUE</aiUseAimMode>
 	  </li>
 	</comps>
   </ThingDef>
@@ -1079,11 +1087,11 @@
 	<comps>
 	  <li Class="Combat_Realism.CompProperties_AmmoUser">
 	    <magazineSize>0</magazineSize>
-		<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
+			<ammoSet>AmmoSet_5x35mmCharged</ammoSet>
 	  </li>
 	  <li Class="Combat_Realism.CompProperties_FireModes">
-		<aiUseBurstMode>FALSE</aiUseBurstMode>
-		<aiUseAimMode>TRUE</aiUseAimMode>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiUseAimMode>TRUE</aiUseAimMode>
 	  </li>
 	</comps>
   </ThingDef>
