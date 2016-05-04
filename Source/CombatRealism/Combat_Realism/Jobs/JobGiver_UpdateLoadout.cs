@@ -21,13 +21,16 @@ namespace Combat_Realism
 
         public override float GetPriority(Pawn pawn)
         {
+            if (CheckForExcessItems(pawn))
+            {
+                return 9.2f;
+            }
             ItemPriority priority;
             Thing unused;
             int i;
             LoadoutSlot slot = GetPrioritySlot(pawn, out priority, out unused, out i);
             if (slot == null)
             {
-                if (CheckForExcessItems(pawn)) return 3f;
                 return 0f;
             }
             if (priority == ItemPriority.Low) return 3f;
@@ -53,22 +56,17 @@ namespace Combat_Realism
                 {
                     foreach(LoadoutSlot curSlot in loadout.Slots)
                     {
-                        Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: checking slot " + curSlot.ToString());
                         ItemPriority curPriority = ItemPriority.None;
                         Thing curThing = null;
                         int numCarried = inventory.container.NumContained(curSlot.Def);
 
                         // Add currently equipped gun
-                        Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: checking gun");
                         if (pawn.equipment != null && pawn.equipment.Primary != null)
                         {
                             if (pawn.equipment.Primary.def == curSlot.Def) numCarried++;
                         }
-
-                        Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: calculating priority");
                         if (numCarried < curSlot.Count)
                         {
-                            Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: checking for proximity");
                             curThing = GenClosest.ClosestThingReachable(
                                 pawn.Position,
                                 ThingRequest.ForDef(curSlot.Def),
@@ -79,7 +77,6 @@ namespace Combat_Realism
                             if (curThing != null) curPriority = ItemPriority.Proximity;
                             else
                             {
-                                Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: checking for availability");
                                 curThing = GenClosest.ClosestThingReachable(
                                     pawn.Position,
                                     ThingRequest.ForDef(curSlot.Def),
@@ -89,23 +86,19 @@ namespace Combat_Realism
                                     x => !x.IsForbidden(pawn) && pawn.CanReserve(x));
                                 if (curThing != null)
                                 {
-                                    Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: checking for meal");
                                     if (!curSlot.Def.IsNutritionSource && numCarried / curSlot.Count <= 0.5f) curPriority = ItemPriority.LowStock;
                                     else curPriority = ItemPriority.Low;
                                 }
                             }
                         }
-                        Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: checking for update");
                         if (curPriority > priority && curThing != null && inventory.CanFitInInventory(curThing, out count))
                         {
-                            Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: updating current slot");
                             priority = curPriority;
                             slot = curSlot;
                             closestThing = curThing;
                         }
                         if (priority >= ItemPriority.LowStock)
                         {
-                            Log.Message("JobGiver_UpdateLoadout :: GetPrioritySlot :: breaking");
                             break;
                         }
                     }
@@ -117,6 +110,7 @@ namespace Combat_Realism
 
         private bool CheckForExcessItems(Pawn pawn)
         {
+            if (pawn.CurJob != null && pawn.CurJob.def == JobDefOf.Tame) return false;
             CompInventory inventory = pawn.TryGetComp<CompInventory>();
             Loadout loadout = pawn.GetLoadout();
             if (inventory == null || inventory.container == null || loadout == null || loadout.Slots.NullOrEmpty()) return false;
@@ -138,17 +132,7 @@ namespace Combat_Realism
             Loadout loadout = pawn.GetLoadout();
             if (loadout != null)
             {
-                // Find missing items
-                ItemPriority priority;
-                Thing closestThing;
-                int count;
-                LoadoutSlot prioritySlot = GetPrioritySlot(pawn, out priority, out closestThing, out count);
-                if (closestThing != null)
-                {
-                    int numContained = inventory.container.NumContained(prioritySlot.Def);
-                    return new Job(JobDefOf.TakeInventory, closestThing) { maxNumToCarry = Mathf.Min(closestThing.stackCount, prioritySlot.Count - numContained, count) };
-                }
-
+                // Find and drop excess items
                 foreach (LoadoutSlot slot in loadout.Slots)
                 {
                     int numContained = inventory.container.NumContained(slot.Def);
@@ -178,11 +162,18 @@ namespace Combat_Realism
                                 }
                             }
                         }
+                        else if (pawn.equipment != null && pawn.equipment.Primary != null && pawn.equipment.Primary.def == slot.Def)
+                        {
+                            ThingWithComps droppedEq;
+                            if(pawn.equipment.TryDropEquipment(pawn.equipment.Primary, out droppedEq, pawn.Position, false))
+                            {
+                                return HaulAIUtility.HaulToStorageJob(pawn, droppedEq);
+                            }
+                        }
                     }
                 }
-                Thing thingToRemove = inventory.container.FirstOrDefault(t =>
-                (t.def.ingestible == null || t.def.ingestible.preferability > FoodPreferability.Raw)
-                && !loadout.Slots.Any(s => s.Def == t.def));
+                // Find excess items that are not part of our loadout
+                Thing thingToRemove = inventory.container.FirstOrDefault(t => !loadout.Slots.Any(s => s.Def == t.def));
                 if (thingToRemove != null)
                 {
                     Thing droppedThing;
@@ -194,6 +185,25 @@ namespace Combat_Realism
                     {
                         Log.Error(pawn.ToString() + " tried dropping " + thingToRemove.ToString() + " from inventory but resulting thing is null");
                     }
+                }
+
+                // Find missing items
+                ItemPriority priority;
+                Thing closestThing;
+                int count;
+                LoadoutSlot prioritySlot = GetPrioritySlot(pawn, out priority, out closestThing, out count);
+                if (closestThing != null)
+                {
+                    // Equip gun if unarmed or current gun is not in loadout
+                    if (closestThing.TryGetComp<CompEquippable>() != null
+                        && (pawn.health != null && pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+                        && (pawn.equipment == null || pawn.equipment.Primary == null || !loadout.Slots.Any(s => s.Def == pawn.equipment.Primary.def)))
+                    {
+                        return new Job(JobDefOf.Equip, closestThing);
+                    }
+                    // Take items into inventory if needed
+                    int numContained = inventory.container.NumContained(prioritySlot.Def);
+                    return new Job(JobDefOf.TakeInventory, closestThing) { maxNumToCarry = Mathf.Min(closestThing.stackCount, prioritySlot.Count - numContained, count) };
                 }
             }
             return null;

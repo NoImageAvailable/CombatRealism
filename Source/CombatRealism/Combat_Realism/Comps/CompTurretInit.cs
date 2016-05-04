@@ -22,6 +22,11 @@ namespace Combat_Realism
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
+            LongEventHandler.ExecuteWhenFinished(InitTurret);
+        }
+
+        private void InitTurret()
+        {
             Building_TurretGunCR turret = parent as Building_TurretGunCR;
             if (turret != null && turret.gun == null)
             {
