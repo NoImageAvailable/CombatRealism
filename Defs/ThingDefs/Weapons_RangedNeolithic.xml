@@ -144,7 +144,7 @@
     </costList>
     <statBases>
       <WorkToMake>1400</WorkToMake>
-      <MarketValue>90</MarketValue>
+      <MarketValue>3.7</MarketValue>
       <AimEfficiency>0.25</AimEfficiency>
       <ShotSpread>2.5</ShotSpread>
       <SwayFactor>2</SwayFactor>

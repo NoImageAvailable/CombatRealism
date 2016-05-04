@@ -54,7 +54,7 @@
   <!--=============== Improvised turret ===============-->
   <ThingDef ParentName="BuildingBase">
     <defName>TurretGun</defName>
-    <label>improvised turret</label>
+    <label>auto-turret</label>
     <thingClass>Combat_Realism.Building_TurretGunCR</thingClass>
     <graphicData>
       <texPath>Things/Building/Security/TurretImprovised</texPath>
@@ -64,15 +64,18 @@
         <rect>(0.2,0.2,0.6,0.6)</rect>
       </damageData>
     </graphicData>
+		<tradeability>Stockable</tradeability>
     <altitudeLayer>Waist</altitudeLayer>
     <statBases>
       <MaxHitPoints>100</MaxHitPoints>
       <Flammability>1.0</Flammability>
       <WorkToMake>20000</WorkToMake>
       <Beauty>-60</Beauty>
+      <Weight>16</Weight>
+      <Bulk>20</Bulk>
     </statBases>
     <tickerType>Normal</tickerType>
-    <minifiedDef>TurretGun_Kit</minifiedDef>
+    <minifiedDef>MinifiedTurretGun</minifiedDef>
     <comps>
       <li Class="Combat_Realism.CompProperties_TurretInit"/>
       <li Class="CompProperties_Forbiddable"/>
@@ -83,7 +86,7 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
     </comps>
-    <description>An improvised turret that automatically fires at nearby enemies.</description>
+    <description>An AI-controlled turret that automatically fires at nearby enemies.</description>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
     <fillPercent>0.75</fillPercent>
@@ -106,6 +109,13 @@
         <li>TableMachining</li>
       </recipeUsers>
       <unfinishedThingDef>UnfinishedTurretGun</unfinishedThingDef>
+			<researchPrerequisite>CR_TurretAI</researchPrerequisite>
+      <skillRequirements>
+        <li>
+          <skill>Crafting</skill>
+          <minLevel>10</minLevel>
+        </li>
+      </skillRequirements>
     </recipeMaker>
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <specialDisplayRadius>27</specialDisplayRadius>
@@ -117,11 +127,8 @@
     </building>
     <designationHotKey>U</designationHotKey>
     <tradeTags>
-      <li>Turrets</li>
+      <li>CR_Turret</li>
     </tradeTags>
-    <thingCategories>
-      <li>WeaponsTurrets</li>
-    </thingCategories>
   </ThingDef>
 
   <!--=============== 81mm mortar ===============-->

@@ -40,11 +40,11 @@
     <products>
       <Ammo_Arrow_Stone>10</Ammo_Arrow_Stone>
     </products>
-	<recipeUsers>
+		<recipeUsers>
       <li>ElectricSmithy</li>
       <li>FueledSmithy</li>
       <li>CraftingSpot</li>
-	</recipeUsers>
+		</recipeUsers>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">
@@ -79,11 +79,6 @@
     <products>
       <Ammo_Arrow_Steel>10</Ammo_Arrow_Steel>
     </products>
-	<recipeUsers>
-      <li>ElectricSmithy</li>
-      <li>FueledSmithy</li>
-      <li>CraftingSpot</li>
-	</recipeUsers>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">
@@ -118,11 +113,6 @@
     <products>
       <Ammo_Arrow_Plasteel>10</Ammo_Arrow_Plasteel>
     </products>
-	<recipeUsers>
-      <li>ElectricSmithy</li>
-      <li>FueledSmithy</li>
-      <li>CraftingSpot</li>
-	</recipeUsers>
   </RecipeDef>
   
   <!-- ==================== Great arrows ========================== -->
@@ -150,6 +140,11 @@
     <products>
       <Ammo_GreatArrow_Stone>10</Ammo_GreatArrow_Stone>
     </products>
+		<recipeUsers>
+      <li>ElectricSmithy</li>
+      <li>FueledSmithy</li>
+      <li>CraftingSpot</li>
+		</recipeUsers>
   </RecipeDef>
 
   <RecipeDef ParentName="AmmoRecipeNeolithicBase">

@@ -123,6 +123,17 @@ namespace Combat_Realism.Detours
                 typeof(Detours_WorkGiver_HunterHunt).GetMethod("HasHuntingWeapon", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
+            // Tradeable
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(Tradeable).GetMethod("PriceFor", BindingFlags.Instance | BindingFlags.Public),
+                typeof(Detours_Tradeable).GetMethod("PriceFor", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
+            // TradeDeal
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(TradeDeal).GetMethod("UpdateCurrencyCount", BindingFlags.Instance | BindingFlags.Public),
+                typeof(Detours_TradeDeal).GetMethod("UpdateCurrencyCount", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
+
             return true;
         }
     }

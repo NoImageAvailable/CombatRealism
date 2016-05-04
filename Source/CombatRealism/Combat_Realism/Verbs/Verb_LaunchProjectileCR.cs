@@ -95,7 +95,7 @@ namespace Combat_Realism
                 {
                     return this.CasterPawn.GetStatValue(StatDefOf.ShootingAccuracy, false);
                 }
-                return 3;
+                return 2f;
             }
         }
         protected float aimingAccuracy
@@ -281,10 +281,38 @@ namespace Combat_Realism
         /// <returns>Vector by which to shift the target</returns>
         private Vector2 GetRecoilVec()
         {
-            Vector2 recoilVec = new Vector2(0, 0); 
-            recoilVec.Set(UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetX.x, this.verbPropsCR.recoilOffsetX.y), UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetY.x, this.verbPropsCR.recoilOffsetY.y));
-            recoilVec *= (float)Math.Sqrt((5 - shootingAccuracy) * Mathf.Min(15, this.numShotsFired));
-            return recoilVec;
+            float minX = 0;
+            float maxX = 0;
+            float minY = 0;
+            float maxY = 0;
+            switch (verbPropsCR.recoilPattern)
+            {
+                case RecoilPattern.None:
+                    return new Vector2(0, 0);
+                case RecoilPattern.Regular:
+                    float num = verbPropsCR.recoilAmount / 3;
+                    minX = -(num / 3);
+                    maxX = num;
+                    minY = -num;
+                    maxY = verbPropsCR.recoilAmount;
+                    break;
+                case RecoilPattern.Mounted:
+                    float num2 = verbPropsCR.recoilAmount / 3;
+                    minX = -num2;
+                    maxX = num2;
+                    minY = -num2;
+                    maxX = verbPropsCR.recoilAmount;
+                    break;
+            }
+            float recoilX = UnityEngine.Random.Range(minX, maxX);
+            float recoilY = UnityEngine.Random.Range(minY, maxY);
+            
+            float recoilMagnitude = Mathf.Pow((5 - shootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
+            Log.Message("Verb_LaunchProjectileCR :: GetRecoilVec :: recoilMagnitude=" + recoilMagnitude.ToString());
+            return new Vector2(recoilX, recoilY) * recoilMagnitude;
+            //recoilVec.Set(UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetX.x, this.verbPropsCR.recoilOffsetX.y), UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetY.x, this.verbPropsCR.recoilOffsetY.y));
+            //recoilVec *= (float)Math.Sqrt((5 - shootingAccuracy) * Mathf.Min(15, this.numShotsFired));
+            //return recoilVec;
         }
 
         /// <summary>

@@ -66,17 +66,17 @@
     <rotatable>false</rotatable>
     <pathCost>15</pathCost>
   </ThingDef>
-
-  <ThingDef ParentName="MinifiedBase" Name="KitBase" Abstract="True">
-    <label>unspecified resource</label>
+  
+  <ThingDef ParentName="MinifiedBase">
+    <defName>MinifiedTurretGun</defName>
+    <label>improvised turret</label>
     <thingCategories>
       <li>WeaponsTurrets</li>
     </thingCategories>
-  </ThingDef>
-  
-  <ThingDef ParentName="KitBase">
-    <defName>TurretGun_Kit</defName>
-    <label>improvised turret</label>
+    <statBases>
+			<Weight>16</Weight>
+			<Bulk>20</Bulk>
+    </statBases>
   </ThingDef>
 
 

@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Combat_Realism\RecoilPattern.cs" />
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\AmmoInjector.cs" />
     <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_FlameCR.cs" />
@@ -149,6 +150,8 @@
     <Compile Include="Detours\Detours_Pawn_ApparelTracker.cs" />
     <Compile Include="Detours\Detours_Pawn_EquipmentTracker.cs" />
     <Compile Include="Detours\Detours_ThingContainer.cs" />
+    <Compile Include="Detours\Detours_Tradeable.cs" />
+    <Compile Include="Detours\Detours_TradeDeal.cs" />
     <Compile Include="Detours\Detours_VerbTracker.cs" />
     <Compile Include="Detours\Detours_WorkGiver_HunterHunt.cs" />
     <Compile Include="Detours\Detours_WorkGiver_InteractAnimal.cs" />

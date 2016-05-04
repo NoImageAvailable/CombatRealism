@@ -199,6 +199,7 @@ namespace Combat_Realism
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, TargetInfo targ)
         {
+            if (CasterIsPawn && !CasterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
             if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire 
                 && (!CasterIsPawn || CasterPawn.CurJob == null || CasterPawn.CurJob.def != JobDefOf.Hunt))
                 return false;

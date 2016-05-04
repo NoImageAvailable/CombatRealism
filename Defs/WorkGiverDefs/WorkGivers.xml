@@ -16,4 +16,20 @@
     </requiredCapacities>
   </WorkGiverDef>
 
+  <WorkGiverDef>
+    <defName>DoBillsAmmoBench</defName>
+    <label>make ammo</label>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Smithing</workType>
+    <priorityInType>60</priorityInType>
+    <fixedBillGiverDefs>
+      <li>AmmoBench</li>
+    </fixedBillGiverDefs>
+    <verb>produce ammo</verb>
+    <gerund>producing ammo at</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
 </WorkGivers>

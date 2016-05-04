@@ -105,8 +105,6 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_45ACP_FMJ</projectileDef>
@@ -156,8 +154,6 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0, 0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0, 0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_12Gauge_Buck</projectileDef>
@@ -210,8 +206,6 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_303British_FMJ</projectileDef>
@@ -262,8 +256,8 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(-0.11, 0.32)</recoilOffsetX>
-	    <recoilOffsetY>(-0.32, 0.96)</recoilOffsetY>
+	    <recoilPattern>Regular</recoilPattern>
+	    <recoilAmount>0.96</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_556x45mmNATO_FMJ</projectileDef>
@@ -317,8 +311,6 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
@@ -372,8 +364,8 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(-0.03, 0.10)</recoilOffsetX>
-	    <recoilOffsetY>(-0.10, 0.29)</recoilOffsetY>
+				<recoilPattern>Regular</recoilPattern>
+				<recoilAmount>0.19</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_9x19mmPara_FMJ</projectileDef>
@@ -431,8 +423,8 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(-0.08, 0.23)</recoilOffsetX>
-	    <recoilOffsetY>(-0.23, 0.70)</recoilOffsetY>
+				<recoilPattern>Regular</recoilPattern>
+				<recoilAmount>0.47</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_45ACP_FMJ</projectileDef>
@@ -489,8 +481,6 @@
     </costList>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_30x64mmFuel_Incendiary</projectileDef>
@@ -551,8 +541,8 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(-0.04,0.12)</recoilOffsetX>
-	    <recoilOffsetY>(-0.12,0.36)</recoilOffsetY>
+				<recoilPattern>Mounted</recoilPattern>
+				<recoilAmount>0.36</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_762x54mmR_FMJ</projectileDef>
@@ -563,6 +553,9 @@
         <soundCast>ShotMinigun</soundCast>
         <soundCastTail>GunTail_Medium</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
       </li>
     </verbs>
 	<comps>
@@ -615,8 +608,8 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-				<recoilOffsetX>(-0.08, 0.25)</recoilOffsetX>
-				<recoilOffsetY>(-0.25, 0.75)</recoilOffsetY>
+				<recoilPattern>Regular</recoilPattern>
+				<recoilAmount>0.59</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_6x24mmCharged</projectileDef>
@@ -665,7 +658,7 @@
     <statBases>
       <AimEfficiency>0.35</AimEfficiency>
       <ShotSpread>0.08</ShotSpread>
-      <SwayFactor>0.92</SwayFactor>
+      <SwayFactor>1.20</SwayFactor>
       <Bulk>7.00</Bulk>
       <Weight>3.00</Weight>
       <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
@@ -675,8 +668,8 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-				<recoilOffsetX>(-0.4, 0.4)</recoilOffsetX>
-				<recoilOffsetY>(-0.4, 1.2)</recoilOffsetY>
+				<recoilPattern>Mounted</recoilPattern>
+				<recoilAmount>0.72</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_556x45mmNATO_FMJ</projectileDef>
@@ -737,8 +730,8 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(-0.30,0.30)</recoilOffsetX>
-	    <recoilOffsetY>(-0.30,0.90)</recoilOffsetY>
+				<recoilPattern>Mounted</recoilPattern>
+				<recoilAmount>0.90</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_762x51mmNATO_FMJ</projectileDef>
@@ -819,8 +812,6 @@
     </tradeTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_DoomsdayRocket</projectileDef>
@@ -899,8 +890,6 @@
     </tradeTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_Rocket</projectileDef>
@@ -960,8 +949,8 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(-0.18,0.18)</recoilOffsetX>
-	    <recoilOffsetY>(-0.18,0.54)</recoilOffsetY>
+				<recoilPattern>Mounted</recoilPattern>
+				<recoilAmount>0.54</recoilAmount>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_12x64mmCharged</projectileDef>
@@ -1016,8 +1005,6 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_80x256mmFuel_Thermobaric</projectileDef>
@@ -1071,8 +1058,6 @@
     </weaponTags>
     <verbs>
       <li Class="Combat_Realism.VerbPropertiesCR">
-	    <recoilOffsetX>(0.0,0.0)</recoilOffsetX>
-	    <recoilOffsetY>(0.0,0.0)</recoilOffsetY>
         <verbClass>Combat_Realism.Verb_ShootCR</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <projectileDef>Bullet_5x35mmCharged</projectileDef>
