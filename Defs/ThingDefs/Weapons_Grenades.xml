@@ -107,7 +107,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10.0</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>
@@ -170,7 +170,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
         <ai_IsIncendiary>true</ai_IsIncendiary>
@@ -237,7 +237,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>
@@ -299,7 +299,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>

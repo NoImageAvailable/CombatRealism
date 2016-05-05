@@ -133,7 +133,7 @@
 
   <!--=============== 81mm mortar ===============-->
 	
-  <ThingDef Name="MortarBase" ParentName="BuildingBase" Abstract="true">
+  <ThingDef Name="MortarBase" ParentName="BuildingBase" Abstract="True">
     <label>81mm mortar</label>
     <description>A mortar that launches explosive shells. Must be manned.</description>
     <thingClass>Combat_Realism.Building_TurretGunCR</thingClass>

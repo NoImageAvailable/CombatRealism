@@ -253,7 +253,6 @@ namespace Combat_Realism
             this.mannableComp = base.GetComp<CompMannable>();
             if (gun == null)
             {
-                Log.Message("Building_TurretGunCR :: SpawnSetup :: creating new gun");
                 this.gun = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
             }
             for (int i = 0; i < this.GunCompEq.AllVerbs.Count; i++)

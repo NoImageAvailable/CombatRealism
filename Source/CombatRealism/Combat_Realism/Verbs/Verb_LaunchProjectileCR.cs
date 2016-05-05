@@ -308,11 +308,7 @@ namespace Combat_Realism
             float recoilY = UnityEngine.Random.Range(minY, maxY);
             
             float recoilMagnitude = Mathf.Pow((5 - shootingAccuracy), (Mathf.Min(10, numShotsFired) / 6.25f));
-            Log.Message("Verb_LaunchProjectileCR :: GetRecoilVec :: recoilMagnitude=" + recoilMagnitude.ToString());
             return new Vector2(recoilX, recoilY) * recoilMagnitude;
-            //recoilVec.Set(UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetX.x, this.verbPropsCR.recoilOffsetX.y), UnityEngine.Random.Range(this.verbPropsCR.recoilOffsetY.x, this.verbPropsCR.recoilOffsetY.y));
-            //recoilVec *= (float)Math.Sqrt((5 - shootingAccuracy) * Mathf.Min(15, this.numShotsFired));
-            //return recoilVec;
         }
 
         /// <summary>

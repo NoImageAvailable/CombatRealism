@@ -171,6 +171,7 @@ namespace Combat_Realism
 
                     ammo.Destroy();
                     compInventory.UpdateInventory();
+                    if (!hasAmmo) DoOutOfAmmoAction();
                 }
                 return true;
             }
@@ -272,11 +273,7 @@ namespace Combat_Realism
             {
                 MoteThrower.ThrowText(position.ToVector3Shifted(), "CR_OutOfAmmo".Translate() + "!");
             }
-            if (wielder != null && wielder.jobs != null)
-            {
-                if (wielder.CurJob.def != JobDefOf.Hunt && compInventory != null) compInventory.SwitchToNextViableWeapon();
-                wielder.jobs.StopAll();
-            }
+            if (wielder != null && compInventory != null && (wielder.jobs == null || wielder.CurJob.def != JobDefOf.Hunt)) compInventory.SwitchToNextViableWeapon();
         }
 
         public void LoadAmmo(Thing ammo = null)

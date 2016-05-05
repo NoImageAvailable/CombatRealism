@@ -282,14 +282,17 @@ namespace Combat_Realism
             // Cycle through available ranged weapons
             foreach(ThingWithComps gun in rangedWeaponListCached)
             {
-                CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
-                if (compAmmo == null
-                    || !compAmmo.useAmmo
-                    || compAmmo.curMagCount > 0
-                    || compAmmo.hasAmmo)
+                if(parentPawn.equipment == null || parentPawn.equipment.Primary != gun)
                 {
-                    newEq = gun;
-                    break;
+                    CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
+                    if (compAmmo == null
+                        || !compAmmo.useAmmo
+                        || compAmmo.curMagCount > 0
+                        || compAmmo.hasAmmo)
+                    {
+                        newEq = gun;
+                        break;
+                    }
                 }
             }
             // If no ranged weapon was found, use first available melee weapons
