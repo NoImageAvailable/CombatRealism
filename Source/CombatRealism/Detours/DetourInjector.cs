@@ -24,11 +24,6 @@ namespace Combat_Realism.Detours
                 typeof(Detours_TooltipUtility).GetMethod("ShotCalculationTipString", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
 
-            // Detour DrawTurret
-            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(TurretTop).GetMethod("DrawTurret", BindingFlags.Instance | BindingFlags.Public),
-                typeof(Detours_TurretTop).GetMethod("DrawTurret", BindingFlags.Static | BindingFlags.NonPublic)))
-                return false;
-
             // Detour FloatMenuMaker
             if(!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.Public),
                 typeof(Detours_FloatMenuMaker).GetMethod("ChoicesAtFor", BindingFlags.Static | BindingFlags.NonPublic)))
@@ -127,6 +122,17 @@ namespace Combat_Realism.Detours
             if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(WorkGiver_HunterHunt).GetMethod("HasHuntingWeapon", BindingFlags.Static | BindingFlags.Public),
                 typeof(Detours_WorkGiver_HunterHunt).GetMethod("HasHuntingWeapon", BindingFlags.Static | BindingFlags.NonPublic)))
                 return false;
+
+            // Tradeable
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(Tradeable).GetMethod("PriceFor", BindingFlags.Instance | BindingFlags.Public),
+                typeof(Detours_Tradeable).GetMethod("PriceFor", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
+            // TradeDeal
+            if (!CommunityCoreLibrary.Detours.TryDetourFromTo(typeof(TradeDeal).GetMethod("UpdateCurrencyCount", BindingFlags.Instance | BindingFlags.Public),
+                typeof(Detours_TradeDeal).GetMethod("UpdateCurrencyCount", BindingFlags.Static | BindingFlags.NonPublic)))
+                return false;
+
 
             return true;
         }

@@ -6,8 +6,8 @@
     <label>Loadout Generator - Outlander ammo</label>
 	<loadoutGenerator Class="Combat_Realism.LoadoutGenerator_AmmoPrimary">
 	  <skipChance>0</skipChance>
-	  <minCount>50</minCount>
-	  <maxCount>100</maxCount>
+	  <minCount>20</minCount>
+	  <maxCount>40</maxCount>
 	</loadoutGenerator>
 	<priority>0</priority>
   </ThingDef>

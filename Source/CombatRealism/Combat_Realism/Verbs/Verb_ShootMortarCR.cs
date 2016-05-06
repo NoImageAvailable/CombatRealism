@@ -3,16 +3,16 @@ using UnityEngine;
 using Verse;
 namespace Combat_Realism
 {
-	public class Verb_ShootMortarCR : Verb_LaunchProjectileCR
+	public class Verb_ShootMortarCR : Verb_ShootCR
 	{
-        public override void WarmupComplete()
+        /*public override void WarmupComplete()
         {
             base.WarmupComplete();
             if (ShooterPawn != null && ShooterPawn.skills != null)
             {
                 ShooterPawn.skills.Learn(SkillDefOf.Shooting, 100);
             }
-        }
+        }*/
 
         public override ShiftVecReport ShiftVecReportFor(TargetInfo target)
         {

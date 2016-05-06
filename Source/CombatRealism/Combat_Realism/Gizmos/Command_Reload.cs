@@ -15,7 +15,13 @@ namespace Combat_Realism
 
         public override void ProcessInput(Event ev)
         {
-            if (ev.button == 1 && compAmmo.useAmmo && compAmmo.compInventory != null)
+            if (compAmmo == null)
+            {
+                Log.Error("Command_Reload without ammo comp");
+                return;
+            }
+            if ((ev.button == 1 && compAmmo.useAmmo && (compAmmo.compInventory != null || compAmmo.turret != null))
+                || action == null)
                 Find.WindowStack.Add(MakeAmmoMenu());
             else
                 base.ProcessInput(ev);
@@ -24,7 +30,7 @@ namespace Combat_Realism
         private FloatMenu MakeAmmoMenu()
         {
             List<ThingDef> ammoList = new List<ThingDef>();      // List of all ammo types the gun can use and the pawn has in his inventory
-            if (compAmmo.compInventory == null)
+            if (compAmmo.turret != null)
             {
                 // If we have no inventory available (e.g. manned turret), add all possible ammo types to the selection
                 ammoList.AddRange(compAmmo.Props.ammoSet.ammoTypes);

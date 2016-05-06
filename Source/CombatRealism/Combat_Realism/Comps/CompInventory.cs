@@ -255,7 +255,7 @@ namespace Combat_Realism
             return count > 0;
         }
 
-        private void GetEquipmentStats(ThingWithComps eq, out float weight, out float bulk)
+        public static void GetEquipmentStats(ThingWithComps eq, out float weight, out float bulk)
         {
             weight = eq.GetStatValue(StatDef.Named("Weight"));
             bulk = eq.GetStatValue(StatDef.Named("Bulk"));
@@ -282,14 +282,17 @@ namespace Combat_Realism
             // Cycle through available ranged weapons
             foreach(ThingWithComps gun in rangedWeaponListCached)
             {
-                CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
-                if (compAmmo == null
-                    || !compAmmo.useAmmo
-                    || compAmmo.curMagCount > 0
-                    || compAmmo.hasAmmo)
+                if(parentPawn.equipment == null || parentPawn.equipment.Primary != gun)
                 {
-                    newEq = gun;
-                    break;
+                    CompAmmoUser compAmmo = gun.TryGetComp<CompAmmoUser>();
+                    if (compAmmo == null
+                        || !compAmmo.useAmmo
+                        || compAmmo.curMagCount > 0
+                        || compAmmo.hasAmmo)
+                    {
+                        newEq = gun;
+                        break;
+                    }
                 }
             }
             // If no ranged weapon was found, use first available melee weapons
@@ -401,21 +404,6 @@ namespace Combat_Realism
                     container.Remove(container.Last());
                 }
             }
-            /*
-#if DEBUG
-            // Debug validation - checks to make sure the inventory cache is being refreshed properly
-            if(ticksToInitLoadout <= 2)
-            {
-                float lastWeight = this.currentWeightCached;
-                float lastBulk = this.currentBulkCached;
-                this.UpdateInventory();
-                if (lastWeight != this.currentWeightCached || lastBulk != this.currentBulkCached)
-                {
-                    Log.Error(this.parent.ToString() + " failed inventory validation");
-                }
-            }
-#endif
-*/
         }
     }
 }

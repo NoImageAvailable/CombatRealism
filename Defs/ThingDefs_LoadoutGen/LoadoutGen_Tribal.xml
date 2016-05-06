@@ -6,8 +6,8 @@
     <label>Loadout Generator - Tribal ammo</label>
 	<loadoutGenerator Class="Combat_Realism.LoadoutGenerator_AmmoPrimary">
 	  <skipChance>0</skipChance>
-	  <minCount>50</minCount>
-	  <maxCount>150</maxCount>
+	  <minCount>30</minCount>
+	  <maxCount>100</maxCount>
 	</loadoutGenerator>
 	<priority>10</priority>
   </ThingDef>
@@ -18,8 +18,8 @@
 	<loadoutGenerator Class="Combat_Realism.LoadoutGenerator">
 	  <skipChance>0</skipChance>
 	  <thingDef>Pila</thingDef>
-	  <minCount>2</minCount>
-	  <maxCount>5</maxCount>
+	  <minCount>1</minCount>
+	  <maxCount>3</maxCount>
 	</loadoutGenerator>
 	<priority>10</priority>
   </ThingDef>

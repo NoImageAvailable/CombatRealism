@@ -12,5 +12,6 @@ namespace Combat_Realism
     {
         public bool deflectable = false;
         public bool absorbable = false;
+        public bool harmOnlyOutsideLayers = false;
     }
 }

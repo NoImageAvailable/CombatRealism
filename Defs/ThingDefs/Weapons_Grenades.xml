@@ -67,16 +67,16 @@
       <damageAmountBase>80</damageAmountBase>
       <explosionDelay>60</explosionDelay>
     </projectile>
-	<comps>
+		<comps>
       <li Class="Combat_Realism.CompProperties_ExplosiveCR">
         <fragRange>4.0</fragRange>
-		<fragments>
-			<Fragment_GrenadeFragSmall>225</Fragment_GrenadeFragSmall>
-			<Fragment_GrenadeFragMedium>150</Fragment_GrenadeFragMedium>
-			<Fragment_GrenadeFragLarge>45</Fragment_GrenadeFragLarge>
-		</fragments>
+				<fragments>
+					<Fragment_GrenadeFragSmall>225</Fragment_GrenadeFragSmall>
+					<Fragment_GrenadeFragMedium>150</Fragment_GrenadeFragMedium>
+					<Fragment_GrenadeFragLarge>45</Fragment_GrenadeFragLarge>
+				</fragments>
       </li>
-	</comps>
+		</comps>
   </ThingDef>
 
   <ThingDef ParentName="BaseGrenadeEquipment">
@@ -107,7 +107,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10.0</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>
@@ -170,7 +170,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
         <ai_IsIncendiary>true</ai_IsIncendiary>
@@ -237,7 +237,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>
@@ -275,7 +275,7 @@
     <defName>Weapon_GrenadeFlashbang</defName>
     <equipmentType>Primary</equipmentType>
     <label>flashbang grenade</label>
-    <description>Electromagnetic pulse grenades damaging to electronic equipment.</description>
+    <description>Pyrotechnic charge designed to produce a blinding flash of light and loud noise, temporarily blinding and disorienting anyone nearby.</description>
     <graphicData>
       <texPath>Things/Ammo/HandGrenades/Flashbang</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -299,7 +299,7 @@
         <verbClass>Combat_Realism.Verb_ShootCROneUse</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>10</range>
-        <warmupTicks>90</warmupTicks>
+        <warmupTicks>60</warmupTicks>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
         <soundCast>ThrowGrenade</soundCast>

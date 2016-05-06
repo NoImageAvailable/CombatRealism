@@ -91,6 +91,7 @@
 
   <!--=============== Shells ====================-->
 
+	<!--
   <ThingDef ParentName="ResourceBase">
     <defName>ArtilleryShell</defName>
     <label>artillery shell</label>
@@ -127,6 +128,7 @@
       </li>
     </comps>
   </ThingDef>
+	-->
 
 
   <!--=============== Ammo resources ====================-->

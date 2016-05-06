@@ -13,13 +13,19 @@ namespace Combat_Realism
         public override void DrawWornExtras()
         {
             if (wearer == null || !wearer.Spawned) return;
+            Vector3 drawVec = this.wearer.Drawer.DrawPos;
 
             // Check if wearer is in a bed
             Building_Bed bed = wearer.CurrentBed();
-            if (bed != null && !bed.def.building.bed_showSleeperBody) return;
-
-            Vector3 drawVec = this.wearer.Drawer.DrawPos;
-            drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
+            if (bed != null)
+            {
+                if (!bed.def.building.bed_showSleeperBody) return;
+                drawVec.y = Altitudes.AltitudeFor(bed.def.altitudeLayer);
+            }
+            else
+            {
+                drawVec.y = Altitudes.AltitudeFor(AltitudeLayer.Pawn);
+            }
             Vector3 s = new Vector3(1.5f, 1.5f, 1.5f);
             
             // Get the graphic path

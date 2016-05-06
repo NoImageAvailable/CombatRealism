@@ -14,6 +14,7 @@ namespace Combat_Realism
         public int reloadTicks = 300;
         public bool throwMote = true;
         public AmmoSetDef ammoSet = null;
+        public bool spawnUnloaded = false;
 
         public CompProperties_AmmoUser()
         {

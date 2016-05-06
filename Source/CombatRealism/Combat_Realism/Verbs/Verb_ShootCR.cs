@@ -46,22 +46,25 @@ namespace Combat_Realism
         {
             get
             {
-                if(this.CasterIsPawn)
+                if (compFireModes != null)
                 {
-                    // Check for hunting job
-                    if (CasterPawn.jobs != null && CasterPawn.jobs.curJob != null && CasterPawn.jobs.curJob.def == JobDefOf.Hunt)
-                        return true;
-
-                    // Check for suppression
-                    CompSuppressable comp = this.caster.TryGetComp<CompSuppressable>();
-                    if (comp != null)
+                    if (this.CasterIsPawn)
                     {
-                        if (comp.isSuppressed)
+                        // Check for hunting job
+                        if (CasterPawn.jobs != null && CasterPawn.jobs.curJob != null && CasterPawn.jobs.curJob.def == JobDefOf.Hunt)
+                            return true;
+
+                        // Check for suppression
+                        CompSuppressable comp = this.caster.TryGetComp<CompSuppressable>();
+                        if (comp != null)
                         {
-                            return false;
+                            if (comp.isSuppressed)
+                            {
+                                return false;
+                            }
                         }
                     }
-                    return this.compFireModes != null && (this.compFireModes.currentAimMode == AimMode.AimedShot || (useDefaultModes && this.compFireModes.Props.aiUseAimMode));
+                    return this.compFireModes.currentAimMode == AimMode.AimedShot || (useDefaultModes && this.compFireModes.Props.aiUseAimMode);
                 }
                 return false;
             }
@@ -96,7 +99,7 @@ namespace Combat_Realism
         {
             get
             {
-                return !(CasterIsPawn && CasterPawn.Faction == Faction.OfColony);
+                return !(caster.Faction == Faction.OfColony);
             }
         }
 
@@ -112,9 +115,22 @@ namespace Combat_Realism
             {
                 float targetDist = (this.currentTarget.Cell - this.caster.Position).LengthHorizontal;
                 int aimTicks = (int)Mathf.Lerp(aimTicksMin, aimTicksMax, (targetDist / 100));
-                this.CasterPawn.stances.SetStance(new Stance_Warmup(aimTicks, this.currentTarget, this));
-                this.isAiming = true;
-                return;
+                if (CasterIsPawn)
+                {
+                    this.CasterPawn.stances.SetStance(new Stance_Warmup(aimTicks, this.currentTarget, this));
+                    this.isAiming = true;
+                    return;
+                }
+                else
+                {
+                    Building_TurretGunCR turret = caster as Building_TurretGunCR;
+                    if (turret != null)
+                    {
+                        turret.burstWarmupTicksLeft += aimTicks;
+                        this.isAiming = true;
+                        return;
+                    }
+                }
             }
 
             // Shooty stuff
@@ -131,7 +147,7 @@ namespace Combat_Realism
                 {
                     this.WarmupComplete();
                 }
-                if (this.CasterPawn.stances.curStance.GetType() != typeof(Stance_Warmup))
+                if (CasterIsPawn && this.CasterPawn.stances.curStance.GetType() != typeof(Stance_Warmup))
                 {
                     this.isAiming = false;
                 }
@@ -183,7 +199,9 @@ namespace Combat_Realism
         /// </summary>
         public override bool CanHitTargetFrom(IntVec3 root, TargetInfo targ)
         {
-            if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire)
+            if (CasterIsPawn && !CasterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight)) return false;
+            if (this.compFireModes != null && this.compFireModes.currentAimMode == AimMode.HoldFire 
+                && (!CasterIsPawn || CasterPawn.CurJob == null || CasterPawn.CurJob.def != JobDefOf.Hunt))
                 return false;
             return base.CanHitTargetFrom(root, targ);
         }
@@ -195,7 +213,7 @@ namespace Combat_Realism
                 if (!compAmmo.TryReduceAmmoCount())
                 {
                     if (compAmmo.hasMagazine)
-                        compAmmo.StartReload();
+                        compAmmo.TryStartReload();
                     return false;
                 }
             }

@@ -10,6 +10,7 @@
       <texPath>Things/Pawn/Humanlike/Apparel/PersonalShield/PersonalShield</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
+    <techLevel>Spacer</techLevel>
     <tickerType>Normal</tickerType>
     <statBases>
       <MarketValue>1200</MarketValue>

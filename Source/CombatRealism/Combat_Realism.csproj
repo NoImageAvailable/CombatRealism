@@ -68,16 +68,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Combat_Realism\RecoilPattern.cs" />
     <Compile Include="Combat_Realism\AimMode.cs" />
     <Compile Include="Combat_Realism\AmmoInjector.cs" />
     <Compile Include="Combat_Realism\DamageWorkers\DamageWorker_FlameCR.cs" />
     <Compile Include="Combat_Realism\Defs\DamageDef_CR.cs" />
     <Compile Include="Combat_Realism\Defs\LoadoutGeneratorDef.cs" />
+    <Compile Include="Combat_Realism\Gizmos\Command_VerbTarget.cs" />
+    <Compile Include="Combat_Realism\Jobs\JobDriver_ReloadTurret.cs" />
     <Compile Include="Combat_Realism\Jobs\JobGiver_UpdateLoadout.cs" />
+    <Compile Include="Combat_Realism\Jobs\WorkGiver_ReloadTurret.cs" />
     <Compile Include="Combat_Realism\Loadouts\LoadoutAssignment.cs" />
     <Compile Include="Combat_Realism\Things\AmmoThing.cs" />
     <Compile Include="Combat_Realism\Things\Apparel_Backpack.cs" />
     <Compile Include="Combat_Realism\Things\Apparel_TacVest.cs" />
+    <Compile Include="Combat_Realism\Things\Building_TurretGunCR.cs" />
     <Compile Include="Combat_Realism\Things\LoadoutGeneratorThing.cs" />
     <Compile Include="Combat_Realism\Loadouts\Dialog_ManageLoadouts.cs" />
     <Compile Include="Combat_Realism\Gizmos\Command_Reload.cs" />
@@ -111,6 +116,7 @@
     <Compile Include="Combat_Realism\Defs\AmmoCategoryDef.cs" />
     <Compile Include="Combat_Realism\Loadouts\Utility_Loadouts.cs" />
     <Compile Include="Combat_Realism\ThinkNodes\ThinkNode_ConditionalNoJob.cs" />
+    <Compile Include="Combat_Realism\TurretTop.cs" />
     <Compile Include="Detours\DetourInjector.cs" />
     <Compile Include="Combat_Realism\FireMode.cs" />
     <Compile Include="Combat_Realism\Projectiles\BulletCR.cs" />
@@ -144,7 +150,8 @@
     <Compile Include="Detours\Detours_Pawn_ApparelTracker.cs" />
     <Compile Include="Detours\Detours_Pawn_EquipmentTracker.cs" />
     <Compile Include="Detours\Detours_ThingContainer.cs" />
-    <Compile Include="Detours\Detours_TurretTop.cs" />
+    <Compile Include="Detours\Detours_Tradeable.cs" />
+    <Compile Include="Detours\Detours_TradeDeal.cs" />
     <Compile Include="Detours\Detours_VerbTracker.cs" />
     <Compile Include="Detours\Detours_WorkGiver_HunterHunt.cs" />
     <Compile Include="Detours\Detours_WorkGiver_InteractAnimal.cs" />
