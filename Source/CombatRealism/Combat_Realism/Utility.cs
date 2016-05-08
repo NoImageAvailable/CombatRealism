@@ -168,6 +168,21 @@ namespace Combat_Realism
                 {
                     pierceAmount = projectileProps.armorPenetration;
                 }
+                else if (dinfo.Instigator != null)
+                {
+                    Pawn instigatorPawn = dinfo.Instigator as Pawn;
+                    if (instigatorPawn != null)
+                    {
+                        if (instigatorPawn.equipment != null && instigatorPawn.equipment.Primary != null)
+                        {
+                            pierceAmount = instigatorPawn.equipment.Primary.GetStatValue(StatDef.Named("ArmorPenetration"));
+                        }
+                        else
+                        {
+                            pierceAmount = instigatorPawn.GetStatValue(StatDef.Named("ArmorPenetration"));
+                        }
+                    }
+                }
             }
 
             // Run armor calculations on all apparel

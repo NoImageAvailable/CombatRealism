@@ -523,8 +523,8 @@
     </graphicData>
     <soundInteract>InteractRifle</soundInteract>
     <statBases>
-      <WorkToMake>22000</WorkToMake>
-      <MarketValue>1600</MarketValue>
+      <WorkToMake>18000</WorkToMake>
+      <MarketValue>1200</MarketValue>
       <AimEfficiency>0.50</AimEfficiency>
       <ShotSpread>0.08</ShotSpread>
       <SwayFactor>3.42</SwayFactor>
@@ -767,7 +767,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Projectile_DoomsdayRocket</thingClass>
+    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <projectile>
       <damageDef>Bomb</damageDef>
       <damageAmountBase>250</damageAmountBase>
@@ -845,7 +845,7 @@
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
     </graphicData>
-    <thingClass>Projectile_Explosive</thingClass>
+    <thingClass>Combat_Realism.ProjectileCR_Explosive</thingClass>
     <projectile>
       <damageDef>Bomb</damageDef>
       <damageAmountBase>180</damageAmountBase>

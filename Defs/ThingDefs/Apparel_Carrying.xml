@@ -3,6 +3,7 @@
 
   <ThingDef Name="ApparelCarryGearBase" Abstract="True">
     <thingClass>Apparel</thingClass>
+    <techLevel>Midworld</techLevel>
     <category>Item</category>
     <selectable>True</selectable>
     <pathCost>10</pathCost>

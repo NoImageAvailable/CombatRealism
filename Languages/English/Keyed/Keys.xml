@@ -47,5 +47,6 @@
 	<CR_AimedBurstCount>Burst shot count</CR_AimedBurstCount>
 	<CR_OutOfAmmo>Out of ammo</CR_OutOfAmmo>
 	<CR_PutAway>Put away {0}</CR_PutAway>
+	<CR_TamerInventoryFull>can't do taming job because of a full inventory.</CR_TamerInventoryFull>
 	
 </LanguageData>
