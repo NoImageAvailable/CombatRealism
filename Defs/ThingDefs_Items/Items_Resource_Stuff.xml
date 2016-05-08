@@ -127,6 +127,7 @@
     </thingCategories>
     <stuffProps>
       <categories>
+        <li>Metallic_Weapon</li>
         <li>Metallic</li>
         <li>Steeled</li>
       </categories>
@@ -160,9 +161,8 @@
     <useHitPoints>false</useHitPoints>
     <statBases>
       <MarketValue>27</MarketValue>
-	  <Weight>0.8</Weight>
-	  <Bulk>0.3</Bulk>
-      <SharpDamageMultiplier>1.2</SharpDamageMultiplier>
+			<Weight>0.8</Weight>
+			<Bulk>0.3</Bulk>
       <BluntDamageMultiplier>1.0</BluntDamageMultiplier>
     </statBases>
     <thingCategories>
@@ -170,6 +170,7 @@
     </thingCategories>
     <stuffProps>
       <categories>
+        <li>Metallic_Weapon</li>
         <li>Metallic</li>
         <li>Steeled</li>
       </categories>
@@ -194,6 +195,7 @@
         <WornWeight>0.8</WornWeight>
         <ArmorRating_Blunt>1.0</ArmorRating_Blunt>
         <ArmorRating_Sharp>1.15</ArmorRating_Sharp>
+        <ArmorPenetration>1.3</ArmorPenetration>
       </statFactors>
       <smeltable>true</smeltable>
     </stuffProps>
@@ -219,7 +221,6 @@
       <DeteriorationRate>2</DeteriorationRate>
       <MeleeWeapon_DamageAmount>8</MeleeWeapon_DamageAmount>
       <MeleeWeapon_Cooldown>2.2</MeleeWeapon_Cooldown>
-      <SharpDamageMultiplier>0.7</SharpDamageMultiplier>
       <BluntDamageMultiplier>0.3</BluntDamageMultiplier>
 	  <Weight>0.1</Weight>
 	  <Bulk>0.3</Bulk>
@@ -246,6 +247,7 @@
         <DoorOpenSpeed>1.2</DoorOpenSpeed>
         <MeleeWeapon_Cooldown>0.9</MeleeWeapon_Cooldown>
         <Weight>0.1</Weight>
+        <ArmorPenetration>0.3</ArmorPenetration>
       </statFactors>
     </stuffProps>
     <isBodyPartOrImplant>true</isBodyPartOrImplant>
@@ -277,9 +279,8 @@
     <soundDrop>Metal_Drop</soundDrop>
     <statBases>
       <MarketValue>5</MarketValue>
-	  <Weight>2.5</Weight>
-	  <Bulk>0.3</Bulk>
-      <SharpDamageMultiplier>1.1</SharpDamageMultiplier>
+			<Weight>2.5</Weight>
+			<Bulk>0.3</Bulk>
       <BluntDamageMultiplier>1.4</BluntDamageMultiplier>
     </statBases>
     <thingCategories>
@@ -289,6 +290,7 @@
     <smallVolume>true</smallVolume>
     <stuffProps>
       <categories>
+        <li>Metallic_Weapon</li>
         <li>Metallic</li>
       </categories>
       <color>(100,100,100)</color>
@@ -303,6 +305,8 @@
         <Flammability>0.0</Flammability>
         <DoorOpenSpeed>0.9</DoorOpenSpeed>
         <MeleeWeapon_Cooldown>1.35</MeleeWeapon_Cooldown>
+        <ArmorPenetration>1.4</ArmorPenetration>
+        <Weight>2.5</Weight>
       </statFactors>
       <smeltable>true</smeltable>
     </stuffProps>
